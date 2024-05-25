@@ -49,10 +49,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing">Upcoming Events</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing/leaderBoard.html">LeaderBoard</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navRegister" href="http://ParkerMillerBusiness.github.io/boxing/register.html">Register</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignIn" href="http://ParkerMillerBusiness.github.io/boxing/login.html">Sign in</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://lordbobisgay.github.io">Upcoming Events</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://lordbobisgay.github.io/leaderBoard.html">LeaderBoard</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navRegister" href="http://lordbobisgay.github.io/register.html">Register</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignIn" href="http://lordbobisgay.github.io/login.html">Sign in</a></li>
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignOut" href="javascript:void(0);">Sign Out</a>
                         </li>
@@ -847,7 +847,7 @@
                     <!-- Footer Social Icons-->
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4"></h4>
-                        <!--<a class="btn btn-outline-light btn-social mx-1" href="https://github.com/ParkerMillerBusiness"><i class="fab fa-fw fa-github"></i></a> -->
+                        <!--<a class="btn btn-outline-light btn-social mx-1" href="https://github.com/lordbobisgay"><i class="fab fa-fw fa-github"></i></a> -->
                         <div class="container"><small>Contact me at lordbobsemail@gmail.com</small></div>
                         <!-- <a class="btn btn-outline-light btn-social mx-1" href="https://www.linkedin.com/in/parker-miller-223b56208/"><i class="fab fa-fw fa-linkedin-in"></i></a>-->
                         <!-- <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a> -->
@@ -892,7 +892,7 @@
     if (!username) {
         console.error('Please sign in before making picks');
         alert('Please sign in/create account before making picks');
-        window.location.href = 'http://ParkerMillerBusiness.github.io/boxing/register.html';
+        window.location.href = 'http://lordbobisgay.github.io/register.html';
         return;  // Return early to prevent further execution
     }
 
@@ -917,7 +917,7 @@
             .then(() => {
                 console.log("Data saved successfully!");
                 // Redirect to another page after success
-                window.location.href = 'https://parkermillerbusiness.github.io/boxing/user.html';
+                window.location.href = 'https://lordbobisgay.github.io/user.html';
             })
             .catch((error) => {
                 console.error("Failed to write data:", error);
@@ -940,7 +940,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create a new nav item for the user, using the username as the link text
         var navItem = document.createElement('li');
         navItem.className = 'nav-item mx-0 mx-lg-1';
-        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing/user.html">${username}</a>`;
+        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://lordbobisgay.github.io/user.html">${username}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
     } else {
         console.log('No username found in localStorage.');
@@ -962,7 +962,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Optional: Provide feedback or redirect the user
         alert('You have been signed out.');
-        window.location.href = 'http://ParkerMillerBusiness.github.io/boxing/login.html'; // Redirects to the login page
+        window.location.href = 'http://lordbobisgay.github.io/login.html'; // Redirects to the login page
     });
 });
 document.getElementById('firebutton1').addEventListener('click', function() {
