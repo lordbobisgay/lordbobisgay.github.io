@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="All of the fights on Misfits 15" />
+        <meta name="author" content="Bob" />
+        <title>USER STATS</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/boxing_gloves-removebg-preview.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Google Analytics Tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4F873DFQPQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4F873DFQPQ');
+</script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!--GOOGLE SEARCH VERIFICATION-->
+        <meta name="google-site-verification" content="kGhZUcmdYMqwcuJCFVWz7yGrAx_cN5hWqydgcTeqz0M" />
+        <!--GOOGLE Adsense VERIFICATION-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394285765069873"
+        crossorigin="anonymous"></script>
+    </head>
+    <body>
+		<body>
+			<!-- Navigation-->
+			<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+				<div class="container">
+					<a class="navbar-brand" href="#page-top">ACCOUNT INFORMATION BOBSFIGHTPICKS</a>
+					<button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+						Menu
+						<i class="fas fa-bars"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing/index.html">Upcoming Events</a></li>
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing/leaderBoard.html">LeaderBoard</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navRegister" href="http://ParkerMillerBusiness.github.io/boxing/register.html">Register</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignIn" href="http://ParkerMillerBusiness.github.io/boxing/login.html">Sign in</a></li>
+                            <li class="nav-item mx-0 mx-lg-1">
+                                <a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignOut" href="javascript:void(0);">Sign Out</a>
+                            </li>
+							<!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#resume">Experience</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div class="container mt-5 pt-5"> <!-- Adjust margins and padding as needed for layout -->
+				<h2 class="padding-top-extra3">USER INFORMATION</h2>
+				<div id="userInfo" class="p-3 border rounded">
+					Loading user information...
+				</div>
+			</div>
+
+
+
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+  
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
+            authDomain: "bobsfightnews.firebaseapp.com",
+            databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
+            projectId: "bobsfightnews",
+            storageBucket: "bobsfightnews.appspot.com",
+            messagingSenderId: "1069009978943",
+            appId: "1:1069009978943:web:362f9a0911eff241065a8a",
+            measurementId: "G-505FSMGF82"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+
+        // Function to retrieve data
+		function get1() {
+    const username = localStorage.getItem('username');
+    if (!username) {
+        document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user is currently logged in.</p>';
+        return;
+    }
+
+const userRef = ref(db, '/user/' + username);
+    onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            let userInfoHtml = `
+                <p><strong>Username:</strong> ${username}</p>
+                <p><strong>Email:</strong> ${data.email || 'No email registered'}</p>
+                <p><strong>Score:</strong> ${data.score || 'No score yet'}</p>
+            `;
+
+            if ('misfits15' in data) {
+                const MisfitsPicks = []; // Initialize MisfitsPicks as an array
+                const MF15 = data.misfits15;
+                // Populate MisfitsPicks based on MF15 values
+                MisfitsPicks.push(MF15[0] === 'L' ? 'Brooke' : 'Vanzant');
+                MisfitsPicks.push(MF15[1] === 'L' ? 'Bell' : 'Hamm');
+                MisfitsPicks.push(MF15[2] === 'L' ? 'Lil Cracra' : 'YuddyGang');
+                MisfitsPicks.push(MF15[3] === 'L' ? 'Park' : 'Vargas');
+                MisfitsPicks.push(MF15[4] === 'L' ? 'Bee' : 'Celinat');
+                MisfitsPicks.push(MF15[5] === 'L' ? 'Rose' : 'Kelly');
+                MisfitsPicks.push(MF15[6] === 'L' ? 'Vampira' : 'Loza');
+                MisfitsPicks.push(MF15[7] === 'L' ? 'Magen' : 'Fangs');
+
+                userInfoHtml += `<p><strong>Misfits15 Picks:</strong> ${MisfitsPicks.length > 0 ? MisfitsPicks.join(', ') : 'No picks yet'}</p>`;
+            }
+            if ('paultyson' in data) {
+                const PaulTysonPicks = []; // Initialize MisfitsPicks as an array
+                const PaulTyson = data.paultyson;
+                // Populate MisfitsPicks based on MF15 values
+                PaulTysonPicks.push(PaulTyson[0] === 'L' ? 'Paul' : 'Tyson');
+                PaulTysonPicks.push(PaulTyson[1] === 'L' ? 'Taylor' : 'Serrano');
+                PaulTysonPicks.push(PaulTyson[2] === 'L' ? 'Till' : 'Chavez Jr');
+                PaulTysonPicks.push(PaulTyson[3] === 'L' ? 'Sylve' : 'Schofield');
+
+                userInfoHtml += `<p><strong>Paul vs Tyson Picks:</strong> ${PaulTysonPicks.length > 0 ? PaulTysonPicks.join(', ') : 'No picks yet'}</p>`;
+            }
+            if ('ufc302' in data) {
+                const ufc302picks = []; // Initialize MisfitsPicks as an array
+                const ufc302 = data.ufc302;
+                // Populate ufc302picks based on ufc302 values
+                ufc302picks.push(ufc302[0] === 'L' ? 'Makhachev' : 'Porier');
+                ufc302picks.push(ufc302[1] === 'L' ? 'Strickland' : 'Costa');
+                ufc302picks.push(ufc302[2] === 'L' ? 'Holland' : 'Oleksiejczuk');
+                ufc302picks.push(ufc302[3] === 'L' ? 'Almeida' : 'Romanov');
+                ufc302picks.push(ufc302[4] === 'L' ? 'Brown' : 'Dos Santos');
+                ufc302picks.push(ufc302[5] === 'L' ? 'Almeida' : 'Kopylov');
+                ufc302picks.push(ufc302[6] === 'L' ? 'Dawson' : 'Solecki');
+                ufc302picks.push(ufc302[7] === 'L' ? 'Rowe' : 'Matthews');
+                ufc302picks.push(ufc302[8] === 'L' ? 'Price' : 'Morono');
+                ufc302picks.push(ufc302[9] === 'L' ? 'Gall' : 'Hafez');
+                ufc302picks.push(ufc302[10] === 'L' ? 'Perez' : 'Edwards');
+                ufc302picks.push(ufc302[11] === 'L' ? 'Tumendemberel' : 'Lima');
+
+                userInfoHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.length > 0 ? ufc302picks.join(', ') : 'No picks yet'}</p>`;
+            }
+            if ('paultyson' in data || 'misfits15' in data || 'ufc302' in data) {
+    const PaulTyson = data.paultyson || [];
+    const MF15 = data.misfits15 || [];
+    const ufc302 = data.ufc302 || [];
+    const total = PaulTyson.length + MF15.length + ufc302.length;
+
+    userInfoHtml += `<p><strong>Total Picks:</strong> ${total}</p>`;
+} else {
+    userInfoHtml += `<p><strong>Total Picks:</strong> No picks yet</p>`;
+}
+
+            document.getElementById('userInfo').innerHTML = userInfoHtml;
+        } else {
+            document.getElementById('userInfo').innerHTML = '<p class="text-danger">User data not found.</p>';
+        }
+    }, (error) => {
+        console.error('Failed to fetch user data:', error);
+        document.getElementById('userInfo').innerHTML = '<p class="text-danger">Error loading user data.</p>';
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+                var username = localStorage.getItem('username');
+                if (username) {
+                    console.log('Username:', username);
+					// Hide the REGISTER and SIGN IN navigation items
+					document.getElementById('navRegister').style.display = 'none';
+        document.getElementById('navSignIn').style.display = 'none';
+
+        // Create a new nav item for the user, using the username as the link text
+        var navItem = document.createElement('li');
+        navItem.className = 'nav-item mx-0 mx-lg-1';
+        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing/user.html">${username}</a>`;
+        document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
+					get1();
+                    // You can now use the username variable here to modify the DOM or perform other actions
+                } else {
+                    console.log('No username found in localStorage.');
+					document.getElementById('userInfo').innerHTML = '<p class="text-danger">Please log in to view account information.</p>';
+                }
+                var signOutButton = document.getElementById('navSignOut');
+
+// Check if username exists in localStorage
+if (localStorage.getItem('username')) {
+    // Show sign out button if username exists
+    signOutButton.style.display = 'block';
+} else {
+    // Hide sign out button if no username exists
+    signOutButton.style.display = 'none';
+}
+
+// Add event listener for sign out action
+signOutButton.addEventListener('click', function() {
+    localStorage.removeItem('username'); // This will delete the username from localStorage
+
+    // Optional: Provide feedback or redirect the user
+    alert('You have been signed out.');
+    window.location.href = 'http://ParkerMillerBusiness.github.io/boxing/login.html'; // Redirects to the login page
+});
+            });
+
+    </script>
+    <!-- Bootstrap JS Bundle with Popper (Bootstrap 5) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="All of the fights on Misfits 15" />
+        <meta name="author" content="Bob" />
+        <title>BOBSFIGHTPICKS LEADERBOARD</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/boxing_gloves-removebg-preview.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Google Analytics Tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4F873DFQPQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4F873DFQPQ');
+</script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!--GOOGLE SEARCH VERIFICATION-->
+        <meta name="google-site-verification" content="kGhZUcmdYMqwcuJCFVWz7yGrAx_cN5hWqydgcTeqz0M" />
+        <!--GOOGLE Adsense VERIFICATION-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394285765069873"
+        crossorigin="anonymous"></script>
+    </head>
+
+		<body>
+			<!-- Navigation-->
+			<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+				<div class="container">
+					<a class="navbar-brand" href="#page-top">BOBSFIGHTPICKS LEADERBOARD</a>
+					<button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+						Menu
+						<i class="fas fa-bars"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing/index.html">Upcoming Events</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navRegister" href="http://ParkerMillerBusiness.github.io/boxing/register.html">Register</a></li>
+							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignIn" href="http://ParkerMillerBusiness.github.io/boxing/login.html">Sign in</a></li>
+                            <li class="nav-item mx-0 mx-lg-1">
+                                <a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignOut" href="javascript:void(0);">Sign Out</a>
+                            </li>
+							<!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#resume">Experience</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div class="container mt-5 pt-5"> <!-- Adjust margins and padding as needed for layout -->
+				<h2 class="padding-top-extra3">Scores are updated after every event!</h2>
+				<div id="userInfo" class="p-3 border rounded">
+					Loading user information...
+				</div>
+			</div>
+
+
+
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+        import { getDatabase, ref, set, get, child, onValue,query,orderByChild, equalTo,limitToLast } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+  
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
+            authDomain: "bobsfightnews.firebaseapp.com",
+            databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
+            projectId: "bobsfightnews",
+            storageBucket: "bobsfightnews.appspot.com",
+            messagingSenderId: "1069009978943",
+            appId: "1:1069009978943:web:362f9a0911eff241065a8a",
+            measurementId: "G-505FSMGF82"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+
+        // Function to retrieve data
+		function getLeaderboard() {
+    const usersRef = ref(db, '/user/');
+    // Query to get the top 100 users ordered by score
+    const queryRef = query(usersRef, orderByChild('score'), limitToLast(100));
+
+    get(queryRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const users = [];
+            snapshot.forEach((childSnapshot) => {
+                const user = childSnapshot.val();
+                user.username = childSnapshot.key; // Store the username
+                users.push(user);
+            });
+            // Since we get the results in ascending order, we reverse to show in descending
+            users.reverse();
+
+            let leaderboardHtml = '<h2>Leaderboard</h2><ul class="list-group">';
+            // Include an index to display the rank
+            users.forEach((user, index) => {
+                leaderboardHtml += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${index + 1}. ${user.username} <!-- Rank number added before username -->
+                    <span class="">Correct Picks: ${user.picks || '0'}</span>
+                    <span class="">Total Picks: ${user.total || '0'}</span>
+                    <span class="">Score: ${user.score || 'No score'}</span>
+                </li>`;
+            });
+            leaderboardHtml += '</ul>';
+
+            document.getElementById('userInfo').innerHTML = leaderboardHtml;
+        } else {
+            document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user data found.</p>';
+        }
+    }).catch((error) => {
+        console.error('Failed to fetch user data:', error);
+        document.getElementById('userInfo').innerHTML = '<p class="text-danger">Error loading user data.</p>';
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+                var username = localStorage.getItem('username');
+                if (username) {
+                    console.log('Username:', username);
+					// Hide the REGISTER and SIGN IN navigation items
+					document.getElementById('navRegister').style.display = 'none';
+        document.getElementById('navSignIn').style.display = 'none';
+
+        // Create a new nav item for the user, using the username as the link text
+        var navItem = document.createElement('li');
+        navItem.className = 'nav-item mx-0 mx-lg-1';
+        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://ParkerMillerBusiness.github.io/boxing/user.html">${username}</a>`;
+        document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
+					getLeaderboard();
+                    // You can now use the username variable here to modify the DOM or perform other actions
+                } else {
+                    console.log('No username found in localStorage.');
+					
+                }
+                var signOutButton = document.getElementById('navSignOut');
+
+// Check if username exists in localStorage
+if (localStorage.getItem('username')) {
+    // Show sign out button if username exists
+    signOutButton.style.display = 'block';
+} else {
+    // Hide sign out button if no username exists
+    signOutButton.style.display = 'none';
+}
+
+// Add event listener for sign out action
+signOutButton.addEventListener('click', function() {
+    localStorage.removeItem('username'); // This will delete the username from localStorage
+
+    // Optional: Provide feedback or redirect the user
+    alert('You have been signed out.');
+    window.location.href = 'http://ParkerMillerBusiness.github.io/boxing/login.html'; // Redirects to the login page
+});
+            });
+
+    </script>
+
+ <!-- Bootstrap JS Bundle with Popper (Bootstrap 5) -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
+ 
