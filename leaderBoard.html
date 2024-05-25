@@ -29,6 +29,11 @@
         <!--GOOGLE Adsense VERIFICATION-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394285765069873"
         crossorigin="anonymous"></script>
+        <style>
+            .highlight {
+                background-color: #d4edda; /* Light green background */
+            }
+        </style>
     </head>
 
 		<body>
@@ -88,8 +93,8 @@
 
         // Function to retrieve data
 		function getLeaderboard() {
+    const loggedInUsername = localStorage.getItem('username'); // Get the username from local storage
     const usersRef = ref(db, '/user/');
-    // Query to get the top 100 users ordered by score
     const queryRef = query(usersRef, orderByChild('score'), limitToLast(100));
 
     get(queryRef).then((snapshot) => {
@@ -100,14 +105,13 @@
                 user.username = childSnapshot.key; // Store the username
                 users.push(user);
             });
-            // Since we get the results in ascending order, we reverse to show in descending
             users.reverse();
 
             let leaderboardHtml = '<h2>Leaderboard</h2><ul class="list-group">';
-            // Include an index to display the rank
             users.forEach((user, index) => {
-                leaderboardHtml += `<li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${index + 1}. ${user.username} <!-- Rank number added before username -->
+                const highlightClass = (user.username === loggedInUsername) ? 'highlight' : ''; // Apply highlight if usernames match
+                leaderboardHtml += `<li class="list-group-item d-flex justify-content-between align-items-center ${highlightClass}">
+                    ${index + 1}. ${user.username}
                     <span class="">Correct Picks: ${user.picks || '0'}</span>
                     <span class="">Total Picks: ${user.total || '0'}</span>
                     <span class="">Score: ${user.score || 'No score'}</span>
