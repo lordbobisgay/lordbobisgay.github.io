@@ -128,6 +128,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
                 var username = localStorage.getItem('username');
+                getLeaderboard();
                 if (username) {
                     console.log('Username:', username);
 					// Hide the REGISTER and SIGN IN navigation items
@@ -139,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navItem.className = 'nav-item mx-0 mx-lg-1';
         navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://lordbobisgay.github.io/user.html">${username}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
-					getLeaderboard();
+					
                     // You can now use the username variable here to modify the DOM or perform other actions
                 } else {
                     console.log('No username found in localStorage.');
