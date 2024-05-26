@@ -110,7 +110,7 @@
             let leaderboardHtml = '<h2>Leaderboard</h2><ul class="list-group">';
             users.forEach((user, index) => {
                 const highlightClass = (user.username === loggedInUsername) ? 'highlight' : ''; // Apply highlight if usernames match
-                leaderboardHtml += `<li class="list-group-item d-flex justify-content-between align-items-center ${highlightClass}">
+                leaderboardHtml += `<li class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
                     ${index + 1}. ${user.username}
                     <span class="">Correct Picks: ${user.picks || '0'}</span>
                     <span class="">Total Picks: ${user.total || '0'}</span>

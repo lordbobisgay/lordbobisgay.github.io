@@ -79,6 +79,10 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+.list-group-item2 {
+  font-size: 1.0rem; /* Adjust the font size smaller */
+}
+
 .fight-bar-container {
   position: relative;
   padding: 20px;
@@ -205,6 +209,9 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
+  .list-group-item2 {
+    font-size: 0.6rem; /* Adjust the font size smaller */
+}
   .lowered-text {
     transform: translateY(30px); /* Adjust the value as needed */
   }
