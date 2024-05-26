@@ -109,14 +109,11 @@ const userRef = ref(db, '/user/' + username);
                 const MisfitsPicks = []; // Initialize MisfitsPicks as an array
                 const MF15 = data.misfits15;
                 // Populate MisfitsPicks based on MF15 values
-                MisfitsPicks.push(MF15[0] === 'L' ? 'Brooke' : 'Vanzant');
-                MisfitsPicks.push(MF15[1] === 'L' ? 'Bell' : 'Hamm');
-                MisfitsPicks.push(MF15[2] === 'L' ? 'Lil Cracra' : 'YuddyGang');
-                MisfitsPicks.push(MF15[3] === 'L' ? 'Park' : 'Vargas');
-                MisfitsPicks.push(MF15[4] === 'L' ? 'Bee' : 'Celinat');
-                MisfitsPicks.push(MF15[5] === 'L' ? 'Rose' : 'Kelly');
-                MisfitsPicks.push(MF15[6] === 'L' ? 'Vampira' : 'Loza');
-                MisfitsPicks.push(MF15[7] === 'L' ? 'Magen' : 'Fangs');
+                MisfitsPicks.push(MF15[0] === 'L' ? 'Bell' : 'Hamm');
+                MisfitsPicks.push(MF15[1] === 'L' ? 'Lil Cracra' : 'YuddyGang');
+                MisfitsPicks.push(MF15[2] === 'L' ? 'Park' : 'Vargas');
+                MisfitsPicks.push(MF15[3] === 'L' ? 'Bee' : 'Celinat');
+                MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
 
                 userInfoHtml += `<p><strong>Misfits15 Picks:</strong> ${MisfitsPicks.length > 0 ? MisfitsPicks.join(', ') : 'No picks yet'}</p>`;
             }
