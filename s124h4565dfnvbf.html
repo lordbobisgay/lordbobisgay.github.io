@@ -70,6 +70,7 @@
 
 			<button id="deletePosition7Btn">Delete Position 7</button>
 			<button id="deletePosition6Btn">Delete Position 6</button>
+			<button id="deletePosition6Btn">Delete Position 1</button>
 
 
 
@@ -150,12 +151,11 @@
 
 function getOddsForPosition(position) {
     const odds = {
-        1: +120,
-        2: -450,
-        3: +350,
-        4: +333,
-        5: -1600,
-        6: -550,
+        1: -450,
+        2: +350,
+        3: +333,
+        4: -1600,
+        5: -550,
         
     };
     return odds[position];
@@ -214,6 +214,34 @@ document.getElementById('deletePosition6Btn').addEventListener('click', function
         }
     }).catch((error) => {
         console.error('Failed to delete position 6:', error);
+    });
+});
+
+document.getElementById('deletePosition1Btn').addEventListener('click', function() {
+    const usersRef = ref(db, '/user/');
+
+    get(usersRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                const username = childSnapshot.key;
+                const userData = childSnapshot.val();
+                if (userData.misfits15 && userData.misfits15.length >= 1) {
+                    // Create a new string without the 1st position
+                    const updatedString = userData.misfits15.substring(1);
+
+                    // Update the string in the database
+                    const misfitsRef = ref(db, `/user/${username}/misfits15`);
+                    set(misfitsRef, updatedString);
+                }
+            });
+
+            // Alert when all operations are done
+            alert("Position 1 has been deleted from all user strings.");
+        } else {
+            console.error('No users found in the database.');
+        }
+    }).catch((error) => {
+        console.error('Failed to delete position 1:', error);
     });
 });
 
