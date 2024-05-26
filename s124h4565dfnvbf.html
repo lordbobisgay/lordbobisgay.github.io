@@ -68,6 +68,8 @@
 
 			<button id="updateScoresBtn" class="btn btn-primary mt-3">Update Scores for Misfits 15</button>
 
+			<button id="deletePosition7Btn">Delete Position 7</button>
+
 
 
 
@@ -95,7 +97,7 @@
 
 
 		document.getElementById('updateScoresBtn').addEventListener('click', function() {
-    const correctString = "LLLLLLLL";
+    const correctString = "LLLLLLL";
     const usersRef = ref(db, '/user/');
 
     get(usersRef).then((snapshot) => {
@@ -151,13 +153,41 @@ function getOddsForPosition(position) {
         2: -150,
         3: -210,
         4: -200,
-        5: -180,
-        6: +230,
-        7: +190,
-        8: -550
+        5: +333,
+        6: -1600,
+        7: -550,
+        
     };
     return odds[position];
 }
+
+document.getElementById('deletePosition7Btn').addEventListener('click', function() {
+    const usersRef = ref(db, '/user/');
+
+    get(usersRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            snapshot.forEach((childSnapshot) => {
+                const username = childSnapshot.key;
+                const userData = childSnapshot.val();
+                if (userData.misfits15 && userData.misfits15.length >= 7) {
+                    // Create a new string without the 7th position
+                    const updatedString = userData.misfits15.substring(0, 6) + userData.misfits15.substring(7);
+
+                    // Update the string in the database
+                    const misfitsRef = ref(db, `/user/${username}/misfits15`);
+                    set(misfitsRef, updatedString);
+                }
+            });
+
+            // Alert when all operations are done
+            alert("Position 7 has been deleted from all user strings.");
+        } else {
+            console.error('No users found in the database.');
+        }
+    }).catch((error) => {
+        console.error('Failed to delete position 7:', error);
+    });
+});
 
 
 function calculateProfitFromOdds(odds) {
