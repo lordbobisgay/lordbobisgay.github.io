@@ -112,7 +112,7 @@
 
                     // Update total picks
                     const totalRef = ref(db, `/user/${username}/total`);
-                    set(totalRef, (userData.total || 0) + 6);
+                    set(totalRef, (userData.total || 0) + 5);
 
                     let correctPicks = 0;
                     let totalProfit = 0;  // Initialize total profit
