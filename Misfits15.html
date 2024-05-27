@@ -94,14 +94,15 @@
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
         </div>
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Pick Your Winner! Click a Fighter's Picture, Then Submit at the bottom to Join the Leaderboard.</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"></h2>
+        <div id="picksDisplay" class="page-section-heading text-center text-uppercase text-secondary mb-0">Loading picks...</div>
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
     <button type="button" class="position-absolute top-0 start-0 w-100 h-100" id="FB1"
         data-bs-toggle="collapse" data-bs-target="#fightDetails2"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Draw</span>
     </button>
             <div class="text-center mb-3">
                 <div class="fight-category text-uppercase fw-bold">Women's Middleweight bout</div>
@@ -124,7 +125,7 @@
                     </div>
                     <div class="text-center mx-2 my-auto">
                         <div class="fight-vs text-uppercase fw-bold">VS</div>
-                        <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                        <div class="fight-odds text-uppercase fw-bold">+120 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -163</div>
                     </div>
                     <div class="text-center ms-auto">
                         <div class="number-above lowered-text">#2</div>
@@ -190,10 +191,10 @@
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
-    <button type="button" class="position-absolute top-0 start-0 w-100 h-100"
+    <button type="button" class="position-absolute top-0 start-0 w-100 h-100" id="FB2"
         data-bs-toggle="collapse" data-bs-target="#fightDetails3"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Bell Win - Decision</span>
     </button>
     <div class="text-center mb-3">
         <div class="fight-category text-uppercase fw-bold">Cruiserweight bout</div>
@@ -216,7 +217,7 @@
             </div>
             <div class="text-center mx-2 my-auto">
                 <div class="fight-vs text-uppercase fw-bold">VS</div>
-                <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                <div class="fight-odds text-uppercase fw-bold">-450 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +300</div>
             </div>
             <div class="text-center ms-auto">
                 <div class="number-above lowered-text">#7</div>
@@ -280,10 +281,10 @@
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
-    <button type="button" class="position-absolute top-0 start-0 w-100 h-100"
+    <button type="button" id="FB3" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails4"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Yuddygang Win - Decision</span>
     </button>
     <div class="text-center mb-3">
         <div class="fight-category text-uppercase fw-bold">Lightweight bout</div>
@@ -306,7 +307,7 @@
             </div>
             <div class="text-center mx-2 my-auto">
                 <div class="fight-vs text-uppercase fw-bold">VS</div>
-                <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                <div class="fight-odds text-uppercase fw-bold">-550 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +350</div>
             </div>
             <div class="text-center ms-auto">
                 <div class="number-above lowered-text">#1</div>
@@ -369,10 +370,10 @@
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
-    <button type="button" class="position-absolute top-0 start-0 w-100 h-100"
+    <button type="button" id="FB4" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails5"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Vargas Win - Decision</span>
     </button>
     <div class="text-center mb-3">
         <div class="fight-category text-uppercase fw-bold">Middleweight bout</div>
@@ -395,7 +396,7 @@
             </div>
             <div class="text-center mx-2 my-auto">
                 <div class="fight-vs text-uppercase fw-bold">VS</div>
-                <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                <div class="fight-odds text-uppercase fw-bold">-500 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +333</div>
             </div>
             <div class="text-center ms-auto">
                 <div class="number-above text-opacity-25">#9</div>
@@ -459,10 +460,10 @@
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
-    <button type="button" class="position-absolute top-0 start-0 w-100 h-100"
+    <button type="button"  id="FB5" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails6"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Bee Win - Decision</span>
     </button>
     <div class="text-center mb-3">
         <div class="fight-category text-uppercase fw-bold">Women's Middleweight bout</div>
@@ -485,7 +486,7 @@
             </div>
             <div class="text-center mx-2 my-auto">
                 <div class="fight-vs text-uppercase fw-bold">VS</div>
-                <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                <div class="fight-odds text-uppercase fw-bold">-1600 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +750</div>
             </div>
             <div class="text-center ms-auto">
                 <div class="number-above text-opacity-25">#9</div>
@@ -550,10 +551,10 @@
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
-    <button type="button" class="position-absolute top-0 start-0 w-100 h-100"
+    <button type="button" id="FB6" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails7"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Fight Removed From Card</span>
     </button>
     <div class="text-center mb-3">
         <div class="fight-category text-uppercase fw-bold">Middleweight bout</div>
@@ -576,7 +577,7 @@
             </div>
             <div class="text-center mx-2 my-auto">
                 <div class="fight-vs text-uppercase fw-bold">VS</div>
-                <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                <div class="fight-odds text-uppercase fw-bold">-1000 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +550</div>
             </div>
             <div class="text-center ms-auto">
                 <div class="number-above text-opacity-25">#9</div>
@@ -653,10 +654,10 @@
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
-    <button type="button" class="position-absolute top-0 start-0 w-100 h-100"
+    <button type="button" id="FB7" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Draw</span>
     </button>
             <div class="text-center mb-3">
                 <div class="fight-category text-uppercase fw-bold">Womens Curiserweight bout</div>
@@ -679,7 +680,7 @@
                     </div>
                     <div class="text-center mx-2 my-auto">
                         <div class="fight-vs text-uppercase fw-bold">VS</div>
-                        <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                        <div class="fight-odds text-uppercase fw-bold">-1000 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +550</div>
                     </div>
                     <div class="text-center ms-auto">
                         <div class="number-above text-opacity-25">#9</div>
@@ -742,10 +743,10 @@
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
-    <button type="button" class="position-absolute top-0 start-0 w-100 h-100"
+    <button type="button" id="FB8" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails8"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
-        
+        <span style="position: relative; top: -50px; background-color: red; color: white; padding: 5px;">Magen Win - Decision</span>
     </button>
     <div class="text-center mb-3">
         <div class="fight-category text-uppercase fw-bold">Womens Cruiserweight bout</div>
@@ -768,7 +769,7 @@
             </div>
             <div class="text-center mx-2 my-auto">
                 <div class="fight-vs text-uppercase fw-bold">VS</div>
-                <div class="fight-odds text-uppercase fw-bold">- &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; -</div>
+                <div class="fight-odds text-uppercase fw-bold">-550 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +350</div>
             </div>
             <div class="text-center ms-auto">
                 <div class="number-above text-opacity-25">#9</div>
@@ -888,49 +889,38 @@
             const app = initializeApp(firebaseConfig);
             const db = getDatabase(app);
 
-            document.getElementById('submit').addEventListener('click', function() {
-    var username = localStorage.getItem('username');
-    if (!username) {
-        console.error('Please sign in before making picks');
-        alert('Please sign in/create an account before making picks');
-        window.location.href = 'http://lordbobisgay.github.io/register.html';
-        return;  // Return early to prevent further execution
-    }
 
-    var result = "";
-    for (var i = 1; i <= 16; i++) {
-        var button = document.getElementById('firebutton' + i);
-        if (button.classList.contains('fire-active')) {
-            result += i % 2 !== 0 ? 'L' : 'R';
-        }
-    }
-    if (result.length !== 8) {
-        console.error("Please select a fighter for every fight on the card");
-        alert("Please select a fighter for every fight on the card");
-        return "Error";
-    } else {
-        console.log(result);
-        this.innerHTML = 'Thanks for submitting';
-        this.disabled = true;
 
-        // Firebase: Write the result to the database
-        set(ref(db, '/user/' + username + '/misfits15'), result)
-            .then(() => {
-                console.log("Data saved successfully!");
-                // Redirect to another page after success
-                window.location.href = 'https://lordbobisgay.github.io/user.html';
-            })
-            .catch((error) => {
-                console.error("Failed to write data:", error);
-            });
 
-        return result;
-    }
-});
-            </script>
-        <script>
 document.addEventListener('DOMContentLoaded', function() {
     var username = localStorage.getItem('username');
+        if (username) {
+            const userRef = ref(db, '/user/' + username);
+            onValue(userRef, (snapshot) => {
+                const data = snapshot.val();
+                if (data && 'misfits15' in data) {
+                    const MisfitsPicks = [];
+                    const MF15 = data.misfits15;
+                    MisfitsPicks.push(MF15[0] === 'L' ? 'Bell' : 'Hamm');
+                    MisfitsPicks.push(MF15[1] === 'L' ? 'Lil Cracra' : 'YuddyGang');
+                    MisfitsPicks.push(MF15[2] === 'L' ? 'Park' : 'Vargas');
+                    MisfitsPicks.push(MF15[3] === 'L' ? 'Bee' : 'Celinat');
+                    MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
+
+                    const picksDisplay = document.getElementById('picksDisplay');
+                    if (MisfitsPicks.length > 0) {
+                        picksDisplay.innerText = 'Your picks: ' + MisfitsPicks.join(', ');
+                    } else {
+                        picksDisplay.innerText = 'No picks';
+                    }
+                } else {
+                    document.getElementById('picksDisplay').innerText = 'No picks';
+                }
+            });
+        } else {
+            document.getElementById('picksDisplay').innerText = 'No username found, unable to retrieve picks.';
+        }
+   
     if (username) {
         console.log('Username:', username);
 
@@ -955,6 +945,32 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         // Hide sign out button if no username exists
         signOutButton.style.display = 'none';
+    }
+
+    if (username) {
+        const userRef = ref(db, '/user/' + username + '/misfits15');
+        onValue(userRef, (snapshot) => {
+            const userPicks = snapshot.val();
+            const predefinedPicks = "LRRLL";
+
+            // Apply color based on comparison
+            colorButton('FB2', userPicks[0], predefinedPicks[0]);
+            colorButton('FB3', userPicks[1], predefinedPicks[1]);
+            colorButton('FB4', userPicks[2], predefinedPicks[2]);
+            colorButton('FB5', userPicks[3], predefinedPicks[3]);
+            colorButton('FB8', userPicks[4], predefinedPicks[4]);
+
+
+        });
+    }
+
+    function colorButton(buttonId, userPick, predefinedPick) {
+        const button = document.getElementById(buttonId);
+        if (userPick === predefinedPick) {
+            button.style.backgroundColor = 'rgba(0, 255, 0, 0.33)';  // Semi-transparent green
+        } else {
+            button.style.backgroundColor = 'rgba(255, 0, 0, 0.33)';  // Semi-transparent red
+        }
     }
 
     // Add event listener for sign out action
