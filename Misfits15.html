@@ -870,57 +870,48 @@
         </div>
 
         <script type="module">
-            // Import Firebase modules
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-            import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-      
-            // Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
-                authDomain: "bobsfightnews.firebaseapp.com",
-                databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
-                projectId: "bobsfightnews",
-                storageBucket: "bobsfightnews.appspot.com",
-                messagingSenderId: "1069009978943",
-                appId: "1:1069009978943:web:362f9a0911eff241065a8a",
-                measurementId: "G-505FSMGF82"
-            };
-    
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const db = getDatabase(app);
 
 
 
 
 document.addEventListener('DOMContentLoaded', function() {
     var username = localStorage.getItem('username');
-        if (username) {
-            const userRef = ref(db, '/user/' + username);
-            onValue(userRef, (snapshot) => {
-                const data = snapshot.val();
-                if (data && 'misfits15' in data) {
-                    const MisfitsPicks = [];
-                    const MF15 = data.misfits15;
-                    MisfitsPicks.push(MF15[0] === 'L' ? 'Bell' : 'Hamm');
-                    MisfitsPicks.push(MF15[1] === 'L' ? 'Lil Cracra' : 'YuddyGang');
-                    MisfitsPicks.push(MF15[2] === 'L' ? 'Park' : 'Vargas');
-                    MisfitsPicks.push(MF15[3] === 'L' ? 'Bee' : 'Celinat');
-                    MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
+if (username) {
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=misfits15&username=${encodeURIComponent(username)}`;
 
-                    const picksDisplay = document.getElementById('picksDisplay');
-                    if (MisfitsPicks.length > 0) {
-                        picksDisplay.innerText = 'Your picks: ' + MisfitsPicks.join(', ');
-                    } else {
-                        picksDisplay.innerText = 'No picks';
-                    }
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log("API Data:", data);  // Debug to ensure correct data retrieval
+            // Parse the stringified JSON body to get actual data
+            const responseBody = JSON.parse(data.body);
+            const MF15 = responseBody.misfits15_value;  // Adjust if the key differs
+
+            if (MF15 && MF15.length >= 5) {  // Ensure MF15 is defined and has at least 5 characters
+                const MisfitsPicks = [];
+                MisfitsPicks.push(MF15[0] === 'L' ? 'Bell' : 'Hamm');
+                MisfitsPicks.push(MF15[1] === 'L' ? 'Lil Cracra' : 'YuddyGang');
+                MisfitsPicks.push(MF15[2] === 'L' ? 'Park' : 'Vargas');
+                MisfitsPicks.push(MF15[3] === 'L' ? 'Bee' : 'Celinat');
+                MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
+
+                const picksDisplay = document.getElementById('picksDisplay');
+                if (MisfitsPicks.length > 0) {
+                    picksDisplay.innerText = 'Your picks: ' + MisfitsPicks.join(', ');
                 } else {
-                    document.getElementById('picksDisplay').innerText = 'No picks';
+                    picksDisplay.innerText = 'No picks';
                 }
-            });
-        } else {
-            document.getElementById('picksDisplay').innerText = 'No username found, unable to retrieve picks.';
-        }
+            } else {
+                document.getElementById('picksDisplay').innerText = 'No picks available or invalid data format.';
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            document.getElementById('picksDisplay').innerText = 'Failed to load picks due to an error.';
+        });
+} else {
+    document.getElementById('picksDisplay').innerText = 'No username found, unable to retrieve picks.';
+}
    
     if (username) {
         console.log('Username:', username);
@@ -949,21 +940,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (username) {
-        const userRef = ref(db, '/user/' + username + '/misfits15');
-        onValue(userRef, (snapshot) => {
-            const userPicks = snapshot.val();
-            const predefinedPicks = "LRRLL";
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=misfits15&username=${encodeURIComponent(username)}`;
 
-            // Apply color based on comparison
+    fetch(apiUrl)
+        .then(response => response.json())  // First parse of the JSON response
+        .then(data => {
+            console.log("API Data:", data);  // Log to check structure
+            // Now parse the JSON string in the body
+            const responseBody = JSON.parse(data.body);
+            const userPicks = responseBody.misfits15_value;
+            console.log("User Picks:", userPicks);  // Ensure this is correctly parsed
+
+            if (!userPicks || userPicks.length < 5) {
+                console.error("Invalid or incomplete user picks data:", userPicks);
+                return;  // Exit if data is not valid
+            }
+
+            const predefinedPicks = "LRRLL";
             colorButton('FB2', userPicks[0], predefinedPicks[0]);
             colorButton('FB3', userPicks[1], predefinedPicks[1]);
             colorButton('FB4', userPicks[2], predefinedPicks[2]);
             colorButton('FB5', userPicks[3], predefinedPicks[3]);
             colorButton('FB8', userPicks[4], predefinedPicks[4]);
-
-
+        })
+        .catch(error => {
+            console.error("Error fetching or parsing data:", error);
         });
-    }
+}
 
     function colorButton(buttonId, userPick, predefinedPick) {
         const button = document.getElementById(buttonId);
