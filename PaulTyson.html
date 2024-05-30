@@ -912,17 +912,9 @@
         console.log(result);
         this.innerHTML = 'Thanks for submitting';
         this.disabled = true;
+        updatePaulTyson(username,result)
 
-        // Firebase: Write the result to the database
-        set(ref(db, '/user/' + username + '/paultyson'), result)
-            .then(() => {
-                console.log("Data saved successfully!");
-                // Redirect to another page after success
-                window.location.href = 'https://punchpredictor.com/user.html';
-            })
-            .catch((error) => {
-                console.error("Failed to write data:", error);
-            });
+
 
         return result;
     }
@@ -966,6 +958,27 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
     });
 });
+
+function updatePaulTyson(username, result) {
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=paultyson&username=${encodeURIComponent(username)}&placeholder1=${encodeURIComponent(result)}`;
+
+    fetch(apiUrl, {
+        method: 'GET',  // Assuming GET method, update if your API uses a different method
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Data saved successfully!");
+            // Redirect to another page after success
+            window.location.href = 'https://punchpredictor.com/user.html';
+        } else {
+            throw new Error('Failed to fetch data');
+        }
+    })
+    .catch(error => {
+        console.error("Failed to write data:", error);
+    });
+}
+
 document.getElementById('firebutton1').addEventListener('click', function() {
     var otherButton = document.getElementById('firebutton2');
 
