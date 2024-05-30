@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Call Lambda from JS</title>
+</head>
+<body>
+    <h1>Fetch User Data</h1>
+    <button onclick="fetchUserData('Kin')">Get User Info</button>
+
+
+    <script>
+           function fetchUserData(username_fetch) {
+            var apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=user&username=${username_fetch}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    var userInfo = JSON.parse(data.body);
+                    var email = userInfo.email || 'No email registered';
+                    var score = userInfo.score || 'No score yet';
+                    var misfits15 = userInfo.misfits15;
+                    var paultyson = userInfo.paultyson;
+                    var ufc302 = userInfo.ufc302;
+
+                    // Process the fetched data and update the DOM
+                    updateUserInfo(email, score, misfits15, paultyson, ufc302);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('userInfo').innerHTML = '<p class="text-danger">Error loading user data.</p>';
+                });
+        }
+    </script>
+</body>
+</html>
