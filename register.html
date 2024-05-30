@@ -117,47 +117,53 @@
         const db = getDatabase(app);
 
         document.getElementById("submit").addEventListener('click', function(e) {
-        e.preventDefault();
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("phone").value; // Adjust if this is actually the password input.
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("phone").value; // Adjust if this is actually the password input.
 
-        // Check if the email is already in use
-        const usersRef = ref(db, 'user/');
-        const emailQuery = query(usersRef, orderByChild('email'), equalTo(email));
-        get(emailQuery).then((snapshot) => {
-            if (snapshot.exists()) {
-                alert("Email is already in use");
-            } else {
-                // No user has this email, proceed with username check
-                const usernameRef = ref(db, 'user/' + username);
-                get(usernameRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        alert("Username is already in use");
-                    } else {
-                        set(ref(db, 'user/' + username), {
-                            username: username,
-                            email: email,
-                            password: password,
-                            picks: 0,
-                            total: 0,
-                            score: 0
-                        }).then(() => {
-                            localStorage.setItem('username', username);
-                            alert("Register Successful!");
-                            window.location.href = 'http://punchpredictor.com/index.html'; // Redirect after successful registration
-                        }).catch((error) => {
-                            alert("Failed to register: " + error.message);
-                        });
-                    }
-                }).catch((error) => {
-                    console.error("Failed to check username availability:", error);
-                });
-            }
-        }).catch((error) => {
-            console.error("Failed to check email availability:", error);
-        });
+    // Check for spaces in username
+    if (username.includes(' ')) {
+        alert('Username cannot contain spaces.');
+        return; // Stop the function if there are spaces
+    }
+
+    // Check if the email is already in use
+    const usersRef = ref(db, 'user/');
+    const emailQuery = query(usersRef, orderByChild('email'), equalTo(email));
+    get(emailQuery).then((snapshot) => {
+        if (snapshot.exists()) {
+            alert("Email is already in use");
+        } else {
+            // No user has this email, proceed with username check
+            const usernameRef = ref(db, 'user/' + username);
+            get(usernameRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    alert("Username is already in use");
+                } else {
+                    set(ref(db, 'user/' + username), {
+                        username: username,
+                        email: email,
+                        password: password,
+                        picks: 0,
+                        total: 0,
+                        score: 0
+                    }).then(() => {
+                        localStorage.setItem('username', username);
+                        alert("Register Successful!");
+                        window.location.href = 'http://punchpredictor.com/index.html'; // Redirect after successful registration
+                    }).catch((error) => {
+                        alert("Failed to register: " + error.message);
+                    });
+                }
+            }).catch((error) => {
+                console.error("Failed to check username availability:", error);
+            });
+        }
+    }).catch((error) => {
+        console.error("Failed to check email availability:", error);
     });
+});
 
         // Function to retrieve data
         function get1() {

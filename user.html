@@ -67,72 +67,65 @@
 
 
     <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-  
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
-            authDomain: "bobsfightnews.firebaseapp.com",
-            databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
-            projectId: "bobsfightnews",
-            storageBucket: "bobsfightnews.appspot.com",
-            messagingSenderId: "1069009978943",
-            appId: "1:1069009978943:web:362f9a0911eff241065a8a",
-            measurementId: "G-505FSMGF82"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
+        var email_fetch;
+        var score_fetch;
+        var misfits15_fetch;
+        var paultyson_fetch;
+        var ufc302_fetch;
 
         // Function to retrieve data
-		function get1() {
+        function get1() {
     const username = localStorage.getItem('username');
+    var apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=user&username=${username}`;
     if (!username) {
         document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user is currently logged in.</p>';
         return;
     }
 
-const userRef = ref(db, '/user/' + username);
-    onValue(userRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            var userInfo = JSON.parse(data.body);
+            // Extract user information from the fetched data
+            var email_fetch = userInfo[1];
+            var score_fetch = userInfo[2];
+            var misfits15_fetch = userInfo[3];
+            var paultyson_fetch = userInfo[4];
+            var ufc302_fetch = userInfo[5];
+
             let userInfoHtml = `
                 <p><strong>Username:</strong> ${username}</p>
-                <p><strong>Email:</strong> ${data.email || 'No email registered'}</p>
-                <p><strong>Score:</strong> ${data.score || 'No score yet'}</p>
+                <p><strong>Email:</strong> ${email_fetch}</p>
+                <p><strong>Score:</strong> ${score_fetch || 'No score yet'}</p>
             `;
 
-            if ('misfits15' in data) {
-                const MisfitsPicks = []; // Initialize MisfitsPicks as an array
-                const MF15 = data.misfits15;
-                // Populate MisfitsPicks based on MF15 values
+            // Handle Misfits15 picks
+            if (misfits15_fetch !== "misfits15 not found") {
+                const MisfitsPicks = [];
+                const MF15 = misfits15_fetch;
                 MisfitsPicks.push(MF15[0] === 'L' ? 'Bell' : 'Hamm');
                 MisfitsPicks.push(MF15[1] === 'L' ? 'Lil Cracra' : 'YuddyGang');
                 MisfitsPicks.push(MF15[2] === 'L' ? 'Park' : 'Vargas');
                 MisfitsPicks.push(MF15[3] === 'L' ? 'Bee' : 'Celinat');
                 MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
-
-                userInfoHtml += `<p><strong>Misfits15 Picks:</strong> ${MisfitsPicks.length > 0 ? MisfitsPicks.join(', ') : 'No picks yet'}</p>`;
+                userInfoHtml += `<p><strong>Misfits15 Picks:</strong> ${MisfitsPicks.join(', ')}</p>`;
             }
-            if ('paultyson' in data) {
-                const PaulTysonPicks = []; // Initialize MisfitsPicks as an array
-                const PaulTyson = data.paultyson;
-                // Populate MisfitsPicks based on MF15 values
+
+            // Handle Paul vs Tyson picks
+            if (paultyson_fetch !== "paultyson not found") {
+                const PaulTysonPicks = [];
+                const PaulTyson = paultyson_fetch;
                 PaulTysonPicks.push(PaulTyson[0] === 'L' ? 'Paul' : 'Tyson');
                 PaulTysonPicks.push(PaulTyson[1] === 'L' ? 'Taylor' : 'Serrano');
                 PaulTysonPicks.push(PaulTyson[2] === 'L' ? 'Till' : 'Chavez Jr');
                 PaulTysonPicks.push(PaulTyson[3] === 'L' ? 'Sylve' : 'Schofield');
-
-                userInfoHtml += `<p><strong>Paul vs Tyson Picks:</strong> ${PaulTysonPicks.length > 0 ? PaulTysonPicks.join(', ') : 'No picks yet'}</p>`;
+                userInfoHtml += `<p><strong>Paul vs Tyson Picks:</strong> ${PaulTysonPicks.join(', ')}</p>`;
             }
-            if ('ufc302' in data) {
-                const ufc302picks = []; // Initialize MisfitsPicks as an array
-                const ufc302 = data.ufc302;
-                // Populate ufc302picks based on ufc302 values
+
+            // Handle UFC 302 picks
+            if (ufc302_fetch !== "ufc302 not found") {
+                const ufc302picks = [];
+                const ufc302 = ufc302_fetch;
                 ufc302picks.push(ufc302[0] === 'L' ? 'Makhachev' : 'Porier');
                 ufc302picks.push(ufc302[1] === 'L' ? 'Strickland' : 'Costa');
                 ufc302picks.push(ufc302[2] === 'L' ? 'Holland' : 'Oleksiejczuk');
@@ -145,29 +138,30 @@ const userRef = ref(db, '/user/' + username);
                 ufc302picks.push(ufc302[9] === 'L' ? 'Gall' : 'Hafez');
                 ufc302picks.push(ufc302[10] === 'L' ? 'Perez' : 'Edwards');
                 ufc302picks.push(ufc302[11] === 'L' ? 'Tumendemberel' : 'Lima');
-
-                userInfoHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.length > 0 ? ufc302picks.join(', ') : 'No picks yet'}</p>`;
+                // Add the rest similarly...
+                userInfoHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.join(', ')}</p>`;
             }
-            if ('paultyson' in data || 'misfits15' in data || 'ufc302' in data) {
-    const PaulTyson = data.paultyson || [];
-    const MF15 = data.misfits15 || [];
-    const ufc302 = data.ufc302 || [];
-    const total = PaulTyson.length + MF15.length + ufc302.length;
 
-    userInfoHtml += `<p><strong>Total Picks:</strong> ${total}</p>`;
-} else {
-    userInfoHtml += `<p><strong>Total Picks:</strong> No picks yet</p>`;
-}
+            // Calculate total picks if any
+            if (paultyson_fetch !== "paultyson not found" || misfits15_fetch !== "misfits15 not found" || ufc302_fetch !== "ufc302 not found") {
+                let total = 0;
+            if (paultyson_fetch !== "paultyson not found") {
+                total = total + (paultyson_fetch ? paultyson_fetch.length : 0);}
+            if (misfits15_fetch !== "misfits15 not found") {
+                total = total + (misfits15_fetch ? misfits15_fetch.length : 0);}
+            if (ufc302_fetch !== "ufc302 not found") {
+                total = total + (ufc302_fetch ? ufc302_fetch.length : 0);}
+                userInfoHtml += `<p><strong>Total Picks:</strong> ${total}</p>`;
+            } else {
+                userInfoHtml += `<p><strong>Total Picks:</strong> No picks yet</p>`;
+            }
 
+            // Update the DOM with user info
             document.getElementById('userInfo').innerHTML = userInfoHtml;
-        } else {
-            document.getElementById('userInfo').innerHTML = '<p class="text-danger">User data not found.</p>';
-        }
-    }, (error) => {
-        console.error('Failed to fetch user data:', error);
-        document.getElementById('userInfo').innerHTML = '<p class="text-danger">Error loading user data.</p>';
-    });
+        })
+        .catch(error => console.error('Error:', error));
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
