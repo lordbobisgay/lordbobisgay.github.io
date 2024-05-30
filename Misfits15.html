@@ -882,7 +882,7 @@ if (username) {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            console.log("API Data:", data);  // Debug to ensure correct data retrieval
+            
             // Parse the stringified JSON body to get actual data
             const responseBody = JSON.parse(data.body);
             const MF15 = responseBody.misfits15_value;  // Adjust if the key differs
@@ -945,7 +945,7 @@ if (username) {
     fetch(apiUrl)
         .then(response => response.json())  // First parse of the JSON response
         .then(data => {
-            console.log("API Data:", data);  // Log to check structure
+            
             // Now parse the JSON string in the body
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.misfits15_value;
