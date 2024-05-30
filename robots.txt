@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /s124h4565dfnvbf.html
