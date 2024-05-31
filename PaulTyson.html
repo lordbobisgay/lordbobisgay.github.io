@@ -868,25 +868,6 @@
         </div>
 
         <script type="module">
-            // Import Firebase modules
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-            import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-      
-            // Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
-                authDomain: "bobsfightnews.firebaseapp.com",
-                databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
-                projectId: "bobsfightnews",
-                storageBucket: "bobsfightnews.appspot.com",
-                messagingSenderId: "1069009978943",
-                appId: "1:1069009978943:web:362f9a0911eff241065a8a",
-                measurementId: "G-505FSMGF82"
-            };
-    
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const db = getDatabase(app);
 
             document.getElementById('submit').addEventListener('click', function() {
     var username = localStorage.getItem('username');
@@ -960,16 +941,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function updatePaulTyson(username, result) {
-    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=paultyson&username=${encodeURIComponent(username)}&placeholder1=${encodeURIComponent(result)}`;
+    // Encoding the data into the URL as query parameters
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev/?page=paultyson&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
 
     fetch(apiUrl, {
-        method: 'GET',  // Assuming GET method, update if your API uses a different method
+        method: 'GET'
     })
     .then(response => {
         if (response.ok) {
             console.log("Data saved successfully!");
-            // Redirect to another page after success
-            window.location.href = 'https://punchpredictor.com/user.html';
+            // Optionally redirect to another page after success
+            // window.location.href = 'https://punchpredictor.com/user.html';
         } else {
             throw new Error('Failed to fetch data');
         }
@@ -978,6 +960,8 @@ function updatePaulTyson(username, result) {
         console.error("Failed to write data:", error);
     });
 }
+
+
 
 document.getElementById('firebutton1').addEventListener('click', function() {
     var otherButton = document.getElementById('firebutton2');

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -1321,7 +1322,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to send data to the API Gateway
 function updateUfc302(username, result) {
-    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=ufc302&username=${encodeURIComponent(username)}&placeholder1=${encodeURIComponent(result)}`;
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=ufc302&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
 
     fetch(apiUrl, {
         method: 'GET',  // Assuming GET method, update if your API uses a different method
