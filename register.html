@@ -96,25 +96,7 @@
 
     <script type="module">
         // Import Firebase modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import { getDatabase, ref, set, get, child, onValue,query,orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
-
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
-            authDomain: "bobsfightnews.firebaseapp.com",
-            databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
-            projectId: "bobsfightnews",
-            storageBucket: "bobsfightnews.appspot.com",
-            messagingSenderId: "1069009978943",
-            appId: "1:1069009978943:web:362f9a0911eff241065a8a",
-            measurementId: "G-505FSMGF82"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
 
         document.getElementById("submit").addEventListener('click', function(e) {
     e.preventDefault();
@@ -129,41 +111,34 @@
     }
 
     // Check if the email is already in use
-    const usersRef = ref(db, 'user/');
-    const emailQuery = query(usersRef, orderByChild('email'), equalTo(email));
-    get(emailQuery).then((snapshot) => {
-        if (snapshot.exists()) {
+    checkEmailInUse(email).then(isInUse => {
+        if (isInUse) {
             alert("Email is already in use");
         } else {
-            // No user has this email, proceed with username check
-            const usernameRef = ref(db, 'user/' + username);
-            get(usernameRef).then((snapshot) => {
-                if (snapshot.exists()) {
+            // Assuming checkUsernameInUse is similar to checkEmailInUse
+            checkUsernameInUse(username).then(isInUse => {
+                if (isInUse) {
                     alert("Username is already in use");
                 } else {
-                    set(ref(db, 'user/' + username), {
-                        username: username,
-                        email: email,
-                        password: password,
-                        picks: 0,
-                        total: 0,
-                        score: 0
-                    }).then(() => {
+                    // Register the user
+                    fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=register3&emailCheck=${email}&usernameCheck=${username}&password=${password}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
                         localStorage.setItem('username', username);
                         alert("Register Successful!");
                         window.location.href = 'http://punchpredictor.com/index.html'; // Redirect after successful registration
-                    }).catch((error) => {
+                    })
+                    .catch((error) => {
                         alert("Failed to register: " + error.message);
                     });
                 }
-            }).catch((error) => {
-                console.error("Failed to check username availability:", error);
             });
         }
-    }).catch((error) => {
-        console.error("Failed to check email availability:", error);
     });
 });
+
 
         // Function to retrieve data
         function get1() {
@@ -212,9 +187,42 @@ signOutButton.addEventListener('click', function() {
 });
     
 });
+function checkEmailInUse(email) {
+    return fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=register1&emailCheck=${email}`)
+        .then(response => response.json())  // Parse the first level of JSON which is returned by fetch
+        .then(data => {
+            const body = JSON.parse(data.body);  // Parse the string in 'body' to a JSON object
+            if (body.status === 1) {
+                alert("Email is already in use");
+                return true;
+            } else {
+                return false;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+function checkUsernameInUse(username) {
+    return fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=register2&usernameCheck=${username}`)
+        .then(response => response.json())  // Parse the first level of JSON which is returned by fetch
+        .then(data => {
+            const body = JSON.parse(data.body);  // Parse the string in 'body' to a JSON object
+            if (body.status === 1) {
+                alert("Username is already in use");
+                return true;
+            } else {
+                return false;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 
     </script>
+
         <!-- Bootstrap JS Bundle with Popper (Bootstrap 5) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
