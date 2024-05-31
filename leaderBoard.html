@@ -72,64 +72,40 @@
 
 
     <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import { getDatabase, ref, set, get, child, onValue,query,orderByChild, equalTo,limitToLast } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-  
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
-            authDomain: "bobsfightnews.firebaseapp.com",
-            databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
-            projectId: "bobsfightnews",
-            storageBucket: "bobsfightnews.appspot.com",
-            messagingSenderId: "1069009978943",
-            appId: "1:1069009978943:web:362f9a0911eff241065a8a",
-            measurementId: "G-505FSMGF82"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
 
 
         // Function to retrieve data
-		function getLeaderboard() {
-    const loggedInUsername = localStorage.getItem('username'); // Get the username from local storage
-    const usersRef = ref(db, '/user/');
-    const queryRef = query(usersRef, orderByChild('score'), limitToLast(100));
-
-    get(queryRef).then((snapshot) => {
-        if (snapshot.exists()) {
-            const users = [];
-            snapshot.forEach((childSnapshot) => {
-                const user = childSnapshot.val();
-                user.username = childSnapshot.key; // Store the username
-                users.push(user);
-            });
-            users.reverse();
-
-            let leaderboardHtml = '<h2>Leaderboard</h2><ul class="list-group">';
-            users.forEach((user, index) => {
-                const highlightClass = (user.username === loggedInUsername) ? 'highlight' : ''; // Apply highlight if usernames match
-                leaderboardHtml += `<li class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
-                    ${index + 1}. ${user.username}
-                    <span class="">Correct Picks: ${user.picks || '0'}</span>
-                    <span class="">Total Picks: ${user.total || '0'}</span>
-                    <span class="">Score: ${user.score || 'No score'}</span>
-                </li>`;
-            });
-            leaderboardHtml += '</ul>';
-
-            document.getElementById('userInfo').innerHTML = leaderboardHtml;
-        } else {
-            document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user data found.</p>';
-        }
-    }).catch((error) => {
-        console.error('Failed to fetch user data:', error);
-        document.getElementById('userInfo').innerHTML = '<p class="text-danger">Error loading user data.</p>';
-    });
+        function getLeaderboard() {
+    fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=leaderboard`)
+        .then(response => response.json())  // Parse the JSON from the response
+        .then(data => {
+            // Parse the body string to JSON to get the actual leaderboard data
+            const leaderboardData = JSON.parse(data.body);
+            const currentUser = localStorage.getItem('username');  // Get the current user's username from local storage
+            if (leaderboardData.length > 0) {
+                let leaderboardHtml = '<h2>Leaderboard</h2><ul class="list-group">';
+                leaderboardData.forEach(user => {
+                    // Check if the current user matches the user in the leaderboard data
+                    const highlightClass = user.username === currentUser ? 'highlight' : '';
+                    leaderboardHtml += `<li class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
+                        ${user.rank}: ${user.username}
+                        <span class="">Correct Picks: ${user.picks}</span>
+                        <span class="">Total Picks: ${user.total}</span>
+                        <span class="">Score: ${user.score}</span>
+                    </li>`;
+                });
+                leaderboardHtml += '</ul>';
+                document.getElementById('userInfo').innerHTML = leaderboardHtml;
+            } else {
+                document.getElementById('userInfo').innerHTML = '<p class="text-danger">No leaderboard data found.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Failed to fetch leaderboard data:', error);
+            document.getElementById('userInfo').innerHTML = '<p class="text-danger">Error loading leaderboard data.</p>';
+        });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function() {

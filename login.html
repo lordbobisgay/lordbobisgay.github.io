@@ -81,50 +81,34 @@
 
 
     <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-        import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-  
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
-            authDomain: "bobsfightnews.firebaseapp.com",
-            databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
-            projectId: "bobsfightnews",
-            storageBucket: "bobsfightnews.appspot.com",
-            messagingSenderId: "1069009978943",
-            appId: "1:1069009978943:web:362f9a0911eff241065a8a",
-            measurementId: "G-505FSMGF82"
-        };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
 
-        document.getElementById("submit").addEventListener('click', function(e){
+document.getElementById("submit").addEventListener('click', function(e) {
     e.preventDefault();
-    const enteredUsername = document.getElementById("username").value;
-    const enteredPassword = document.getElementById("phone").value;  // Assuming this is the password input
-    const userRef = ref(db, '/user/' + enteredUsername);
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("phone").value;
 
-    get(userRef).then((snapshot) => {
-        if (snapshot.exists()) {
-            const data = snapshot.val();
-            if (data.password === enteredPassword) {
-                localStorage.setItem('username', enteredUsername);
-                alert("Login Successful!");
-                window.location.href = 'http://punchpredictor.com/index.html'; // Redirect on success
+    // Make the API call
+    fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=login&username=${username}&password=${password}`)
+        .then(response => response.json())  // Parse the JSON from the response
+        .then(data => {
+            // Parse the body string to JSON
+            const responseBody = JSON.parse(data.body);
+            // Now use 'responseBody' to access the response contents
+            if (data.statusCode === 200) {
+                localStorage.setItem('username', username);
+                alert(responseBody.message);
+                window.location.href = responseBody.redirect;  // Redirect based on the API response
             } else {
-                alert("Incorrect password. Please try again.");
+                alert(responseBody.message);  // Show error message if login is unsuccessful
             }
-        } else {
-            alert("User does not exist.");
-        }
-    }).catch((error) => {
-        console.error(error);
-        alert("Failed to retrieve data. Please try again.");
-    });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Failed to connect. Please try again.");
+        });
 });
+
 
         // Function to retrieve data
         function get1() {
