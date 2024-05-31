@@ -1229,25 +1229,7 @@
         </div>
 
         <script type="module">
-            // Import Firebase modules
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-            import { getDatabase, ref, set, get, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
-      
-            // Firebase configuration
-            const firebaseConfig = {
-                apiKey: "AIzaSyBAwwddAnM5DhrHNmFYSjV2GMDQddHDFoU",
-                authDomain: "bobsfightnews.firebaseapp.com",
-                databaseURL: "https://bobsfightnews-default-rtdb.firebaseio.com",
-                projectId: "bobsfightnews",
-                storageBucket: "bobsfightnews.appspot.com",
-                messagingSenderId: "1069009978943",
-                appId: "1:1069009978943:web:362f9a0911eff241065a8a",
-                measurementId: "G-505FSMGF82"
-            };
-    
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const db = getDatabase(app);
+
 
             document.getElementById('submit').addEventListener('click', function() {
     var username = localStorage.getItem('username');
