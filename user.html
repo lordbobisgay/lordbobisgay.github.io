@@ -72,16 +72,17 @@
         var misfits15_fetch;
         var paultyson_fetch;
         var ufc302_fetch;
+        var davismartin_fetch;
 
         // Function to retrieve data
         function get1() {
     const username = localStorage.getItem('username');
-    var apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=user&username=${username}`;
+
     if (!username) {
         document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user is currently logged in.</p>';
         return;
     }
-
+    var apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=user&username=${username}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -92,6 +93,7 @@
             var misfits15_fetch = userInfo[3];
             var paultyson_fetch = userInfo[4];
             var ufc302_fetch = userInfo[5];
+            var davismartin_fetch = userInfo[6];
 
             let userInfoHtml = `
                 <p><strong>Username:</strong> ${username}</p>
@@ -185,12 +187,45 @@
                     userInfoHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.join(', ')}</p>`;
                 }
             }
+            // Handle davis vs martin picks
+            if (davismartin_fetch !== "davismartin not found") {
+                const davismartinpicks = [];
+                const davismartin = davismartin_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Davis', 'Martin');
+                pickFighter(1, 'Benavidez', 'Gvozdyk');
+                pickFighter(2, 'Adames', 'Gausha');
+                pickFighter(3, 'Puello', 'Russel');
+                pickFighter(4, 'Magsayo', 'Ramirez');
+                pickFighter(5, 'Garcia', 'Davis');
+                pickFighter(6, 'Villa', 'Salas');
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userInfoHtml += `<p><strong>Davis vs Martin Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
 
             // Calculate total picks if any
-            if (paultyson_fetch !== "paultyson not found" || misfits15_fetch !== "misfits15 not found" || ufc302_fetch !== "ufc302 not found") {
+            if (paultyson_fetch !== "paultyson not found" || misfits15_fetch !== "misfits15 not found" || ufc302_fetch !== "ufc302 not found" || davismartin_fetch !== "davismartin not found") {
                 let total = 0;
             if (paultyson_fetch !== "paultyson not found") {
                 total = total + (paultyson_fetch ? paultyson_fetch.length : 0);}
+            if (davismartin_fetch !== "davismartin not found") {
+                total = total + (davismartin_fetch ? davismartin_fetch.length : 0);}
             if (misfits15_fetch !== "misfits15 not found") {
                 total = total + (misfits15_fetch ? misfits15_fetch.length : 0);}
             if (ufc302_fetch !== "ufc302 not found") {
