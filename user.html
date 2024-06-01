@@ -115,31 +115,75 @@
             if (paultyson_fetch !== "paultyson not found") {
                 const PaulTysonPicks = [];
                 const PaulTyson = paultyson_fetch;
-                PaulTysonPicks.push(PaulTyson[0] === 'L' ? 'Paul' : 'Tyson');
-                PaulTysonPicks.push(PaulTyson[1] === 'L' ? 'Taylor' : 'Serrano');
-                PaulTysonPicks.push(PaulTyson[2] === 'L' ? 'Till' : 'Chavez Jr');
-                PaulTysonPicks.push(PaulTyson[3] === 'L' ? 'Sylve' : 'Schofield');
-                userInfoHtml += `<p><strong>Paul vs Tyson Picks:</strong> ${PaulTysonPicks.join(', ')}</p>`;
+
+                // Handling the first character
+                if (PaulTyson[0] === 'L') {
+                    PaulTysonPicks.push('Paul');
+                } else if (PaulTyson[0] === 'R') {
+                    PaulTysonPicks.push('Tyson');
+                }
+
+                // Handling the second character
+                if (PaulTyson[1] === 'L') {
+                    PaulTysonPicks.push('Taylor');
+                } else if (PaulTyson[1] === 'R') {
+                    PaulTysonPicks.push('Serrano');
+                }
+
+                // Handling the third character
+                if (PaulTyson[2] === 'L') {
+                    PaulTysonPicks.push('Till');
+                } else if (PaulTyson[2] === 'R') {
+                    PaulTysonPicks.push('Chavez Jr');
+                }
+
+                // Handling the fourth character
+                if (PaulTyson[3] === 'L') {
+                    PaulTysonPicks.push('Sylve');
+                } else if (PaulTyson[3] === 'R') {
+                    PaulTysonPicks.push('Schofield');
+                }
+
+                // Append the resulting picks to the HTML content
+                if (PaulTysonPicks.length > 0) {
+                    userInfoHtml += `<p><strong>Paul vs Tyson Picks:</strong> ${PaulTysonPicks.join(', ')}</p>`;
+                }
             }
 
             // Handle UFC 302 picks
             if (ufc302_fetch !== "ufc302 not found") {
                 const ufc302picks = [];
                 const ufc302 = ufc302_fetch;
-                ufc302picks.push(ufc302[0] === 'L' ? 'Makhachev' : 'Porier');
-                ufc302picks.push(ufc302[1] === 'L' ? 'Strickland' : 'Costa');
-                ufc302picks.push(ufc302[2] === 'L' ? 'Holland' : 'Oleksiejczuk');
-                ufc302picks.push(ufc302[3] === 'L' ? 'Almeida' : 'Romanov');
-                ufc302picks.push(ufc302[4] === 'L' ? 'Brown' : 'Dos Santos');
-                ufc302picks.push(ufc302[5] === 'L' ? 'Almeida' : 'Kopylov');
-                ufc302picks.push(ufc302[6] === 'L' ? 'Dawson' : 'Solecki');
-                ufc302picks.push(ufc302[7] === 'L' ? 'Rowe' : 'Matthews');
-                ufc302picks.push(ufc302[8] === 'L' ? 'Price' : 'Morono');
-                ufc302picks.push(ufc302[9] === 'L' ? 'Gall' : 'Hafez');
-                ufc302picks.push(ufc302[10] === 'L' ? 'Perez' : 'Edwards');
-                ufc302picks.push(ufc302[11] === 'L' ? 'Raposo' : 'Lima');
-                // Add the rest similarly...
-                userInfoHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.join(', ')}</p>`;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (ufc302[index] === 'L') {
+                        ufc302picks.push(left);
+                    } else if (ufc302[index] === 'R') {
+                        ufc302picks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Makhachev', 'Porier');
+                pickFighter(1, 'Strickland', 'Costa');
+                pickFighter(2, 'Holland', 'Oleksiejczuk');
+                pickFighter(3, 'Almeida', 'Romanov');
+                pickFighter(4, 'Brown', 'Dos Santos');
+                pickFighter(5, 'Almeida', 'Kopylov');
+                pickFighter(6, 'Dawson', 'Solecki');
+                pickFighter(7, 'Rowe', 'Matthews');
+                pickFighter(8, 'Price', 'Morono');
+                pickFighter(9, 'Gall', 'Hafez');
+                pickFighter(10, 'Perez', 'Edwards');
+                pickFighter(11, 'Raposo', 'Lima');
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (ufc302picks.length > 0) {
+                    userInfoHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.join(', ')}</p>`;
+                }
             }
 
             // Calculate total picks if any

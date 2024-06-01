@@ -1241,12 +1241,23 @@
     }
 
     var result = "";
-    for (var i = 1; i <= 24; i++) {
-        var button = document.getElementById('firebutton' + i);
-        if (button.classList.contains('fire-active')) {
-            result += i % 2 !== 0 ? 'L' : 'R';
+    for (var i = 1; i <= 24; i += 2) {
+    var button1 = document.getElementById('firebutton' + i);
+    var button2 = document.getElementById('firebutton' + (i + 1));
+
+    // Check if both buttons in the pair don't have 'fire-active'
+    if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+        result += 'D';
+    } else {
+        // Check individual buttons for 'fire-active' and add 'L' or 'R'
+        if (button1.classList.contains('fire-active')) {
+            result += 'L';
+        }
+        if (button2.classList.contains('fire-active')) {
+            result += 'R';
         }
     }
+}
     if (result.length !== 12) {
         console.error("Please select a fighter for every fight on the card");
         alert("Please select a fighter for every fight on the card");
