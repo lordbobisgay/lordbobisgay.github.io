@@ -24,11 +24,7 @@
 </script>
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-        <!--GOOGLE SEARCH VERIFICATION-->
-        <meta name="google-site-verification" content="kGhZUcmdYMqwcuJCFVWz7yGrAx_cN5hWqydgcTeqz0M" />
-        <!--GOOGLE Adsense VERIFICATION-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394285765069873"
-        crossorigin="anonymous"></script>
+
         <style>
             .highlight {
                 background-color: #d4edda; /* Light green background */
@@ -47,9 +43,7 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarResponsive">
 						<ul class="navbar-nav ms-auto">
-							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://lordbobisgay.github.io/index.html">Upcoming Events</a></li>
-							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navRegister" href="http://lordbobisgay.github.io/register.html">Register</a></li>
-							<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignIn" href="http://lordbobisgay.github.io/login.html">Sign in</a></li>
+
                             <li class="nav-item mx-0 mx-lg-1">
                                 <a class="nav-link py-3 px-0 px-lg-3 rounded" id="navSignOut" href="javascript:void(0);">Sign Out</a>
                             </li>
@@ -98,8 +92,8 @@
         const db = getDatabase(app);
 
 
-		document.getElementById('updateScoresBtn').addEventListener('click', function() {
-    const correctString = "LRRLL";
+        document.getElementById('updateScoresBtn').addEventListener('click', function() {
+    const correctString = "LLLLLRLRLRLR";
     const usersRef = ref(db, '/user/');
 
     get(usersRef).then((snapshot) => {
@@ -107,27 +101,31 @@
             snapshot.forEach((childSnapshot) => {
                 const username = childSnapshot.key;
                 const userData = childSnapshot.val();
-                if (userData.misfits15) {
-                    const userMisfits15 = userData.misfits15;
-
-                    // Update total picks
-                    const totalRef = ref(db, `/user/${username}/total`);
-                    set(totalRef, (userData.total || 0) + 5);
+                if (userData.ufc302) {
+                    const userMisfits15 = userData.ufc302;
 
                     let correctPicks = 0;
                     let totalProfit = 0;  // Initialize total profit
+                    let totalPicks = correctString.length;  // Initialize total picks count
 
                     // Iterate over each character in the user's misfits15 string
                     for (let i = 0; i < correctString.length; i++) {
-                        if (userMisfits15[i] === correctString[i]) {
+                        if (userMisfits15[i] === 'D') {
+                            // Decrement total picks for each 'D'
+                            totalPicks--;
+                        } else if (userMisfits15[i] === correctString[i]) {
                             correctPicks++;
                             // Calculate profit for each match and accumulate it
                             totalProfit += parseFloat(calculateProfitFromOdds(getOddsForPosition(i + 1)));
                         } else {
-                            // Subtract $100 for each mismatch
+                            // Subtract $100 for each mismatch, unless it's a 'D'
                             totalProfit -= 100;
                         }
                     }
+
+                    // Update total picks
+                    const totalRef = ref(db, `/user/${username}/total`);
+                    set(totalRef, (userData.total || 0) + totalPicks);
 
                     // Round total profit to two decimal places before updating the score
                     totalProfit = parseFloat(totalProfit.toFixed(2));
@@ -152,13 +150,21 @@
     });
 });
 
+
 function getOddsForPosition(position) {
     const odds = {
-        1: -450,
-        2: +350,
-        3: +333,
-        4: -1600,
-        5: -550
+        1: -470,
+        2: -205,
+        3: -305,
+        4: -290,
+        5: -180,
+        6: -102,
+        7: -250,
+        8: -160,
+        9: +215,
+        10: -395,
+        11: -185,
+        12: -145,
     };
     return odds[position];
 }
