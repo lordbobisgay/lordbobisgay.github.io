@@ -83,12 +83,15 @@
             if (leaderboardData.length > 0) {
                 let leaderboardHtml = '<h2>Leaderboard</h2><ul class="list-group">';
                 leaderboardData.forEach(user => {
+                    // Calculate the % earned
+                    const percentEarned = user.total > 0 ? ((user.score / (user.total * 100)) * 100).toFixed(2) : 0;
                     // Check if the current user matches the user in the leaderboard data
                     const highlightClass = user.username === currentUser ? 'highlight' : '';
                     leaderboardHtml += `<li class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
                         ${user.rank}: ${user.username}
                         <span class="">Correct Picks: ${user.picks}</span>
                         <span class="">Total Picks: ${user.total}</span>
+                        <span class="">% Earned: ${percentEarned}%</span>
                         <span class="">Score: ${user.score}</span>
                     </li>`;
                 });
