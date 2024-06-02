@@ -1038,45 +1038,9 @@ document.getElementById('firebutton14').addEventListener('click', function() {
     this.classList.toggle('fire-active');
 
 });
-document.getElementById('firebutton15').addEventListener('click', function() {
-    var otherButton = document.getElementById('firebutton16');
-    // Remove 'fire-active' class from the other button if it's active
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-    }
-    // Toggle 'fire-active' class on this button
-    this.classList.toggle('fire-active');
- 
-});
 
-document.getElementById('firebutton16').addEventListener('click', function() {
-    var otherButton = document.getElementById('firebutton15');
-    // Remove 'fire-active' class from the other button if it's active
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-    }
-    // Toggle 'fire-active' class on this button
-    this.classList.toggle('fire-active');
 
-});
 
-// Get the element you want to collapse or expand
-var myCollapseElement = document.getElementById('fightDetails2');
-
-// Initialize the collapse component
-var bsCollapse = new bootstrap.Collapse(myCollapseElement, {
-  toggle: false // Disable automatic handling
-});
-
-// Function to expand the collapse
-function expandCollapse() {
-  bsCollapse.show();
-}
-
-// Function to collapse the element
-function collapseElement() {
-  bsCollapse.hide();
-}
 
         </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS (if not using bundle) -->
