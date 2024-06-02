@@ -81,21 +81,22 @@
             const leaderboardData = JSON.parse(data.body);
             const currentUser = localStorage.getItem('username');  // Get the current user's username from local storage
             if (leaderboardData.length > 0) {
-                let leaderboardHtml = '<h2>Leaderboard</h2><ul class="list-group">';
+                let leaderboardHtml = '<h2>Leaderboard</h2><div class="list-group">';
                 leaderboardData.forEach(user => {
                     // Calculate the % earned
                     const percentEarned = user.total > 0 ? ((user.score / (user.total * 100)) * 100).toFixed(2) : 0;
                     // Check if the current user matches the user in the leaderboard data
                     const highlightClass = user.username === currentUser ? 'highlight' : '';
-                    leaderboardHtml += `<li class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
-                        ${user.rank}: ${user.username}
-                        <span class="">Correct Picks: ${user.picks}</span>
-                        <span class="">Total Picks: ${user.total}</span>
-                        <span class="">% Earned: ${percentEarned}%</span>
-                        <span class="">Score: ${user.score}</span>
-                    </li>`;
+                    leaderboardHtml += `<div class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
+                        <div class="col-1">${user.rank}</div>
+                        <div class="col-3">${user.username}</div>
+                        <div class="col-2">Correct Picks: ${user.picks}</div>
+                        <div class="col-2">Total Picks: ${user.total}</div>
+                        <div class="col-2">% Earned: ${percentEarned}%</div>
+                        <div class="col-2">Score: ${user.score}</div>
+                    </div>`;
                 });
-                leaderboardHtml += '</ul>';
+                leaderboardHtml += '</div>';
                 document.getElementById('userInfo').innerHTML = leaderboardHtml;
             } else {
                 document.getElementById('userInfo').innerHTML = '<p class="text-danger">No leaderboard data found.</p>';
