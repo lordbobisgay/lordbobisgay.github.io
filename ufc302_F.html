@@ -95,6 +95,11 @@
         </div>
         <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0"></h2>
         <div id="picksDisplay" class="page-section-heading text-center text-uppercase text-secondary mb-0">Loading picks...</div>
+
+        <div id="earningsDisplay" class="page-section-heading text-center text-uppercase text-secondary mb-0 padding-extra"></div>
+        
+
+        
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
@@ -1235,6 +1240,61 @@ document.addEventListener('DOMContentLoaded', function() {
     var username = localStorage.getItem('username');
 if (username) {
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=ufc302_F&username=${encodeURIComponent(username)}`;
+    fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const responseBody = JSON.parse(data.body);
+                const userPicks = responseBody.ufc302_value;
+                const predefinedPicks = "LLLLLRLRLRLR";
+                const odds = {
+                    1: -470,
+        2: -205,
+        3: -305,
+        4: -290,
+        5: -180,
+        6: -102,
+        7: -250,
+        8: -160,
+        9: +215,
+        10: -395,
+        11: -185,
+        12: -145,
+                };
+
+                function getOddsForPosition(position) {
+                    return odds[position];
+                }
+
+                function calculateProfitFromOdds(odds) {
+                    let profit;
+                    if (odds > 0) {
+                        profit = (odds / 100) * 100;
+                    } else if (odds < 0) {
+                        profit = (100 / Math.abs(odds)) * 100;
+                    } else {
+                        profit = 0;
+                    }
+                    return parseFloat(profit.toFixed(2));
+                }
+
+                let earnings = 0;
+                userPicks.split('').forEach((pick, index) => {
+                    if (pick === 'D') {
+                        // Do nothing if the pick is 'D'
+                    } else if (pick === predefinedPicks.charAt(index)) {
+                        earnings += calculateProfitFromOdds(getOddsForPosition(index + 1));
+                    } else {
+                        earnings -= 100;
+
+                    }
+                });
+
+                document.getElementById('earningsDisplay').innerText = `You earned ${earnings.toFixed(2)} score for your predictions on this card.`;
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                document.getElementById('earningsDisplay').innerText = 'Failed to load earnings due to an error.';
+            });
 
     fetch(apiUrl)
         .then(response => response.json())
