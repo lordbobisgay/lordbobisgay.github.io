@@ -227,6 +227,9 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
+  .prelims-top{
+    margin-top: 200px;
+  }
   .win-span-left {
     position: relative; 
     top: -50px; 
