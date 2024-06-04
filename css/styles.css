@@ -79,6 +79,24 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+.win-span-left {
+  position: relative; 
+  top: -50px; 
+  right: 275px; 
+  background-color: red; 
+  color: white; 
+  padding: 5px;
+}
+
+.win-span-right {
+  position: relative; 
+  top: -50px; 
+  left: 275px; 
+  background-color: red; 
+  color: white; 
+  padding: 5px;
+}
+
 .list-group-item2 {
   font-size: 1.0rem; /* Adjust the font size smaller */
 }
@@ -209,6 +227,23 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
+  .win-span-left {
+    position: relative; 
+    top: -50px; 
+    right: 100px; 
+    background-color: red; 
+    color: white; 
+    padding: 5px;
+  }
+  
+  .win-span-right {
+    position: relative; 
+    top: -50px; 
+    left: 100px; 
+    background-color: red; 
+    color: white; 
+    padding: 5px;
+  }
   .list-group-item2 {
     font-size: 0.6rem; /* Adjust the font size smaller */
 }
