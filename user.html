@@ -71,6 +71,7 @@
         var paultyson_fetch;
         var ufc302_fetch;
         var davismartin_fetch;
+        var pfc37_fetch;
 
         // Function to retrieve data
         function get1() {
@@ -92,6 +93,7 @@
             var paultyson_fetch = userInfo[4];
             var ufc302_fetch = userInfo[5];
             var davismartin_fetch = userInfo[6];
+            var pfc37_fetch = userInfo[7];
 
             let userInfoHtml = `
                 <p><strong>Username:</strong> ${username}</p>
@@ -216,6 +218,38 @@
                     userInfoHtml += `<p><strong>Davis vs Martin Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
                 }
             }
+                        // Handle pfc37 picks
+                        if (pfc37_fetch !== "pfc37 not found") {
+                const davismartinpicks = [];
+                const davismartin = pfc37_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Beck', 'Luna');
+                pickFighter(1, 'Tafoya', 'Nkuta');
+                pickFighter(2, 'Lewis', 'Campos');
+                pickFighter(3, 'Cesar', 'Simmons');
+                pickFighter(4, 'Cruz', 'Penning');
+                pickFighter(5, 'Jackson', 'Russel');
+                pickFighter(6, 'Moore', 'Gomez');
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userInfoHtml += `<p><strong>Peak FC 37 Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+            
 
             // Calculate total picks if any
             if (paultyson_fetch !== "paultyson not found" || misfits15_fetch !== "misfits15 not found" || ufc302_fetch !== "ufc302 not found" || davismartin_fetch !== "davismartin not found") {
