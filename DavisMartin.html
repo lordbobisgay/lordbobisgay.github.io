@@ -783,15 +783,7 @@
         <script type="module">
 
             document.getElementById('submit').addEventListener('click', function() {
-    var username = localStorage.getItem('username');
-    if (!username) {
-        console.error('Please sign in before making picks');
-        alert('Please sign in/create account before making picks');
-        window.location.href = 'http://punchpredictor.com/register.html';
-        return;  // Return early to prevent further execution
-    }
-
-    var result = "";
+                var result = "";
     for (var i = 1; i <= 14; i += 2) {
     var button1 = document.getElementById('firebutton' + i);
     var button2 = document.getElementById('firebutton' + (i + 1));
@@ -809,9 +801,18 @@
         }
     }
 }
-    if (result.length !== 7) {
-        console.error("Please select a fighter for every fight on the card, also don't select any fights that are not on the card yet");
-        alert("Please select a fighter for every fight on the card, also don't select any fights that are not on the card yet");
+localStorage.setItem('davismartin', result); // Save the result in local storage under the key 'davismartin'
+    var username = localStorage.getItem('username');
+    if (!username) {
+        console.error('Please sign in before making picks');
+        alert('Please sign in/create account. Then your picks will be saved.');
+        window.location.href = 'http://punchpredictor.com/register.html';
+        return;  // Return early to prevent further execution
+    }
+
+    if (result == 'DDDDDDD') {
+        console.error("Please select at least one fighter to win!");
+        alert("Please select at least one fighter to win!");
         return "Error";
     } else {
         console.log(result);
@@ -827,6 +828,21 @@
             </script>
         <script>
 document.addEventListener('DOMContentLoaded', function() {
+    var storedResults = localStorage.getItem('davismartin');
+    if (storedResults) {
+        for (var i = 0; i < storedResults.length; i++) {
+            var resultChar = storedResults.charAt(i);
+            var button1 = document.getElementById('firebutton' + (2 * i + 1));
+            var button2 = document.getElementById('firebutton' + (2 * i + 2));
+
+            if (resultChar === 'L') {
+                button1.classList.add('fire-active');
+            } else if (resultChar === 'R') {
+                button2.classList.add('fire-active');
+            }
+            // If resultChar is 'D', neither button will have 'fire-active' added.
+        }
+    }
     var username = localStorage.getItem('username');
     if (username) {
         console.log('Username:', username);
