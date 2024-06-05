@@ -72,6 +72,7 @@
         var ufc302_fetch;
         var davismartin_fetch;
         var pfc37_fetch;
+        var cannonierimavov_fetch;
 
         // Function to retrieve data
         function get1() {
@@ -94,6 +95,7 @@
             var ufc302_fetch = userInfo[5];
             var davismartin_fetch = userInfo[6];
             var pfc37_fetch = userInfo[7];
+            var cannonierimavov_fetch = userInfo[8];
 
             let userInfoHtml = `
                 <p><strong>Username:</strong> ${username}</p>
@@ -247,6 +249,45 @@
                 // Append the resulting picks to the HTML content
                 if (davismartinpicks.length > 0) {
                     userInfoHtml += `<p><strong>Peak FC 37 Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+
+            // Handle cannonier vs imavov picks
+            if (cannonierimavov_fetch !== "cannonierimavov not found") {
+                const davismartinpicks = [];
+                const davismartin = cannonierimavov_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Cannonier', 'Imavov');
+                pickFighter(1, 'Reyes', 'Jacoby');
+                pickFighter(2, 'Rosas', 'Turcios');
+                pickFighter(3, 'Ferreira', 'Stoltzfus');
+                pickFighter(4, 'Marquez', 'Reese');
+                pickFighter(5, 'Baeza', 'Forest');
+                pickFighter(6, 'Moises', 'Klein');
+                pickFighter(7, 'Radtke', 'Prates');
+                pickFighter(8, 'Lee', 'De La Rosa');
+                pickFighter(9, 'Katona', 'Butler');
+                pickFighter(10, 'Castaneda', 'Marcos');
+                pickFighter(11, 'Moura', 'Gomez');
+                pickFighter(12, 'Stamann', 'Lapilus');
+                pickFighter(13, 'Santos', 'Tomar');
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userInfoHtml += `<p><strong>Cannonier vs Imavov Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
                 }
             }
             
