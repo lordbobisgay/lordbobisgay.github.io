@@ -54,12 +54,36 @@
 				</div>
 			</nav>
 
-			<div class="container mt-5 pt-5"> <!-- Adjust margins and padding as needed for layout -->
-				<h2 class="padding-top-extra3">USER INFORMATION</h2>
-				<div id="userInfo" class="p-3 border rounded">
-					Loading user information...
-				</div>
-			</div>
+<!-- Sidebar and Tab Content with 'User Picks' as the Default Active Tab -->
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-3" style="padding-top: 100px;"> <!-- Adjust padding to align -->
+            <!-- Tab Navigation -->
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link" id="v-pills-user-info-tab" data-bs-toggle="pill" href="#v-pills-user-info" role="tab" aria-controls="v-pills-user-info" aria-selected="false">User Information</a>
+                <a class="nav-link active" id="v-pills-user-picks-tab" data-bs-toggle="pill" href="#v-pills-user-picks" role="tab" aria-controls="v-pills-user-picks" aria-selected="true">User Picks</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- Tab Panes -->
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade" id="v-pills-user-info" role="tabpanel" aria-labelledby="v-pills-user-info-tab">
+                    <h2 class="padding-top-extra3">USER INFORMATION</h2>
+                    <div id="userInfo" class="p-3 border rounded">
+                        Loading user information...
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="v-pills-user-picks" role="tabpanel" aria-labelledby="v-pills-user-picks-tab">
+                    <h2 class="padding-top-extra3">USER PICKS</h2>
+                    <div id="userPicks" class="p-3 border rounded">
+                        Loading user information...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -102,155 +126,9 @@
                 <p><strong>Email:</strong> ${email_fetch}</p>
                 <p><strong>Score:</strong> ${score_fetch || 'No score yet'}</p>
             `;
+            let userPicksHtml = `
 
-            // Handle Misfits15 picks
-            if (misfits15_fetch !== "misfits15 not found") {
-                const MisfitsPicks = [];
-                const MF15 = misfits15_fetch;
-                MisfitsPicks.push(MF15[0] === 'L' ? 'Bell' : 'Hamm');
-                MisfitsPicks.push(MF15[1] === 'L' ? 'Lil Cracra' : 'YuddyGang');
-                MisfitsPicks.push(MF15[2] === 'L' ? 'Park' : 'Vargas');
-                MisfitsPicks.push(MF15[3] === 'L' ? 'Bee' : 'Celinat');
-                MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
-                userInfoHtml += `<p><strong>Misfits15 Picks:</strong> ${MisfitsPicks.join(', ')}</p>`;
-            }
-
-            // Handle Paul vs Tyson picks
-            if (paultyson_fetch !== "paultyson not found") {
-                const PaulTysonPicks = [];
-                const PaulTyson = paultyson_fetch;
-
-                // Handling the first character
-                if (PaulTyson[0] === 'L') {
-                    PaulTysonPicks.push('Paul');
-                } else if (PaulTyson[0] === 'R') {
-                    PaulTysonPicks.push('Tyson');
-                }
-
-                // Handling the second character
-                if (PaulTyson[1] === 'L') {
-                    PaulTysonPicks.push('Taylor');
-                } else if (PaulTyson[1] === 'R') {
-                    PaulTysonPicks.push('Serrano');
-                }
-
-                // Handling the third character
-                if (PaulTyson[2] === 'L') {
-                    PaulTysonPicks.push('Till');
-                } else if (PaulTyson[2] === 'R') {
-                    PaulTysonPicks.push('Chavez Jr');
-                }
-
-                // Handling the fourth character
-                if (PaulTyson[3] === 'L') {
-                    PaulTysonPicks.push('Sylve');
-                } else if (PaulTyson[3] === 'R') {
-                    PaulTysonPicks.push('Schofield');
-                }
-
-                // Append the resulting picks to the HTML content
-                if (PaulTysonPicks.length > 0) {
-                    userInfoHtml += `<p><strong>Paul vs Tyson Picks:</strong> ${PaulTysonPicks.join(', ')}</p>`;
-                }
-            }
-
-            // Handle UFC 302 picks
-            if (ufc302_fetch !== "ufc302 not found") {
-                const ufc302picks = [];
-                const ufc302 = ufc302_fetch;
-
-                // Define a function to determine which fighter to push based on the index
-                function pickFighter(index, left, right) {
-                    if (ufc302[index] === 'L') {
-                        ufc302picks.push(left);
-                    } else if (ufc302[index] === 'R') {
-                        ufc302picks.push(right);
-                    }
-                    // If 'D', do nothing
-                }
-
-                // Apply the function for each fighter pick
-                pickFighter(0, 'Makhachev', 'Porier');
-                pickFighter(1, 'Strickland', 'Costa');
-                pickFighter(2, 'Holland', 'Oleksiejczuk');
-                pickFighter(3, 'Almeida', 'Romanov');
-                pickFighter(4, 'Brown', 'Dos Santos');
-                pickFighter(5, 'Almeida', 'Kopylov');
-                pickFighter(6, 'Dawson', 'Solecki');
-                pickFighter(7, 'Rowe', 'Matthews');
-                pickFighter(8, 'Price', 'Morono');
-                pickFighter(9, 'Gall', 'Hafez');
-                pickFighter(10, 'Perez', 'Edwards');
-                pickFighter(11, 'Raposo', 'Lima');
-                // Add additional picks similarly if needed
-
-                // Append the resulting picks to the HTML content
-                if (ufc302picks.length > 0) {
-                    userInfoHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.join(', ')}</p>`;
-                }
-            }
-            // Handle davis vs martin picks
-            if (davismartin_fetch !== "davismartin not found") {
-                const davismartinpicks = [];
-                const davismartin = davismartin_fetch;
-
-                // Define a function to determine which fighter to push based on the index
-                function pickFighter(index, left, right) {
-                    if (davismartin[index] === 'L') {
-                        davismartinpicks.push(left);
-                    } else if (davismartin[index] === 'R') {
-                        davismartinpicks.push(right);
-                    }
-                    // If 'D', do nothing
-                }
-
-                // Apply the function for each fighter pick
-                pickFighter(0, 'Davis', 'Martin');
-                pickFighter(1, 'Benavidez', 'Gvozdyk');
-                pickFighter(2, 'Adames', 'Gausha');
-                pickFighter(3, 'Puello', 'Russel');
-                pickFighter(4, 'Magsayo', 'Ramirez');
-                pickFighter(5, 'Garcia', 'Davis');
-                pickFighter(6, 'Villa', 'Salas');
-
-                // Add additional picks similarly if needed
-
-                // Append the resulting picks to the HTML content
-                if (davismartinpicks.length > 0) {
-                    userInfoHtml += `<p><strong>Davis vs Martin Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
-                }
-            }
-                        // Handle pfc37 picks
-                        if (pfc37_fetch !== "pfc37 not found") {
-                const davismartinpicks = [];
-                const davismartin = pfc37_fetch;
-
-                // Define a function to determine which fighter to push based on the index
-                function pickFighter(index, left, right) {
-                    if (davismartin[index] === 'L') {
-                        davismartinpicks.push(left);
-                    } else if (davismartin[index] === 'R') {
-                        davismartinpicks.push(right);
-                    }
-                    // If 'D', do nothing
-                }
-
-                // Apply the function for each fighter pick
-                pickFighter(0, 'Beck', 'Luna');
-                pickFighter(1, 'Tafoya', 'Nkuta');
-                pickFighter(2, 'Lewis', 'Campos');
-                pickFighter(3, 'Cesar', 'Simmons');
-                pickFighter(4, 'Cruz', 'Penning');
-                pickFighter(5, 'Jackson', 'Russel');
-                pickFighter(6, 'Moore', 'Gomez');
-
-                // Add additional picks similarly if needed
-
-                // Append the resulting picks to the HTML content
-                if (davismartinpicks.length > 0) {
-                    userInfoHtml += `<p><strong>Peak FC 37 Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
-                }
-            }
+            `;
 
             // Handle cannonier vs imavov picks
             if (cannonierimavov_fetch !== "cannonierimavov not found") {
@@ -287,8 +165,157 @@
 
                 // Append the resulting picks to the HTML content
                 if (davismartinpicks.length > 0) {
-                    userInfoHtml += `<p><strong>Cannonier vs Imavov Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>Cannonier vs Imavov Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
                 }
+            }
+                                    // Handle pfc37 picks
+                                    if (pfc37_fetch !== "pfc37 not found") {
+                const davismartinpicks = [];
+                const davismartin = pfc37_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Beck', 'Luna');
+                pickFighter(1, 'Tafoya', 'Nkuta');
+                pickFighter(2, 'Lewis', 'Campos');
+                pickFighter(3, 'Cesar', 'Simmons');
+                pickFighter(4, 'Cruz', 'Penning');
+                pickFighter(5, 'Jackson', 'Russel');
+                pickFighter(6, 'Moore', 'Gomez');
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Peak FC 37 Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+                        // Handle davis vs martin picks
+                        if (davismartin_fetch !== "davismartin not found") {
+                const davismartinpicks = [];
+                const davismartin = davismartin_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Davis', 'Martin');
+                pickFighter(1, 'Benavidez', 'Gvozdyk');
+                pickFighter(2, 'Adames', 'Gausha');
+                pickFighter(3, 'Puello', 'Russel');
+                pickFighter(4, 'Magsayo', 'Ramirez');
+                pickFighter(5, 'Garcia', 'Davis');
+                pickFighter(6, 'Villa', 'Salas');
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Davis vs Martin Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+
+                        // Handle UFC 302 picks
+                        if (ufc302_fetch !== "ufc302 not found") {
+                const ufc302picks = [];
+                const ufc302 = ufc302_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (ufc302[index] === 'L') {
+                        ufc302picks.push(left);
+                    } else if (ufc302[index] === 'R') {
+                        ufc302picks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Makhachev', 'Porier');
+                pickFighter(1, 'Strickland', 'Costa');
+                pickFighter(2, 'Holland', 'Oleksiejczuk');
+                pickFighter(3, 'Almeida', 'Romanov');
+                pickFighter(4, 'Brown', 'Dos Santos');
+                pickFighter(5, 'Almeida', 'Kopylov');
+                pickFighter(6, 'Dawson', 'Solecki');
+                pickFighter(7, 'Rowe', 'Matthews');
+                pickFighter(8, 'Price', 'Morono');
+                pickFighter(9, 'Gall', 'Hafez');
+                pickFighter(10, 'Perez', 'Edwards');
+                pickFighter(11, 'Raposo', 'Lima');
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (ufc302picks.length > 0) {
+                    userPicksHtml += `<p><strong>UFC 302 Picks:</strong> ${ufc302picks.join(', ')}</p>`;
+                }
+            }
+
+                        // Handle Paul vs Tyson picks
+                        if (paultyson_fetch !== "paultyson not found") {
+                const PaulTysonPicks = [];
+                const PaulTyson = paultyson_fetch;
+
+                // Handling the first character
+                if (PaulTyson[0] === 'L') {
+                    PaulTysonPicks.push('Paul');
+                } else if (PaulTyson[0] === 'R') {
+                    PaulTysonPicks.push('Tyson');
+                }
+
+                // Handling the second character
+                if (PaulTyson[1] === 'L') {
+                    PaulTysonPicks.push('Taylor');
+                } else if (PaulTyson[1] === 'R') {
+                    PaulTysonPicks.push('Serrano');
+                }
+
+                // Handling the third character
+                if (PaulTyson[2] === 'L') {
+                    PaulTysonPicks.push('Till');
+                } else if (PaulTyson[2] === 'R') {
+                    PaulTysonPicks.push('Chavez Jr');
+                }
+
+                // Handling the fourth character
+                if (PaulTyson[3] === 'L') {
+                    PaulTysonPicks.push('Sylve');
+                } else if (PaulTyson[3] === 'R') {
+                    PaulTysonPicks.push('Schofield');
+                }
+
+                // Append the resulting picks to the HTML content
+                if (PaulTysonPicks.length > 0) {
+                    userPicksHtml += `<p><strong>Paul vs Tyson Picks:</strong> ${PaulTysonPicks.join(', ')}</p>`;
+                }
+            }
+
+                        // Handle Misfits15 picks
+                        if (misfits15_fetch !== "misfits15 not found") {
+                const MisfitsPicks = [];
+                const MF15 = misfits15_fetch;
+                MisfitsPicks.push(MF15[0] === 'L' ? 'Bell' : 'Hamm');
+                MisfitsPicks.push(MF15[1] === 'L' ? 'Lil Cracra' : 'YuddyGang');
+                MisfitsPicks.push(MF15[2] === 'L' ? 'Park' : 'Vargas');
+                MisfitsPicks.push(MF15[3] === 'L' ? 'Bee' : 'Celinat');
+                MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
+                userPicksHtml += `<p><strong>Misfits15 Picks:</strong> ${MisfitsPicks.join(', ')}</p>`;
             }
             
 
@@ -310,6 +337,7 @@
 
             // Update the DOM with user info
             document.getElementById('userInfo').innerHTML = userInfoHtml;
+            document.getElementById('userPicks').innerHTML = userPicksHtml;
         })
         .catch(error => console.error('Error:', error));
 }
