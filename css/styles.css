@@ -203,7 +203,7 @@
   transform: translateY(25px); /* Adjust the value as needed */
 }
 .lowered-text {
-  transform: translateY(0px); /* Adjust the value as needed */
+  transform: translateY(30px); /* Adjust the value as needed */
 }
 .stretched-image {
   width: auto;
