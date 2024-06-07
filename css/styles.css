@@ -79,6 +79,23 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+.bars svg {
+  fill: white;     /* Sets the icon color to white */
+  height: 24px;    /* Adjust the height as needed */
+  width: 24px;     /* Adjust the width as needed */
+}
+.icon-container svg {
+  height: 35px; /* Adjust the size as needed */
+  width: 35px;  /* Adjust the size as needed */
+  fill: white;   /* Adjust the color as needed */
+}
+.icon-container2 svg {
+  height: 35px; /* Adjust the size as needed */
+  width: 35px;  /* Adjust the size as needed */
+  fill: #2c3e50;   /* Adjust the color as needed */
+}
+
+
 .win-span-left {
   position: relative; 
   top: -50px; 
