@@ -126,6 +126,11 @@
                             throw new Error('Network response was not ok');
                         }
                         localStorage.setItem('username', username);
+                        var cannonierimavov = localStorage.getItem('cannonierimavov');
+                        var username1 = localStorage.getItem('username');
+                        if (cannonierimavov){
+                            updatecannonierimavov(username1, cannonierimavov)
+                        }
                         alert("Register Successful!");
                         window.location.href = 'http://punchpredictor.com/index.html'; // Redirect after successful registration
                     })
@@ -138,6 +143,26 @@
     });
 });
 
+function updatecannonierimavov(username, result) {
+    // Encoding the data into the URL as query parameters
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev/?page=cannonierimavov&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
+
+    fetch(apiUrl, {
+        method: 'GET'
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Data saved successfully!");
+            // Optionally redirect to another page after success
+            window.location.href = 'https://punchpredictor.com/user.html';
+        } else {
+            throw new Error('Failed to fetch data');
+        }
+    })
+    .catch(error => {
+        console.error("Failed to write data:", error);
+    });
+}
 
         // Function to retrieve data
         function get1() {
