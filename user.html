@@ -325,17 +325,17 @@
             if (paultyson_fetch !== "paultyson not found" || misfits15_fetch !== "misfits15 not found" || ufc302_fetch !== "ufc302 not found" || davismartin_fetch !== "davismartin not found") {
                 let total = 0;
             if (paultyson_fetch !== "paultyson not found") {
-                total = total + (paultyson_fetch ? paultyson_fetch.length : 0);}
+                total = total + (paultyson_fetch ? paultyson_fetch.replace(/D/g, '').length : 0);}
             if (davismartin_fetch !== "davismartin not found") {
-                total = total + (davismartin_fetch ? davismartin_fetch.length : 0);}
+                total = total + (davismartin_fetch ? davismartin_fetch.replace(/D/g, '').length : 0);}
             if (misfits15_fetch !== "misfits15 not found") {
-                total = total + (misfits15_fetch ? misfits15_fetch.length : 0);}
+                total = total + (misfits15_fetch ? misfits15_fetch.replace(/D/g, '').length : 0);}
             if (ufc302_fetch !== "ufc302 not found") {
-                total = total + (ufc302_fetch ? ufc302_fetch.length : 0);}
+                total = total + (ufc302_fetch ? ufc302_fetch.replace(/D/g, '').length : 0);}
             if (pfc37_fetch !== "pfc37 not found") {
-                total = total + (pfc37_fetch ? pfc37_fetch.length : 0);}
+                total = total + (pfc37_fetch ? pfc37_fetch.replace(/D/g, '').length : 0);}
             if (cannonierimavov_fetch !== "cannonierimavov not found") {
-                total = total + (cannonierimavov_fetch ? cannonierimavov_fetch.length : 0);}
+                total = total + (cannonierimavov_fetch ? cannonierimavov_fetch.replace(/D/g, '').length : 0);}
                 userInfoHtml += `<p><strong>Total Picks:</strong> ${total}</p>`;
             } else {
                 userInfoHtml += `<p><strong>Total Picks:</strong> No picks yet</p>`;
