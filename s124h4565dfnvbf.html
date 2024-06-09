@@ -94,55 +94,66 @@
 
 
         document.getElementById('updateScoresBtn').addEventListener('click', function() {
-    const correctString = "LLLLLRLRLRLR";
+    const correctString = "RLLLRRRRRLRRRR";
     const usersRef = ref(db, '/user/');
 
     get(usersRef).then((snapshot) => {
         if (snapshot.exists()) {
+            const prevState = {}; // Object to store previous states
+
             snapshot.forEach((childSnapshot) => {
                 const username = childSnapshot.key;
                 const userData = childSnapshot.val();
-                if (userData.ufc302) {
-                    const userMisfits15 = userData.ufc302;
+                if (userData.cannonierimavov) {
+                    const userMisfits15 = userData.cannonierimavov;
 
                     let correctPicks = 0;
-                    let totalProfit = 0;  // Initialize total profit
-                    let totalPicks = correctString.length;  // Initialize total picks count
+                    let totalProfit = 0;
+                    let totalPicks = correctString.length;
 
-                    // Iterate over each character in the user's misfits15 string
                     for (let i = 0; i < correctString.length; i++) {
                         if (userMisfits15[i] === 'D') {
-                            // Decrement total picks for each 'D'
                             totalPicks--;
                         } else if (userMisfits15[i] === correctString[i]) {
                             correctPicks++;
-                            // Calculate profit for each match and accumulate it
                             totalProfit += parseFloat(calculateProfitFromOdds(getOddsForPosition(i + 1)));
                         } else {
-                            // Subtract $100 for each mismatch, unless it's a 'D'
                             totalProfit -= 100;
                         }
                     }
 
-                    // Update total picks
+                    // Store previous state for rollback
+                    prevState[username] = {
+                        total: userData.total || 0,
+                        picks: userData.picks || 0,
+                        score: userData.score || 0
+                    };
+
+                    // Update the database
                     const totalRef = ref(db, `/user/${username}/total`);
-                    set(totalRef, (userData.total || 0) + totalPicks);
+                    set(totalRef, prevState[username].total + totalPicks);
 
-                    // Round total profit to two decimal places before updating the score
-                    totalProfit = parseFloat(totalProfit.toFixed(2));
-
-                    // Update correct picks count
                     const picksRef = ref(db, `/user/${username}/picks`);
-                    set(picksRef, (userData.picks || 0) + correctPicks);
+                    set(picksRef, prevState[username].picks + correctPicks);
 
-                    // Update score by adding the rounded total profit to the existing score
+                    totalProfit = parseFloat(totalProfit.toFixed(2));
                     const scoreRef = ref(db, `/user/${username}/score`);
-                    set(scoreRef, (userData.score || 0) + totalProfit);
+                    set(scoreRef, prevState[username].score + totalProfit);
                 }
             });
 
-            // Alert when all operations are done
             alert("Calculations done");
+
+            // Implement rollback functionality
+            window.rollbackUpdates = function() {
+                for (const user in prevState) {
+                    set(ref(db, `/user/${user}/total`), prevState[user].total);
+                    set(ref(db, `/user/${user}/picks`), prevState[user].picks);
+                    set(ref(db, `/user/${user}/score`), prevState[user].score);
+                }
+                alert("Updates have been reverted.");
+            };
+
         } else {
             console.error('No users found in the database.');
         }
@@ -154,18 +165,20 @@
 
 function getOddsForPosition(position) {
     const odds = {
-        1: -470,
-        2: -205,
-        3: -305,
-        4: -290,
-        5: -180,
-        6: -102,
-        7: -250,
-        8: -160,
-        9: +215,
-        10: -395,
-        11: -185,
-        12: -145,
+        1: -125,
+        2: +170,
+        3: -238,
+        4: -265,
+        5: +110,
+        6: +154,
+        7: -130,
+        8: -230,
+        9: +120,
+        10: -625,
+        11: -102,
+        12: +140,
+		13: -238,
+		14: -230,
     };
     return odds[position];
 }
