@@ -94,7 +94,7 @@
                         <div class="col-2">Correct Picks: ${user.picks}</div>
                         <div class="col-2">Total Picks: ${user.total}</div>
                         <div class="col-2">% Earned: ${percentEarned}%</div>
-                        <div class="col-2">Score: ${user.score}</div>
+                        <div class="col-2">Score: ${parseFloat(user.score).toFixed(2)}</div>
                     </div>`;
                 });
                 leaderboardHtml += '</div>';

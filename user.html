@@ -121,11 +121,12 @@
             var davismartin_fetch = userInfo[6];
             var pfc37_fetch = userInfo[7];
             var cannonierimavov_fetch = userInfo[8];
+            let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
                 <p><strong>Username:</strong> ${username}</p>
                 <p><strong>Email:</strong> ${email_fetch}</p>
-                <p><strong>Score:</strong> $${score_fetch || 'No score yet'} - This is how much money you would have made if you bet $100 on each fight.</p>
+                <p><strong>Score:</strong> $${formattedScore || 'No score yet'} - This is how much money you would have made if you bet $100 on each fight.</p>
 
             `;
             let userPicksHtml = `
