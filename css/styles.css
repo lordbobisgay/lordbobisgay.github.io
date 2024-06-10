@@ -82,6 +82,9 @@
   font-size: 24px; /* Sets the font size to 14 pixels */
   font-weight: bold;
 }
+.condition1 {
+  font-weight: bold;
+}
 
 .bars svg {
   fill: white;     /* Sets the icon color to white */
