@@ -78,6 +78,20 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+#sortButtonint {
+  color: black;          /* Sets the text color to black */
+  background-color: white; /* Sets the background color to white */
+  border: 1px solid black; /* Adds a black border around the button */
+  padding: 5px 10px;     /* Adjusts the padding to make the button smaller */
+  font-size: 12px;       /* Reduces the font size for the button */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+#sortButtonint:hover {
+  background-color: black; /* Changes the background to black on hover */
+  color: white;            /* Changes the text color to white on hover */
+  cursor: pointer;         /* Changes the cursor to a pointer to indicate it's clickable */
+}
 .small-font {
   font-size: 24px; /* Sets the font size to 14 pixels */
   font-weight: bold;
@@ -251,6 +265,23 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
+  .headerrow{
+    font-size: 8px;
+  }
+  .sortButtonint {
+    color: black;          /* Sets the text color to black */
+    background-color: white; /* Sets the background color to white */
+    border: 1px solid black; /* Adds a black border around the button */
+    padding: 2px 4px;     /* Adjusts the padding to make the button smaller */
+    font-size: 6px;       /* Reduces the font size for the button */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .sortButtonint:hover {
+    background-color: black; /* Changes the background to black on hover */
+    color: white;            /* Changes the text color to white on hover */
+    cursor: pointer;         /* Changes the cursor to a pointer to indicate it's clickable */
+  }
   .prelims-top{
     margin-top: 200px;
   }
