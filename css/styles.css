@@ -331,6 +331,35 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
+  .tooltip1 {
+    position: absolute;
+    top: -97px; /* Adjust as necessary to position correctly */
+    left: -50px; /* Adjust as necessary to position correctly */
+    background-color: #f9f9f9;
+    border: 1px solid #d3d3d3;
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: none;
+    z-index: 1;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+  }
+  .infoButton {
+    position: absolute;
+    top: -12px;  /* Adjust as necessary for alignment */
+    left: -4px; /* Adjust as necessary for alignment */
+    border-radius: 50%;
+    border: none;
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 9px;
+    padding: 0px 0px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .infoButton:hover {
+    background-color: #e0e0e0;
+  }
 
   .leaderboardText{
     font-size: 14px;
