@@ -86,7 +86,6 @@
 
 
     <script type="module">
-        var email_fetch;
         var score_fetch;
         var misfits15_fetch;
         var paultyson_fetch;
@@ -109,19 +108,17 @@
         .then(data => {
             var userInfo = JSON.parse(data.body);
             // Extract user information from the fetched data
-            var email_fetch = userInfo[1];
-            var score_fetch = userInfo[2];
-            var misfits15_fetch = userInfo[3];
-            var paultyson_fetch = userInfo[4];
-            var ufc302_fetch = userInfo[5];
-            var davismartin_fetch = userInfo[6];
-            var pfc37_fetch = userInfo[7];
-            var cannonierimavov_fetch = userInfo[8];
+            var score_fetch = userInfo[1];
+            var misfits15_fetch = userInfo[2];
+            var paultyson_fetch = userInfo[3];
+            var ufc302_fetch = userInfo[4];
+            var davismartin_fetch = userInfo[5];
+            var pfc37_fetch = userInfo[6];
+            var cannonierimavov_fetch = userInfo[7];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
                 <p><strong>Username:</strong> ${username}</p>
-                <p><strong>Email:</strong> ${email_fetch}</p>
                 <p><strong>Score:</strong> $${formattedScore || 'No score yet'} - This is how much money you would have made if you bet $100 on each fight.</p>
 
             `;
