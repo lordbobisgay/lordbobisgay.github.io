@@ -78,6 +78,53 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+
+.headerrow1 {
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.infoButton {
+  position: absolute;
+  top: -5px;  /* Adjust as necessary for alignment */
+  left: -18px; /* Adjust as necessary for alignment */
+  border-radius: 50%;
+  border: none;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 16px;
+  padding: 1px 1px;
+  cursor: pointer;
+  outline: none;
+}
+
+.infoButton:hover {
+  background-color: #e0e0e0;
+}
+
+.tooltip1 {
+  position: absolute;
+  top: -70px; /* Adjust as necessary to position correctly */
+  left: -220px; /* Adjust as necessary to position correctly */
+  background-color: #f9f9f9;
+  border: 1px solid #d3d3d3;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: none;
+  z-index: 1;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.tooltip1::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #f9f9f9 transparent transparent transparent;
+}
 .overlappingtext {
   position: absolute;
   top: 50%;

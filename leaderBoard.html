@@ -61,10 +61,6 @@
 
 			<div class="container mt-5 pt-5"> <!-- Adjust margins and padding as needed for layout -->
 				<h2 class="padding-top-extra3 leaderboardText">Scores are updated after every event!</h2>
-                <h2 class="leaderboardText">Score = How much money you would have earned if you bet $100 on each fight</h2>
-                <!-- Sorting Dropdown -->
-
-                <button id="goToMyselfButton" class="btn btn-primary mt-2">Find Me</button>
 
 				<div id="userInfo" class="p-3 border rounded">
 					Loading user information...
@@ -126,11 +122,16 @@
                     <div class="list-group">
                     <div class="list-group-item list-group-item2 d-flex justify-content-between align-items-center">
                         <div class="col-1 headerrow"><strong>Rank&hairsp;</strong><button class="sortButtonint" id="sortButton1">↕</button></div>
-                        <div class="col-3 headerrow"><strong>Username</strong></div>
+                        <div class="col-3 headerrow"><strong>Username&hairsp;</strong><button class="sortButtonint" id="findbutton1">Find Me</button></div>
                         <div class="col-2 headerrow"><strong>Correct Picks&hairsp;</strong><button class="sortButtonint" id="sortButton2">↕</button></div>
                         <div class="col-2 headerrow"><strong>Total Picks&hairsp;</strong><button class="sortButtonint" id="sortButton3">↕</button></div>
                         <div class="col-2 headerrow"><strong>% Earned&hairsp;</strong><button class="sortButtonint" id="sortButton4">↕</button></div>
-                        <div class="col-2 headerrow"><strong>Score&hairsp;</strong><button class="sortButtonint" id="sortButton5">↕</button></div>
+                    <div class="col-2 headerrow1">
+                        <button class="infoButton" id="infoButton">&#9432;</button>
+                        <div class="tooltip1" id="infoTooltip">Score is how much money you would have made if you bet 100$ on each fight.</div>
+                        <strong>Score&hairsp;</strong>
+                        <button class="sortButtonint" id="sortButton5">↕</button>
+                        </div>
                     </div>`;
 
                 leaderboardData.forEach(user => {
@@ -307,6 +308,18 @@ if (sortButton5) {
     
     });
 }
+document.getElementById('findbutton1').addEventListener('click', function() {
+    var highlightedUser = document.querySelector('.highlight');
+    if (highlightedUser) {
+        highlightedUser.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+        alert('You are not logged in.');
+    }
+});
+document.getElementById('infoButton').addEventListener('click', function() {
+  var tooltip1 = document.getElementById('infoTooltip');
+  tooltip1.style.display = tooltip1.style.display === 'block' ? 'none' : 'block';
+});
 
 
                 
