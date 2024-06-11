@@ -60,10 +60,11 @@
 			</nav>
 
 			<div class="container mt-5 pt-5"> <!-- Adjust margins and padding as needed for layout -->
-				<h2 class="padding-top-extra3">Scores are updated after every event!</h2>
-                <h2 class="">Score = How much money you would have earned if you bet $100 on each fight</h2>
+				<h2 class="padding-top-extra3 leaderboardText">Scores are updated after every event!</h2>
+                <h2 class="leaderboardText">Score = How much money you would have earned if you bet $100 on each fight</h2>
                 <!-- Sorting Dropdown -->
 
+                <button id="goToMyselfButton" class="btn btn-primary mt-2">Find Me</button>
 
 				<div id="userInfo" class="p-3 border rounded">
 					Loading user information...
@@ -537,6 +538,14 @@ signOutButton.addEventListener('click', function() {
 });
             });
 
+document.getElementById('goToMyselfButton').addEventListener('click', function() {
+    var highlightedUser = document.querySelector('.highlight');
+    if (highlightedUser) {
+        highlightedUser.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+        console.log('No highlighted user found.');
+    }
+});
     </script>
 
  <!-- Bootstrap JS Bundle with Popper (Bootstrap 5) -->
