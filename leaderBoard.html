@@ -63,14 +63,8 @@
 				<h2 class="padding-top-extra3">Scores are updated after every event!</h2>
                 <h2 class="">Score = How much money you would have earned if you bet $100 on each fight</h2>
                 <!-- Sorting Dropdown -->
-<div class="container mt-3">
-    <select id="sortOption" class="form-select">
-        <option value="score">Sort by Score</option>
-        <option value="percentEarned">Sort by % Earned</option>
-        <option value="totalPicks">Sort by Total Picks</option>
-        <option value="correctPicks">Sort by Correct Picks</option>
-    </select>
-</div>
+
+
 				<div id="userInfo" class="p-3 border rounded">
 					Loading user information...
 				</div>
@@ -497,19 +491,12 @@ if (sortButton5) {
 }
 
 
-// Event listener for sorting option change
-document.getElementById('sortOption').addEventListener('change', function() {
-    getLeaderboard(this.value);
-});
-
-// Event listener for sorting option change
-document.getElementById('sortOption').addEventListener('change', function() {
-    getLeaderboard(this.value);
-});
 
 
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    
                 var username = localStorage.getItem('username');
                 getLeaderboard();
                 if (username) {
@@ -548,7 +535,6 @@ signOutButton.addEventListener('click', function() {
     alert('You have been signed out.');
     window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
 });
-
             });
 
     </script>
