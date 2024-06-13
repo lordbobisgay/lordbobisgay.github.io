@@ -93,6 +93,8 @@
         var davismartin_fetch;
         var pfc37_fetch;
         var cannonierimavov_fetch;
+        var lfa186_fetch;
+        var pereztaira_fetch;
 
         // Function to retrieve data
         function get1() {
@@ -115,6 +117,8 @@
             var davismartin_fetch = userInfo[5];
             var pfc37_fetch = userInfo[6];
             var cannonierimavov_fetch = userInfo[7];
+            var lfa186_fetch = userInfo[8];
+            var pereztaira_fetch = userInfo[9];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
@@ -125,6 +129,82 @@
             let userPicksHtml = `
 
             `;
+                        // Handle perez vs taira picks
+                        if (pereztaira_fetch !== "pereztaira not found") {
+                const davismartinpicks = [];
+                const davismartin = pereztaira_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Perez', 'Taira');
+                pickFighter(1, 'Aliskerov', 'Trocoli');
+                pickFighter(2, 'Cuamba', 'Almeida');
+                pickFighter(3, 'Andrade', 'Johns');
+                pickFighter(4, 'Almabayev', 'Johnson');
+                pickFighter(5, 'Hiestand', 'Armfield');
+                pickFighter(6, 'Calderon', 'Ellis');
+                pickFighter(7, 'Ulanbekov', 'Van');
+                pickFighter(8, 'Flick', 'Maness');
+                pickFighter(9, 'Quinlan', 'Fugitt');
+                pickFighter(10, 'Judice', 'Fernandes');
+                pickFighter(11, 'Saragih', 'Wilson');
+                pickFighter(12, 'Knutsson', 'Polastri');
+                pickFighter(13, 'Costa', 'Nuerdanbieke');
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Perez vs Taira Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+            // Handle LFA 186 picks
+            if (lfa186_fetch !== "lfa186 not found") {
+                const davismartinpicks = [];
+                const davismartin = lfa186_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Bekoev', 'Foxworth');
+                pickFighter(1, 'Repp', 'Borisova');
+                pickFighter(2, 'Freeman', 'Asplund');
+                pickFighter(3, 'Mgoyan', 'Robb');
+                pickFighter(4, 'Charlebois', 'Miller');
+                pickFighter(5, 'Bennett', 'Loi-Fonda');
+                pickFighter(6, 'Calderon', 'Ellis');
+                pickFighter(7, 'Schiro', 'Jones');
+                pickFighter(8, 'Beltran', 'Renfrow');
+                pickFighter(9, 'Montez', 'St. Charles');
+                pickFighter(10, 'Camozzi', 'Trillo');
+                pickFighter(11, 'Rodriguez', 'Rivera');
+                pickFighter(12, 'Polson', 'Romero');
+                pickFighter(13, 'Wise', 'Peltier');
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>LFA 186: Bekoev vs Foxworth Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
 
             // Handle cannonier vs imavov picks
             if (cannonierimavov_fetch !== "cannonierimavov not found") {
@@ -330,6 +410,10 @@
                 total = total + (pfc37_fetch ? pfc37_fetch.replace(/D/g, '').length : 0);}
             if (cannonierimavov_fetch !== "cannonierimavov not found") {
                 total = total + (cannonierimavov_fetch ? cannonierimavov_fetch.replace(/D/g, '').length : 0);}
+            if (lfa186_fetch !== "lfa186 not found") {
+                total = total + (lfa186_fetch ? lfa186_fetch.replace(/D/g, '').length : 0);}
+            if (pereztaira_fetch !== "pereztaira not found") {
+                total = total + (pereztaira_fetch ? pereztaira_fetch.replace(/D/g, '').length : 0);}
                 userInfoHtml += `<p><strong>Total Picks:</strong> ${total}</p>`;
             } else {
                 userInfoHtml += `<p><strong>Total Picks:</strong> No picks yet</p>`;
