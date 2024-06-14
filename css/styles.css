@@ -80,6 +80,8 @@
 }
 .bold-text {
   font-weight: bold;
+  color: black;       /* Sets the text color to black */
+  font-size: 35px;    /* Sets the font size to 16 pixels */
 }
 
 .headerrow1 {
