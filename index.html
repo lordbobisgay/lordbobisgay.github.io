@@ -180,8 +180,53 @@
         </div>
         
     </footer>
+    <script type="module">
+    document.addEventListener('DOMContentLoaded', function() {
+
     
+        var username = localStorage.getItem('username');
+
+        if (username) {
+            console.log('Username:', username);
+            // Hide the REGISTER and SIGN IN navigation items
+            document.getElementById('navRegister').style.display = 'none';
+document.getElementById('navSignIn').style.display = 'none';
+
+// Create a new nav item for the user, using the username as the link text
+var navItem = document.createElement('li');
+navItem.className = 'nav-item mx-0 mx-lg-1';
+navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
+document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
+            
+            // You can now use the username variable here to modify the DOM or perform other actions
+        } else {
+            
+            
+        }
+        var signOutButton = document.getElementById('navSignOut');
+
+// Check if username exists in localStorage
+if (localStorage.getItem('username')) {
+// Show sign out button if username exists
+signOutButton.style.display = 'block';
+} else {
+// Hide sign out button if no username exists
+signOutButton.style.display = 'none';
+}
+
+// Add event listener for sign out action
+signOutButton.addEventListener('click', function() {
+localStorage.removeItem('username'); // This will delete the username from localStorage
+
+// Optional: Provide feedback or redirect the user
+alert('You have been signed out.');
+window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
+});
+    });
+
+</script>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
