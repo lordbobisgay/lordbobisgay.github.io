@@ -799,22 +799,16 @@ if (username) {
             .then(data => {
                 const responseBody = JSON.parse(data.body);
                 const userPicks = responseBody.davismartin_value;
-                const predefinedPicks = "RLLLRRRRRLRRRR";
+                const predefinedPicks = "LLLLLRD";
                 const odds = {
-        1: -125,
-        2: +170,
-        3: -238,
-        4: -265,
-        5: +110,
-        6: +154,
+        1: -700,
+        2: -650,
+        3: -550,
+        4: +480,
+        5: -400,
+        6: +550,
         7: -130,
-        8: -230,
-        9: +120,
-        10: -625,
-        11: -102,
-        12: +140,
-		13: -238,
-		14: -230,
+        8: -230
                 };
 
                 function getOddsForPosition(position) {
@@ -837,7 +831,11 @@ if (username) {
                 userPicks.split('').forEach((pick, index) => {
                     if (pick === 'D') {
                         // Do nothing if the pick is 'D'
-                    } else if (pick === predefinedPicks.charAt(index)) {
+                    } 
+                    else if (predefinedPicks.charAt(index) === 'D') {
+                        // Do nothing if the pick is 'D'
+                     }
+                    else if (pick === predefinedPicks.charAt(index)) {
                         earnings += calculateProfitFromOdds(getOddsForPosition(index + 1));
                     } else {
                         earnings -= 100;
@@ -849,7 +847,7 @@ if (username) {
             })
             .catch(error => {
                 console.error("Error fetching data:", error);
-                document.getElementById('earningsDisplay').innerText = 'Failed to load earnings due to an error.';
+                document.getElementById('earningsDisplay').innerText = '';
             });
 
     fetch(apiUrl)
@@ -951,7 +949,7 @@ if (username) {
                 return;  // Exit if data is not valid
             }
 
-            const predefinedPicks = "RLLLRRRRRLRRRR";
+            const predefinedPicks = "LLLLLRD";
 			colorButton('FB1', userPicks[0], predefinedPicks[0]);
             colorButton('FB2', userPicks[1], predefinedPicks[1]);
             colorButton('FB3', userPicks[2], predefinedPicks[2]);
@@ -971,6 +969,9 @@ function colorButton(buttonId, userPick, predefinedPick) {
     if (userPick === 'D') {
         return; // Do nothing
     }
+    else if (predefinedPick === 'D') {
+        return;
+                     }
 
     const button = document.getElementById(buttonId);
     if (userPick === predefinedPick) {
