@@ -97,6 +97,7 @@
         var lfa186_fetch;
         var pereztaira_fetch;
         var a122_fetch;
+        var whittakeraliskerov_fetch;
 
         // Function to retrieve data
         function get1() {
@@ -122,6 +123,7 @@
             var lfa186_fetch = userInfo[8];
             var pereztaira_fetch = userInfo[9];
             var a122_fetch = userInfo[10];
+            var whittakeraliskerov_fetch = userInfo[11];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
@@ -132,7 +134,7 @@
             let userPicksHtml = `
 
             `;
-            // Handle perez vs taira picks
+            // Handle perez vs taira picks whittakeraliskerov
                 if (a122_fetch !== "a122 not found") {
                 const davismartinpicks = [];
                 const davismartin = a122_fetch;
@@ -166,6 +168,42 @@
                 // Append the resulting picks to the HTML content
                 if (davismartinpicks.length > 0) {
                     userPicksHtml += `<p><strong>A1 Combat 22 Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+                        // Handle perez vs taira picks whittakeraliskerov
+                        if (whittakeraliskerov_fetch !== "whittakeraliskerov not found") {
+                const davismartinpicks = [];
+                const davismartin = whittakeraliskerov_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Whittaker', 'Ikram Aliskerov');
+                pickFighter(1, 'Pavlovich', 'Volkov');
+                pickFighter(2, 'Gastelum', 'Rodriguez');
+                pickFighter(3, 'Magomedov', 'Trocoli');
+                pickFighter(4, 'Walker', 'Oezdemir');
+                pickFighter(5, 'Haqparast', 'Gordon');
+                pickFighter(6, 'Naimov', 'Lima');
+                pickFighter(7, 'Fakhretdinov', 'Dalby');
+                pickFighter(8, 'Kang', 'Gafurov');
+                pickFighter(9, 'Gadzhiyasulov', 'Ribiero');
+                pickFighter(10, 'Long', 'Lee');
+
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Whittaker vs Aliskerov Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
                 }
             }
                         // Handle perez vs taira picks
@@ -454,6 +492,8 @@
                 total = total + (pereztaira_fetch ? pereztaira_fetch.replace(/D/g, '').length : 0);}
             if (a122_fetch !== "a122 not found") {
                 total = total + (a122_fetch ? a122_fetch.replace(/D/g, '').length : 0);}
+            if (whittakeraliskerov_fetch !== "whittakeraliskerov not found") {
+                total = total + (whittakeraliskerov_fetch ? whittakeraliskerov_fetch.replace(/D/g, '').length : 0);}
                 userInfoHtml += `<p><strong>Total Picks:</strong> ${total}</p>`;
             } else {
                 userInfoHtml += `<p><strong>Total Picks:</strong> No picks yet</p>`;
