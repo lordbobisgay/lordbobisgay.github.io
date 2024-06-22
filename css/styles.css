@@ -190,7 +190,7 @@
 
 .win-span-left {
   position: relative; 
-  top: -50px; 
+  top: -70px; 
   right: 275px; 
   background-color: red; 
   color: white; 
@@ -207,7 +207,7 @@
 
 .win-span-right {
   position: relative; 
-  top: -50px; 
+  top: -70px; 
   left: 275px; 
   background-color: red; 
   color: white; 
