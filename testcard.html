@@ -1139,7 +1139,7 @@
         }
     }
 }
-localStorage.setItem('pereztaira', result); // Save the result in local storage under the key 'davismartin'
+localStorage.setItem('WhittakerAliskerov', result); // Save the result in local storage under the key 'davismartin'
     var username = localStorage.getItem('username');
     if (!username) {
         console.error('Please sign in before making picks');
@@ -1160,10 +1160,11 @@ localStorage.setItem('pereztaira', result); // Save the result in local storage 
 
         return result;
     }
+});
             </script>
         <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var storedResults = localStorage.getItem('pereztaira');
+    var storedResults = localStorage.getItem('WhittakerAliskerov');
     if (storedResults) {
         for (var i = 0; i < storedResults.length; i++) {
             var resultChar = storedResults.charAt(i);
@@ -1217,7 +1218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function updatePaulTyson(username, result) {
     // Encoding the data into the URL as query parameters
-    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev/?page=pereztaira&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev/?page=WhittakerAliskerov&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
 
     fetch(apiUrl, {
         method: 'GET'
@@ -1240,10 +1241,11 @@ function updatePaulTyson(username, result) {
 
 
 // Fetch the data from the API when the page loads
-fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=pereztaira_stats')
+fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=WhittakerAliskerov_stats')
     .then(response => response.json())
     .then(data => {
         const stats = JSON.parse(data.body);
+        
 
         document.getElementById('firebutton1').addEventListener('click', function() {
             var posStats = stats.position_1; // Assuming the data is still in scope or has been retrieved
@@ -1270,701 +1272,553 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=pereztair
             }
         });
 
-document.getElementById('firebutton2').addEventListener('click', function() {
-    var posStats = stats.position_1; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text0');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton1');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton3').addEventListener('click', function() {
-    var posStats = stats.position_2; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text1');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton4');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton4').addEventListener('click', function() {
-    var posStats = stats.position_2; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text1');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton3');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton5').addEventListener('click', function() {
-    var posStats = stats.position_3; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text2');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton6');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton6').addEventListener('click', function() {
-    var posStats = stats.position_3; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text2');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton5');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton7').addEventListener('click', function() {
-    var posStats = stats.position_4; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text3');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton8');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton8').addEventListener('click', function() {
-    var posStats = stats.position_4; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text3');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton7');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton9').addEventListener('click', function() {
-    var posStats = stats.position_5; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text4');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton10');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton10').addEventListener('click', function() {
-    var posStats = stats.position_5; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text4');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton9');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton11').addEventListener('click', function() {
-    var posStats = stats.position_6; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text5');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton12');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton12').addEventListener('click', function() {
-    var posStats = stats.position_6; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text5');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton11');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton13').addEventListener('click', function() {
-    var posStats = stats.position_7; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text6');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton14');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton14').addEventListener('click', function() {
-    var posStats = stats.position_7; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text6');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton13');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton15').addEventListener('click', function() {
-    var posStats = stats.position_8; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text7');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton16');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton16').addEventListener('click', function() {
-    var posStats = stats.position_8; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text7');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton15');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton17').addEventListener('click', function() {
-    var posStats = stats.position_9; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text8');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton18');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton18').addEventListener('click', function() {
-    var posStats = stats.position_9; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text8');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton17');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton19').addEventListener('click', function() {
-    var posStats = stats.position_10; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text9');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton20');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton20').addEventListener('click', function() {
-    var posStats = stats.position_10; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text9');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton19');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton21').addEventListener('click', function() {
-    var posStats = stats.position_11; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text10');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton22');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text10').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton22').addEventListener('click', function() {
-    var posStats = stats.position_11; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text10');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton21');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text10').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton23').addEventListener('click', function() {
-    var posStats = stats.position_12; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text11');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton24');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text11').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton24').addEventListener('click', function() {
-    var posStats = stats.position_12; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text11');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton23');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text11').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton25').addEventListener('click', function() {
-    var posStats = stats.position_13; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text12');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton26');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text12').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton26').addEventListener('click', function() {
-    var posStats = stats.position_13; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text12');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton25');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text12').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-document.getElementById('firebutton27').addEventListener('click', function() {
-    var posStats = stats.position_14; // Assuming the data is still in scope or has been retrieved
-    var L_ratio = posStats.L_ratio * 100;
-    var total_L = posStats.total_L;
-
-    var overlayText = this.querySelector('.overlay-text13');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton28');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text13').style.display = 'none'; // Hide the other button's overlay
-    }
-});
-
-document.getElementById('firebutton28').addEventListener('click', function() {
-    var posStats = stats.position_14; // Assuming the data is still in scope or has been retrieved
-    var R_ratio = posStats.R_ratio * 100;
-    var total_R = posStats.total_R;
-
-    var overlayText = this.querySelector('.overlay-text13');
-
-    // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
-        overlayText.style.display = 'none'; // Hide the overlay text
-    } else {
-        this.classList.add('fire-active');
-
-        overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
-
-        overlayText.style.display = 'block'; // Show the overlay text
-    }
-
-    // Check and manage the state of the other button
-    var otherButton = document.getElementById('firebutton27');
-    if (otherButton.classList.contains('fire-active')) {
-        otherButton.classList.remove('fire-active');
-        otherButton.querySelector('.overlay-text13').style.display = 'none'; // Hide the other button's overlay
-    }
-});
+
+        document.getElementById('firebutton2').addEventListener('click', function() {
+            var posStats = stats.position_1; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text0');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton1');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton3').addEventListener('click', function() {
+            var posStats = stats.position_2; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text1');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton4');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton4').addEventListener('click', function() {
+            var posStats = stats.position_2; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text1');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton3');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton5').addEventListener('click', function() {
+            var posStats = stats.position_3; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text2');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton6');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton6').addEventListener('click', function() {
+            var posStats = stats.position_3; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text2');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton5');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton7').addEventListener('click', function() {
+            var posStats = stats.position_4; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text3');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton8');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton8').addEventListener('click', function() {
+            var posStats = stats.position_4; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text3');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton7');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton9').addEventListener('click', function() {
+            var posStats = stats.position_5; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text4');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton10');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton10').addEventListener('click', function() {
+            var posStats = stats.position_5; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text4');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton9');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton11').addEventListener('click', function() {
+            var posStats = stats.position_6; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text5');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton12');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton12').addEventListener('click', function() {
+            var posStats = stats.position_6; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text5');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton11');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton13').addEventListener('click', function() {
+            var posStats = stats.position_7; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text6');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton14');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton14').addEventListener('click', function() {
+            var posStats = stats.position_7; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text6');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton13');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton15').addEventListener('click', function() {
+            var posStats = stats.position_8; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text7');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton16');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton16').addEventListener('click', function() {
+            var posStats = stats.position_8; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text7');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton15');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton17').addEventListener('click', function() {
+            var posStats = stats.position_9; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text8');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton18');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton18').addEventListener('click', function() {
+            var posStats = stats.position_9; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text8');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton17');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton19').addEventListener('click', function() {
+            var posStats = stats.position_10; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text9');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton20');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton20').addEventListener('click', function() {
+            var posStats = stats.position_10; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text9');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton19');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton21').addEventListener('click', function() {
+            var posStats = stats.position_11; // Assuming the data is still in scope or has been retrieved
+            var L_ratio = posStats.L_ratio * 100;
+            var total_L = posStats.total_L;
+
+            var overlayText = this.querySelector('.overlay-text10');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton22');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text10').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
+        document.getElementById('firebutton22').addEventListener('click', function() {
+            var posStats = stats.position_11; // Assuming the data is still in scope or has been retrieved
+            var R_ratio = posStats.R_ratio * 100;
+            var total_R = posStats.total_R;
+
+            var overlayText = this.querySelector('.overlay-text10');
+
+            // Toggle 'fire-active' class on this button and toggle the display based on class presence
+            if (this.classList.contains('fire-active')) {
+                this.classList.remove('fire-active');
+                overlayText.style.display = 'none'; // Hide the overlay text
+            } else {
+                this.classList.add('fire-active');
+                overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+                overlayText.style.display = 'block'; // Show the overlay text
+            }
+
+            // Check and manage the state of the other button
+            var otherButton = document.getElementById('firebutton21');
+            if (otherButton.classList.contains('fire-active')) {
+                otherButton.classList.remove('fire-active');
+                otherButton.querySelector('.overlay-text10').style.display = 'none'; // Hide the other button's overlay
+            }
+        });
+
+
 	
 
         // Similar setup for firebutton2 if needed
