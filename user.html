@@ -126,6 +126,7 @@
             var a122_fetch = userInfo[10];
             var whittakeraliskerov_fetch = userInfo[11];
             var ufc303_fetch = userInfo[12];
+            var ufc303Parlay_fetch = userInfo[13];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
@@ -136,6 +137,44 @@
             let userPicksHtml = `
 
             `;
+            // Handle UFC303 Parlay Picks
+            if (ufc303Parlay_fetch !== "PereiraProchazkaParlay not found") {
+                const davismartinpicks = [];
+                const davismartin = ufc303Parlay_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Pereira', 'Prochazka');
+                pickFighter(1, 'Ortega', 'Lopes');
+                pickFighter(2, 'Smith', 'Dolidze');
+                pickFighter(3, 'Silva', 'Chiasson');
+                pickFighter(4, 'Garry', 'Page');
+                pickFighter(5, 'Pyfer', 'Barriault');
+                pickFighter(6, 'Swanson', 'Fili');
+                pickFighter(7, 'Jourdain', 'Silva');
+                pickFighter(8, 'Talbott', 'Ghemmouri');
+                pickFighter(9, 'Waterson', 'Robertson');
+                pickFighter(10, 'Arlovski', 'Buday');
+                pickFighter(11, 'Tsuruya', 'Hernandez');
+                pickFighter(12, 'Simon', 'Oliveira');
+
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>UFC 303 Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
             // Handle UFC303 Picks
                         if (ufc303_fetch !== "PereiraProchazka not found") {
                 const davismartinpicks = [];

@@ -1264,6 +1264,9 @@
 <div class="text-center padding-top-extra4">
     <button id="submit" class="btn btn-primary btn-lg" style="margin-bottom: 50px;">Submit</button>
     </div>
+<div class="text-center padding-top-extra4">
+		<button id="submitParlay" class="btn btn-primary btn-lg" style="margin-bottom: 50px;">Submit as a Parlay</button>
+		</div>
 
 
 
@@ -1347,6 +1350,46 @@ localStorage.setItem('PereiraProchazka', result); // Save the result in local st
         return result;
     }
 });
+document.getElementById('submitParlay').addEventListener('click', function() {
+                var result = "";
+    for (var i = 1; i <= 26; i += 2) {
+    var button1 = document.getElementById('firebutton' + i);
+    var button2 = document.getElementById('firebutton' + (i + 1));
+
+    // Check if both buttons in the pair don't have 'fire-active'
+    if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+        result += 'D';
+    } else {
+        // Check individual buttons for 'fire-active' and add 'L' or 'R'
+        if (button1.classList.contains('fire-active')) {
+            result += 'L';
+        }
+        if (button2.classList.contains('fire-active')) {
+            result += 'R';
+        }
+    }
+}
+    var username = localStorage.getItem('username');
+    if (!username) {
+        console.error('Please sign in before making picks');
+        alert('Please sign in/create account. Then your picks will be saved.');
+        window.location.href = 'http://punchpredictor.com/register.html';
+        return;  // Return early to prevent further execution
+    }
+
+    if (result == 'D') {
+        console.error("Please select at least one fighter to win!");
+        alert("Please select at least one fighter to win!");
+        return "Error";
+    } else {
+        console.log(result);
+        this.innerHTML = 'Thanks for submitting';
+        this.disabled = true;
+        updateParlay(username, result)
+
+        return result;
+    }
+});
             </script>
         <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1405,6 +1448,26 @@ document.addEventListener('DOMContentLoaded', function() {
 function updatePaulTyson(username, result) {
     // Encoding the data into the URL as query parameters
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev/?page=PereiraProchazka&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
+
+    fetch(apiUrl, {
+        method: 'GET'
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Data saved successfully!");
+            // Optionally redirect to another page after success
+            window.location.href = 'https://punchpredictor.com/user.html';
+        } else {
+            throw new Error('Failed to fetch data');
+        }
+    })
+    .catch(error => {
+        console.error("Failed to write data:", error);
+    });
+}
+function updateParlay(username, result) {
+    // Encoding the data into the URL as query parameters
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev/?page=PereiraProchazkaParlay&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
 
     fetch(apiUrl, {
         method: 'GET'
