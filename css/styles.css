@@ -83,6 +83,11 @@
   color: black;       /* Sets the text color to black */
   font-size: 35px;    /* Sets the font size to 16 pixels */
 }
+.bold-text2 {
+  font-weight: bold;
+  color: black;       /* Sets the text color to black */
+  font-size: 22px;    /* Sets the font size to 16 pixels */
+}
 
 .headerrow1 {
   position: relative;

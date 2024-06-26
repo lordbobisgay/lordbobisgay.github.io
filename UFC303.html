@@ -1262,17 +1262,25 @@
 
 
 <div class="text-center padding-top-extra4">
-    <button id="submit" class="btn btn-primary btn-lg" style="margin-bottom: 50px;">Submit</button>
+    <button id="submit" class="btn btn-primary btn-lg" style="margin-bottom: 20px;">Submit</button>
     </div>
+
+    <div id="displayEarningsText" class="page-section-heading text-center text-uppercase text-secondary mb-0"></div>
+
 <div class="text-center padding-top-extra4">
-		<button id="submitParlay" class="btn btn-primary btn-lg" style="margin-bottom: 50px;">Submit as a Parlay</button>
+		<button id="submitParlay" class="btn btn-primary btn-lg" style="margin-bottom: 20px; margin-top: 50px;">Submit as a Parlay</button>
 		</div>
+    <div id="displayParlayEarningsText" class="page-section-heading text-center text-uppercase text-secondary mb-0"></div>
 
-
+    <div class="text-center padding-top-extra4">
+        <p class="text-secondary text-center bold-text2">
+            If you choose to submit as a parlay, every fight outcome you choose must be correct to earn the score, if even just one is incorrect you will lose 100 score. Also, you can submit both regular picks and one parlay for each card.
+        </p>
+    </div>
 
 
         <!-- Footer-->
-        <footer class="footer text-center" id="site-footer">
+        <footer class="footer text-center" id="site-footer" style="margin-top: 50px;">
             <div class="container">
                 <div class="row">
                     <!-- Footer Location-->
@@ -1308,7 +1316,6 @@
     </section>
     
         <script type="module">
-
             document.getElementById('submit').addEventListener('click', function() {
                 var result = "";
     for (var i = 1; i <= 26; i += 2) {
@@ -1445,6 +1452,124 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function updateText(userPicks) {
+    const odds = {
+        1: -155,
+        2: +130,
+        3: +120,
+        4: -142,
+        5: +135,
+        6: -155,
+        7: -205,
+        8: +170,
+        9: -130,
+        10: +110,
+        11: -265,
+        12: +215,
+        13: +160,
+        14: -192,
+        15: -130,
+        16: +110,
+        17: -1600,
+        18: +900,
+        19: +164,
+        20: -198,
+        21: +220,
+        22: -270,
+        23: -450,
+        24: +375,
+        25: -225,
+        26: +185,
+    };
+
+    function getOddsForPosition(position) {
+        return odds[position];
+    }
+
+    function calculateProfitFromOdds(odds) {
+        let profit;
+        if (odds > 0) {
+            profit = (odds / 100) * 100;  // Since the bet is $100
+        } else if (odds < 0) {
+            profit = (100 / Math.abs(odds)) * 100;  // Since the bet is $100
+        } else {
+            profit = 0;  // No profit if odds are zero
+        }
+        return parseFloat(profit.toFixed(2));
+    }
+
+    let earnings = 0;
+    userPicks.split('').forEach((pick, index) => {
+        // Calculate the position in the odds object based on pick type
+        let position = 2 * index + (pick === 'L' ? 1 : 2); // 'L' picks use odd indices, 'R' picks use even indices
+        if (pick !== 'D') {
+            earnings += calculateProfitFromOdds(getOddsForPosition(position));
+        }
+    });
+
+    document.getElementById('displayEarningsText').innerText = `Potential Earnings If All Picks Correct: ${earnings.toFixed(2)} Score`;
+}
+
+function updateText2(userPicks) {
+    const odds = {
+        1: -155,
+        2: +130,
+        3: +120,
+        4: -142,
+        5: +135,
+        6: -155,
+        7: -205,
+        8: +170,
+        9: -130,
+        10: +110,
+        11: -265,
+        12: +215,
+        13: +160,
+        14: -192,
+        15: -130,
+        16: +110,
+        17: -1600,
+        18: +900,
+        19: +164,
+        20: -198,
+        21: +220,
+        22: -270,
+        23: -450,
+        24: +375,
+        25: -225,
+        26: +185,
+    };
+
+    function convertAmericanToDecimal(americanOdds) {
+        if (americanOdds > 0) {
+            return 1 + (americanOdds / 100);
+        } else {
+            return 1 + (100 / Math.abs(americanOdds));
+        }
+    }
+
+    function getOddsForPosition(position) {
+        return odds[position];
+    }
+
+    let parlayMultiplier = 1;
+    userPicks.split('').forEach((pick, index) => {
+        let position = 2 * index + (pick === 'L' ? 1 : 2); // 'L' picks use odd indices, 'R' picks use even indices
+        if (pick !== 'D') {
+            parlayMultiplier *= convertAmericanToDecimal(getOddsForPosition(position));
+        }
+    });
+
+    let earnings;
+    if (parlayMultiplier === 1) {  // No valid picks were made, or all were 'D'
+        earnings = 0;
+    } else {
+        earnings = (parlayMultiplier - 1) * 100; // Subtract 1 from the multiplier and multiply by the stake
+    }
+
+    document.getElementById('displayParlayEarningsText').innerText = `Potential Earnings: ${earnings.toFixed(2)} Score`;
+}
+
 function updatePaulTyson(username, result) {
     // Encoding the data into the URL as query parameters
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev/?page=PereiraProchazka&username=${encodeURIComponent(username)}&result=${encodeURIComponent(result)}`;
@@ -1501,6 +1626,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
+
             var overlayText = this.querySelector('.overlay-text0');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
@@ -1519,6 +1645,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1545,6 +1691,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1571,6 +1737,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1597,6 +1783,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1623,6 +1829,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1649,6 +1875,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1675,6 +1921,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1701,6 +1967,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1727,6 +2013,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1753,6 +2059,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1779,6 +2105,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1805,6 +2151,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1831,6 +2197,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1857,6 +2243,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1883,6 +2289,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1909,6 +2335,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1935,6 +2381,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1961,6 +2427,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -1987,6 +2473,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -2013,6 +2519,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -2039,6 +2565,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text10').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -2065,6 +2611,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text10').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -2091,6 +2657,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text11').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -2117,6 +2703,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text11').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -2143,6 +2749,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text12').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
@@ -2169,6 +2795,26 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text12').style.display = 'none'; // Hide the other button's overlay
             }
+            var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+            var button1 = document.getElementById('firebutton' + i);
+            var button2 = document.getElementById('firebutton' + (i + 1));
+
+            // Check if both buttons in the pair don't have 'fire-active'
+            if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                result += 'D';
+            } else {
+                // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                if (button1.classList.contains('fire-active')) {
+                    result += 'L';
+                }
+                if (button2.classList.contains('fire-active')) {
+                    result += 'R';
+                }
+            }
+            }
+            updateText(result)
+            updateText2(result)
         });
 
 
