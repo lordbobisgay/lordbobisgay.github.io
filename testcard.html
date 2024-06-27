@@ -139,7 +139,7 @@
                     </div>
                     <div class="text-center ms-auto">
                         <div class="number-above lowered-text "></div>
-                        <p class="fight-ers text-uppercase fw-bold">Jiri Prochazka</p>
+                        <p class="fight-ers text-uppercase fw-bold">Jiri Prochaz</p>
                     </div>
                 </div>
                 <div class="text-center">
@@ -219,7 +219,7 @@
                 <div class="d-flex justify-content-center align-items-center w-100">
                     <div class="text-center me-auto">
                         <div class="number-above lowered-text "></div>
-                        <p class="fight-ers text-uppercase fw-bold">Brian Ortega</p>
+                        <p class="fight-ers text-uppercase fw-bold">Alex</p>
                     </div>
                     <div class="text-center mx-2 my-auto">
                         <div class="fight-vs text-uppercase fw-bold">VS</div>
@@ -227,7 +227,7 @@
                     </div>
                     <div class="text-center ms-auto">
                         <div class="number-above lowered-text "></div>
-                        <p class="fight-ers text-uppercase fw-bold">Diego Lopes</p>
+                        <p class="fight-ers text-uppercase fw-bold">Jiri</p>
                     </div>
                 </div>
                 <div class="text-center">
@@ -1443,26 +1443,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('You have been signed out.');
         window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
     });
-    var result = "";
-            for (var i = 1; i <= 26; i += 2) {
-                var button1 = document.getElementById('firebutton' + i);
-                var button2 = document.getElementById('firebutton' + (i + 1));
-
-                // Check if both buttons in the pair don't have 'fire-active'
-                if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
-                    result += 'D';
-                } else {
-                    // Check individual buttons for 'fire-active' and add 'L' or 'R'
-                    if (button1.classList.contains('fire-active')) {
-                        result += 'L';
-                    }
-                    if (button2.classList.contains('fire-active')) {
-                        result += 'R';
-                    }
-                }
-            }
-            updateText(result);
-            updateText2(result);
+    
 });
 
 function updateText(userPicks) {
