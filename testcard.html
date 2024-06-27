@@ -105,7 +105,17 @@
         <div class="text-center text-uppercase text-secondary mb-0 small-font">
             To enter predictions, Click a Fighter's Picture, Then Submit at the bottom to Join the Leaderboard. Click anywhere else on the bar to toggle stats for the fight.
         </div>
-
+        <div class="overlay-sidebar" id="mySidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <h4>Sidebar</h4>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <button class="btn btn-primary" onclick="openNav()">Open Sidebar</button>
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
     <!-- Full-Width Button -->
@@ -1445,7 +1455,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 });
+function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
 
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
 function updateText(userPicks) {
     const odds = {
         1: -155,
