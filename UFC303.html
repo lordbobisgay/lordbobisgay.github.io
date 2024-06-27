@@ -1266,6 +1266,7 @@
     </div>
 
     <div id="displayEarningsText" class="page-section-heading text-center text-uppercase text-secondary mb-0"></div>
+    <div id="displayLossText" class="page-section-heading text-center text-uppercase text-secondary mb-0" style="margin-top: 30px;"></div>
 
 <div class="text-center padding-top-extra4">
 		<button id="submitParlay" class="btn btn-primary btn-lg" style="margin-bottom: 20px; margin-top: 50px;">Submit as a Parlay</button>
@@ -1492,8 +1493,10 @@ function updateText(userPicks) {
             earnings += calculateProfitFromOdds(getOddsForPosition(position));
         }
     });
-
+    let countD = userPicks.split('').filter(char => char === 'D').length;
+    let loss = (userPicks.length - countD) * 100;
     document.getElementById('displayEarningsText').innerText = `Potential Earnings If All Picks Correct: ${earnings.toFixed(2)} Score`;
+    document.getElementById('displayLossText').innerText = `Potential Score Loss If All Picks Incorrect: -${loss.toFixed(2)} Score`;
 }
 
 function updateText2(userPicks) {
