@@ -539,13 +539,52 @@
   margin-top: 50px;
 }
 
-.fight-category {
+.fight-category2 {
+  position: absolute;
+  top: 50%; /* Centers the text vertically */
+  left: 50%; /* Centers the text horizontally */
+  transform: translate(-50%, -50%); /* Ensures center alignment of the text */
   color: #333; /* Dark text color for visibility */
-  font-size: 0.9em; /* Size of the text */
+  font-size: 1.5em; /* Size of the text */
   padding: 5px 10px; /* Padding for better spacing */
   border-radius: 5px; /* Rounded corners for aesthetics */
   width: fit-content;
-  margin: 0 auto; /* Centers the category text */
+  margin: 0; /* Removed margin auto, since positioning is handled by transform */
+  
+  z-index: 1; /* Ensures this text is on top */
+  top: 100px; /* Moves the element 100px up from its normal position */
+}
+.fight-container {
+  position: relative;
+  text-align: center;
+  height: 50px; /* Adjust height based on your specific needs */
+}
+
+.fight-category {
+  position: absolute;
+  top: 50%; /* Centers the text vertically */
+  left: 50%; /* Centers the text horizontally */
+  transform: translate(-50%, -50%); /* Ensures center alignment of the text */
+  color: #333; /* Dark text color for visibility */
+  font-size: 1.1em; /* Size of the text */
+  padding: 5px 10px; /* Padding for better spacing */
+  border-radius: 5px; /* Rounded corners for aesthetics */
+  width: fit-content;
+  margin: 0; /* Removed margin auto, since positioning is handled by transform */
+  
+  z-index: 1; /* Ensures this text is on top */
+  top: 30px; /* Moves the element 100px up from its normal position */
+}
+
+.vs {
+  position: absolute;
+  top: 50%; /* Centers the text vertically */
+  left: 50%; /* Centers the text horizontally */
+  transform: translate(-50%, -50%); /* Ensures center alignment of the text */
+  color: #333; /* Optional: Makes the VS stand out */
+  font-size: 1.1em; /* Optional: Adjust size as needed */
+  z-index: 2; /* Ensures VS text is on top of the fight-category */
+  top: 220px; /* Moves the element 100px up from its normal position */
 }
 
 .fight-odds {
