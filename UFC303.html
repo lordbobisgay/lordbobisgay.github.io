@@ -1450,6 +1450,26 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('You have been signed out.');
         window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
     });
+    var result = "";
+            for (var i = 1; i <= 26; i += 2) {
+                var button1 = document.getElementById('firebutton' + i);
+                var button2 = document.getElementById('firebutton' + (i + 1));
+
+                // Check if both buttons in the pair don't have 'fire-active'
+                if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                    result += 'D';
+                } else {
+                    // Check individual buttons for 'fire-active' and add 'L' or 'R'
+                    if (button1.classList.contains('fire-active')) {
+                        result += 'L';
+                    }
+                    if (button2.classList.contains('fire-active')) {
+                        result += 'R';
+                    }
+                }
+            }
+            updateText(result);
+            updateText2(result);
 });
 
 function updateText(userPicks) {
