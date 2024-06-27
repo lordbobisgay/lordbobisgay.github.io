@@ -566,7 +566,7 @@
   left: 50%; /* Centers the text horizontally */
   transform: translate(-50%, -50%); /* Ensures center alignment of the text */
   color: #333; /* Dark text color for visibility */
-  font-size: 1.1em; /* Size of the text */
+  font-size: 0.9em; /* Size of the text */
   padding: 5px 10px; /* Padding for better spacing */
   border-radius: 5px; /* Rounded corners for aesthetics */
   width: fit-content;
@@ -582,7 +582,7 @@
   left: 50%; /* Centers the text horizontally */
   transform: translate(-50%, -50%); /* Ensures center alignment of the text */
   color: #333; /* Optional: Makes the VS stand out */
-  font-size: 1.1em; /* Optional: Adjust size as needed */
+  font-size: 0.9em; /* Optional: Adjust size as needed */
   z-index: 2; /* Ensures VS text is on top of the fight-category */
   top: 220px; /* Moves the element 100px up from its normal position */
 }
