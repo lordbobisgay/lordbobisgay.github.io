@@ -405,7 +405,9 @@
     padding: 15px;
     color: white;
   }
-  
+  .move-up{
+    z-index: 4; /* Stay on top */
+  }
   .closebtn {
     position: absolute;
     top: 20px;

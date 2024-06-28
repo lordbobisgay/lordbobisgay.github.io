@@ -134,14 +134,18 @@
                     <div class="text-center me-auto">
                         <div class="number-above lowered-text "></div>
                         <p class="fight-ers text-uppercase fw-bold">Alex Pereira</p>
+                        <button class="btn btn-primary" id="sidebar1" onclick="toggleNav()" style="position: relative; z-index: 3; display: none; margin-left: 30px;">Open Sidebar</button>
                     </div>
+
                     <div class="text-center mx-2 my-auto">
                         <div class="fight-vs text-uppercase fw-bold">VS</div>
                         <div class="fight-odds text-uppercase fw-bold">-155 &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; +130</div>
                     </div>
+
                     <div class="text-center ms-auto">
                         <div class="number-above lowered-text "></div>
                         <p class="fight-ers text-uppercase fw-bold">Jiri Prochaz</p>
+                        <button class="btn btn-primary" id="sidebar2" onclick="toggleNav()" style="position: relative; z-index: 3; display: none; margin-left: 30px;">Open Sidebar</button>
                     </div>
                 </div>
                 <div class="text-center">
@@ -206,7 +210,6 @@
                 <a href="#">Contact</a>
             </div>
         </div>
-        <button class="btn btn-primary" onclick="openNav()">Open Sidebar</button>
 
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light">
@@ -1459,12 +1462,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 });
-function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
+function showSidebarButton(buttonId) {
+    var button = document.getElementById(buttonId);
+    if (button.style.display === 'block') {
+        button.style.display = 'none';
+    } else {
+        button.style.display = 'block';
+    }
+}
+function toggleNav() {
+        var sidebar = document.getElementById("mySidebar");
+        if (sidebar.style.width === "250px") {
+            sidebar.style.width = "0";
+        } else {
+            sidebar.style.width = "250px";
         }
+    }
 
-        function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
+function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
         }
 function updateText(userPicks) {
     const odds = {
@@ -1644,10 +1660,12 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
             if (this.classList.contains('fire-active')) {
                 this.classList.remove('fire-active');
                 overlayText.style.display = 'none'; // Hide the overlay text
+                showSidebarButton('sidebar1');
             } else {
                 this.classList.add('fire-active');
                 overlayText.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
                 overlayText.style.display = 'block'; // Show the overlay text
+                showSidebarButton('sidebar1');
             }
 
             // Check and manage the state of the other button
@@ -1655,6 +1673,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
+                showSidebarButton('sidebar2');
             }
             var result = "";
             for (var i = 1; i <= 26; i += 2) {
@@ -1690,10 +1709,12 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
             if (this.classList.contains('fire-active')) {
                 this.classList.remove('fire-active');
                 overlayText.style.display = 'none'; // Hide the overlay text
+                showSidebarButton('sidebar2');
             } else {
                 this.classList.add('fire-active');
                 overlayText.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
                 overlayText.style.display = 'block'; // Show the overlay text
+                showSidebarButton('sidebar2');
             }
 
             // Check and manage the state of the other button
@@ -1701,6 +1722,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraPr
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
                 otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
+                showSidebarButton('sidebar1');
             }
             var result = "";
             for (var i = 1; i <= 26; i += 2) {
