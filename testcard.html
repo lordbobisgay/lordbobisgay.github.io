@@ -185,7 +185,7 @@
                     <img src="assets/img/portfolio/Alex Pereira.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
                     <div class="overlay-text0" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
-                    <div class="specific-text1" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div class="specific-text1" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;">KO</div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
                         <img src="assets/img/portfolio/flags/br.png" alt="Mini Icon Left" class="img-fluid" style="max-width: 30px; height: auto; margin-right: 5px;">
@@ -1520,9 +1520,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adding event listeners to the buttons
     document.getElementById('sidebarbtn1').addEventListener('click', function() {
     // Unhide the buttons
-    var specificText = this.querySelector('.specific-text1');
-    specificText.innerHTML = `HEHEPOOPOoo agree with you`;
-    specificText.style.display = 'block'; // Show the overlay text
     document.getElementById('sidebarbtn4').style.display = 'block';
     document.getElementById('sidebarbtn5').style.display = 'block';
     document.getElementById('sidebarbtn6').style.display = 'block';
@@ -1698,6 +1695,9 @@ this.classList.add('fire-active');
     document.getElementById('sidebarbtn9').addEventListener('click', function() {
 
     // Unhide the buttons
+    var overlayText = document.querySelector('.specific-text1');
+    overlayText.innerHTML = `By KO`;
+    overlayText.style.display = 'block'; // Show the overlay text
     document.getElementById('sidebarbtn12').style.display = 'block';
     document.getElementById('sidebarbtn13').style.display = 'block';
     document.getElementById('sidebarbtn14').style.display = 'block';
