@@ -232,6 +232,14 @@
   position: relative;
   z-index: 2; /* Ensures that the fight bar content is above the Toggle Details button */
 }
+.row-item {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  transition: 0.3s;
+}
 
 .overlay-sidebar {
   height: 100%;
@@ -241,6 +249,19 @@
   z-index: 4; /* Stay on top */
   top: 0;
   left: 0;
+  background-color: #111; /* Sidebar background */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Some padding from the top */
+  transition: 0.5s; /* Transition effect when opening/closing */
+}
+.overlay-sidebar2 {
+  height: 100%;
+  width: 0; /* Sidebar width set to 0 initially */
+  margin-top: 100px;
+  position: fixed; /* Stay in place */
+  z-index: 4; /* Stay on top */
+  top: 0;
+  right: 0;
   background-color: #111; /* Sidebar background */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Some padding from the top */
@@ -387,26 +408,8 @@
     z-index: 1;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
   }
-  .overlay-sidebar {
-    height: 100%;
-    width: 0; /* Sidebar width set to 0 initially */
-    margin-top: 100px;
-    position: fixed; /* Stay in place */
-    z-index: 4; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: #111; /* Sidebar background */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Some padding from the top */
-    transition: 0.5s; /* Transition effect when opening/closing */
-  }
-  
-  .overlay-content {
-    padding: 15px;
-    color: white;
-  }
-  .move-up{
-    z-index: 4; /* Stay on top */
+  .smaller-text{
+    font-size: 10px!important;
   }
   .closebtn {
     position: absolute;
@@ -7367,6 +7370,7 @@ textarea.form-control-lg {
   left: 0;
   z-index: 1030;
 }
+
 
 .fixed-bottom {
   position: fixed;
