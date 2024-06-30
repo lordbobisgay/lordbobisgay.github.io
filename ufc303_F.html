@@ -90,6 +90,8 @@
 
         <div id="earningsDisplay" class="page-section-heading text-center text-uppercase text-secondary mb-0 padding-extra"></div>
 
+        <div id="picksDisplay2" class="page-section-heading text-center text-uppercase text-secondary mb-0" style = 'margin-top: 50px;'>Loading picks...</div>
+
 		<div id="parlayEarningsDisplay" class="page-section-heading text-center text-uppercase text-secondary mb-0 padding-extra"></div>
 
 <!-- Fight Display Bar Container -->
@@ -1480,6 +1482,63 @@ if (username) {
 } else {
     document.getElementById('picksDisplay').innerText = '';
 }
+const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraProchazkaParlay_F&username=${encodeURIComponent(username)}`;
+fetch(apiUrl2)
+    .then(response => response.json())
+    .then(data => {
+        // Parse the stringified JSON body to get actual data
+        const responseBody = JSON.parse(data.body);
+        const MF15 = responseBody.PereiraProchazkaParlay_value;  // Adjust if the key differs
+
+        if (MF15 && MF15.length >= 1) {  // Ensure MF15 is defined and has at least 1 character
+            const MisfitsPicks = [];
+            const picksData = [
+                ['Pereira', 'Prochazka'],          // Index 1
+                ['Ortega', 'Lopes'],        // Index 2
+                ['Smith', 'Dolidze'],        // Index 3
+                ['Silva', 'Chiasson'],        // Index 4
+                ['Garry', 'Page'],        // Index 5
+                ['Pyfer', 'Barriault'],        // Index 6
+                ['Swanson', 'Fili'],        // Index 7
+                ['Jourdain', 'Silva'],        // Index 8
+                ['Talbott', 'Ghemmouri'],        // Index 9
+                ['Gomez', 'Robertson'],        // Index 10
+                ['Arlovski', 'Buday'],        // Index 11
+                ['Tsuruya', 'Hernandez'],         // Index 12
+                ['Simon', 'Oliveira'],         // Index 13
+            ];
+
+            // Define a function to determine which character to push based on the index and letter
+            function pickCharacter(index) {
+                if (MF15[index] === 'L') {
+                    MisfitsPicks.push(picksData[index][0]);
+                } else if (MF15[index] === 'R') {
+                    MisfitsPicks.push(picksData[index][1]);
+                }
+                // If 'D', do nothing
+            }
+
+            // Apply the function for each character pick
+            for (let i = 0; i < picksData.length; i++) {
+                if (i < MF15.length) { // Ensure we do not go out of bounds
+                    pickCharacter(i);
+                }
+            }
+
+            const picksDisplay2 = document.getElementById('picksDisplay2');
+            if (MisfitsPicks.length > 0) {
+                picksDisplay2.innerText = 'Your parlay picks: ' + MisfitsPicks.join(', ');
+            } else {
+                picksDisplay2.innerText = 'No picks';
+            }
+        } else {
+            document.getElementById('picksDisplay2').innerText = 'You did not make any picks on this card';
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+        document.getElementById('picksDisplay2').innerText = 'Failed to load picks due to an error.';
+    });
    
     if (username) {
         console.log('Username:', username);
