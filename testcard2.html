@@ -1834,15 +1834,11 @@ document.addEventListener('DOMContentLoaded', function() {
             var resultChar = storedResults.charAt(i);
             var button1 = document.getElementById('firebutton' + (2 * i + 1));
             var button2 = document.getElementById('firebutton' + (2 * i + 2));
-            var sidebutton1 = document.getElementById('sidebar' + (2 * i + 1));
-            var sidebutton2 = document.getElementById('sidebar' + (2 * i + 2));
 
-            if (['L', 'A', 'B', 'C', '3', 'E', 'F', 'G', 'H', 'I', 'J', 'K', '1', 'M'].includes(resultChar)) {
+            if (resultChar === 'L') {
                 button1.classList.add('fire-active');
-                sidebutton1.style.display = 'block';
-            } else if (['R', 'N', 'O', 'P', 'Q', '2', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'].includes(resultChar)) {
+            } else if (resultChar === 'R') {
                 button2.classList.add('fire-active');
-                sidebutton2.style.display = 'block';
             }
             // If resultChar is 'D', neither button will have 'fire-active' added.
         }
@@ -1992,6 +1988,7 @@ function appendResult2(overlayText, result) {
     }
     return result;
 }
+
 const odds = {
     1: -155, 2: +130, 3: +120, 4: -142, 5: +135, 6: -155, 7: -205, 8: +170, 9: -130, 10: +110,
     11: -265, 12: +215, 13: +160, 14: -192, 15: -130, 16: +110, 17: -1600, 18: +900, 19: +164, 20: -198,
@@ -2041,18 +2038,21 @@ function getOddsStartIndex(group) {
     let increment = 28;
     return baseIndex + (group - 1) * increment;
 }
+
 function getOddsStartIndex2(group) {
     // Calculate the start index for the odds based on the group number
     let baseIndex = 19; // Starting point for the first group
     let increment = 28;
     return baseIndex + (group - 1) * increment;
 }
+
 function getSubmissionOddsStartIndex(group) {
     // Calculate the start index for the odds based on the group number
     let baseIndex = 11; // Starting point for the first group
     let increment = 28;
     return baseIndex + (group - 1) * increment;
 }
+
 function getSubmissionOddsStartIndex2(group) {
     // Calculate the start index for the odds based on the group number
     let baseIndex = 24; // Starting point for the first group
