@@ -99,6 +99,7 @@
         var a122_fetch;
         var whittakeraliskerov_fetch;
         var ufc303_fetch;
+        var NamajunasCortez_fetch;
 
         // Function to retrieve data
         function get1() {
@@ -127,6 +128,8 @@
             var whittakeraliskerov_fetch = userInfo[11];
             var ufc303_fetch = userInfo[12];
             var ufc303Parlay_fetch = userInfo[13];
+            var NamajunasCortez_fetch = userInfo[14];
+            var NamajunasCortezParlay_fetch = userInfo[15];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
@@ -137,6 +140,180 @@
             let userPicksHtml = `
 
             `;
+                        // Handle Namajunas Cortez Parlay Picks
+                        if (NamajunasCortezParlay_fetch !== "NamjunasCortezParlay not found") {
+                const davismartinpicks = [];
+                const davismartin = NamajunasCortezParlay_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    }else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    }else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    }else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    }else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    }else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    }else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    }else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    }else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    }else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    }else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    }else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    }else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    }else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    }else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    }else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    }else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    }else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    }else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    }else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    }else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    }else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    }else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    }else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    }else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    }else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Namajunas', 'Cortez');
+                pickFighter(1, 'Dober', 'Davis');
+                pickFighter(2, 'Ponzinibbio', 'Salikhov');
+                pickFighter(3, 'Bonfim', 'Loosa');
+                pickFighter(4, 'Erosa', 'Rodriguez');
+                pickFighter(5, 'Alhassan', 'Brundage');
+                pickFighter(6, 'Araujo', 'Jasudavicius');
+                pickFighter(7, 'Santos', 'Agapova');
+                pickFighter(8, 'Fremd', 'Petroski');
+
+
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Namajunas vs Cortez Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+            // Handle Namajunas vs Cortez Picks
+                        if (NamajunasCortez_fetch !== "NamajunasCortez not found") {
+                const davismartinpicks = [];
+                const davismartin = NamajunasCortez_fetch;
+
+                // Define a function to determine which fighter to push based on the index
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    }else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    }else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    }else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    }else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    }else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    }else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    }else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    }else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    }else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    }else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    }else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    }else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    }else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    }else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    }else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    }else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    }else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    }else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    }else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    }else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    }else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    }else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    }else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    }else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    }else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Apply the function for each fighter pick
+                pickFighter(0, 'Namajunas', 'Cortez');
+                pickFighter(1, 'Dober', 'Davis');
+                pickFighter(2, 'Ponzinibbio', 'Salikhov');
+                pickFighter(3, 'Bonfim', 'Loosa');
+                pickFighter(4, 'Erosa', 'Rodriguez');
+                pickFighter(5, 'Alhassan', 'Brundage');
+                pickFighter(6, 'Araujo', 'Jasudavicius');
+                pickFighter(7, 'Santos', 'Agapova');
+                pickFighter(8, 'Fremd', 'Petroski');
+
+
+                // Add additional picks similarly if needed
+
+                // Append the resulting picks to the HTML content
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Namajunas vs Cortez Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+
             // Handle UFC303 Parlay Picks
             if (ufc303Parlay_fetch !== "PereiraProchazkaParlay not found") {
                 const davismartinpicks = [];
