@@ -1409,6 +1409,35 @@ for (let i = 0; i < 9; i++) {
         });
     }
 }
+var result = "";
+            for (var i = 1; i <= 18; i += 2) {
+                var button1 = document.getElementById('firebutton' + i);
+                var button2 = document.getElementById('firebutton' + (i + 1));
+                var overlayText1 = document.querySelector(`.specific-text${i}`);
+                var overlayText2 = document.querySelector(`.specific-text${i + 1}`);
+
+                // Check if both buttons in the pair don't have 'fire-active'
+                if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+                    result += 'D';
+                } else {
+                    // Check if overlayText1 is being shown
+                    if (overlayText1.style.display === 'block') {
+                        result = appendResult(overlayText1, result);
+                    } else if (button1.classList.contains('fire-active')) {
+                        result += 'L';
+                    }
+                    
+                    // Check if overlayText2 is being shown
+                    if (overlayText2.style.display === 'block') {
+                        result = appendResult2(overlayText2, result);
+                    } else if (button2.classList.contains('fire-active')) {
+                        result += 'R';
+                    }
+                }
+            }
+
+            updateText(result);
+            updateText2(result);
 });
 
 function appendResult(overlayText, result) {
