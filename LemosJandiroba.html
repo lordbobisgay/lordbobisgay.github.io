@@ -1719,6 +1719,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var storedResults = localStorage.getItem('LemosJandiroba');
     if (storedResults) {
         for (var i = 0; i < storedResults.length; i++) {
+            var i1 = i+1;
             var resultChar = storedResults.charAt(i);
             var button1 = document.getElementById('firebutton' + (2 * i + 1));
             var button2 = document.getElementById('firebutton' + (2 * i + 2));
@@ -1728,13 +1729,92 @@ document.addEventListener('DOMContentLoaded', function() {
             if (['L', 'A', 'B', 'C', '3', 'E', 'F', 'G', 'H', 'I', 'J', 'K', '1', 'M'].includes(resultChar)) {
                 button1.classList.add('fire-active');
                 sidebutton1.style.display = 'block';
+                if(resultChar == 'A'){
+                    knockout(i1);
+                }
+                else if(resultChar == 'B'){
+                    submission(i1);
+                }
+                else if(resultChar == 'C'){
+                    decision(i1);
+                }
+                else if(resultChar == '3'){
+                    roundKO(i1,1);
+                }
+                else if(resultChar == 'E'){
+                    roundKO(i1,2);
+                }
+                else if(resultChar == 'F'){
+                    roundKO(i1,3);
+                }
+                else if(resultChar == 'G'){
+                    roundKO(i1,4);
+                }
+                else if(resultChar == 'H'){
+                    roundKO(i1,5);
+                }
+                else if(resultChar == 'I'){
+                    roundSUB(i1,1);
+                }
+                else if(resultChar == 'J'){
+                    roundSUB(i1,2);
+                }
+                else if(resultChar == 'K'){
+                    roundSUB(i1,3);
+                }
+                else if(resultChar == 'L'){
+                    roundSUB(i1,4);
+                }
+                else if(resultChar == 'M'){
+                    roundSUB(i1,5);
+                }
             } else if (['R', 'N', 'O', 'P', 'Q', '2', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'].includes(resultChar)) {
                 button2.classList.add('fire-active');
                 sidebutton2.style.display = 'block';
+                if(resultChar == 'N'){
+                    knockoutright(i1);
+                }
+                else if(resultChar == 'O'){
+                    submissionright(i1);
+                }
+                else if(resultChar == 'P'){
+                    decisionright(i1);
+                }
+                else if(resultChar == 'Q'){
+                    roundKO2(i1,1);
+                }
+                else if(resultChar == '2'){
+                    roundKO2(i1,2);
+                }
+                else if(resultChar == 'S'){
+                    roundKO2(i1,3);
+                }
+                else if(resultChar == 'T'){
+                    roundKO2(i1,4);
+                }
+                else if(resultChar == 'U'){
+                    roundKO2(i1,5);
+                }
+                else if(resultChar == 'V'){
+                    roundSUB2(i1,1);
+                }
+                else if(resultChar == 'W'){
+                    roundSUB2(i1,2);
+                }
+                else if(resultChar == 'X'){
+                    roundSUB2(i1,3);
+                }
+                else if(resultChar == 'Y'){
+                    roundSUB2(i1,4);
+                }
+                else if(resultChar == 'Z'){
+                    roundSUB2(i1,5);
+                }
             }
             // If resultChar is 'D', neither button will have 'fire-active' added.
         }
     }
+
     var username = localStorage.getItem('username');
     if (username) {
         console.log('Username:', username);
@@ -2296,6 +2376,8 @@ function knockout(group) {
     }
 
     // Unhide the buttons and update their texts
+    var koID = `sidebarbtn${(group * 16) - 7}`
+    var koElement = document.getElementById(koID);
     var buttonIds = [
         `sidebarbtn${(group * 16) - 4}`,
         `sidebarbtn${(group * 16) - 3}`,
@@ -2319,8 +2401,8 @@ function knockout(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
+    if (koElement.classList.contains('fire-active')) {
+        koElement.classList.remove('fire-active');
         buttonIds.forEach(function(btnId) {
             var btn = document.getElementById(btnId);
             if (btn) {
@@ -2328,7 +2410,7 @@ function knockout(group) {
             }
         });
     } else {
-        this.classList.add('fire-active');
+        koElement.classList.add('fire-active');
     }
 
     // Check and manage the state of the other buttons
@@ -2391,6 +2473,8 @@ function submission(group) {
     }
 
     // Unhide the buttons and update their texts
+    var koID = `sidebarbtn${(group * 16) - 6}`
+    var Element = document.getElementById(koID);
     var buttonIds = [
         `sidebarbtn${(group * 16) - 4}`,
         `sidebarbtn${(group * 16) - 3}`,
@@ -2414,8 +2498,8 @@ function submission(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
+    if (Element.classList.contains('fire-active')) {
+        Element.classList.remove('fire-active');
         buttonIds.forEach(function(btnId) {
             var btn = document.getElementById(btnId);
             if (btn) {
@@ -2423,7 +2507,7 @@ function submission(group) {
             }
         });
     } else {
-        this.classList.add('fire-active');
+        Element.classList.add('fire-active');
     }
 
     // Check and manage the state of the other buttons
@@ -2493,6 +2577,8 @@ function decision(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 5}`
+    var Element = document.getElementById(koID);
     var buttonIds = [
         `sidebarbtn${(group * 16) - 4}`,
         `sidebarbtn${(group * 16) - 3}`,
@@ -2510,7 +2596,7 @@ function decision(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
 
     // Check and manage the state of the other buttons
     var otherButtons = [
@@ -2523,6 +2609,262 @@ function decision(group) {
             btn.classList.remove('fire-active');
         }
     });
+    var result = "";
+    for (var i = 1; i <= 24; i += 2) {
+        var button1 = document.getElementById('firebutton' + i);
+        var button2 = document.getElementById('firebutton' + (i + 1));
+        var overlayText1 = document.querySelector(`.specific-text${i}`);
+        var overlayText2 = document.querySelector(`.specific-text${i + 1}`);
+
+        // Check if both buttons in the pair don't have 'fire-active'
+        if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+            result += 'D';
+        } else {
+            // Check if overlayText1 is being shown
+            if (overlayText1.style.display === 'block') {
+                result = appendResult(overlayText1, result);
+            } else if (button1.classList.contains('fire-active')) {
+                result += 'L';
+            }
+            
+            // Check if overlayText2 is being shown
+            if (overlayText2.style.display === 'block') {
+                result = appendResult2(overlayText2, result);
+            } else if (button2.classList.contains('fire-active')) {
+                result += 'R';
+            }
+        }
+    }
+    updateText(result);
+    updateText2(result);
+}
+
+
+function roundKO(group, round) {
+    var overlayText = document.querySelector(`.specific-text${(group * 2) - 1}`);
+    overlayText.style.display = 'block';
+    overlayText.innerHTML = `By Round ${round} KO`;
+    
+    var realkoID = `sidebarbtn${(group * 16) - 7}`;
+    var Element2 = document.getElementById(realkoID);
+    var koID = `sidebarbtn${(group * 16) - (5 - round)}`;
+    var Element = document.getElementById(koID);
+    
+    Element.classList.toggle('fire-active');
+    Element2.classList.toggle('fire-active');
+    
+    var buttonIds = [
+        `sidebarbtn${(group * 16) - 4}`,
+        `sidebarbtn${(group * 16) - 3}`,
+        `sidebarbtn${(group * 16) - 2}`,
+        `sidebarbtn${(group * 16) - 1}`,
+        `sidebarbtn${group * 16}`
+    ];
+
+    // Get the start index for the odds based on the group number
+    let startIndex = getOddsStartIndex(group);
+
+    buttonIds.forEach(function(btnId, index) {
+        var btn = document.getElementById(btnId);
+        if (btn) {
+            btn.style.display = 'block';
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `In Round ${index + 1} ${formattedOdds}`;  // Update the button text
+        }
+    });
+    
+    var result = "";
+    for (var i = 1; i <= 24; i += 2) {
+        var button1 = document.getElementById('firebutton' + i);
+        var button2 = document.getElementById('firebutton' + (i + 1));
+        var overlayText1 = document.querySelector(`.specific-text${i}`);
+        var overlayText2 = document.querySelector(`.specific-text${i + 1}`);
+
+        // Check if both buttons in the pair don't have 'fire-active'
+        if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+            result += 'D';
+        } else {
+            // Check if overlayText1 is being shown
+            if (overlayText1.style.display === 'block') {
+                result = appendResult(overlayText1, result);
+            } else if (button1.classList.contains('fire-active')) {
+                result += 'L';
+            }
+            
+            // Check if overlayText2 is being shown
+            if (overlayText2.style.display === 'block') {
+                result = appendResult2(overlayText2, result);
+            } else if (button2.classList.contains('fire-active')) {
+                result += 'R';
+            }
+        }
+    }
+    updateText(result);
+    updateText2(result);
+}
+function roundKO2(group, round) {
+    var overlayText = document.querySelector(`.specific-text${(group * 2)}`);
+    overlayText.style.display = 'block';
+    overlayText.innerHTML = `By Round ${round} KO`;
+    
+    var realkoID = `sidebarbtn${(group * 16) - 15}`;
+    var Element2 = document.getElementById(realkoID);
+    var koID = `sidebarbtn${(group * 16) - (13 - round)}`;
+    var Element = document.getElementById(koID);
+    
+    Element.classList.toggle('fire-active');
+    Element2.classList.toggle('fire-active');
+    
+    var buttonIds = [
+        `sidebarbtn${(group * 16) - 12}`,
+        `sidebarbtn${(group * 16) - 11}`,
+        `sidebarbtn${(group * 16) - 10}`,
+        `sidebarbtn${(group * 16) - 9}`,
+        `sidebarbtn${(group * 16) - 8}`
+    ];
+
+    // Get the start index for the odds based on the group number
+    let startIndex = getOddsStartIndex2(group);
+
+    buttonIds.forEach(function(btnId, index) {
+        var btn = document.getElementById(btnId);
+        if (btn) {
+            btn.style.display = 'block';
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `In Round ${index + 1} ${formattedOdds}`;  // Update the button text
+        }
+    });
+    
+    var result = "";
+    for (var i = 1; i <= 24; i += 2) {
+        var button1 = document.getElementById('firebutton' + i);
+        var button2 = document.getElementById('firebutton' + (i + 1));
+        var overlayText1 = document.querySelector(`.specific-text${i}`);
+        var overlayText2 = document.querySelector(`.specific-text${i + 1}`);
+
+        // Check if both buttons in the pair don't have 'fire-active'
+        if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+            result += 'D';
+        } else {
+            // Check if overlayText1 is being shown
+            if (overlayText1.style.display === 'block') {
+                result = appendResult(overlayText1, result);
+            } else if (button1.classList.contains('fire-active')) {
+                result += 'L';
+            }
+            
+            // Check if overlayText2 is being shown
+            if (overlayText2.style.display === 'block') {
+                result = appendResult2(overlayText2, result);
+            } else if (button2.classList.contains('fire-active')) {
+                result += 'R';
+            }
+        }
+    }
+    updateText(result);
+    updateText2(result);
+}
+function roundSUB(group, round) {
+    var overlayText = document.querySelector(`.specific-text${(group * 2) - 1}`);
+    overlayText.style.display = 'block';
+    overlayText.innerHTML = `By Round ${round} Submission`;
+    
+    var realkoID = `sidebarbtn${(group * 16) - 6}`;
+    var Element2 = document.getElementById(realkoID);
+    var koID = `sidebarbtn${(group * 16) - (5 - round)}`;
+    var Element = document.getElementById(koID);
+    
+    Element.classList.toggle('fire-active');
+    Element2.classList.toggle('fire-active');
+    
+    var buttonIds = [
+        `sidebarbtn${(group * 16) - 4}`,
+        `sidebarbtn${(group * 16) - 3}`,
+        `sidebarbtn${(group * 16) - 2}`,
+        `sidebarbtn${(group * 16) - 1}`,
+        `sidebarbtn${group * 16}`
+    ];
+    
+
+    // Get the start index for the odds based on the group number
+    let startIndex = getSubmissionOddsStartIndex(group);
+
+    buttonIds.forEach(function(btnId, index) {
+        var btn = document.getElementById(btnId);
+        if (btn) {
+            btn.style.display = 'block';
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `In Round ${index + 1} ${formattedOdds}`;  // Update the button text
+        }
+    });
+    
+    var result = "";
+    for (var i = 1; i <= 24; i += 2) {
+        var button1 = document.getElementById('firebutton' + i);
+        var button2 = document.getElementById('firebutton' + (i + 1));
+        var overlayText1 = document.querySelector(`.specific-text${i}`);
+        var overlayText2 = document.querySelector(`.specific-text${i + 1}`);
+
+        // Check if both buttons in the pair don't have 'fire-active'
+        if (!button1.classList.contains('fire-active') && !button2.classList.contains('fire-active')) {
+            result += 'D';
+        } else {
+            // Check if overlayText1 is being shown
+            if (overlayText1.style.display === 'block') {
+                result = appendResult(overlayText1, result);
+            } else if (button1.classList.contains('fire-active')) {
+                result += 'L';
+            }
+            
+            // Check if overlayText2 is being shown
+            if (overlayText2.style.display === 'block') {
+                result = appendResult2(overlayText2, result);
+            } else if (button2.classList.contains('fire-active')) {
+                result += 'R';
+            }
+        }
+    }
+    updateText(result);
+    updateText2(result);
+}
+function roundSUB2(group, round) {
+    var overlayText = document.querySelector(`.specific-text${(group * 2)}`);
+    overlayText.style.display = 'block';
+    overlayText.innerHTML = `By Round ${round} Submission`;
+    
+    var realkoID = `sidebarbtn${(group * 16) - 14}`;
+    var Element2 = document.getElementById(realkoID);
+    var koID = `sidebarbtn${(group * 16) - (13 - round)}`;
+    var Element = document.getElementById(koID);
+    
+    Element.classList.toggle('fire-active');
+    Element2.classList.toggle('fire-active');
+    
+    var buttonIds = [
+        `sidebarbtn${(group * 16) - 12}`,
+        `sidebarbtn${(group * 16) - 11}`,
+        `sidebarbtn${(group * 16) - 10}`,
+        `sidebarbtn${(group * 16) - 9}`,
+        `sidebarbtn${(group * 16) -8}`
+    ];
+    
+
+    // Get the start index for the odds based on the group number
+    let startIndex = getSubmissionOddsStartIndex2(group);
+
+    buttonIds.forEach(function(btnId, index) {
+        var btn = document.getElementById(btnId);
+        if (btn) {
+            btn.style.display = 'block';
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `In Round ${index + 1} ${formattedOdds}`;  // Update the button text
+        }
+    });
+    
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -2585,6 +2927,8 @@ function round1(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 4}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 2}`,
         `sidebarbtn${(group * 16) - 3}`,
@@ -2595,7 +2939,7 @@ function round1(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -2658,6 +3002,8 @@ function round2(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 3}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 4}`,
         `sidebarbtn${(group * 16) - 2}`,
@@ -2668,7 +3014,7 @@ function round2(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -2731,6 +3077,8 @@ function round3(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 2}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 4}`,
         `sidebarbtn${(group * 16) - 3}`,
@@ -2741,7 +3089,7 @@ function round3(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -2804,6 +3152,8 @@ function round4(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 1}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 4}`,
         `sidebarbtn${(group * 16) - 3}`,
@@ -2814,7 +3164,7 @@ function round4(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -2877,6 +3227,8 @@ function round5(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16)}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 4}`,
         `sidebarbtn${(group * 16) - 3}`,
@@ -2887,7 +3239,7 @@ function round5(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -2936,6 +3288,8 @@ function knockoutright(group) {
     }
 
     // Unhide the buttons and update their texts
+    var koID = `sidebarbtn${(group * 16) - 15}`
+    var Element = document.getElementById(koID);
     var buttonIds = [
         `sidebarbtn${(group * 16) - 12}`,
         `sidebarbtn${(group * 16) - 11}`,
@@ -2959,8 +3313,8 @@ function knockoutright(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
+    if (Element.classList.contains('fire-active')) {
+        Element.classList.remove('fire-active');
         buttonIds.forEach(function(btnId) {
             var btn = document.getElementById(btnId);
             if (btn) {
@@ -2968,7 +3322,7 @@ function knockoutright(group) {
             }
         });
     } else {
-        this.classList.add('fire-active');
+        Element.classList.add('fire-active');
     }
 
     // Check and manage the state of the other buttons
@@ -3031,6 +3385,8 @@ function submissionright(group) {
     }
 
     // Unhide the buttons and update their texts
+    var koID = `sidebarbtn${(group * 16) - 14}`
+    var Element = document.getElementById(koID);
     var buttonIds = [
         `sidebarbtn${(group * 16) - 12}`,
         `sidebarbtn${(group * 16) - 11}`,
@@ -3054,8 +3410,8 @@ function submissionright(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    if (this.classList.contains('fire-active')) {
-        this.classList.remove('fire-active');
+    if (Element.classList.contains('fire-active')) {
+        Element.classList.remove('fire-active');
         buttonIds.forEach(function(btnId) {
             var btn = document.getElementById(btnId);
             if (btn) {
@@ -3063,7 +3419,7 @@ function submissionright(group) {
             }
         });
     } else {
-        this.classList.add('fire-active');
+        Element.classList.add('fire-active');
     }
 
     // Check and manage the state of the other buttons
@@ -3133,6 +3489,8 @@ function decisionright(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 13}`
+    var Element = document.getElementById(koID);
     var buttonIds = [
         `sidebarbtn${(group * 16) - 12}`,
         `sidebarbtn${(group * 16) - 11}`,
@@ -3150,7 +3508,7 @@ function decisionright(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
 
     // Check and manage the state of the other buttons
     var otherButtons = [
@@ -3225,6 +3583,8 @@ function round1right(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 12}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 10}`,
         `sidebarbtn${(group * 16) - 11}`,
@@ -3235,7 +3595,7 @@ function round1right(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -3298,6 +3658,8 @@ function round2right(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 11}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 12}`,
         `sidebarbtn${(group * 16) - 10}`,
@@ -3308,7 +3670,7 @@ function round2right(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -3371,6 +3733,8 @@ function round3right(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 10}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 12}`,
         `sidebarbtn${(group * 16) - 11}`,
@@ -3381,7 +3745,7 @@ function round3right(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -3444,6 +3808,8 @@ function round4right(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 9}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 12}`,
         `sidebarbtn${(group * 16) - 11}`,
@@ -3454,7 +3820,7 @@ function round4right(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
@@ -3517,6 +3883,8 @@ function round5right(group) {
     }
 
     // Hide the buttons
+    var koID = `sidebarbtn${(group * 16) - 8}`
+    var Element = document.getElementById(koID);
     [
         `sidebarbtn${(group * 16) - 12}`,
         `sidebarbtn${(group * 16) - 11}`,
@@ -3527,7 +3895,7 @@ function round5right(group) {
     });
 
     // Toggle 'fire-active' class on this button and toggle the display based on class presence
-    this.classList.toggle('fire-active');
+    Element.classList.toggle('fire-active');
     var result = "";
     for (var i = 1; i <= 24; i += 2) {
         var button1 = document.getElementById('firebutton' + i);
