@@ -1731,6 +1731,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (oddsElement) {
             oddsElement.innerHTML = `${position1} &ThickSpace;&ThickSpace;&ThickSpace; ODDS &ThickSpace;&ThickSpace;&ThickSpace; ${position2}`;
         }
+
+        // Call updateOdds2 and updateOdds3 for each group
+        updateOdds2(i);
+        updateOdds3(i);
     }
 }
 updateOdds();
@@ -2354,9 +2358,23 @@ function getOddsStartIndex(group) {
     return baseIndex + (group - 1) * increment;
 }
 
+function getOddsStartIndex3(group) {
+    // Calculate the start index for the odds based on the group number
+    let baseIndex = 3; // Starting point for the first group
+    let increment = 28;
+    return baseIndex + (group - 1) * increment;
+}
+
 function getOddsStartIndex2(group) {
     // Calculate the start index for the odds based on the group number
     let baseIndex = 19; // Starting point for the first group
+    let increment = 28;
+    return baseIndex + (group - 1) * increment;
+}
+
+function getOddsStartIndex4(group) {
+    // Calculate the start index for the odds based on the group number
+    let baseIndex = 16; // Starting point for the first group
     let increment = 28;
     return baseIndex + (group - 1) * increment;
 }
@@ -2471,6 +2489,64 @@ function knockout(group) {
     updateText(result);
     updateText2(result);
 }
+function updateOdds2(group) {
+    var buttonIds = [
+        `sidebarbtn${(group * 16) - 7}`,
+        `sidebarbtn${(group * 16) - 6}`,
+        `sidebarbtn${(group * 16) - 5}`,
+    ];
+
+    let startIndex = getOddsStartIndex3(group);
+
+    buttonIds.forEach(function(btnId, index) {
+        var btn = document.getElementById(btnId);
+        if (btn && index === 0) {
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `By KO/TKO ${formattedOdds}`;  // Update the button text
+        }
+        if (btn && index === 1) {
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `By Submission ${formattedOdds}`;  // Update the button text
+        }
+        if (btn && index === 2) {
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `By Decision ${formattedOdds}`;  // Update the button text
+        }
+    });
+}
+
+function updateOdds3(group) {
+    var buttonIds = [
+        `sidebarbtn${(group * 16) - 15}`,
+        `sidebarbtn${(group * 16) - 14}`,
+        `sidebarbtn${(group * 16) - 13}`,
+    ];
+
+    let startIndex = getOddsStartIndex4(group);
+
+    buttonIds.forEach(function(btnId, index) {
+        var btn = document.getElementById(btnId);
+        if (btn && index === 0) {
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `By KO/TKO ${formattedOdds}`;  // Update the button text
+        }
+        if (btn && index === 1) {
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `By Submission ${formattedOdds}`;  // Update the button text
+        }
+        if (btn && index === 2) {
+            let oddsValue = odds[startIndex + index];
+            let formattedOdds = oddsValue > 0 ? `+${oddsValue}` : oddsValue;
+            btn.textContent = `By Decision ${formattedOdds}`;  // Update the button text
+        }
+    });
+}
+
 
 function submission(group) {
     var overlayText = document.querySelector(`.specific-text${(group*2)-1}`);
