@@ -1352,27 +1352,50 @@ if (username) {
             document.getElementById('earningsDisplay').innerText = '';
         });
 
-	const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=NamajunasCortezParlay_F&username=${encodeURIComponent(username)}`;
-	fetch(apiUrl2)
+		const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=NamajunasCortezParlay_F&username=${encodeURIComponent(username)}`;
+fetch(apiUrl2)
     .then(response => response.json())
     .then(data => {
         const responseBody = JSON.parse(data.body);
         const userPicks = responseBody.NamajunasCortezParlay_value;
-        const predefinedPicks = "LDRRLLRRLRRLR";
+        const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
         const odds = {
-            1: -155,
-            2: -142,
-            3: -155,
-            4: +170,
-            5: -130,
-            6: -265,
-            7: -192,
-            8: +110,
-            9: -1600,
-            10: -198,
-            11: -270,
-            12: -450,
-            13: +185,
+            1: -220,
+            2: +110,
+            3: +100,
+            4: +155,
+            5: +450,
+            6: +100,
+            7: -120,
+            8: +185,
+            9: +1100,
+            10: -350,
+            11: +275,
+            12: +100,
+            13: +190,
+            14: +800,
+            15: +1600,
+            16: +185,
+            17: +185,
+            18: +185,
+            19: +190,
+            20: +850,
+            21: +3300,
+            22: -125,
+            23: +150,
+            24: +100,
+            25: -145,
+            26: +400,
+            27: +850,
+            28: -400,
+            29: +175,
+            30: +400,
+            31: -105,
+            32: +300,
+            33: +100,
+            34: -425,
+            35: +250,
+            36: +750,
         };
 
         function convertAmericanToDecimal(americanOdds) {
@@ -1386,12 +1409,17 @@ if (username) {
         let multiplier = 1;
         let incorrectPick = false;
         userPicks.split('').forEach((pick, index) => {
-            if (pick === 'D' || predefinedPicks.charAt(index) === 'D') {
-                // Do nothing if the pick is 'D'
-            } else if (pick === predefinedPicks.charAt(index)) {
-                multiplier *= convertAmericanToDecimal(odds[index + 1]);
+            if (pick === 'D' || predefinedPicks.substr(index * 3, 3) === 'DDD') {
+                // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
             } else {
-                incorrectPick = true;
+                const predefinedSegment = predefinedPicks.substr(index * 3, 3);
+                const matchingPosition = predefinedSegment.indexOf(pick);
+
+                if (matchingPosition !== -1) {
+                    multiplier *= convertAmericanToDecimal(odds[index * 3 + matchingPosition + 1]);
+                } else {
+                    incorrectPick = true;
+                }
             }
         });
 
@@ -1415,21 +1443,80 @@ if (username) {
 
 			if (MF15 && MF15.length >= 1) {  // Ensure MF15 is defined and has at least 1 character
     const MisfitsPicks = [];
-    const picksData = [
-        ['Pereira', 'Prochazka'],          // Index 1
-        ['Ortega', 'Lopes'],        // Index 2
-        ['Smith', 'Dolidze'],        // Index 3
-        ['Silva', 'Chiasson'],        // Index 4
-        ['Garry', 'Page'],        // Index 5
-		['Pyfer', 'Barriault'],        // Index 6
-        ['Swanson', 'Fili'],        // Index 7
-        ['Jourdain', 'Silva'],        // Index 8
-        ['Talbott', 'Ghemmouri'],        // Index 9
-        ['Gomez', 'Robertson'],        // Index 10
-        ['Arlovski', 'Buday'],        // Index 11
-        ['Tsuruya', 'Hernandez'],         // Index 12
-		['Simon', 'Oliveira'],         // Index 13
-    ];
+	const picksData = [
+    ['Namajunas', 'Cortez', 
+        'Namajunas by KO/TKO/DQ', 'Namajunas by Submission', 'Namajunas by Decision', 'Namajunas by Round 1 KO', 'Namajunas by Round 2 KO', 'Namajunas by Round 3 KO', 'Namajunas by Round 4 KO', 'Namajunas by Round 5 KO', 
+        'Namajunas by Round 1 Submission', 'Namajunas by Round 2 Submission', 'Namajunas by Round 3 Submission', 'Namajunas by Round 4 Submission', 'Namajunas by Round 5 Submission', 
+        'Cortez by KO/TKO/DQ', 'Cortez by Submission', 'Cortez by Decision', 'Cortez by Round 1 KO', 'Cortez by Round 2 KO', 'Cortez by Round 3 KO', 'Cortez by Round 4 KO', 'Cortez by Round 5 KO', 
+        'Cortez by Round 1 Submission', 'Cortez by Round 2 Submission', 'Cortez by Round 3 Submission', 'Cortez by Round 4 Submission', 'Cortez by Round 5 Submission'
+    ],
+    ['Ponzinibbio', 'Salikhov', 
+        'Ponzinibbio by KO/TKO/DQ', 'Ponzinibbio by Submission', 'Ponzinibbio by Decision', 'Ponzinibbio by Round 1 KO', 'Ponzinibbio by Round 2 KO', 'Ponzinibbio by Round 3 KO', 'Ponzinibbio by Round 4 KO', 'Ponzinibbio by Round 5 KO', 
+        'Ponzinibbio by Round 1 Submission', 'Ponzinibbio by Round 2 Submission', 'Ponzinibbio by Round 3 Submission', 'Ponzinibbio by Round 4 Submission', 'Ponzinibbio by Round 5 Submission', 
+        'Salikhov by KO/TKO/DQ', 'Salikhov by Submission', 'Salikhov by Decision', 'Salikhov by Round 1 KO', 'Salikhov by Round 2 KO', 'Salikhov by Round 3 KO', 'Salikhov by Round 4 KO', 'Salikhov by Round 5 KO', 
+        'Salikhov by Round 1 Submission', 'Salikhov by Round 2 Submission', 'Salikhov by Round 3 Submission', 'Salikhov by Round 4 Submission', 'Salikhov by Round 5 Submission'
+    ],
+    ['Dober', 'Silva', 
+        'Dober by KO/TKO/DQ', 'Dober by Submission', 'Dober by Decision', 'Dober by Round 1 KO', 'Dober by Round 2 KO', 'Dober by Round 3 KO', 'Dober by Round 4 KO', 'Dober by Round 5 KO', 
+        'Dober by Round 1 Submission', 'Dober by Round 2 Submission', 'Dober by Round 3 Submission', 'Dober by Round 4 Submission', 'Dober by Round 5 Submission', 
+        'Silva by KO/TKO/DQ', 'Silva by Submission', 'Silva by Decision', 'Silva by Round 1 KO', 'Silva by Round 2 KO', 'Silva by Round 3 KO', 'Silva by Round 4 KO', 'Silva by Round 5 KO', 
+        'Silva by Round 1 Submission', 'Silva by Round 2 Submission', 'Silva by Round 3 Submission', 'Silva by Round 4 Submission', 'Silva by Round 5 Submission'
+    ],
+    ['Bonfim', 'Loosa', 
+        'Bonfim by KO/TKO/DQ', 'Bonfim by Submission', 'Bonfim by Decision', 'Bonfim by Round 1 KO', 'Bonfim by Round 2 KO', 'Bonfim by Round 3 KO', 'Bonfim by Round 4 KO', 'Bonfim by Round 5 KO', 
+        'Bonfim by Round 1 Submission', 'Bonfim by Round 2 Submission', 'Bonfim by Round 3 Submission', 'Bonfim by Round 4 Submission', 'Bonfim by Round 5 Submission', 
+        'Loosa by KO/TKO/DQ', 'Loosa by Submission', 'Loosa by Decision', 'Loosa by Round 1 KO', 'Loosa by Round 2 KO', 'Loosa by Round 3 KO', 'Loosa by Round 4 KO', 'Loosa by Round 5 KO', 
+        'Loosa by Round 1 Submission', 'Loosa by Round 2 Submission', 'Loosa by Round 3 Submission', 'Loosa by Round 4 Submission', 'Loosa by Round 5 Submission'
+    ],
+    ['Erosa', 'Rodriguez', 
+        'Erosa by KO/TKO/DQ', 'Erosa by Submission', 'Erosa by Decision', 'Erosa by Round 1 KO', 'Erosa by Round 2 KO', 'Erosa by Round 3 KO', 'Erosa by Round 4 KO', 'Erosa by Round 5 KO', 
+        'Erosa by Round 1 Submission', 'Erosa by Round 2 Submission', 'Erosa by Round 3 Submission', 'Erosa by Round 4 Submission', 'Erosa by Round 5 Submission', 
+        'Rodriguez by KO/TKO/DQ', 'Rodriguez by Submission', 'Rodriguez by Decision', 'Rodriguez by Round 1 KO', 'Rodriguez by Round 2 KO', 'Rodriguez by Round 3 KO', 'Rodriguez by Round 4 KO', 'Rodriguez by Round 5 KO', 
+        'Rodriguez by Round 1 Submission', 'Rodriguez by Round 2 Submission', 'Rodriguez by Round 3 Submission', 'Rodriguez by Round 4 Submission', 'Rodriguez by Round 5 Submission'
+    ],
+    ['Alhassan', 'Brundage', 
+        'Alhassan by KO/TKO/DQ', 'Alhassan by Submission', 'Alhassan by Decision', 'Alhassan by Round 1 KO', 'Alhassan by Round 2 KO', 'Alhassan by Round 3 KO', 'Alhassan by Round 4 KO', 'Alhassan by Round 5 KO', 
+        'Alhassan by Round 1 Submission', 'Alhassan by Round 2 Submission', 'Alhassan by Round 3 Submission', 'Alhassan by Round 4 Submission', 'Alhassan by Round 5 Submission', 
+        'Brundage by KO/TKO/DQ', 'Brundage by Submission', 'Brundage by Decision', 'Brundage by Round 1 KO', 'Brundage by Round 2 KO', 'Brundage by Round 3 KO', 'Brundage by Round 4 KO', 'Brundage by Round 5 KO', 
+        'Brundage by Round 1 Submission', 'Brundage by Round 2 Submission', 'Brundage by Round 3 Submission', 'Brundage by Round 4 Submission', 'Brundage by Round 5 Submission'
+    ],
+    ['Van', 'Johnson', 
+        'Van by KO/TKO/DQ', 'Van by Submission', 'Van by Decision', 'Van by Round 1 KO', 'Van by Round 2 KO', 'Van by Round 3 KO', 'Van by Round 4 KO', 'Van by Round 5 KO', 
+        'Van by Round 1 Submission', 'Van by Round 2 Submission', 'Van by Round 3 Submission', 'Van by Round 4 Submission', 'Van by Round 5 Submission', 
+        'Johnson by KO/TKO/DQ', 'Johnson by Submission', 'Johnson by Decision', 'Johnson by Round 1 KO', 'Johnson by Round 2 KO', 'Johnson by Round 3 KO', 'Johnson by Round 4 KO', 'Johnson by Round 5 KO', 
+        'Johnson by Round 1 Submission', 'Johnson by Round 2 Submission', 'Johnson by Round 3 Submission', 'Johnson by Round 4 Submission', 'Johnson by Round 5 Submission'
+    ],
+    ['Jasudavicius', 'Kline', 
+        'Jasudavicius by KO/TKO/DQ', 'Jasudavicius by Submission', 'Jasudavicius by Decision', 'Jasudavicius by Round 1 KO', 'Jasudavicius by Round 2 KO', 'Jasudavicius by Round 3 KO', 'Jasudavicius by Round 4 KO', 'Jasudavicius by Round 5 KO', 
+        'Jasudavicius by Round 1 Submission', 'Jasudavicius by Round 2 Submission', 'Jasudavicius by Round 3 Submission', 'Jasudavicius by Round 4 Submission', 'Jasudavicius by Round 5 Submission', 
+        'Kline by KO/TKO/DQ', 'Kline by Submission', 'Kline by Decision', 'Kline by Round 1 KO', 'Kline by Round 2 KO', 'Kline by Round 3 KO', 'Kline by Round 4 KO', 'Kline by Round 5 KO', 
+        'Kline by Round 1 Submission', 'Kline by Round 2 Submission', 'Kline by Round 3 Submission', 'Kline by Round 4 Submission', 'Kline by Round 5 Submission'
+    ],
+    ['Jackson', 'Blackshear', 
+        'Jackson by KO/TKO/DQ', 'Jackson by Submission', 'Jackson by Decision', 'Jackson by Round 1 KO', 'Jackson by Round 2 KO', 'Jackson by Round 3 KO', 'Jackson by Round 4 KO', 'Jackson by Round 5 KO', 
+        'Jackson by Round 1 Submission', 'Jackson by Round 2 Submission', 'Jackson by Round 3 Submission', 'Jackson by Round 4 Submission', 'Jackson by Round 5 Submission', 
+        'Blackshear by KO/TKO/DQ', 'Blackshear by Submission', 'Blackshear by Decision', 'Blackshear by Round 1 KO', 'Blackshear by Round 2 KO', 'Blackshear by Round 3 KO', 'Blackshear by Round 4 KO', 'Blackshear by Round 5 KO', 
+        'Blackshear by Round 1 Submission', 'Blackshear by Round 2 Submission', 'Blackshear by Round 3 Submission', 'Blackshear by Round 4 Submission', 'Blackshear by Round 5 Submission'
+    ],
+    ['Santos', 'Agapova', 
+        'Santos by KO/TKO/DQ', 'Santos by Submission', 'Santos by Decision', 'Santos by Round 1 KO', 'Santos by Round 2 KO', 'Santos by Round 3 KO', 'Santos by Round 4 KO', 'Santos by Round 5 KO', 
+        'Santos by Round 1 Submission', 'Santos by Round 2 Submission', 'Santos by Round 3 Submission', 'Santos by Round 4 Submission', 'Santos by Round 5 Submission', 
+        'Agapova by KO/TKO/DQ', 'Agapova by Submission', 'Agapova by Decision', 'Agapova by Round 1 KO', 'Agapova by Round 2 KO', 'Agapova by Round 3 KO', 'Agapova by Round 4 KO', 'Agapova by Round 5 KO', 
+        'Agapova by Round 1 Submission', 'Agapova by Round 2 Submission', 'Agapova by Round 3 Submission', 'Agapova by Round 4 Submission', 'Agapova by Round 5 Submission'
+    ],
+    ['Fremd', 'Petroski', 
+        'Fremd by KO/TKO/DQ', 'Fremd by Submission', 'Fremd by Decision', 'Fremd by Round 1 KO', 'Fremd by Round 2 KO', 'Fremd by Round 3 KO', 'Fremd by Round 4 KO', 'Fremd by Round 5 KO', 
+        'Fremd by Round 1 Submission', 'Fremd by Round 2 Submission', 'Fremd by Round 3 Submission', 'Fremd by Round 4 Submission', 'Fremd by Round 5 Submission', 
+        'Petroski by KO/TKO/DQ', 'Petroski by Submission', 'Petroski by Decision', 'Petroski by Round 1 KO', 'Petroski by Round 2 KO', 'Petroski by Round 3 KO', 'Petroski by Round 4 KO', 'Petroski by Round 5 KO', 
+        'Petroski by Round 1 Submission', 'Petroski by Round 2 Submission', 'Petroski by Round 3 Submission', 'Petroski by Round 4 Submission', 'Petroski by Round 5 Submission'
+    ],
+    ['Elder', 'Flowers', 
+        'Elder by KO/TKO/DQ', 'Elder by Submission', 'Elder by Decision', 'Elder by Round 1 KO', 'Elder by Round 2 KO', 'Elder by Round 3 KO', 'Elder by Round 4 KO', 'Elder by Round 5 KO', 
+        'Elder by Round 1 Submission', 'Elder by Round 2 Submission', 'Elder by Round 3 Submission', 'Elder by Round 4 Submission', 'Elder by Round 5 Submission', 
+        'Flowers by KO/TKO/DQ', 'Flowers by Submission', 'Flowers by Decision', 'Flowers by Round 1 KO', 'Flowers by Round 2 KO', 'Flowers by Round 3 KO', 'Flowers by Round 4 KO', 'Flowers by Round 5 KO', 
+        'Flowers by Round 1 Submission', 'Flowers by Round 2 Submission', 'Flowers by Round 3 Submission', 'Flowers by Round 4 Submission', 'Flowers by Round 5 Submission'
+    ]
+];
 
     // Define a function to determine which character to push based on the index and letter
     function pickCharacter(index) {
@@ -1437,6 +1524,58 @@ if (username) {
             MisfitsPicks.push(picksData[index][0]);
         } else if (MF15[index] === 'R') {
             MisfitsPicks.push(picksData[index][1]);
+        } else if (MF15[index] === 'A') {
+            MisfitsPicks.push(picksData[index][2]);
+        } else if (MF15[index] === 'B') {
+            MisfitsPicks.push(picksData[index][3]);
+        } else if (MF15[index] === 'C') {
+            MisfitsPicks.push(picksData[index][4]);
+        } else if (MF15[index] === '3') {
+            MisfitsPicks.push(picksData[index][5]);
+        } else if (MF15[index] === 'E') {
+            MisfitsPicks.push(picksData[index][6]);
+        } else if (MF15[index] === 'F') {
+            MisfitsPicks.push(picksData[index][7]);
+        } else if (MF15[index] === 'G') {
+            MisfitsPicks.push(picksData[index][8]);
+        } else if (MF15[index] === 'H') {
+            MisfitsPicks.push(picksData[index][9]);
+        } else if (MF15[index] === 'I') {
+            MisfitsPicks.push(picksData[index][10]);
+        } else if (MF15[index] === 'J') {
+            MisfitsPicks.push(picksData[index][11]);
+        } else if (MF15[index] === 'K') {
+            MisfitsPicks.push(picksData[index][12]);
+        } else if (MF15[index] === '1') {
+            MisfitsPicks.push(picksData[index][13]);
+        } else if (MF15[index] === 'M') {
+            MisfitsPicks.push(picksData[index][14]);
+        } else if (MF15[index] === 'N') {
+            MisfitsPicks.push(picksData[index][15]);
+        } else if (MF15[index] === 'O') {
+            MisfitsPicks.push(picksData[index][16]);
+        } else if (MF15[index] === 'P') {
+            MisfitsPicks.push(picksData[index][17]);
+        } else if (MF15[index] === 'Q') {
+            MisfitsPicks.push(picksData[index][18]);
+        } else if (MF15[index] === '2') {
+            MisfitsPicks.push(picksData[index][19]);
+        } else if (MF15[index] === 'S') {
+            MisfitsPicks.push(picksData[index][20]);
+        } else if (MF15[index] === 'T') {
+            MisfitsPicks.push(picksData[index][21]);
+        } else if (MF15[index] === 'U') {
+            MisfitsPicks.push(picksData[index][22]);
+        } else if (MF15[index] === 'V') {
+            MisfitsPicks.push(picksData[index][23]);
+        } else if (MF15[index] === 'W') {
+            MisfitsPicks.push(picksData[index][24]);
+        } else if (MF15[index] === 'X') {
+            MisfitsPicks.push(picksData[index][25]);
+        } else if (MF15[index] === 'Y') {
+            MisfitsPicks.push(picksData[index][26]);
+        } else if (MF15[index] === 'Z') {
+            MisfitsPicks.push(picksData[index][27]);
         }
         // If 'D', do nothing
     }
@@ -1475,29 +1614,140 @@ fetch(apiUrl2)
 
         if (MF15 && MF15.length >= 1) {  // Ensure MF15 is defined and has at least 1 character
             const MisfitsPicks = [];
-            const picksData = [
-                ['Pereira', 'Prochazka'],          // Index 1
-                ['Ortega', 'Lopes'],        // Index 2
-                ['Smith', 'Dolidze'],        // Index 3
-                ['Silva', 'Chiasson'],        // Index 4
-                ['Garry', 'Page'],        // Index 5
-                ['Pyfer', 'Barriault'],        // Index 6
-                ['Swanson', 'Fili'],        // Index 7
-                ['Jourdain', 'Silva'],        // Index 8
-                ['Talbott', 'Ghemmouri'],        // Index 9
-                ['Gomez', 'Robertson'],        // Index 10
-                ['Arlovski', 'Buday'],        // Index 11
-                ['Tsuruya', 'Hernandez'],         // Index 12
-                ['Simon', 'Oliveira'],         // Index 13
-            ];
+			const picksData = [
+    ['Namajunas', 'Cortez', 
+        'Namajunas by KO/TKO/DQ', 'Namajunas by Submission', 'Namajunas by Decision', 'Namajunas by Round 1 KO', 'Namajunas by Round 2 KO', 'Namajunas by Round 3 KO', 'Namajunas by Round 4 KO', 'Namajunas by Round 5 KO', 
+        'Namajunas by Round 1 Submission', 'Namajunas by Round 2 Submission', 'Namajunas by Round 3 Submission', 'Namajunas by Round 4 Submission', 'Namajunas by Round 5 Submission', 
+        'Cortez by KO/TKO/DQ', 'Cortez by Submission', 'Cortez by Decision', 'Cortez by Round 1 KO', 'Cortez by Round 2 KO', 'Cortez by Round 3 KO', 'Cortez by Round 4 KO', 'Cortez by Round 5 KO', 
+        'Cortez by Round 1 Submission', 'Cortez by Round 2 Submission', 'Cortez by Round 3 Submission', 'Cortez by Round 4 Submission', 'Cortez by Round 5 Submission'
+    ],
+    ['Ponzinibbio', 'Salikhov', 
+        'Ponzinibbio by KO/TKO/DQ', 'Ponzinibbio by Submission', 'Ponzinibbio by Decision', 'Ponzinibbio by Round 1 KO', 'Ponzinibbio by Round 2 KO', 'Ponzinibbio by Round 3 KO', 'Ponzinibbio by Round 4 KO', 'Ponzinibbio by Round 5 KO', 
+        'Ponzinibbio by Round 1 Submission', 'Ponzinibbio by Round 2 Submission', 'Ponzinibbio by Round 3 Submission', 'Ponzinibbio by Round 4 Submission', 'Ponzinibbio by Round 5 Submission', 
+        'Salikhov by KO/TKO/DQ', 'Salikhov by Submission', 'Salikhov by Decision', 'Salikhov by Round 1 KO', 'Salikhov by Round 2 KO', 'Salikhov by Round 3 KO', 'Salikhov by Round 4 KO', 'Salikhov by Round 5 KO', 
+        'Salikhov by Round 1 Submission', 'Salikhov by Round 2 Submission', 'Salikhov by Round 3 Submission', 'Salikhov by Round 4 Submission', 'Salikhov by Round 5 Submission'
+    ],
+    ['Dober', 'Silva', 
+        'Dober by KO/TKO/DQ', 'Dober by Submission', 'Dober by Decision', 'Dober by Round 1 KO', 'Dober by Round 2 KO', 'Dober by Round 3 KO', 'Dober by Round 4 KO', 'Dober by Round 5 KO', 
+        'Dober by Round 1 Submission', 'Dober by Round 2 Submission', 'Dober by Round 3 Submission', 'Dober by Round 4 Submission', 'Dober by Round 5 Submission', 
+        'Silva by KO/TKO/DQ', 'Silva by Submission', 'Silva by Decision', 'Silva by Round 1 KO', 'Silva by Round 2 KO', 'Silva by Round 3 KO', 'Silva by Round 4 KO', 'Silva by Round 5 KO', 
+        'Silva by Round 1 Submission', 'Silva by Round 2 Submission', 'Silva by Round 3 Submission', 'Silva by Round 4 Submission', 'Silva by Round 5 Submission'
+    ],
+    ['Bonfim', 'Loosa', 
+        'Bonfim by KO/TKO/DQ', 'Bonfim by Submission', 'Bonfim by Decision', 'Bonfim by Round 1 KO', 'Bonfim by Round 2 KO', 'Bonfim by Round 3 KO', 'Bonfim by Round 4 KO', 'Bonfim by Round 5 KO', 
+        'Bonfim by Round 1 Submission', 'Bonfim by Round 2 Submission', 'Bonfim by Round 3 Submission', 'Bonfim by Round 4 Submission', 'Bonfim by Round 5 Submission', 
+        'Loosa by KO/TKO/DQ', 'Loosa by Submission', 'Loosa by Decision', 'Loosa by Round 1 KO', 'Loosa by Round 2 KO', 'Loosa by Round 3 KO', 'Loosa by Round 4 KO', 'Loosa by Round 5 KO', 
+        'Loosa by Round 1 Submission', 'Loosa by Round 2 Submission', 'Loosa by Round 3 Submission', 'Loosa by Round 4 Submission', 'Loosa by Round 5 Submission'
+    ],
+    ['Erosa', 'Rodriguez', 
+        'Erosa by KO/TKO/DQ', 'Erosa by Submission', 'Erosa by Decision', 'Erosa by Round 1 KO', 'Erosa by Round 2 KO', 'Erosa by Round 3 KO', 'Erosa by Round 4 KO', 'Erosa by Round 5 KO', 
+        'Erosa by Round 1 Submission', 'Erosa by Round 2 Submission', 'Erosa by Round 3 Submission', 'Erosa by Round 4 Submission', 'Erosa by Round 5 Submission', 
+        'Rodriguez by KO/TKO/DQ', 'Rodriguez by Submission', 'Rodriguez by Decision', 'Rodriguez by Round 1 KO', 'Rodriguez by Round 2 KO', 'Rodriguez by Round 3 KO', 'Rodriguez by Round 4 KO', 'Rodriguez by Round 5 KO', 
+        'Rodriguez by Round 1 Submission', 'Rodriguez by Round 2 Submission', 'Rodriguez by Round 3 Submission', 'Rodriguez by Round 4 Submission', 'Rodriguez by Round 5 Submission'
+    ],
+    ['Alhassan', 'Brundage', 
+        'Alhassan by KO/TKO/DQ', 'Alhassan by Submission', 'Alhassan by Decision', 'Alhassan by Round 1 KO', 'Alhassan by Round 2 KO', 'Alhassan by Round 3 KO', 'Alhassan by Round 4 KO', 'Alhassan by Round 5 KO', 
+        'Alhassan by Round 1 Submission', 'Alhassan by Round 2 Submission', 'Alhassan by Round 3 Submission', 'Alhassan by Round 4 Submission', 'Alhassan by Round 5 Submission', 
+        'Brundage by KO/TKO/DQ', 'Brundage by Submission', 'Brundage by Decision', 'Brundage by Round 1 KO', 'Brundage by Round 2 KO', 'Brundage by Round 3 KO', 'Brundage by Round 4 KO', 'Brundage by Round 5 KO', 
+        'Brundage by Round 1 Submission', 'Brundage by Round 2 Submission', 'Brundage by Round 3 Submission', 'Brundage by Round 4 Submission', 'Brundage by Round 5 Submission'
+    ],
+    ['Van', 'Johnson', 
+        'Van by KO/TKO/DQ', 'Van by Submission', 'Van by Decision', 'Van by Round 1 KO', 'Van by Round 2 KO', 'Van by Round 3 KO', 'Van by Round 4 KO', 'Van by Round 5 KO', 
+        'Van by Round 1 Submission', 'Van by Round 2 Submission', 'Van by Round 3 Submission', 'Van by Round 4 Submission', 'Van by Round 5 Submission', 
+        'Johnson by KO/TKO/DQ', 'Johnson by Submission', 'Johnson by Decision', 'Johnson by Round 1 KO', 'Johnson by Round 2 KO', 'Johnson by Round 3 KO', 'Johnson by Round 4 KO', 'Johnson by Round 5 KO', 
+        'Johnson by Round 1 Submission', 'Johnson by Round 2 Submission', 'Johnson by Round 3 Submission', 'Johnson by Round 4 Submission', 'Johnson by Round 5 Submission'
+    ],
+    ['Jasudavicius', 'Kline', 
+        'Jasudavicius by KO/TKO/DQ', 'Jasudavicius by Submission', 'Jasudavicius by Decision', 'Jasudavicius by Round 1 KO', 'Jasudavicius by Round 2 KO', 'Jasudavicius by Round 3 KO', 'Jasudavicius by Round 4 KO', 'Jasudavicius by Round 5 KO', 
+        'Jasudavicius by Round 1 Submission', 'Jasudavicius by Round 2 Submission', 'Jasudavicius by Round 3 Submission', 'Jasudavicius by Round 4 Submission', 'Jasudavicius by Round 5 Submission', 
+        'Kline by KO/TKO/DQ', 'Kline by Submission', 'Kline by Decision', 'Kline by Round 1 KO', 'Kline by Round 2 KO', 'Kline by Round 3 KO', 'Kline by Round 4 KO', 'Kline by Round 5 KO', 
+        'Kline by Round 1 Submission', 'Kline by Round 2 Submission', 'Kline by Round 3 Submission', 'Kline by Round 4 Submission', 'Kline by Round 5 Submission'
+    ],
+    ['Jackson', 'Blackshear', 
+        'Jackson by KO/TKO/DQ', 'Jackson by Submission', 'Jackson by Decision', 'Jackson by Round 1 KO', 'Jackson by Round 2 KO', 'Jackson by Round 3 KO', 'Jackson by Round 4 KO', 'Jackson by Round 5 KO', 
+        'Jackson by Round 1 Submission', 'Jackson by Round 2 Submission', 'Jackson by Round 3 Submission', 'Jackson by Round 4 Submission', 'Jackson by Round 5 Submission', 
+        'Blackshear by KO/TKO/DQ', 'Blackshear by Submission', 'Blackshear by Decision', 'Blackshear by Round 1 KO', 'Blackshear by Round 2 KO', 'Blackshear by Round 3 KO', 'Blackshear by Round 4 KO', 'Blackshear by Round 5 KO', 
+        'Blackshear by Round 1 Submission', 'Blackshear by Round 2 Submission', 'Blackshear by Round 3 Submission', 'Blackshear by Round 4 Submission', 'Blackshear by Round 5 Submission'
+    ],
+    ['Santos', 'Agapova', 
+        'Santos by KO/TKO/DQ', 'Santos by Submission', 'Santos by Decision', 'Santos by Round 1 KO', 'Santos by Round 2 KO', 'Santos by Round 3 KO', 'Santos by Round 4 KO', 'Santos by Round 5 KO', 
+        'Santos by Round 1 Submission', 'Santos by Round 2 Submission', 'Santos by Round 3 Submission', 'Santos by Round 4 Submission', 'Santos by Round 5 Submission', 
+        'Agapova by KO/TKO/DQ', 'Agapova by Submission', 'Agapova by Decision', 'Agapova by Round 1 KO', 'Agapova by Round 2 KO', 'Agapova by Round 3 KO', 'Agapova by Round 4 KO', 'Agapova by Round 5 KO', 
+        'Agapova by Round 1 Submission', 'Agapova by Round 2 Submission', 'Agapova by Round 3 Submission', 'Agapova by Round 4 Submission', 'Agapova by Round 5 Submission'
+    ],
+    ['Fremd', 'Petroski', 
+        'Fremd by KO/TKO/DQ', 'Fremd by Submission', 'Fremd by Decision', 'Fremd by Round 1 KO', 'Fremd by Round 2 KO', 'Fremd by Round 3 KO', 'Fremd by Round 4 KO', 'Fremd by Round 5 KO', 
+        'Fremd by Round 1 Submission', 'Fremd by Round 2 Submission', 'Fremd by Round 3 Submission', 'Fremd by Round 4 Submission', 'Fremd by Round 5 Submission', 
+        'Petroski by KO/TKO/DQ', 'Petroski by Submission', 'Petroski by Decision', 'Petroski by Round 1 KO', 'Petroski by Round 2 KO', 'Petroski by Round 3 KO', 'Petroski by Round 4 KO', 'Petroski by Round 5 KO', 
+        'Petroski by Round 1 Submission', 'Petroski by Round 2 Submission', 'Petroski by Round 3 Submission', 'Petroski by Round 4 Submission', 'Petroski by Round 5 Submission'
+    ],
+    ['Elder', 'Flowers', 
+        'Elder by KO/TKO/DQ', 'Elder by Submission', 'Elder by Decision', 'Elder by Round 1 KO', 'Elder by Round 2 KO', 'Elder by Round 3 KO', 'Elder by Round 4 KO', 'Elder by Round 5 KO', 
+        'Elder by Round 1 Submission', 'Elder by Round 2 Submission', 'Elder by Round 3 Submission', 'Elder by Round 4 Submission', 'Elder by Round 5 Submission', 
+        'Flowers by KO/TKO/DQ', 'Flowers by Submission', 'Flowers by Decision', 'Flowers by Round 1 KO', 'Flowers by Round 2 KO', 'Flowers by Round 3 KO', 'Flowers by Round 4 KO', 'Flowers by Round 5 KO', 
+        'Flowers by Round 1 Submission', 'Flowers by Round 2 Submission', 'Flowers by Round 3 Submission', 'Flowers by Round 4 Submission', 'Flowers by Round 5 Submission'
+    ]
+];
 
             // Define a function to determine which character to push based on the index and letter
             function pickCharacter(index) {
-                if (MF15[index] === 'L') {
-                    MisfitsPicks.push(picksData[index][0]);
-                } else if (MF15[index] === 'R') {
-                    MisfitsPicks.push(picksData[index][1]);
-                }
+				if (MF15[index] === 'L') {
+            	MisfitsPicks.push(picksData[index][0]);
+				} else if (MF15[index] === 'R') {
+					MisfitsPicks.push(picksData[index][1]);
+				} else if (MF15[index] === 'A') {
+					MisfitsPicks.push(picksData[index][2]);
+				} else if (MF15[index] === 'B') {
+					MisfitsPicks.push(picksData[index][3]);
+				} else if (MF15[index] === 'C') {
+					MisfitsPicks.push(picksData[index][4]);
+				} else if (MF15[index] === '3') {
+					MisfitsPicks.push(picksData[index][5]);
+				} else if (MF15[index] === 'E') {
+					MisfitsPicks.push(picksData[index][6]);
+				} else if (MF15[index] === 'F') {
+					MisfitsPicks.push(picksData[index][7]);
+				} else if (MF15[index] === 'G') {
+					MisfitsPicks.push(picksData[index][8]);
+				} else if (MF15[index] === 'H') {
+					MisfitsPicks.push(picksData[index][9]);
+				} else if (MF15[index] === 'I') {
+					MisfitsPicks.push(picksData[index][10]);
+				} else if (MF15[index] === 'J') {
+					MisfitsPicks.push(picksData[index][11]);
+				} else if (MF15[index] === 'K') {
+					MisfitsPicks.push(picksData[index][12]);
+				} else if (MF15[index] === '1') {
+					MisfitsPicks.push(picksData[index][13]);
+				} else if (MF15[index] === 'M') {
+					MisfitsPicks.push(picksData[index][14]);
+				} else if (MF15[index] === 'N') {
+					MisfitsPicks.push(picksData[index][15]);
+				} else if (MF15[index] === 'O') {
+					MisfitsPicks.push(picksData[index][16]);
+				} else if (MF15[index] === 'P') {
+					MisfitsPicks.push(picksData[index][17]);
+				} else if (MF15[index] === 'Q') {
+					MisfitsPicks.push(picksData[index][18]);
+				} else if (MF15[index] === '2') {
+					MisfitsPicks.push(picksData[index][19]);
+				} else if (MF15[index] === 'S') {
+					MisfitsPicks.push(picksData[index][20]);
+				} else if (MF15[index] === 'T') {
+					MisfitsPicks.push(picksData[index][21]);
+				} else if (MF15[index] === 'U') {
+					MisfitsPicks.push(picksData[index][22]);
+				} else if (MF15[index] === 'V') {
+					MisfitsPicks.push(picksData[index][23]);
+				} else if (MF15[index] === 'W') {
+					MisfitsPicks.push(picksData[index][24]);
+				} else if (MF15[index] === 'X') {
+					MisfitsPicks.push(picksData[index][25]);
+				} else if (MF15[index] === 'Y') {
+					MisfitsPicks.push(picksData[index][26]);
+				} else if (MF15[index] === 'Z') {
+					MisfitsPicks.push(picksData[index][27]);
+				}
                 // If 'D', do nothing
             }
 
@@ -1565,39 +1815,27 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
+			const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+        
+        for (let i = 0; i < userPicks.length; i++) {
+            const predefinedSegment = predefinedPicks.substr(i * 3, 3);
+            colorButton(`FB${i + 1}`, userPicks[i], predefinedSegment);
+        }
 
-            const predefinedPicks = "LDRRLLRRLRRLR";
-			colorButton('FB1', userPicks[0], predefinedPicks[0]);
-            colorButton('FB2', userPicks[1], predefinedPicks[1]);
-            colorButton('FB3', userPicks[2], predefinedPicks[2]);
-            colorButton('FB4', userPicks[3], predefinedPicks[3]);
-            colorButton('FB5', userPicks[4], predefinedPicks[4]);
-			colorButton('FB6', userPicks[5], predefinedPicks[5]);
-			colorButton('FB7', userPicks[6], predefinedPicks[6]);
-            colorButton('FB8', userPicks[7], predefinedPicks[7]);
-			colorButton('FB9', userPicks[8], predefinedPicks[8]);
-			colorButton('FB10', userPicks[9], predefinedPicks[9]);
-			colorButton('FB11', userPicks[10], predefinedPicks[10]);
-			colorButton('FB12', userPicks[11], predefinedPicks[11]);
-			colorButton('FB13', userPicks[12], predefinedPicks[12]);
-
-        })
+    })
         .catch(error => {
             console.error("Error fetching or parsing data:", error);
         });
 }
 
-function colorButton(buttonId, userPick, predefinedPick) {
+function colorButton(buttonId, userPick, predefinedSegment) {
     // Check if the userPick is 'D', and if so, exit the function without changing the button color
-    if (userPick === 'D') {
+    if (userPick === 'D' || predefinedSegment === 'DDD') {
         return; // Do nothing
     }
-    else if (predefinedPick === 'D') {
-        return;
-                     }
 
     const button = document.getElementById(buttonId);
-    if (userPick === predefinedPick) {
+    if (predefinedSegment.includes(userPick)) {
         button.style.backgroundColor = 'rgba(0, 255, 0, 0.33)';  // Semi-transparent green
     } else {
         button.style.backgroundColor = 'rgba(255, 0, 0, 0.33)';  // Semi-transparent red
