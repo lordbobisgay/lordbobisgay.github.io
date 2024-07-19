@@ -95,8 +95,8 @@
         <a class="row-item"><button id="sidebarbtn4" style="display: none;" class="btn btn-primary smaller-text">In Round 1 +200</button></a>
         <a class="row-item"><button id="sidebarbtn5" style="display: none;" class="btn btn-primary smaller-text">In Round 2 +200</button></a>
         <a class="row-item"><button id="sidebarbtn6" style="display: none;" class="btn btn-primary smaller-text">In Round 3 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn7" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 4 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn8" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 5 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn7" style="display: none;" class="btn btn-primary smaller-text" >In Round 4 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn8" style="display: none;" class="btn btn-primary smaller-text" >In Round 5 +200</button></a>
     </div>
 </div>
 
@@ -110,8 +110,8 @@
         <a class="row-item"><button id="sidebarbtn12" style="display: none;" class="btn btn-primary smaller-text">In Round 1 +200</button></a>
         <a class="row-item"><button id="sidebarbtn13" style="display: none;" class="btn btn-primary smaller-text">In Round 2 +200</button></a>
         <a class="row-item"><button id="sidebarbtn14" style="display: none;" class="btn btn-primary smaller-text">In Round 3 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn15" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 4 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn16" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 5 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn15" style="display: none;" class="btn btn-primary smaller-text" >In Round 4 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn16" style="display: none;" class="btn btn-primary smaller-text" >In Round 5 +200</button></a>
     </div>
 </div>
 
@@ -2653,6 +2653,19 @@ function getOddsStartIndex(group) {
 function getOddsStartIndex2(group) {
     // Calculate the start index for the odds based on the group number
     let baseIndex = 19; // Starting point for the first group
+    let increment = 28;
+    return baseIndex + (group - 1) * increment;
+}
+function getOddsStartIndex3(group) {
+    // Calculate the start index for the odds based on the group number
+    let baseIndex = 3; // Starting point for the first group
+    let increment = 28;
+    return baseIndex + (group - 1) * increment;
+}
+
+function getOddsStartIndex4(group) {
+    // Calculate the start index for the odds based on the group number
+    let baseIndex = 16; // Starting point for the first group
     let increment = 28;
     return baseIndex + (group - 1) * increment;
 }
