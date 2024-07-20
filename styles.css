@@ -108,7 +108,7 @@
   color: #333;
   font-size: 16px;
   padding: 1px 1px;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
   outline: none;
 }
 
@@ -170,7 +170,7 @@
 #sortButtonint:hover {
   background-color: black; /* Changes the background to black on hover */
   color: white;            /* Changes the text color to white on hover */
-  cursor: url('assets/cursor-default.cur'), auto;         /* Changes the cursor to a pointer to indicate it's clickable */
+  cursor: url('assets/link.cur'), auto;         /* Changes the cursor to a pointer to indicate it's clickable */
 }
 .small-font {
   font-size: 24px; /* Sets the font size to 14 pixels */
@@ -303,7 +303,7 @@
   text-align: center;
   border-radius: 5px;
   user-select: none;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
 }
 
 #innerButton {
@@ -326,7 +326,7 @@
   color: #fff; /* Change text color as needed */
   border: none;
   padding: 66px 105px;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
   margin-bottom: 10px;
 }
 
@@ -435,7 +435,7 @@
     color: #333;
     font-size: 9px;
     padding: 0px 0px;
-    cursor: url('assets/cursor-default.cur'), auto;
+    cursor: url('assets/link.cur'), auto;
     outline: none;
   }
   
@@ -461,7 +461,7 @@
   .sortButtonint:hover {
     background-color: black; /* Changes the background to black on hover */
     color: white;            /* Changes the text color to white on hover */
-    cursor: url('assets/cursor-default.cur'), auto;         /* Changes the cursor to a pointer to indicate it's clickable */
+    cursor: url('assets/link.cur'), auto;         /* Changes the cursor to a pointer to indicate it's clickable */
   }
   .prelims-top{
     margin-top: 200px;
@@ -565,7 +565,7 @@
 .fight-bar:hover {
   border: 2px solid #000000; /* Gold border on hover */
   background-color: #f8f9fa; /* Slightly lighter background on hover */
-  cursor: url('assets/cursor-default.cur'), auto; /* Change cursor to indicate clickable */
+  cursor: url('assets/link.cur'), auto; /* Change cursor to indicate clickable */
 }
 .fight-bar2 {
   transition: all 0.01s ease; /* Smooth transition for hover effects */
@@ -574,7 +574,7 @@
 .fight-bar2:hover {
   border: 2px solid #000000; /* Gold border on hover */
   background-color: #f8f9fa; /* Slightly lighter background on hover */
-  cursor: url('assets/cursor-default.cur'), auto; /* Change cursor to indicate clickable */
+  cursor: url('assets/link.cur'), auto; /* Change cursor to indicate clickable */
 }
 .number-above {
   display: block;
@@ -955,7 +955,7 @@ select {
 }
 
 [role=button] {
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
 }
 
 select {
@@ -979,7 +979,7 @@ button:not(:disabled),
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
 [type=submit]:not(:disabled) {
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
 }
 
 ::-moz-focus-inner {
@@ -1065,7 +1065,7 @@ iframe {
 
 summary {
   display: list-item;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
 }
 
 progress {
@@ -2603,7 +2603,7 @@ progress {
   overflow: hidden;
 }
 .form-control[type=file]:not(:disabled):not([readonly]) {
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
 }
 .form-control:focus {
   color: #212529;
@@ -2712,7 +2712,7 @@ textarea.form-control-lg {
   padding: 0.375rem;
 }
 .form-control-color:not(:disabled):not([readonly]) {
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
 }
 .form-control-color::-moz-color-swatch {
   border: 0 !important;
@@ -2860,7 +2860,7 @@ textarea.form-control-lg {
   opacity: 0.5;
 }
 .form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label {
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/pointer.cur'), auto;
   opacity: 0.5;
 }
 
@@ -2958,7 +2958,7 @@ textarea.form-control-lg {
   width: 100%;
   height: 0.5rem;
   color: transparent;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
   background-color: #dee2e6;
   border-color: transparent;
   border-radius: 1rem;
@@ -2987,7 +2987,7 @@ textarea.form-control-lg {
   width: 100%;
   height: 0.5rem;
   color: transparent;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
   background-color: #dee2e6;
   border-color: transparent;
   border-radius: 1rem;
@@ -3378,7 +3378,7 @@ textarea.form-control-lg {
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -4225,7 +4225,7 @@ textarea.form-control-lg {
 .nav-link.disabled {
   color: var(--bs-nav-link-disabled-color);
   pointer-events: none;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/pointer.cur'), auto;
 }
 
 .nav-tabs {
@@ -6535,7 +6535,7 @@ textarea.form-control-lg {
   margin-right: 3px;
   margin-left: 3px;
   text-indent: -999px;
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
   background-color: #fff;
   background-clip: padding-box;
   border: 0;
@@ -11419,6 +11419,7 @@ textarea.form-control-lg {
 html {
   height: 100%;
   scroll-padding-top: calc(4.5rem - 1px);
+  cursor: url('assets/pointer.cur'), auto;
 }
 
 .page-section {
@@ -11591,7 +11592,7 @@ html {
   }
 }
 .portfolio .portfolio-item {
-  cursor: url('assets/cursor-default.cur'), auto;
+  cursor: url('assets/link.cur'), auto;
   position: relative;
   display: block;
   max-width: 25rem;
