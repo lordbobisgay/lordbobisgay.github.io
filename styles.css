@@ -411,6 +411,13 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
+  .gif-container {
+    position: absolute;
+    left: 148px;
+    top: 50%;
+    transform: translateY(-50%) scale(0.35);
+  }
+
   .tooltip1 {
     position: absolute;
     top: -97px; /* Adjust as necessary to position correctly */
