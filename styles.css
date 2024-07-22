@@ -493,7 +493,7 @@
 
   .reduced-margin-bar {
     position: fixed;
-    bottom: 50px;
+    bottom: 20px;
     left: 15px;
     right: 20px;
     width: 400px;

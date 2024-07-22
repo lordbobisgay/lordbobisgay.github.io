@@ -8,10 +8,12 @@ def read_cur(filename):
         entries = []
         for _ in range(num_images):
             entry = f.read(16)
-            print(f"Entry raw data: {entry}")
-            values = struct.unpack('<BBBBHHII', entry)
-            print(f"Unpacked values: {values}")
-            entries.append(values)
+            if len(entry) == 16:
+                values = struct.unpack('<BBBxHHII', entry)
+                entries.append(values)
+                print(f"Unpacked values: {values}")
+            else:
+                print(f"Skipping invalid entry: {entry}")
         image_data = []
         for width, height, num_colors, reserved, hot_x, hot_y, size, offset in entries:
             f.seek(offset)
@@ -26,7 +28,7 @@ def write_cur(filename, image_data):
         offset = 6 + 16 * len(image_data)
         for width, height, hot_x, hot_y, data in image_data:
             size = len(data)
-            f.write(struct.pack('<BBBBHHII', width, height, 0, hot_x, hot_y, size, offset))
+            f.write(struct.pack('<BBBxHHII', width, height, 0, hot_x, hot_y, size, offset))
             offset += size
         for _, _, _, _, data in image_data:
             f.write(data)
