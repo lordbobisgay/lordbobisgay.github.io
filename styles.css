@@ -79,6 +79,82 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+@font-face {
+  font-family: 'Disposable Droid BB';
+  src: url('assets/fonts/DisposableDroidBB_bld.ttf') format('truetype'); /* Adjust the path as necessary */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Humanoid';
+  src: url('assets/fonts/HUMANOID.ttf') format('truetype'); /* Make sure the path matches where you have the font file */
+  font-weight: normal;
+  font-style: normal;
+}
+
+.reduced-margin-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 303px;
+  right: 303px;
+  width: auto;
+  background-color: white;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  border: 1px solid black;
+  font-family: 'Disposable Droid BB', sans-serif; /* Fallback to sans-serif if the font doesn't load */
+  font-size: 20px; /* Adjust the size as needed */
+}
+
+.button-submit {
+  font-size: 20px;
+  color: #fff;
+  background-color: #1abc9c;
+  border: none;
+  border-radius: 5px;
+  padding: 14px 28px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button-submit:hover {
+  background-color: #00a383; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%;
+  white-space: normal;
+  display: none;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 5px;
+  width: 450px;
+  font-size: 20px;
+  z-index: 1001;
+}
+
+[data-tooltip]:hover::after {
+  display: block;
+}
+.reduced-margin-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 303px;
+  right: 303px;
+  width: auto;
+  background-color: white;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
 .gif-container {
   position: absolute;
   left: 650px;
@@ -413,8 +489,8 @@
 @media (max-width: 768px) {
   .gif-container {
     position: absolute;
-    left: 148px;
-    top: 50%;
+    left: 150px;
+    top: 55%;
     transform: translateY(-50%) scale(0.35);
   }
 
