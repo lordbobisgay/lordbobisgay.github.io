@@ -143,17 +143,6 @@
 [data-tooltip]:hover::after {
   display: block;
 }
-.reduced-margin-bar {
-  position: fixed;
-  bottom: 20px;
-  left: 303px;
-  right: 303px;
-  width: auto;
-  background-color: white;
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
 
 .gif-container {
   position: absolute;
@@ -487,6 +476,36 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
+  .button-submit {
+    font-size: 8px;
+    color: #fff;
+    background-color: #1abc9c;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .button-submit:hover {
+    background-color: #00a383; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+  }
+
+  .reduced-margin-bar {
+    position: fixed;
+    bottom: 250px;
+    left: 15px;
+    right: 20px;
+    width: 400px;
+    background-color: white;
+    padding: 5px 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    z-index: 50;
+    border: 1px solid black;
+    font-family: 'Disposable Droid BB', sans-serif; /* Fallback to sans-serif if the font doesn't load */
+    font-size: 8px; /* Adjust the size as needed */
+  }
+
   .gif-container {
     position: absolute;
     left: 50px;
