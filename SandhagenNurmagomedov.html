@@ -4167,14 +4167,18 @@ function showSidebarButton2(group) {
 }
 
 function toggleNav(group) {
+
+    var sidebar1 = document.getElementById(`mySidebar${group}`);
+    var sidebar2 = document.getElementById(`mySidebar${group % 2 === 0 ? group - 1 : group + 1}`);
+
     for (var i = 1; i <= 100; i++) {
-        var sidebar = document.getElementById(`mySidebar${i}`);
-        if (sidebar) {
+    var sidebar = document.getElementById(`mySidebar${i}`);
+    if (sidebar) {
+        if (sidebar !== sidebar1) {
             sidebar.style.width = "0";
         }
     }
-    var sidebar1 = document.getElementById(`mySidebar${group}`);
-    var sidebar2 = document.getElementById(`mySidebar${group % 2 === 0 ? group - 1 : group + 1}`);
+}
 
     // Toggle first sidebar
     if (sidebar1.style.width === "250px" || sidebar1.style.width === "150px") {
