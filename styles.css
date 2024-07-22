@@ -477,7 +477,7 @@
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 768px) {
   .button-submit {
-    font-size: 8px;
+    font-size: 10px;
     color: #fff;
     background-color: #1abc9c;
     border: none;
@@ -503,7 +503,7 @@
     z-index: 50;
     border: 1px solid black;
     font-family: 'Disposable Droid BB', sans-serif; /* Fallback to sans-serif if the font doesn't load */
-    font-size: 8px; /* Adjust the size as needed */
+    font-size: 10px; /* Adjust the size as needed */
   }
 
   .gif-container {
