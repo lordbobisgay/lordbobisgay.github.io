@@ -103,7 +103,6 @@
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
   z-index: 1000;
   border: 1px solid black;
-  font-family: 'Disposable Droid BB', sans-serif; /* Fallback to sans-serif if the font doesn't load */
   font-size: 20px; /* Adjust the size as needed */
 }
 
@@ -502,7 +501,7 @@
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
     z-index: 50;
     border: 1px solid black;
-    font-family: 'Disposable Droid BB', sans-serif; /* Fallback to sans-serif if the font doesn't load */
+    
     font-size: 10px; /* Adjust the size as needed */
   }
 
