@@ -489,9 +489,9 @@
 @media (max-width: 768px) {
   .gif-container {
     position: absolute;
-    left: 150px;
+    left: 160px;
     top: 55%;
-    transform: translateY(-50%) scale(0.35);
+    transform: translateY(-40%) scale(0.35);
   }
 
   .tooltip1 {
