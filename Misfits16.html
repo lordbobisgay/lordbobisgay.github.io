@@ -859,8 +859,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     username = responseBody.username; // Assign value to the global variable
                     console.log('Username:', username);
 
+                    // Proceed with the remaining DOM manipulations
                     fetchDataAndUpdateUI();
                     updateNavbar(username);
+                    setupSignOutButton(); // Call this function after username is set
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
                 }
@@ -872,8 +874,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No registerKey found in localStorage');
     }
 
+    // Other initializations that do not depend on username
     updateOdds();
-    setupSignOutButton();
     addSidebarEventListeners();
     processResult();
 });

@@ -206,6 +206,7 @@
         <script>
 let username; // Declare a global variable
 document.addEventListener('DOMContentLoaded', function() {
+
     const registerKey = localStorage.getItem('registerKey');
     if (registerKey) {
         fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=verify&result=${registerKey}`)
@@ -213,8 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 const responseBody = JSON.parse(data.body);
                 if (data.statusCode === 200) {
-                    const username = responseBody.username; // Assign value to the local variable
-                    localStorage.setItem('username', username); // Store the username in localStorage
+                    username = responseBody.username; // Assign value to the local variable
                     console.log('Username:', username);
 
                     // Proceed with the remaining DOM manipulations

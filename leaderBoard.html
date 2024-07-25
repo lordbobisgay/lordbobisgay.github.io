@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 const responseBody = JSON.parse(data.body);
                 if (data.statusCode === 200) {
-                    const username = responseBody.username; // Assign value to the local variable
+                    username = responseBody.username; // Assign value to the local variable
                     console.log('Username:', username);
 
                     // Proceed with the remaining DOM manipulations

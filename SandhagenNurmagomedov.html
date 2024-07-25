@@ -1842,8 +1842,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     username = responseBody.username; // Assign value to the global variable
                     console.log('Username:', username);
 
+                    // Proceed with the remaining DOM manipulations
                     fetchDataAndUpdateUI();
                     updateNavbar(username);
+                    setupSignOutButton(); // Call this function after username is set
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
                 }
@@ -1855,8 +1857,8 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No registerKey found in localStorage');
     }
 
+    // Other initializations that do not depend on username
     updateOdds();
-    setupSignOutButton();
     addSidebarEventListeners();
     processResult();
 });
@@ -1973,7 +1975,7 @@ fetch(apiUrl)
 function setupSignOutButton() {
     var signOutButton = document.getElementById('navSignOut');
 
-    // Check if username exists in localStorage
+    // Check if username exists in the global variable
     if (username) {
         // Show sign out button if username exists
         signOutButton.style.display = 'block';
@@ -1984,7 +1986,7 @@ function setupSignOutButton() {
 
     // Add event listener for sign out action
     signOutButton.addEventListener('click', function() {
-        localStorage.removeItem('registerKey'); // This will delete the username from localStorage
+        localStorage.removeItem('registerKey'); // This will delete the registerKey from localStorage
 
         // Optional: Provide feedback or redirect the user
         alert('You have been signed out.');
