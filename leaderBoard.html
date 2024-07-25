@@ -80,8 +80,73 @@
     <script type="module">
 
 let username; // Declare a global variable
+document.addEventListener('DOMContentLoaded', function() {
+    const registerKey = localStorage.getItem('registerKey');
+    if (registerKey) {
+        fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=verify&result=${registerKey}`)
+            .then(response => response.json())
+            .then(data => {
+                const responseBody = JSON.parse(data.body);
+                if (data.statusCode === 200) {
+                    username = responseBody.username; // Assign value to the local variable
+                    console.log('Username:', username);
+
+                    // Proceed with the remaining DOM manipulations
+                    updateNavbar(username);
+                    setupSignOutButton();
+                    getLeaderboard();
+                } else {
+                    console.error('Failed to verify register key:', responseBody.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    } else {
+        console.error('No registerKey found in localStorage');
+        getLeaderboard();
+    }
+});
+
+function updateNavbar(username) {
+    if (username) {
+        console.log('Username:', username);
+        // Hide the REGISTER and SIGN IN navigation items
+        document.getElementById('navRegister').style.display = 'none';
+        document.getElementById('navSignIn').style.display = 'none';
+
+        // Create a new nav item for the user, using the username as the link text
+        var navItem = document.createElement('li');
+        navItem.className = 'nav-item mx-0 mx-lg-1';
+        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
+        document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
+    }
+}
+
+function setupSignOutButton() {
+    var signOutButton = document.getElementById('navSignOut');
+
+    // Check if username exists in localStorage
+    if (username) {
+        // Show sign out button if username exists
+        signOutButton.style.display = 'block';
+    } else {
+        // Hide sign out button if no username exists
+        signOutButton.style.display = 'none';
+    }
+
+    // Add event listener for sign out action
+    signOutButton.addEventListener('click', function() {
+        localStorage.removeItem('registerKey'); // This will delete the username from localStorage
+
+        // Optional: Provide feedback or redirect the user
+        alert('You have been signed out.');
+        window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
+    });
+}
+
         // Function to retrieve data
-        function getLeaderboard(sortBy = 'score', buttonState) {
+function getLeaderboard(sortBy = 'score', buttonState) {
     fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=leaderboard`)
         .then(response => response.json())
         .then(data => {
@@ -509,73 +574,6 @@ document.getElementById('infoButton').addEventListener('click', function() {
             console.error('Failed to fetch leaderboard data:', error);
             document.getElementById('userInfo').innerHTML = '<p class="text-danger">Error loading leaderboard data.</p>';
         });
-}
-
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const registerKey = localStorage.getItem('registerKey');
-    if (registerKey) {
-        fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=verify&result=${registerKey}`)
-            .then(response => response.json())
-            .then(data => {
-                const responseBody = JSON.parse(data.body);
-                if (data.statusCode === 200) {
-                    username = responseBody.username; // Assign value to the local variable
-                    console.log('Username:', username);
-
-                    // Proceed with the remaining DOM manipulations
-                    updateNavbar(username);
-                    setupSignOutButton();
-                } else {
-                    console.error('Failed to verify register key:', responseBody.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    } else {
-        console.error('No registerKey found in localStorage');
-    }
-    getLeaderboard();
-});
-
-function updateNavbar(username) {
-    if (username) {
-        console.log('Username:', username);
-        // Hide the REGISTER and SIGN IN navigation items
-        document.getElementById('navRegister').style.display = 'none';
-        document.getElementById('navSignIn').style.display = 'none';
-
-        // Create a new nav item for the user, using the username as the link text
-        var navItem = document.createElement('li');
-        navItem.className = 'nav-item mx-0 mx-lg-1';
-        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
-        document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
-    }
-}
-
-function setupSignOutButton() {
-    var signOutButton = document.getElementById('navSignOut');
-
-    // Check if username exists in localStorage
-    if (username) {
-        // Show sign out button if username exists
-        signOutButton.style.display = 'block';
-    } else {
-        // Hide sign out button if no username exists
-        signOutButton.style.display = 'none';
-    }
-
-    // Add event listener for sign out action
-    signOutButton.addEventListener('click', function() {
-        localStorage.removeItem('registerKey'); // This will delete the username from localStorage
-
-        // Optional: Provide feedback or redirect the user
-        alert('You have been signed out.');
-        window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
-    });
 }
 
 document.getElementById('goToMyselfButton').addEventListener('click', function() {
