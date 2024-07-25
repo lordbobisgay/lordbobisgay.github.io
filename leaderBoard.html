@@ -79,7 +79,7 @@
 
     <script type="module">
 
-
+let username; // Declare a global variable
         // Function to retrieve data
         function getLeaderboard(sortBy = 'score', buttonState) {
     fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=leaderboard`)
@@ -514,10 +514,7 @@ document.getElementById('infoButton').addEventListener('click', function() {
 
 
 
-
-let username; // Declare a global variable
 document.addEventListener('DOMContentLoaded', function() {
-    getLeaderboard();
     const registerKey = localStorage.getItem('registerKey');
     if (registerKey) {
         fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=verify&result=${registerKey}`)
@@ -541,6 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('No registerKey found in localStorage');
     }
+    getLeaderboard();
 });
 
 function updateNavbar(username) {
