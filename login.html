@@ -85,7 +85,6 @@
 </div>
 
 
-
     <script type="module">
 
 
@@ -103,6 +102,7 @@ document.getElementById("submit").addEventListener('click', function(e) {
             // Now use 'responseBody' to access the response contents
             if (data.statusCode === 200) {
                 localStorage.setItem('username', username);
+                localStorage.setItem('registerKey', responseBody.registerKey);
                 alert(responseBody.message);
                 window.location.href = responseBody.redirect;  // Redirect based on the API response
             } else {
@@ -115,34 +115,38 @@ document.getElementById("submit").addEventListener('click', function(e) {
         });
 });
 
+let username; // Declare a global variable
 
-        // Function to retrieve data
-        function get1() {
-            const username = localStorage.getItem('username');
-            const userRef = ref(db, '/user/' + username);
-            onValue(userRef, (snapshot) => {
-                const data = snapshot.val();
+document.addEventListener('DOMContentLoaded', function() {
+    const registerKey = localStorage.getItem('registerKey');
+    if (registerKey) {
+        fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=verify&result=${registerKey}`)
+            .then(response => response.json())
+            .then(data => {
+                const responseBody = JSON.parse(data.body);
+                if (data.statusCode === 200) {
+                    username = responseBody.username;
+                    console.log('Username:', username);
+
+                    // Hide the REGISTER and SIGN IN navigation items
+                    document.getElementById('navRegister').style.display = 'none';
+                    document.getElementById('navSignIn').style.display = 'none';
+
+                    // Create a new nav item for the user, using the username as the link text
+                    var navItem = document.createElement('li');
+                    navItem.className = 'nav-item mx-0 mx-lg-1';
+                    navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
+                    document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
+                } else {
+                    console.error('Failed to verify register key:', responseBody.message);
+                }
             })
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-    var username = localStorage.getItem('username');
-    if (username) {
-        console.log('Username:', username);
-
-        // Hide the REGISTER and SIGN IN navigation items
-        document.getElementById('navRegister').style.display = 'none';
-        document.getElementById('navSignIn').style.display = 'none';
-
-        // Create a new nav item for the user, using the username as the link text
-        var navItem = document.createElement('li');
-        navItem.className = 'nav-item mx-0 mx-lg-1';
-        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
-        document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
-    } else {
-        
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 });
+
 
     </script>
         <!-- Bootstrap JS Bundle with Popper (Bootstrap 5) -->

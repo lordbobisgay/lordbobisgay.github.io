@@ -776,7 +776,7 @@ for (var i = 1; i <= 10; i += 2) {
     }
 }
 
-    var username = localStorage.getItem('username');
+
     if (!username) {
         console.error('Please sign in before making picks');
         alert('Please sign in/create account. Then your picks will be saved.');
@@ -824,7 +824,7 @@ for (var i = 1; i <= 10; i += 2) {
         }
     }
 }
-    var username = localStorage.getItem('username');
+
     if (!username) {
         console.error('Please sign in before making picks');
         alert('Please sign in/create account. Then your picks will be saved.');
@@ -847,9 +847,38 @@ for (var i = 1; i <= 10; i += 2) {
 });
             </script>
         <script>
+let username; // Declare a global variable
 document.addEventListener('DOMContentLoaded', function() {
+    const registerKey = localStorage.getItem('registerKey');
+    if (registerKey) {
+        fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=verify&result=${registerKey}`)
+            .then(response => response.json())
+            .then(data => {
+                const responseBody = JSON.parse(data.body);
+                if (data.statusCode === 200) {
+                    username = responseBody.username; // Assign value to the global variable
+                    console.log('Username:', username);
 
-    var username = localStorage.getItem('username');
+                    fetchDataAndUpdateUI();
+                    updateNavbar(username);
+                } else {
+                    console.error('Failed to verify register key:', responseBody.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    } else {
+        console.error('No registerKey found in localStorage');
+    }
+
+    updateOdds();
+    setupSignOutButton();
+    addSidebarEventListeners();
+    processResult();
+});
+
+function fetchDataAndUpdateUI() {
 const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=TemperBrueckner_F&username=${encodeURIComponent(username)}`;
 fetch(apiUrl)
     .then(response => response.json())
@@ -933,8 +962,32 @@ fetch(apiUrl)
     .catch(error => {
         console.error('Error fetching data: ', error);
     });
+}
 
-    var username = localStorage.getItem('username');
+
+function setupSignOutButton() {
+    var signOutButton = document.getElementById('navSignOut');
+
+    // Check if username exists in localStorage
+    if (username) {
+        // Show sign out button if username exists
+        signOutButton.style.display = 'block';
+    } else {
+        // Hide sign out button if no username exists
+        signOutButton.style.display = 'none';
+    }
+
+    // Add event listener for sign out action
+    signOutButton.addEventListener('click', function() {
+        localStorage.removeItem('registerKey'); // This will delete the username from localStorage
+
+        // Optional: Provide feedback or redirect the user
+        alert('You have been signed out.');
+        window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
+    });
+}
+
+function updateNavbar(username) {
     if (username) {
         console.log('Username:', username);
 
@@ -947,29 +1000,10 @@ fetch(apiUrl)
         navItem.className = 'nav-item mx-0 mx-lg-1';
         navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
-    } else {
-        
     }
-    var signOutButton = document.getElementById('navSignOut');
+}
 
-    // Check if username exists in localStorage
-    if (localStorage.getItem('username')) {
-        // Show sign out button if username exists
-        signOutButton.style.display = 'block';
-    } else {
-        // Hide sign out button if no username exists
-        signOutButton.style.display = 'none';
-    }
-
-    // Add event listener for sign out action
-    signOutButton.addEventListener('click', function() {
-        localStorage.removeItem('username'); // This will delete the username from localStorage
-
-        // Optional: Provide feedback or redirect the user
-        alert('You have been signed out.');
-        window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
-    });
-
+function addSidebarEventListeners() {
 const rightFunctions = [knockoutright, submissionright, decisionright, round1right, round2right, round3right, round4right, round5right];
 const leftFunctions = [knockout, submission, decision, round1, round2, round3, round4, round5];
 
@@ -987,8 +1021,9 @@ for (let i = 0; i < 5; i++) {
             leftFunctions[j].call(this, i + 1);
         });
     }
-}
+}}
 
+function processResult() {
 var result = "";
 for (var i = 1; i <= 10; i += 2) {
     var button1 = document.getElementById('firebutton' + i);
@@ -1018,7 +1053,7 @@ for (var i = 1; i <= 10; i += 2) {
 
 updateText(result);
 updateText2(result);
-});
+}
 
 function appendResult(overlayText, result) {
     switch (overlayText.innerHTML) {
