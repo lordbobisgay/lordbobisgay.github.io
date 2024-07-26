@@ -1463,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     get1();
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
-                    setupSignOutButton();
+					setupSignOutButton();
                 }
             })
             .catch(error => {

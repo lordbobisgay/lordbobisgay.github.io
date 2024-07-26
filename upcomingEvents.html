@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     setupSignOutButton();
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
+                    setupSignOutButton();
                 }
             })
             .catch(error => {
