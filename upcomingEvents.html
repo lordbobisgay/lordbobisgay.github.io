@@ -222,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     setupSignOutButton();
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
-                    setupSignOutButton();
                 }
             })
             .catch(error => {
@@ -230,6 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     } else {
         console.error('No registerKey found in localStorage');
+        setupSignOutButton();
     }
 });
 

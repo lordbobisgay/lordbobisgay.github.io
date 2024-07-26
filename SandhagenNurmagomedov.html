@@ -1855,6 +1855,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     } else {
         console.error('No registerKey found in localStorage');
+        setupSignOutButton();
+        
     }
 
     // Other initializations that do not depend on username
