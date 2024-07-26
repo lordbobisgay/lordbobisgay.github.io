@@ -34,7 +34,7 @@
 			<!-- Navigation-->
 			<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
 				<div class="container">
-					<a class="navbar-brand" href="#page-top">ACCOUNT INFORMATION PunchPredictor</a>
+					<a class="navbar-brand" id='topPage' href="#page-top">View Account</a>
 					<button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 						Menu
 						                    <!-- Bars Icon Embed with .bars class -->
@@ -73,11 +73,11 @@
         <div class="col-md-9">
             <!-- Tab Panes -->
                 <div class="tab-pane fade show active" id="v-pills-user-picks" role="tabpanel" aria-labelledby="v-pills-user-picks-tab">
-                    <h2 class="padding-top-extra3">USER INFORMATION</h2>
+                    <h2 class="padding-top-extra3" id="who1">Loading user information...</h2>
                     <div id="userInfo" class="p-3 border rounded">
                         Loading user information...
                     </div>
-                    <h2 class="padding-top-extra3">USER PICKS</h2>
+                    <h2 class="padding-top-extra3" id="who2">Loading user information...</h2>
                     <div id="userPicks" class="p-3 border rounded">
                         Loading user information...
                     </div>
@@ -95,7 +95,7 @@
 
         // Function to retrieve data
         function get1() {
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('viewUser');
 
     if (!username) {
         document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user is currently logged in.</p>';
@@ -1461,6 +1461,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateNavbar(username);
                     setupSignOutButton();
                     get1();
+					updateAccountStats();
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
 					setupSignOutButton();
@@ -1471,7 +1472,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     } else {
         console.error('No registerKey found in localStorage');
-        document.getElementById('userInfo').innerHTML = '<p class="text-danger">Please log in to view account information.</p>';
+		setupSignOutButton();
+		get1();
+		updateAccountStats();
     }
 });
 
@@ -1487,6 +1490,20 @@ function updateNavbar(username) {
         navItem.className = 'nav-item mx-0 mx-lg-1';
         navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
+    }
+}
+
+function updateAccountStats() {
+    // Retrieve the value from local storage
+    const viewUser = localStorage.getItem('viewUser');
+
+    // Check if the value is not null or empty
+    if (viewUser) {
+        // Update the text of the element with ID 'topPage'
+        document.getElementById('topPage').innerText = `${viewUser}'s PICKS`;
+		document.getElementById('who1').innerText = `${viewUser}'s STATS`;
+		document.getElementById('who2').innerText = `${viewUser}'s PICKS`;
+
     }
 }
 

@@ -73,11 +73,11 @@
         <div class="col-md-9">
             <!-- Tab Panes -->
                 <div class="tab-pane fade show active" id="v-pills-user-picks" role="tabpanel" aria-labelledby="v-pills-user-picks-tab">
-                    <h2 class="padding-top-extra3">USER INFORMATION</h2>
+                    <h2 class="padding-top-extra3">YOUR INFORMATION</h2>
                     <div id="userInfo" class="p-3 border rounded">
                         Loading user information...
                     </div>
-                    <h2 class="padding-top-extra3">USER PICKS</h2>
+                    <h2 class="padding-top-extra3">YOUR PICKS</h2>
                     <div id="userPicks" class="p-3 border rounded">
                         Loading user information...
                     </div>
@@ -95,7 +95,6 @@
 
         // Function to retrieve data
         function get1() {
-    const username = localStorage.getItem('username');
 
     if (!username) {
         document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user is currently logged in.</p>';

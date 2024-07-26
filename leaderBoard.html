@@ -75,9 +75,18 @@
 			</div>
 
 
-
+            <script>
+                function setViewUser(username) {
+                    localStorage.setItem('viewUser', username);
+                    window.location.href = 'https://punchpredictor.com/viewUser.html';
+                }
+            </script>
 
     <script type="module">
+function setViewUser(username) {
+    localStorage.setItem('viewUser', username);
+    window.location.href = 'https://punchpredictor.com/viewUser.html';
+}
 
 let username; // Declare a global variable
 document.addEventListener('DOMContentLoaded', function() {
@@ -107,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
         getLeaderboard();
         setupSignOutButton();
     }
+
 });
+
 
 function updateNavbar(username) {
     if (username) {
@@ -207,18 +218,20 @@ function getLeaderboard(sortBy = 'score', buttonState) {
                         </div>
                     </div>`;
 
-                leaderboardData.forEach(user => {
-                    const percentEarned = user.total > 0 ? ((user.score / (user.total * 100)) * 100).toFixed(2) : 0;
-                    const highlightClass = user.username === currentUser ? 'highlight' : '';
-                    leaderboardHtml += `<div class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
-                        <div class="col-1">${user.rank}</div>
-                        <div class="col-3">${user.username}</div>
-                        <div class="col-2">${user.picks}</div>
-                        <div class="col-2">${user.total}</div>
-                        <div class="col-2">${percentEarned}%</div>
-                        <div class="col-2">$${parseFloat(user.score).toFixed(2)}</div>
-                    </div>`;
-                });
+                    leaderboardData.forEach(user => {
+    const percentEarned = user.total > 0 ? ((user.score / (user.total * 100)) * 100).toFixed(2) : 0;
+    const highlightClass = user.username === currentUser ? 'highlight' : '';
+    leaderboardHtml += `<div class="list-group-item list-group-item2 d-flex justify-content-between align-items-center ${highlightClass}">
+        <div class="col-1">${user.rank}</div>
+        <div class="col-3">
+            <a href="#" onclick="setViewUser('${user.username}')">${user.username}</a>
+        </div>
+        <div class="col-2">${user.picks}</div>
+        <div class="col-2">${user.total}</div>
+        <div class="col-2">${percentEarned}%</div>
+        <div class="col-2">$${parseFloat(user.score).toFixed(2)}</div>
+    </div>`;
+});
                 leaderboardHtml += '</div>';
                 document.getElementById('userInfo').innerHTML = leaderboardHtml;
                                 // Now attach the event listener to the sortButton
@@ -585,6 +598,7 @@ document.getElementById('goToMyselfButton').addEventListener('click', function()
         console.log('No highlighted user found.');
     }
 });
+
     </script>
 
  <!-- Bootstrap JS Bundle with Popper (Bootstrap 5) -->
