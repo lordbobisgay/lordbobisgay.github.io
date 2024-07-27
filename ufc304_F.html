@@ -2006,7 +2006,7 @@ if (username) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.EdwardsMuhammad_value;
-            const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+            const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLC9DDD";
             const odds = {
                 1: -220,
                 2: +110,
@@ -2044,6 +2044,12 @@ if (username) {
                 34: -425,
                 35: +250,
                 36: +750,
+                37: -170,
+                38: +110,
+                39: -100,
+                40: -100,
+                41: -100,
+                42: -100
             };
 
             function getOddsForPosition(position) {
@@ -2091,44 +2097,50 @@ fetch(apiUrl2)
     .then(data => {
         const responseBody = JSON.parse(data.body);
         const userPicks = responseBody.EdwardsMuhammadParlay_value;
-        const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+        const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLC9DDD";
         const odds = {
             1: -220,
-            2: +110,
-            3: +100,
-            4: +155,
-            5: +450,
-            6: +100,
-            7: -120,
-            8: +185,
-            9: +1100,
-            10: -350,
-            11: +275,
-            12: +100,
-            13: +190,
-            14: +800,
-            15: +1600,
-            16: +185,
-            17: +185,
-            18: +185,
-            19: +190,
-            20: +850,
-            21: +3300,
-            22: -125,
-            23: +150,
-            24: +100,
-            25: -145,
-            26: +400,
-            27: +850,
-            28: -400,
-            29: +175,
-            30: +400,
-            31: -105,
-            32: +300,
-            33: +100,
-            34: -425,
-            35: +250,
-            36: +750,
+                2: +110,
+                3: +100,
+                4: +155,
+                5: +450,
+                6: +100,
+                7: -120,
+                8: +185,
+                9: +1100,
+                10: -350,
+                11: +275,
+                12: +100,
+                13: +190,
+                14: +800,
+                15: +1600,
+                16: +185,
+                17: +185,
+                18: +185,
+                19: +190,
+                20: +850,
+                21: +3300,
+                22: -125,
+                23: +150,
+                24: +100,
+                25: -145,
+                26: +400,
+                27: +850,
+                28: -400,
+                29: +175,
+                30: +400,
+                31: -105,
+                32: +300,
+                33: +100,
+                34: -425,
+                35: +250,
+                36: +750,
+                37: -170,
+                38: +110,
+                39: -100,
+                40: -100,
+                41: -100,
+                42: -100
         };
 
         function convertAmericanToDecimal(americanOdds) {
@@ -2602,7 +2614,7 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+			const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLC9DDD";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
