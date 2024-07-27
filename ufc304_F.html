@@ -1280,6 +1280,7 @@
     <button type="button" id="FB9" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails10"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
+        <span class="win-span-left">Win - Rd 1 KO</span>
     </button>
             <div class="text-center mb-3">
                 <div class="fight-category text-uppercase fw-bold">265 pound bout</div>
@@ -1652,6 +1653,7 @@
     <button type="button" id="FB13" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails14"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
+        <span class="win-span-left">Win - Decision</span>
     </button>
             <div class="text-center mb-3">
                 <div class="fight-category text-uppercase fw-bold">125 pound bout</div>
@@ -2006,7 +2008,7 @@ if (username) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.EdwardsMuhammad_value;
-            const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLC9DDD";
+            const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDDDDLC9DDD";
             const odds = {
                 1: -220,
                 2: +110,
@@ -2097,7 +2099,7 @@ fetch(apiUrl2)
     .then(data => {
         const responseBody = JSON.parse(data.body);
         const userPicks = responseBody.EdwardsMuhammadParlay_value;
-        const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLC9DDD";
+        const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDDDDLC9DDD";
         const odds = {
             1: -220,
                 2: +110,
@@ -2614,7 +2616,7 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDLC9DDD";
+			const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDDDDLC9DDD";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
