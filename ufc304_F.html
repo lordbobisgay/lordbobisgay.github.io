@@ -2008,7 +2008,7 @@ if (username) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.EdwardsMuhammad_value;
-            const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDLBILC9DDD";
+            const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDLBILC9LB1";
             const odds = {
                 1: -220,
                 2: +110,
@@ -2049,9 +2049,9 @@ if (username) {
                 37: -170,
                 38: +110,
                 39: -100,
-                40: -100,
-                41: -100,
-                42: -100
+                40: -147,
+                41: +1200,
+                42: +4000
             };
 
             function getOddsForPosition(position) {
@@ -2099,7 +2099,7 @@ fetch(apiUrl2)
     .then(data => {
         const responseBody = JSON.parse(data.body);
         const userPicks = responseBody.EdwardsMuhammadParlay_value;
-        const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDLBILC9DDD";
+        const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDLBILC9LB1";
         const odds = {
             1: -220,
                 2: +110,
@@ -2140,9 +2140,9 @@ fetch(apiUrl2)
                 37: -170,
                 38: +110,
                 39: -100,
-                40: -100,
-                41: -100,
-                42: -100
+                40: -147,
+                41: +1200,
+                42: +4000
         };
 
         function convertAmericanToDecimal(americanOdds) {
@@ -2616,7 +2616,7 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDLBILC9DDD";
+			const predefinedPicks = "DDDDDDDDDDDDDDDDDDDDDDDDLA3DDDDDDLBILC9LB1";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
