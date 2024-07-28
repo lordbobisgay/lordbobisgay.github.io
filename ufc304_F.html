@@ -2023,7 +2023,7 @@ if (username) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.EdwardsMuhammad_value;
-            const predefinedPicks = "DDDDDDROVLC9LC9LC9RP9RP9LA3LC1RP9LBILC9LB1";
+            const predefinedPicks = "DDDDDDROVLC9LC9LC9RP9RP9LA3LC1RP9LBILC9LBK";
             const odds = {
                 1: -220,
                 2: +110,
@@ -2114,7 +2114,7 @@ fetch(apiUrl2)
     .then(data => {
         const responseBody = JSON.parse(data.body);
         const userPicks = responseBody.EdwardsMuhammadParlay_value;
-        const predefinedPicks = "DDDDDDROVLC9LC9LC9RP9RP9LA3LC1RP9LBILC9LB1";
+        const predefinedPicks = "DDDDDDROVLC9LC9LC9RP9RP9LA3LC1RP9LBILC9LBK";
         const odds = {
             1: -220,
                 2: +110,
@@ -2631,7 +2631,7 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "DDDDDDROVLC9LC9LC9RP9RP9LA3LC1RP9LBILC9LB1";
+			const predefinedPicks = "DDDDDDROVLC9LC9LC9RP9RP9LA3LC1RP9LBILC9LBK";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
