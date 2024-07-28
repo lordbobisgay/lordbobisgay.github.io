@@ -727,6 +727,7 @@
     <button type="button" id="FB3" class="position-absolute top-0 start-0 w-100 h-100"
         data-bs-toggle="collapse" data-bs-target="#fightDetails4"
         aria-expanded="false" aria-controls="fightDetails" style="background: transparent; border: none; z-index: 1;">
+        <span class="win-span-right">Win - Rd 1 SUB</span>
     </button>
             <div class="text-center mb-3">
                 <div class="fight-category text-uppercase fw-bold">155 pound bout</div>
@@ -2022,7 +2023,7 @@ if (username) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.EdwardsMuhammad_value;
-            const predefinedPicks = "DDDDDDDDDLC9LC9LC9RQ9RQ9LA3LC1RQ9LBILC9LB1";
+            const predefinedPicks = "DDDDDDRPWLC9LC9LC9RQ9RQ9LA3LC1RQ9LBILC9LB1";
             const odds = {
                 1: -220,
                 2: +110,
@@ -2030,9 +2031,9 @@ if (username) {
                 4: +155,
                 5: +450,
                 6: +100,
-                7: -120,
-                8: +185,
-                9: +1100,
+                7: -108,
+                8: +450,
+                9: +900,
                 10: -170,
                 11: +130,
                 12: +100,
@@ -2113,7 +2114,7 @@ fetch(apiUrl2)
     .then(data => {
         const responseBody = JSON.parse(data.body);
         const userPicks = responseBody.EdwardsMuhammadParlay_value;
-        const predefinedPicks = "DDDDDDDDDLC9LC9LC9RQ9RQ9LA3LC1RQ9LBILC9LB1";
+        const predefinedPicks = "DDDDDDRPWLC9LC9LC9RQ9RQ9LA3LC1RQ9LBILC9LB1";
         const odds = {
             1: -220,
                 2: +110,
@@ -2121,9 +2122,9 @@ fetch(apiUrl2)
                 4: +155,
                 5: +450,
                 6: +100,
-                7: -120,
-                8: +185,
-                9: +1100,
+                7: -108,
+                8: +450,
+                9: +900,
                 10: -170,
                 11: +130,
                 12: +100,
@@ -2630,7 +2631,7 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "DDDDDDDDDLC9LC9LC9RQ9RQ9LA3LC1RQ9LBILC9LB1";
+			const predefinedPicks = "DDDDDDRPWLC9LC9LC9RQ9RQ9LA3LC1RQ9LBILC9LB1";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
