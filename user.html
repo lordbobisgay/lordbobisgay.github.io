@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script>
-            !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId setPersonProperties".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-            posthog.init('phc_vYRCWO99s1v9OuU1y6xF23wjQxnFT9wJ4paSJ9mGQf2',{api_host:'https://us.i.posthog.com', person_profiles: 'identified_only' // or 'always' to create profiles for anonymous users as well
-                })
-        </script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="User Information PunchPredictor" />
@@ -73,11 +68,11 @@
         <div class="col-md-9">
             <!-- Tab Panes -->
                 <div class="tab-pane fade show active" id="v-pills-user-picks" role="tabpanel" aria-labelledby="v-pills-user-picks-tab">
-                    <h2 class="padding-top-extra3">YOUR INFORMATION</h2>
+                    <h2 class="padding-top-extra3">USER INFORMATION</h2>
                     <div id="userInfo" class="p-3 border rounded">
                         Loading user information...
                     </div>
-                    <h2 class="padding-top-extra3">YOUR PICKS</h2>
+                    <h2 class="padding-top-extra3">USER PICKS</h2>
                     <div id="userPicks" class="p-3 border rounded">
                         Loading user information...
                     </div>
@@ -95,6 +90,7 @@
 
         // Function to retrieve data
         function get1() {
+    const username = localStorage.getItem('username');
 
     if (!username) {
         document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user is currently logged in.</p>';
@@ -129,17 +125,174 @@
             var EdwardsMuhammadParlay_fetch = userInfo[21];
             var SandhagenNurmagomedov_fetch = userInfo[22];
             var SandhagenNurmagomedovParlay_fetch = userInfo[23];
+            var TyburaSpivac_fetch = userInfo[24];
+            var TyburaSpivacParlay_fetch = userInfo[25];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
                 <p><strong>Username:</strong> ${username}</p>
-                <p><strong>Score:</strong> $${formattedScore || 'No score yet'} - This is how much money you would have made if you bet $100 on each pick.</p>
+                <p><strong>Score:</strong> $${formattedScore || 'No score yet'} - This is how much money you would have made if you bet $100 on each fight.</p>
 
             `;
             let userPicksHtml = `
 
             `;
 
+            if (TyburaSpivacParlay_fetch !== "TyburaSpivacParlay not found") {
+                const davismartinpicks = [];
+                const davismartin = TyburaSpivacParlay_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Marcin Tybura", "Serghei Spivac", "Chris Gutierrez", "Javid Basharat", "Damon Jackson", "Chepe Mariscal", "Yana Santos", "Chelsea Chandler", "Allan Nascimento", "Jafel Filho", "Toshiomi Kazama", "Charalampos Grigoriou", "Jonny Parsons", "Yusaku Kinoshita", "Uros Medic", "Danny Barlow", "Karol Rosa", "Pannie Kianzad", "Jhonata Diniz", "Karl Williams", "Youssef Zalal", "Jarno Errens", "Stephanie Luciano", "Talita Alencar"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Tybura vs Spivac Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+            if (TyburaSpivac_fetch !== "TyburaSpivac not found") {
+                const davismartinpicks = [];
+                const davismartin = TyburaSpivac_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Marcin Tybura", "Serghei Spivac", "Chris Gutierrez", "Javid Basharat", "Damon Jackson", "Chepe Mariscal", "Yana Santos", "Chelsea Chandler", "Allan Nascimento", "Jafel Filho", "Toshiomi Kazama", "Charalampos Grigoriou", "Jonny Parsons", "Yusaku Kinoshita", "Uros Medic", "Danny Barlow", "Karol Rosa", "Pannie Kianzad", "Jhonata Diniz", "Karl Williams", "Youssef Zalal", "Jarno Errens", "Stephanie Luciano", "Talita Alencar"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+    
             if (SandhagenNurmagomedovParlay_fetch !== "SandhagenNurmagomedovParlay not found") {
                 const davismartinpicks = [];
                 const davismartin = SandhagenNurmagomedovParlay_fetch;
@@ -206,7 +359,7 @@
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Cory Sandhagen", "Umar Nurmagomedov", "Shara Magomedov", "Michal Oleksiejczuk", "Marlon Vera", "Deiveson Figueiredo", "Tony Ferguson", "Michael Chiesa", "Mackenzie Dern", "Loopy Godinez", "Joel Alvarez", "Elves Brener", "Alonzo Menifield", "Azamat Murzakanov", "Mohammad Yahya", "Kaue Fernandes", "Shamil Gaziev", "Don'Tale Mayes", "Jordan Vucenic", "Guram Kutateladze", "Viktoriia Dudakova", "Sam Hughes", "Jai Herbert", "Rolando Bedoya", "Sedriques Dumas", "Denis Tiuliulin"];
+                const pairs = ["Cory Sandhagen", "Umar Nurmagomedov", "Shara Magomedov", "Michal Oleksiejczuk", "Marlon Vera", "Deiveson Figueiredo", "Tony Ferguson", "Michael Chiesa", "Mackenzie Dern", "Loopy Godinez", "Joel Alvarez", "Elves Brener", "Alonzo Menifield", "Azamat Murzakanov", "Mohammad Yahya", "Kaue Fernandes", "Shamil Gaziev", "Don'Tale Mayes", "Abdul-Kareem Al-Selwady", "Guram Kutateladze", "Viktoriia Dudakova", "Sam Hughes", "Jai Herbert", "Rolando Bedoya", "Sedriques Dumas", "Denis Tiuliulin"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -283,7 +436,7 @@
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Cory Sandhagen", "Umar Nurmagomedov", "Shara Magomedov", "Michal Oleksiejczuk", "Marlon Vera", "Deiveson Figueiredo", "Tony Ferguson", "Michael Chiesa", "Mackenzie Dern", "Loopy Godinez", "Joel Alvarez", "Elves Brener", "Alonzo Menifield", "Azamat Murzakanov", "Mohammad Yahya", "Kaue Fernandes", "Shamil Gaziev", "Don'Tale Mayes", "Jordan Vucenic", "Guram Kutateladze", "Viktoriia Dudakova", "Sam Hughes", "Jai Herbert", "Rolando Bedoya", "Sedriques Dumas", "Denis Tiuliulin"];
+                const pairs = ["Cory Sandhagen", "Umar Nurmagomedov", "Shara Magomedov", "Michal Oleksiejczuk", "Marlon Vera", "Deiveson Figueiredo", "Tony Ferguson", "Michael Chiesa", "Mackenzie Dern", "Loopy Godinez", "Joel Alvarez", "Elves Brener", "Alonzo Menifield", "Azamat Murzakanov", "Mohammad Yahya", "Kaue Fernandes", "Shamil Gaziev", "Don'Tale Mayes", "Abdul-Kareem Al-Selwady", "Guram Kutateladze", "Viktoriia Dudakova", "Sam Hughes", "Jai Herbert", "Rolando Bedoya", "Sedriques Dumas", "Denis Tiuliulin"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -361,7 +514,7 @@
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Leon Edwards", "Belal Muhammad", "Tom Aspinall", "Curtis Blaydes", "King Green", "Paddy Pimblett", "Muhammad Mokaev", "Manel Kape", "Arnold Allen", "Giga Chikadze", "Nathaniel Wood", "Daniel Pineda", "Molly McCann", "Bruna Brasil", "Caolan Loughran", "Jake Hadley", "Mick Parkin", "Lukasz Brzeski", "Oban Elliott", "Preston Parsons", "Christian Leroy Duncan", "Gregory Rodrigues", "Sam Patterson", "Kiefer Crosbie", "Shauna Bannon", "Ravena Oliveira", "Modestas Bukauskas", "Marcin Prachnio"];
+                const pairs = ["Leon Edwards", "Belal Muhammad", "Tom Aspinall", "Curtis Blaydes", "King Green", "Paddy Pimblett", "Muhammad Mokaev", "Manel Kape", "Arnold Allen", "Giga Chikadze", "Nathaniel Wood", "Daniel Pineda", "Molly McCann", "Bruna Brasil", "Caolan Loughran", "Ramon Taveras", "Mick Parkin", "Lukasz Brzeski", "Oban Elliott", "Preston Parsons", "Christian Leroy Duncan", "Gregory Rodrigues", "Sam Patterson", "Kiefer Crosbie", "Shauna Bannon", "Ravena Oliveira", "Modestas Bukauskas", "Marcin Prachnio"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -369,7 +522,7 @@
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 304 Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>EdwardsMuhammad Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
                 }
             }
             if (EdwardsMuhammad_fetch !== "EdwardsMuhammad not found") {
@@ -438,7 +591,7 @@
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Leon Edwards", "Belal Muhammad", "Tom Aspinall", "Curtis Blaydes", "King Green", "Paddy Pimblett", "Muhammad Mokaev", "Manel Kape", "Arnold Allen", "Giga Chikadze", "Nathaniel Wood", "Daniel Pineda", "Molly McCann", "Bruna Brasil", "Caolan Loughran", "Jake Hadley", "Mick Parkin", "Lukasz Brzeski", "Oban Elliott", "Preston Parsons", "Christian Leroy Duncan", "Gregory Rodrigues", "Sam Patterson", "Kiefer Crosbie", "Shauna Bannon", "Ravena Oliveira", "Modestas Bukauskas", "Marcin Prachnio"];
+                const pairs = ["Leon Edwards", "Belal Muhammad", "Tom Aspinall", "Curtis Blaydes", "King Green", "Paddy Pimblett", "Muhammad Mokaev", "Manel Kape", "Arnold Allen", "Giga Chikadze", "Nathaniel Wood", "Daniel Pineda", "Molly McCann", "Bruna Brasil", "Caolan Loughran", "Ramon Taveras", "Mick Parkin", "Lukasz Brzeski", "Oban Elliott", "Preston Parsons", "Christian Leroy Duncan", "Gregory Rodrigues", "Sam Patterson", "Kiefer Crosbie", "Shauna Bannon", "Ravena Oliveira", "Modestas Bukauskas", "Marcin Prachnio"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -446,7 +599,7 @@
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 304 Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>EdwardsMuhammad Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
                 }
             }
     
@@ -1432,7 +1585,6 @@
             }
             if (SandhagenNurmagomedovParlay_fetch !== "SandhagenNurmagomedovParlay not found") {
                 total = total + 1;}
-
             
 
             // Update the DOM with user info
@@ -1443,42 +1595,13 @@
 }
 
 
-let username; // Declare a global variable
+
 document.addEventListener('DOMContentLoaded', function() {
-    const registerKey = localStorage.getItem('registerKey');
-    if (registerKey) {
-        fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=verify&result=${registerKey}`)
-            .then(response => response.json())
-            .then(data => {
-                const responseBody = JSON.parse(data.body);
-                if (data.statusCode === 200) {
-                    username = responseBody.username; // Assign value to the local variable
-                    localStorage.setItem('username', username); // Store the username in localStorage
+                var username = localStorage.getItem('username');
+                if (username) {
                     console.log('Username:', username);
-
-                    // Proceed with the remaining DOM manipulations
-                    updateNavbar(username);
-                    setupSignOutButton();
-                    get1();
-                } else {
-                    console.error('Failed to verify register key:', responseBody.message);
-                    setupSignOutButton();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    } else {
-        console.error('No registerKey found in localStorage');
-        document.getElementById('userInfo').innerHTML = '<p class="text-danger">Please log in to view account information.</p>';
-    }
-});
-
-function updateNavbar(username) {
-    if (username) {
-        console.log('Username:', username);
-        // Hide the REGISTER and SIGN IN navigation items
-        document.getElementById('navRegister').style.display = 'none';
+					// Hide the REGISTER and SIGN IN navigation items
+					document.getElementById('navRegister').style.display = 'none';
         document.getElementById('navSignIn').style.display = 'none';
 
         // Create a new nav item for the user, using the username as the link text
@@ -1486,30 +1609,32 @@ function updateNavbar(username) {
         navItem.className = 'nav-item mx-0 mx-lg-1';
         navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded" href="http://punchpredictor.com/user.html">${username}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
-    }
+					get1();
+                    // You can now use the username variable here to modify the DOM or perform other actions
+                } else {
+                    
+					document.getElementById('userInfo').innerHTML = '<p class="text-danger">Please log in to view account information.</p>';
+                }
+                var signOutButton = document.getElementById('navSignOut');
+
+// Check if username exists in localStorage
+if (localStorage.getItem('username')) {
+    // Show sign out button if username exists
+    signOutButton.style.display = 'block';
+} else {
+    // Hide sign out button if no username exists
+    signOutButton.style.display = 'none';
 }
 
-function setupSignOutButton() {
-    var signOutButton = document.getElementById('navSignOut');
+// Add event listener for sign out action
+signOutButton.addEventListener('click', function() {
+    localStorage.removeItem('username'); // This will delete the username from localStorage
 
-    // Check if username exists in localStorage
-    if (username) {
-        // Show sign out button if username exists
-        signOutButton.style.display = 'block';
-    } else {
-        // Hide sign out button if no username exists
-        signOutButton.style.display = 'none';
-    }
-
-    // Add event listener for sign out action
-    signOutButton.addEventListener('click', function() {
-        localStorage.removeItem('registerKey'); // This will delete the username from localStorage
-
-        // Optional: Provide feedback or redirect the user
-        alert('You have been signed out.');
-        window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
-    });
-}
+    // Optional: Provide feedback or redirect the user
+    alert('You have been signed out.');
+    window.location.href = 'http://punchpredictor.com/login.html'; // Redirects to the login page
+});
+            });
 
     </script>
     <!-- Bootstrap JS Bundle with Popper (Bootstrap 5) -->
