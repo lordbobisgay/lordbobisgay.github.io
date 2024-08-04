@@ -88,9 +88,74 @@
 
     <script type="module">
 
+async function getUserScore(username, result) {
+    // Use template literals to insert variables into the URL
+    const url = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=gatherScore&username=${username}&result=${result}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (response.status === 200) {
+            // Parse the JSON string in the 'body' field
+            const bodyData = JSON.parse(data.body);
+
+            // Use the actual result key
+            return bodyData[result];
+        } else if (response.status === 404) {
+            // Handle 404 error and return null
+            const errorMessage = data.error;
+            if (errorMessage.includes('not found')) {
+                return null; // Return null if the result is not found
+            } else {
+                throw new Error(errorMessage);
+            }
+        } else {
+            throw new Error(`Unexpected status code: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Error fetching user score:', error);
+        return null;
+    }
+}
+
+
+
         // Function to retrieve data
         function get1() {
     const username = localStorage.getItem('username');
+
+    let EdwardsMuhammadScore = 0;
+    let SandhagenNurmagomedovScore = 0;
+    let TyburaSpivacScore = 0;
+
+Promise.all([
+    // waits for response from lambda function before doing other stuff
+    getUserScore(username, 'SandhagenNurmagomedovScore').then(score => {
+        if (score !== null && score !== undefined) {
+            SandhagenNurmagomedovScore = score;
+        } else {
+            console.log('SandhagenNurmagomedovScore not found or an error occurred.');
+        }
+    }),
+    getUserScore(username, 'EdwardsMuhammadScore').then(score => {
+        if (score !== null && score !== undefined) {
+            EdwardsMuhammadScore = score;
+        } else {
+            console.log('EdwardsMuhammadScore not found or an error occurred.');
+        }
+    }),
+    getUserScore(username, 'TyburaSpivacScore').then(score => {
+        if (score !== null && score !== undefined) {
+            console.log(score);
+            TyburaSpivacScore = score;
+        } else {
+            console.log('TyburaSpivacScore not found or an error occurred.');
+            TyburaSpivacScore = 0;
+        }
+    })
+]).then(() => {
+
 
     if (!username) {
         document.getElementById('userInfo').innerHTML = '<p class="text-danger">No user is currently logged in.</p>';
@@ -289,7 +354,7 @@
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TyburaSpivacScore.toFixed(2)}</strong></p>`;
                 }
             }
     
@@ -444,7 +509,7 @@
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>SandhagenNurmagomedov Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>SandhagenNurmagomedov Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${SandhagenNurmagomedovScore.toFixed(2)}</strong></p>`;
                 }
             }
     
@@ -599,7 +664,7 @@
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>EdwardsMuhammad Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>EdwardsMuhammad Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${EdwardsMuhammadScore.toFixed(2)}</strong></p>`;
                 }
             }
     
@@ -1592,6 +1657,7 @@
             document.getElementById('userPicks').innerHTML = userPicksHtml;
         })
         .catch(error => console.error('Error:', error));
+});
 }
 
 
