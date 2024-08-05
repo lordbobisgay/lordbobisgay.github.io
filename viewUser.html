@@ -131,6 +131,7 @@ async function getUserScore(username, result) {
     let EdwardsMuhammadScore = 0;
     let SandhagenNurmagomedovScore = 0;
     let TyburaSpivacScore = 0;
+    let DuplessisAdesanyaScore = 0;
 
 Promise.all([
     // waits for response from lambda function before doing other stuff
@@ -138,25 +139,28 @@ Promise.all([
         if (score !== null && score !== undefined) {
             SandhagenNurmagomedovScore = score;
         } else {
-            console.log('SandhagenNurmagomedovScore not found or an error occurred.');
         }
     }),
     getUserScore(username, 'EdwardsMuhammadScore').then(score => {
         if (score !== null && score !== undefined) {
             EdwardsMuhammadScore = score;
         } else {
-            console.log('EdwardsMuhammadScore not found or an error occurred.');
         }
     }),
     getUserScore(username, 'TyburaSpivacScore').then(score => {
         if (score !== null && score !== undefined) {
-            console.log(score);
             TyburaSpivacScore = score;
         } else {
-            console.log('TyburaSpivacScore not found or an error occurred.');
             TyburaSpivacScore = 0;
         }
-    })
+    }),
+    getUserScore(username, 'DuplessisAdesanyaScore').then(score => {
+        if (score !== null && score !== undefined) {
+            DuplessisAdesanyaScore = score;
+        } else {
+            DuplessisAdesanyaScore = 0;
+        }
+    }),
 ]).then(() => {
 
 
@@ -195,6 +199,8 @@ Promise.all([
             var SandhagenNurmagomedovParlay_fetch = userInfo[23];
             var TyburaSpivac_fetch = userInfo[24];
             var TyburaSpivacParlay_fetch = userInfo[25];
+            var DuplessisAdesanya_fetch = userInfo[26];
+            var DuplessisAdesanyaParlay_fetch = userInfo[27];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
@@ -206,6 +212,161 @@ Promise.all([
 
             `;
 
+            if (DuplessisAdesanyaParlay_fetch !== "DuplessisAdesanyaParlay not found") {
+                const davismartinpicks = [];
+                const davismartin = DuplessisAdesanyaParlay_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Dricus Du Plessis", "Israel Adesanya", "Kai Kara-France", "Steve Erceg", "Mateusz Gamrot", "Dan Hooker", "Tai Tuivasa", "Jairzinho Rozenstruik", "Li Jingliang", "Carlos Prates", "Junior Tafa", "Valter Walker", "Josh Culibao", "Ricardo Ramos", "Casey O'Neill", "Tereza Bleda", "Jack Jenkins", "Herbert Burns", "Tom Nolan", "Alex Reyes", "Song Kenan", "Ricky Glenn", "Stewart Nicoll", "Jesus Aguilar"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>DuplessisAdesanya Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+            if (DuplessisAdesanya_fetch !== "DuplessisAdesanya not found") {
+                const davismartinpicks = [];
+                const davismartin = DuplessisAdesanya_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Dricus Du Plessis", "Israel Adesanya", "Kai Kara-France", "Steve Erceg", "Mateusz Gamrot", "Dan Hooker", "Tai Tuivasa", "Jairzinho Rozenstruik", "Li Jingliang", "Carlos Prates", "Junior Tafa", "Valter Walker", "Josh Culibao", "Ricardo Ramos", "Casey O'Neill", "Tereza Bleda", "Jack Jenkins", "Herbert Burns", "Tom Nolan", "Alex Reyes", "Song Kenan", "Ricky Glenn", "Stewart Nicoll", "Jesus Aguilar"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>DuplessisAdesanya Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${DuplessisAdesanyaScore.toFixed(2)}</strong> </p>`;
+                }
+            }
+    
             if (TyburaSpivacParlay_fetch !== "TyburaSpivacParlay not found") {
                 const davismartinpicks = [];
                 const davismartin = TyburaSpivacParlay_fetch;
