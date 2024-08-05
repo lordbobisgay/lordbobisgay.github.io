@@ -131,7 +131,7 @@ async function getUserScore(username, result) {
     let DuplessisAdesanyaScore = 0;
 
 Promise.all([
-    // waits for response from lambda function before doing other stuff
+    // im using this line to write above in cardwriter dont change this
     getUserScore(username, 'SandhagenNurmagomedovScore').then(score => {
         if (score !== null && score !== undefined) {
             SandhagenNurmagomedovScore = score;
