@@ -95,8 +95,8 @@
 .reduced-margin-bar {
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 303px;
+  right: 303px;
   width: auto;
   background-color: white;
   padding: 10px 0;
@@ -498,9 +498,9 @@
   .reduced-margin-bar {
     position: fixed;
     bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
+    left: 10px;
+    right: 20px;
+    width: 400px;
     background-color: white;
     padding: 5px 0;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
