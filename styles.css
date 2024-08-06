@@ -638,24 +638,7 @@
   
 }
 }
-/* For medium screens (like modern 13" notebooks) */
-@media (max-width: 1440px) {
-  /* CSS for medium screens */
-  .reduced-margin-bar {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 930px;
-    background-color: white;
-    padding: 5px 0;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    z-index: 50;
-    border: 1px solid black;
-    
-    font-size: 10px; /* Adjust the size as needed */
-  }
-}
+
 @media (max-width: 812px) {
   #main-card {
       transform: scale(1);
@@ -681,10 +664,6 @@
 }
 }
 
-/* For medium screens (like modern 13" notebooks) */
-@media (min-width: 1025px) and (max-width: 1440px) {
-  /* CSS for medium screens */
-}
 
 .fight-bar-img1 {
   max-width: 250px; /* Adjust image size on larger screens */
