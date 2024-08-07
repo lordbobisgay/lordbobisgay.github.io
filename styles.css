@@ -504,13 +504,19 @@
 .text-bigger-specifically{
   font-size: 1.0rem;
 }
+.text-bigger-specifically2{
+  font-size: 1.0rem !important;
+}
 .wdth-100 {
   width: 100% !important;
 }
 
 @media (min-width: 1600px) {
   .text-bigger-specifically{
-    font-size: 1.5rem !important;
+    font-size: 1.7rem !important;
+  }
+  .text-bigger-specifically2{
+    font-size: 1.0rem !important;
   }
   .navbar-toggler {
       display: none;
