@@ -84,7 +84,12 @@
 
 
 
-
+<script>
+function setViewUser(username, page) {
+    localStorage.setItem('viewUser', username);
+    window.location.href = 'https://punchpredictor.com/'+page;
+}
+</script>
 
     <script type="module">
         
@@ -121,6 +126,7 @@ async function getUserScore(username, result) {
 
         // Function to retrieve data
         function get1() {
+
     const username = localStorage.getItem('viewUser');
 
     let EdwardsMuhammadScore = 0;
@@ -668,7 +674,7 @@ Promise.all([
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>SandhagenNurmagomedov Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${SandhagenNurmagomedovScore.toFixed(2)}</strong></p>`;
+                    userPicksHtml += `<p><strong>SandhagenNurmagomedov Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${SandhagenNurmagomedovScore.toFixed(2)}</strong> <a href="#" onclick="setViewUser('${username}', 'SandhagenNurmagomedov_view.html')">View Picks</a></strong></p>`;
                 }
             }
     
