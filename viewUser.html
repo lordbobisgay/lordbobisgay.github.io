@@ -829,7 +829,7 @@ Promise.all([
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>EdwardsMuhammad Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${EdwardsMuhammadScore.toFixed(2)}</strong></p>`;
+                    userPicksHtml += `<p><strong>UFC 304 Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${EdwardsMuhammadScore.toFixed(2)}</strong> <a href="#" onclick="setViewUser('${username}', 'ufc304_view.html')">View Picks</a></strong></p>`;
                 }
             }
     
@@ -1425,7 +1425,7 @@ Promise.all([
 
                 // Append the resulting picks to the HTML content
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 303 Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>UFC 303 Picks:</strong> ${davismartinpicks.join(', ')} <a href="#" onclick="setViewUser('${username}', 'ufc303_view.html')">View Picks</a></strong></p>`;
                 }
             }
             // Handle perez vs taira picks
