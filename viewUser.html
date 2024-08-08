@@ -133,6 +133,7 @@ async function getUserScore(username, result) {
     let SandhagenNurmagomedovScore = 0;
     let TyburaSpivacScore = 0;
     let DuplessisAdesanyaScore = 0;
+    let PereiraProchazkaScore = 0;
 
 Promise.all([
     // waits for response from lambda function before doing other stuff
@@ -160,6 +161,13 @@ Promise.all([
             DuplessisAdesanyaScore = score;
         } else {
             DuplessisAdesanyaScore = 0;
+        }
+    }),
+    getUserScore(username, 'PereiraProchazkaScore').then(score => {
+        if (score !== null && score !== undefined) {
+            PereiraProchazkaScore = score;
+        } else {
+            PereiraProchazkaScore = 0;
         }
     }),
 ]).then(() => {
@@ -1425,7 +1433,7 @@ Promise.all([
 
                 // Append the resulting picks to the HTML content
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 303 Picks:</strong> ${davismartinpicks.join(', ')} <a href="#" onclick="setViewUser('${username}', 'ufc303_view.html')">View Picks</a></strong></p>`;
+                    userPicksHtml += `<p><strong>UFC 303 Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${PereiraProchazkaScore.toFixed(2)}</strong> <a href="#" onclick="setViewUser('${username}', 'ufc303_view.html')">View Picks</a></strong></p>`;
                 }
             }
             // Handle perez vs taira picks
