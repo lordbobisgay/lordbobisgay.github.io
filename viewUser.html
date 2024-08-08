@@ -442,7 +442,7 @@ Promise.all([
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Marcin Tybura", "Serghei Spivac", "Chris Gutierrez", "Javid Basharat", "Damon Jackson", "Chepe Mariscal", "Yana Santos", "Chelsea Chandler", "Allan Nascimento", "Jafel Filho", "Toshiomi Kazama", "Charalampos Grigoriou", "Jonny Parsons", "Yusaku Kinoshita", "Uros Medic", "Danny Barlow", "Karol Rosa", "Pannie Kianzad", "Jhonata Diniz", "Karl Williams", "Youssef Zalal", "Jarno Errens", "Stephanie Luciano", "Talita Alencar"];
+                const pairs = ["Marcin Tybura", "Serghei Spivac", "Damon Jackson", "Chepe Mariscal", "Danny Barlow", "Nikolay Veretennikov", "Chris Gutierrez", "Quang Le", "Yana Santos", "Chelsea Chandler", "Toshiomi Kazama", "Charalampos Grigoriou", "Karol Rosa", "Pannie Kianzad", "Jhonata Diniz", "Karl Williams", "Youssef Zalal", "Jarno Errens", "Stephanie Luciano", "Talita Alencar"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -519,7 +519,7 @@ Promise.all([
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Marcin Tybura", "Serghei Spivac", "Chris Gutierrez", "Javid Basharat", "Damon Jackson", "Chepe Mariscal", "Yana Santos", "Chelsea Chandler", "Allan Nascimento", "Jafel Filho", "Toshiomi Kazama", "Charalampos Grigoriou", "Jonny Parsons", "Yusaku Kinoshita", "Uros Medic", "Danny Barlow", "Karol Rosa", "Pannie Kianzad", "Jhonata Diniz", "Karl Williams", "Youssef Zalal", "Jarno Errens", "Stephanie Luciano", "Talita Alencar"];
+                const pairs = ["Marcin Tybura", "Serghei Spivac", "Damon Jackson", "Chepe Mariscal", "Danny Barlow", "Nikolay Veretennikov", "Chris Gutierrez", "Quang Le", "Yana Santos", "Chelsea Chandler", "Toshiomi Kazama", "Charalampos Grigoriou", "Karol Rosa", "Pannie Kianzad", "Jhonata Diniz", "Karl Williams", "Youssef Zalal", "Jarno Errens", "Stephanie Luciano", "Talita Alencar"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -527,7 +527,7 @@ Promise.all([
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TyburaSpivacScore.toFixed(2)}</strong></p>`;
+                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TyburaSpivacScore.toFixed(2)}</strong> </p>`;
                 }
             }
     
