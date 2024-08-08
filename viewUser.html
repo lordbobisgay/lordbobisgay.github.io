@@ -372,7 +372,7 @@ Promise.all([
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>DuplessisAdesanya Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${DuplessisAdesanyaScore.toFixed(2)}</strong> </p>`;
+                    userPicksHtml += `<p><strong>DuplessisAdesanya Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${DuplessisAdesanyaScore.toFixed(2)}</strong> </strong> <a href="#" onclick="setViewUser('${username}', 'DuplessisAdesanya_view.html')">View Picks</a></strong></p>`;
                 }
             }
     
@@ -527,7 +527,7 @@ Promise.all([
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TyburaSpivacScore.toFixed(2)}</strong> </p>`;
+                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TyburaSpivacScore.toFixed(2)}</strong> </strong> <a href="#" onclick="setViewUser('${username}', 'TyburaSpivac_view.html')">View Picks</a></strong> </p>`;
                 }
             }
     
