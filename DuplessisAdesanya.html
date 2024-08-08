@@ -1772,8 +1772,6 @@ fetch(apiUrl)
         // Parse the inner JSON from the 'body' string
         const responseBody = JSON.parse(data.body);
         const storedResults = responseBody.DuplessisAdesanya_value;
-        updateText(storedResults);
-        updateText2(storedResults);
         if (storedResults) {
             for (var i = 0; i < storedResults.length; i++) {
                 var i1 = i + 1;
