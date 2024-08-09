@@ -85,7 +85,7 @@
 														<button class="btn btn-link chat-user-btn" data-username="thatkid435">thatkid435</button>
 													</li>
 													<li class="list-group-item">
-														<button class="btn btn-link chat-user-btn" data-username="User3">User3</button>
+														<button class="btn btn-link chat-user-btn" data-username="susMcgee">susMcgee</button>
 													</li>
 													<!-- Add more users as needed -->
 												</ul>
@@ -96,9 +96,33 @@
 
 
 					<div class="col-md-8">
+                            <!-- Section for displaying recent chats -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>Recent Chats</h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group" id="recentChatsList">
+                <!-- Fake data for demonstration -->
+                <li class="list-group-item">
+                    <button class="btn btn-link chat-user-btn" data-username="user1"></button>
+                    <span class="badge bg-success"></span>
+                </li>
+                <li class="list-group-item">
+                    <button class="btn btn-link chat-user-btn" data-username="user2"></button>
+                    <span class="badge bg-warning"></span>
+                </li>
+                <li class="list-group-item">
+                    <button class="btn btn-link chat-user-btn" data-username="user3"></button>
+                    <span class="badge bg-success"></span>
+                </li>
+                <!-- Add more recent chats as needed -->
+            </ul>
+        </div>
+    </div>
 						<div class="card">
 							<div class="card-header">
-								<h5 id="chatWith">Select a user to chat with by clicking the button</h5>
+								<h5 id="chatWith">Select a user to chat with by clicking the "Select a Chat" button</h5>
 							</div>
 							<div class="card-body chat-window" id="chatWindow">
 								<!-- Messages will be displayed here -->
@@ -126,12 +150,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const responseBody = JSON.parse(data.body);
                 if (data.statusCode === 200) {
                     username = responseBody.username; // Assign value to the local variable
-                    console.log('Username:', username);
 
                     // Proceed with the remaining DOM manipulations
                     updateNavbar(username);
                     setupSignOutButton();
 					fetchAndDisplayMessages();
+                    populateRecentChats();
+                    populateChatUserButtons();
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
                 }
@@ -151,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatWindow = document.getElementById('chatWindow');
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`;
 
-
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
@@ -168,13 +192,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (messages[key]) {
                     const conversation = messages[key];
 
-                    // Loop through each message in the conversation
-                    for (const messageId in conversation) {
+                    // Get the message keys and sort them by the numeric part
+                    const sortedMessageKeys = Object.keys(conversation).sort((a, b) => {
+                        const numA = parseInt(a.replace('message', ''), 10);
+                        const numB = parseInt(b.replace('message', ''), 10);
+                        return numA - numB;
+                    });
+
+                    // Loop through each sorted message key
+                    sortedMessageKeys.forEach(messageId => {
                         const message = conversation[messageId];
 
                         // Display each message
                         displayMessage(message);
-                    }
+                    });
                 } else {
                     console.log('No messages found for this specific branch.');
                 }
@@ -222,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     messageInput.value = '';
                     // Optionally, add the message to the chat window
                     displayMessage({ sender: username, text: messageText, timestamp: timestamp });
+                    populateRecentChats();
                 } else {
                     console.error('Failed to send message:', data);
                     alert('Failed to send message. Please try again.');
@@ -233,6 +265,47 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
+    function populateChatUserButtons() {
+    const apiUrl = 'https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=leaderboard';
+    const nameListElement = document.getElementById('nameList').querySelector('.list-group');
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.statusCode === 200) {
+                const users = JSON.parse(data.body);
+
+                // Clear the existing list
+                nameListElement.innerHTML = '';
+
+                // Loop through each user in the response
+                users.forEach(user => {
+                    const username1 = user.username1;
+
+                    // Create a new list item with a button for each user
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+
+                    const button = document.createElement('button');
+                    button.className = 'btn btn-link chat-user-btn';
+                    button.setAttribute('data-username', username1);
+                    button.textContent = username1;
+
+                    // Append the button to the list item and the list item to the list
+                    listItem.appendChild(button);
+                    nameListElement.appendChild(listItem);
+                });
+
+                // Initialize event listeners after buttons are created
+                initializeChatUserSelection();
+            } else {
+                console.error('Error fetching users:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
     // Function to display a message in the chat window
     function displayMessage(message) {
@@ -273,12 +346,100 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+function initializeChatUser(){
+            const theusername = localStorage.getItem('chatUser')
+            if (theusername){
+                document.getElementById('chatWith').textContent = `Chat with ${theusername}`;
+            }
+            else{
+                document.getElementById('chatWith').textContent = `Select a user to chat with by clicking the "Select a Chat" button`;
+            }
+
+}
+
+async function populateRecentChats() {
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`;
+    const recentChatsList = document.getElementById('recentChatsList');
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (data.statusCode === 200) {
+            const conversations = JSON.parse(data.body);
+            const recentChats = [];
+
+            // Loop through each conversation branch
+            for (const branch in conversations) {
+                const messages = conversations[branch];
+                const messageKeys = Object.keys(messages);
+                
+                // Find the message key with the highest number
+                const highestMessageKey = messageKeys.reduce((max, key) => {
+                    const num = parseInt(key.replace('message', ''), 10);
+                    return num > parseInt(max.replace('message', ''), 10) ? key : max;
+                }, messageKeys[0]);
+
+                const lastMessage = messages[highestMessageKey];
+
+                // Extract the second username from the branch name
+                const [user1, user2] = branch.split('_');
+                const chatPartner = user1 === username ? user2 : user1;
+
+                recentChats.push({
+                    chatPartner: chatPartner,
+                    lastMessageText: lastMessage.text,
+                    lastMessageSender: lastMessage.sender,
+                    lastMessageTimestamp: new Date(lastMessage.timestamp),
+                    lastMessageFormatted: lastMessage.sender === username ? `Me: ${lastMessage.text}` : `${lastMessage.sender}: ${lastMessage.text}`
+                });
+            }
+
+            // Sort by most recent timestamp
+            recentChats.sort((a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp);
+
+            // Get the top 3 most recent chats
+            const topRecentChats = recentChats.slice(0, 3);
+
+            // Clear the existing recent chats list
+            recentChatsList.innerHTML = '';
+
+            // Populate the recent chats section
+            topRecentChats.forEach(chat => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+
+                const button = document.createElement('button');
+                button.className = 'btn btn-link chat-user-btn';
+                button.setAttribute('data-username', chat.chatPartner);
+                button.textContent = chat.chatPartner;
+
+                const badge = document.createElement('span');
+                badge.className = 'badge bg-success';
+                badge.textContent = chat.lastMessageFormatted;
+
+                listItem.appendChild(button);
+                listItem.appendChild(badge);
+                recentChatsList.appendChild(listItem);
+            });
+
+            // Reinitialize chat user selection for these buttons
+            initializeChatUserSelection();
+
+        } else {
+            console.error('Error fetching recent chats:', data);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
     
 	sendMessageButton.addEventListener('click', sendMessage);
-	initializeChatUserSelection();
+    initializeChatUser();
 
 });
-
 
 
 function updateNavbar(username) {
