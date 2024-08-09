@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatUser = localStorage.getItem('chatUser');
     const chatWindow = document.getElementById('chatWindow');
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`;
-    console.log(apiUrl)
+
 
     fetch(apiUrl)
         .then(response => response.json())
