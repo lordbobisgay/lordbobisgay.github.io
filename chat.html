@@ -154,9 +154,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Proceed with the remaining DOM manipulations
                     updateNavbar(username);
                     setupSignOutButton();
+                    populateChatUserButtons();
 					fetchAndDisplayMessages();
                     populateRecentChats();
-                    populateChatUserButtons();
+
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
                 }
@@ -280,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Loop through each user in the response
                 users.forEach(user => {
-                    const username1 = user.username1;
+                    const username = user.username;
 
                     // Create a new list item with a button for each user
                     const listItem = document.createElement('li');
@@ -288,8 +289,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     const button = document.createElement('button');
                     button.className = 'btn btn-link chat-user-btn';
-                    button.setAttribute('data-username', username1);
-                    button.textContent = username1;
+                    button.setAttribute('data-username', username);
+                    button.textContent = username;
 
                     // Append the button to the list item and the list item to the list
                     listItem.appendChild(button);
