@@ -98,7 +98,7 @@
 					<div class="col-md-8">
 						<div class="card">
 							<div class="card-header">
-								<h5 id="chatWith">Chat with flakko</h5>
+								<h5 id="chatWith">Select a user to chat with by clicking the button</h5>
 							</div>
 							<div class="card-body chat-window" id="chatWindow">
 								<!-- Messages will be displayed here -->
@@ -146,9 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // Function to fetch and display messages
-	function fetchAndDisplayMessages() {
+    function fetchAndDisplayMessages() {
+    const chatUser = localStorage.getItem('chatUser');
     const chatWindow = document.getElementById('chatWindow');
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`;
+    console.log(apiUrl)
 
     fetch(apiUrl)
         .then(response => response.json())
@@ -159,9 +161,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Clear the chat window
                 chatWindow.innerHTML = '';
 
-                // Loop through each conversation
-                for (const conversationId in messages) {
-                    const conversation = messages[conversationId];
+                // Construct the key for the specific branch
+                const key = `${username}_${chatUser}`;
+
+                // Check if messages exist under the specific branch
+                if (messages[key]) {
+                    const conversation = messages[key];
 
                     // Loop through each message in the conversation
                     for (const messageId in conversation) {
@@ -170,6 +175,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Display each message
                         displayMessage(message);
                     }
+                } else {
+                    console.log('No messages found for this specific branch.');
                 }
             } else {
                 console.error('Error fetching messages:', data);
@@ -246,15 +253,8 @@ document.addEventListener('DOMContentLoaded', function() {
         chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
     }
 
-    // Fetch and display messages when the page loads
-    
-	sendMessageButton.addEventListener('click', sendMessage);
-	initializeChatUserSelection();
-
-});
-
-    // Function to initialize chat user selection
-    function initializeChatUserSelection() {
+        // Function to initialize chat user selection
+        function initializeChatUserSelection() {
         // Get all buttons with the class 'chat-user-btn'
         const userButtons = document.querySelectorAll('.chat-user-btn');
 
@@ -269,9 +269,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Optionally, update the chat header or do other actions
                 document.getElementById('chatWith').textContent = `Chat with ${theusername}`;
+                fetchAndDisplayMessages();
             });
         });
     }
+    
+	sendMessageButton.addEventListener('click', sendMessage);
+	initializeChatUserSelection();
+
+});
+
+
 
 function updateNavbar(username) {
     if (username) {
