@@ -158,6 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
 					fetchAndDisplayMessages();
                     populateRecentChats();
 
+                        // Set up the 5-second timer
+                        setInterval(function() {
+                        fetchAndDisplayMessages();
+                        populateRecentChats();
+                    }, 5000); // 5000 milliseconds = 5 seconds
+
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
                 }
