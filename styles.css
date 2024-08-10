@@ -79,6 +79,44 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+/* Sent message styling */
+.sent {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+}
+
+/* Received message styling */
+.received {
+  align-self: flex-start;
+  background-color: #f0f0f0;
+  color: black;
+}
+
+/* Specific styling for sender */
+.sender {
+  background-color: #007bff;
+  color: white;
+  border-radius: 10px 10px 0 10px;
+  margin-left: auto;
+}
+
+/* Specific styling for receiver */
+.receiver {
+  background-color: #e0e0e0;
+  color: black;
+  border-radius: 10px 10px 10px 0;
+  margin-right: auto;
+}
+
 /* Chat button and search bar */
 .btn-secondary {
   background-color: #007bff;
