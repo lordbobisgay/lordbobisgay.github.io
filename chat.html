@@ -712,7 +712,7 @@ async function populateRecentChats() {
             recentChats.sort((a, b) => b.lastMessageTimestamp - a.lastMessageTimestamp);
 
             // Get the top 3 most recent chats
-            const topRecentChats = recentChats.slice(0, 3);
+            const topRecentChats = recentChats.slice(0, 5);
 
             // Clear the existing recent chats list
             recentChatsList.innerHTML = '';
