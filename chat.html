@@ -138,6 +138,7 @@
 				</div>
                 <div style="height: 100px;"></div>
 
+
     <script type="module">
 
 
@@ -157,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     setupSignOutButton();
                     updateChatLog();
                     populateChatUserButtons();
-					fetchAndDisplayMessages();
+					fetchAndDisplayMessagesOnce();
                     populateRecentChats();
                     
 
@@ -177,6 +178,11 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('No registerKey found in localStorage');
         setupSignOutButton();
+    }
+
+function scrollToBottom() {
+        var chatWindow = document.getElementById("chatWindow");
+        chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
 // Function to call the API with the current timestamp
@@ -265,6 +271,58 @@ async function updateChatLog() {
         });
 }
 
+    // Function to fetch and display messages on page load
+    function fetchAndDisplayMessagesOnce() {
+        function scrollToBottom() {
+        var chatWindow = document.getElementById("chatWindow");
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+    const chatUser = localStorage.getItem('chatUser');
+    const chatWindow = document.getElementById('chatWindow');
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.statusCode === 200) {
+                const messages = JSON.parse(data.body);
+
+                // Clear the chat window
+                chatWindow.innerHTML = '';
+
+                // Construct the key for the specific branch
+                const key = `${username}_${chatUser}`;
+
+                // Check if messages exist under the specific branch
+                if (messages[key]) {
+                    const conversation = messages[key];
+
+                    // Get the message keys and sort them by the numeric part
+                    const sortedMessageKeys = Object.keys(conversation).sort((a, b) => {
+                        const numA = parseInt(a.replace('message', ''), 10);
+                        const numB = parseInt(b.replace('message', ''), 10);
+                        return numA - numB;
+                    });
+
+                    // Loop through each sorted message key
+                    sortedMessageKeys.forEach(messageId => {
+                        const message = conversation[messageId];
+
+                        // Display each message
+                        displayMessage(message);
+                    });
+                    scrollToBottom();
+                } else {
+                    console.log('No messages found for this specific branch.');
+                }
+            } else {
+                console.error('Error fetching messages:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 
 
@@ -493,6 +551,7 @@ async function populateRecentChats() {
     
 	sendMessageButton.addEventListener('click', sendMessage);
     initializeChatUser();
+    scrollToBottom();
 
 });
 
