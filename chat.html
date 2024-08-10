@@ -263,8 +263,15 @@ function hideChatElements() {
     messageDiv.style.marginLeft = 'auto';
     messageDiv.style.marginRight = 'auto';
 
-    // Set the message text
-    messageDiv.innerHTML = '<h4>You cannot send/view messages without being logged in.</h4>';
+    // Set the message text with clickable links
+    messageDiv.innerHTML = `
+        <h4>You cannot send/view messages without being logged in.</h4>
+        <p>
+            <a href="https://punchpredictor.com/login.html" style="color: #0056b3; text-decoration: underline;">Login</a> 
+            or 
+            <a href="https://punchpredictor.com/register.html" style="color: #0056b3; text-decoration: underline;">Make An Account</a>
+        </p>
+    `;
 
     // Append the message to the body
     document.body.appendChild(messageDiv);
