@@ -663,6 +663,7 @@ function initializeChatUser(){
 
 }
 
+
 async function populateRecentChats() {
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`;
     const recentChatsList = document.getElementById('recentChatsList');
@@ -683,7 +684,7 @@ async function populateRecentChats() {
             for (const branch in conversations) {
                 const messages = conversations[branch];
                 const messageKeys = Object.keys(messages);
-                
+
                 // Find the message key with the highest number
                 const highestMessageKey = messageKeys.reduce((max, key) => {
                     const num = parseInt(key.replace('message', ''), 10);
@@ -717,19 +718,19 @@ async function populateRecentChats() {
             // Populate the recent chats section
             topRecentChats.forEach(chat => {
                 const listItem = document.createElement('li');
-                listItem.className = 'list-group-item';
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
 
                 const button = document.createElement('button');
                 button.className = 'btn btn-link chat-user-btn';
                 button.setAttribute('data-username', chat.chatPartner);
                 button.textContent = chat.chatPartner;
 
-                const badge = document.createElement('span');
-                badge.className = 'badge bg-success';
-                badge.textContent = chat.lastMessageFormatted;
+                const messageSpan = document.createElement('span');
+                messageSpan.className = chat.lastMessageSender === username ? 'sender2' : 'receiver2';
+                messageSpan.textContent = chat.lastMessageFormatted;
 
                 listItem.appendChild(button);
-                listItem.appendChild(badge);
+                listItem.appendChild(messageSpan);
                 recentChatsList.appendChild(listItem);
             });
 
