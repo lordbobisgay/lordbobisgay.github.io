@@ -1846,6 +1846,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     fetchDataAndUpdateUI();
                     updateNavbar(username);
                     setupSignOutButton(); // Call this function after username is set
+                    compareTimestamps();
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
                 }
@@ -1865,6 +1866,56 @@ document.addEventListener('DOMContentLoaded', function() {
     processResult();
 });
 
+async function compareTimestamps() {
+    try {
+        // Initialize chatLogTimestamp to null
+        let chatLogTimestamp = null;
+
+        // Fetch the chat log timestamp
+        const chatLogResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chatLogRead&username=${username}`);
+        const chatLogData = await chatLogResponse.json();
+
+        if (chatLogData.statusCode === 200) {
+            // Extract the chatLog timestamp if it exists
+            chatLogTimestamp = JSON.parse(chatLogData.body).chatLog;
+        } else if (chatLogData.statusCode === 404) {
+            // Chat log not found, treat all messages as new
+            chatLogTimestamp = null;
+        } else {
+            console.error('Unexpected response:', chatLogData);
+            return;
+        }
+
+        // Fetch the chat messages
+        const chatResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`);
+        const chatData = await chatResponse.json();
+        const chatMessages = JSON.parse(chatData.body);
+
+        // Initialize a counter for new messages
+        let newMessageCount = 0;
+
+        // Compare timestamps
+        for (let conversation in chatMessages) {
+            const messages = chatMessages[conversation];
+            for (let messageKey in messages) {
+                const message = messages[messageKey];
+                if (message.sender !== username) {
+                    if (chatLogTimestamp === null || new Date(message.timestamp) > new Date(chatLogTimestamp)) {
+                        newMessageCount++;
+                    }
+                }
+            }
+        }
+
+        // Update the badge in the DOM if newMessageCount is greater than 0
+        const badgeElement = document.querySelector('#navMessages .badge');
+        if (badgeElement && newMessageCount > 0) {
+            badgeElement.textContent = newMessageCount;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
 function updateOdds() {
     for (let i = 1; i <= 13; i++) {
