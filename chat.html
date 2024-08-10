@@ -198,35 +198,48 @@ searchChat.addEventListener('focus', function() {
     nameList.show(); 
 });
 
-// Show the list and filter users when the user types the first or second letter
+// Show the list and filter users when the user types the first couple letters
+let previousInputLength = 0;
+
 searchChat.addEventListener('input', function() {
     const inputLength = searchChat.value.length;
 
-    if (inputLength === 1) { // Detect when the first letter is typed
-        const char = searchChat.value.charAt(0); // Get the first letter
-        nameList.show();
-        filterPopulateChatUserButtons1(char); // Run the filter function with the first letter
-    } else if (inputLength === 2) { // Detect when the second letter is typed
-        const twoChar = searchChat.value.substring(0, 2); // Get the first two letters
-        nameList.show();
-        filterPopulateChatUserButtons2(twoChar); // Run the filter function with the first two letters
-    }else if (inputLength === 3) { // Detect when the second letter is typed
-        const prefix = searchChat.value.substring(0, 3); // Get the first two letters
-        nameList.show();
-        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first two letters
-    }else if (inputLength === 4) { // Detect when the second letter is typed
-        const prefix = searchChat.value.substring(0, 4); // Get the first two letters
-        nameList.show();
-        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first two letters
-    }else if (inputLength === 5) { // Detect when the second letter is typed
-        const prefix = searchChat.value.substring(0, 5); // Get the first two letters
-        nameList.show();
-        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first two letters
-    }else if (inputLength === 6) { // Detect when the second letter is typed
-        const prefix = searchChat.value.substring(0, 6); // Get the first two letters
-        nameList.show();
-        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first 6 letters
+    // Check if backspace was used (input length decreased)
+    if (inputLength < previousInputLength) {
+        // Handle the backspace case by running the appropriate filter function
+        if (inputLength === 0) {
+            populateChatUserButtons();
+        } else if (inputLength === 1) {
+            const char = searchChat.value.charAt(0);
+            nameList.show();
+            filterPopulateChatUserButtons1(char);
+        } else if (inputLength === 2) {
+            const twoChar = searchChat.value.substring(0, 2);
+            nameList.show();
+            filterPopulateChatUserButtons2(twoChar);
+        } else if (inputLength >= 3) {
+            const prefix = searchChat.value.substring(0, inputLength);
+            nameList.show();
+            filterPopulateChatUserButtonsByPrefix(prefix);
+        }
+    } else {
+        // Handle regular typing
+        if (inputLength === 1) {
+            const char = searchChat.value.charAt(0);
+            nameList.show();
+            filterPopulateChatUserButtons1(char);
+        } else if (inputLength === 2) {
+            const twoChar = searchChat.value.substring(0, 2);
+            nameList.show();
+            filterPopulateChatUserButtons2(twoChar);
+        } else if (inputLength >= 3) {
+            const prefix = searchChat.value.substring(0, inputLength);
+            nameList.show();
+            filterPopulateChatUserButtonsByPrefix(prefix);
+        }
     }
+
+    previousInputLength = inputLength; // Update the previous input length
 });
 
 function scrollToBottom() {
