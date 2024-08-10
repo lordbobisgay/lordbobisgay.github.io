@@ -79,6 +79,12 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+#searchChat {
+  display: inline-block;
+  width: 200px; /* Adjust width as needed */
+  margin-left: -23px;
+}
+
 #nameList .card-body {
   max-height: 200px; /* Adjust the height as needed */
   overflow-y: auto;  /* Enable vertical scrolling */

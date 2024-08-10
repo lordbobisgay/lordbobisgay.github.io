@@ -71,10 +71,17 @@
 			<div class="container mt-5 w-100">
 <!-- Collapsible bar for selecting names -->
 <div class="row" style='margin-top: 200px;'>
-    <div class="">
+    <div class="col-auto">
         <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#nameList" aria-expanded="false" aria-controls="nameList">
             Select a Chat
         </button>
+    </div>
+    <div class="col-auto">
+        <input type="text" class="form-control" id="searchChat" placeholder="Search...">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
         <div class="collapse" id="nameList">
             <div class="card card-body">
                 <ul class="list-group">
@@ -179,6 +186,48 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('No registerKey found in localStorage');
         setupSignOutButton();
     }
+
+
+    const searchChat = document.getElementById('searchChat');
+const nameList = new bootstrap.Collapse(document.getElementById('nameList'), {
+    toggle: false
+});
+
+// Show the list when the search bar is focused
+searchChat.addEventListener('focus', function() {
+    nameList.show(); 
+});
+
+// Show the list and filter users when the user types the first or second letter
+searchChat.addEventListener('input', function() {
+    const inputLength = searchChat.value.length;
+
+    if (inputLength === 1) { // Detect when the first letter is typed
+        const char = searchChat.value.charAt(0); // Get the first letter
+        nameList.show();
+        filterPopulateChatUserButtons1(char); // Run the filter function with the first letter
+    } else if (inputLength === 2) { // Detect when the second letter is typed
+        const twoChar = searchChat.value.substring(0, 2); // Get the first two letters
+        nameList.show();
+        filterPopulateChatUserButtons2(twoChar); // Run the filter function with the first two letters
+    }else if (inputLength === 3) { // Detect when the second letter is typed
+        const prefix = searchChat.value.substring(0, 3); // Get the first two letters
+        nameList.show();
+        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first two letters
+    }else if (inputLength === 4) { // Detect when the second letter is typed
+        const prefix = searchChat.value.substring(0, 4); // Get the first two letters
+        nameList.show();
+        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first two letters
+    }else if (inputLength === 5) { // Detect when the second letter is typed
+        const prefix = searchChat.value.substring(0, 5); // Get the first two letters
+        nameList.show();
+        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first two letters
+    }else if (inputLength === 6) { // Detect when the second letter is typed
+        const prefix = searchChat.value.substring(0, 6); // Get the first two letters
+        nameList.show();
+        filterPopulateChatUserButtonsByPrefix(prefix); // Run the filter function with the first 6 letters
+    }
+});
 
 function scrollToBottom() {
         var chatWindow = document.getElementById("chatWindow");
@@ -412,6 +461,144 @@ async function updateChatLog() {
         });
 }
 
+function filterPopulateChatUserButtons1(char) {
+    const apiUrl = 'https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=leaderboard';
+    const nameListElement = document.getElementById('nameList').querySelector('.list-group');
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.statusCode === 200) {
+                const users = JSON.parse(data.body);
+                const lowerChar = char.toLowerCase(); // Convert the input character to lowercase for comparison
+
+                // Clear the existing list
+                nameListElement.innerHTML = '';
+
+                // Loop through each user in the response
+                users.forEach(user => {
+                    const username = user.username;
+
+                    // Check if the first character of the username matches the input character
+                    if (username[0].toLowerCase() === lowerChar) {
+                        // Create a new list item with a button for each user
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+
+                        const button = document.createElement('button');
+                        button.className = 'btn btn-link chat-user-btn';
+                        button.setAttribute('data-username', username);
+                        button.textContent = username;
+
+                        // Append the button to the list item and the list item to the list
+                        listItem.appendChild(button);
+                        nameListElement.appendChild(listItem);
+                    }
+                });
+
+                // Initialize event listeners after buttons are created
+                initializeChatUserSelection();
+            } else {
+                console.error('Error fetching users:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function filterPopulateChatUserButtons2(twoChar) {
+    const apiUrl = 'https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=leaderboard';
+    const nameListElement = document.getElementById('nameList').querySelector('.list-group');
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.statusCode === 200) {
+                const users = JSON.parse(data.body);
+                const lowerTwoChar = twoChar.toLowerCase(); // Convert the input string to lowercase for comparison
+
+                // Clear the existing list
+                nameListElement.innerHTML = '';
+
+                // Loop through each user in the response
+                users.forEach(user => {
+                    const username = user.username;
+
+                    // Check if the first two characters of the username match the input string
+                    if (username.substring(0, 2).toLowerCase() === lowerTwoChar) {
+                        // Create a new list item with a button for each user
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+
+                        const button = document.createElement('button');
+                        button.className = 'btn btn-link chat-user-btn';
+                        button.setAttribute('data-username', username);
+                        button.textContent = username;
+
+                        // Append the button to the list item and the list item to the list
+                        listItem.appendChild(button);
+                        nameListElement.appendChild(listItem);
+                    }
+                });
+
+                // Initialize event listeners after buttons are created
+                initializeChatUserSelection();
+            } else {
+                console.error('Error fetching users:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function filterPopulateChatUserButtonsByPrefix(prefix) {
+    const apiUrl = 'https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=leaderboard';
+    const nameListElement = document.getElementById('nameList').querySelector('.list-group');
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.statusCode === 200) {
+                const users = JSON.parse(data.body);
+                const lowerPrefix = prefix.toLowerCase(); // Convert the input string to lowercase for comparison
+
+                // Clear the existing list
+                nameListElement.innerHTML = '';
+
+                // Loop through each user in the response
+                users.forEach(user => {
+                    const username = user.username;
+
+                    // Check if the first characters of the username match the input prefix
+                    if (username.substring(0, lowerPrefix.length).toLowerCase() === lowerPrefix) {
+                        // Create a new list item with a button for each user
+                        const listItem = document.createElement('li');
+                        listItem.className = 'list-group-item';
+
+                        const button = document.createElement('button');
+                        button.className = 'btn btn-link chat-user-btn';
+                        button.setAttribute('data-username', username);
+                        button.textContent = username;
+
+                        // Append the button to the list item and the list item to the list
+                        listItem.appendChild(button);
+                        nameListElement.appendChild(listItem);
+                    }
+                });
+
+                // Initialize event listeners after buttons are created
+                initializeChatUserSelection();
+            } else {
+                console.error('Error fetching users:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
     // Function to display a message in the chat window
     function displayMessage(message) {
         const messageElement = document.createElement('div');
@@ -447,7 +634,7 @@ async function updateChatLog() {
 
                 // Optionally, update the chat header or do other actions
                 document.getElementById('chatWith').textContent = `Chat with ${theusername}`;
-                fetchAndDisplayMessages();
+                fetchAndDisplayMessagesOnce();
             });
         });
     }
