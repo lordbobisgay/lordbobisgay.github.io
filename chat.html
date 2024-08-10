@@ -698,12 +698,14 @@ async function populateRecentChats() {
                 const chatPartner = user1 === username ? user2 : user1;
 
                 recentChats.push({
-                    chatPartner: chatPartner,
-                    lastMessageText: lastMessage.text,
-                    lastMessageSender: lastMessage.sender,
-                    lastMessageTimestamp: new Date(lastMessage.timestamp),
-                    lastMessageFormatted: lastMessage.sender === username ? `Me: ${lastMessage.text}` : `${lastMessage.sender}: ${lastMessage.text}`
-                });
+                chatPartner: chatPartner,
+                lastMessageText: lastMessage.text,
+                lastMessageSender: lastMessage.sender,
+                lastMessageTimestamp: new Date(lastMessage.timestamp),
+                lastMessageFormatted: lastMessage.sender === username 
+                    ? `Me: ${lastMessage.text.length > 15 ? lastMessage.text.slice(0, 15) + '...' : lastMessage.text}` 
+                    : `${lastMessage.sender}: ${lastMessage.text.length > 15 ? lastMessage.text.slice(0, 15) + '...' : lastMessage.text}`
+            });
             }
 
             // Sort by most recent timestamp
@@ -751,6 +753,12 @@ async function populateRecentChats() {
 
     
 	sendMessageButton.addEventListener('click', sendMessage);
+    document.getElementById('messageInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent default action (like form submission)
+        sendMessage(); // Call the sendMessage function
+    }
+});
     initializeChatUser();
     scrollToBottom();
 
