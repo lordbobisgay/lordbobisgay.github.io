@@ -68,7 +68,7 @@
 			</nav>
 
 
-			<div class="container mt-5 w-100">
+			<div class="container2 mt-5 w-100">
 <!-- Collapsible bar for selecting names -->
 <div class="row" style='margin-top: 200px;'>
     <div class="col-auto">
@@ -185,6 +185,8 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('No registerKey found in localStorage');
         setupSignOutButton();
+        hideChatElements();
+
     }
 
 
@@ -241,6 +243,32 @@ searchChat.addEventListener('input', function() {
 
     previousInputLength = inputLength; // Update the previous input length
 });
+
+function hideChatElements() {
+    // Hide the chat container
+    document.querySelector('.container2').style.display = 'none';
+
+    // Create a new div to show the message
+    const messageDiv = document.createElement('div');
+    messageDiv.style.textAlign = 'center';
+    messageDiv.style.marginTop = '200px';
+    
+    // Style the message div
+    messageDiv.style.backgroundColor = '#f8d7da';
+    messageDiv.style.border = '1px solid #f5c6cb';
+    messageDiv.style.color = '#721c24';
+    messageDiv.style.padding = '20px';
+    messageDiv.style.borderRadius = '5px';
+    messageDiv.style.width = '80%';
+    messageDiv.style.marginLeft = 'auto';
+    messageDiv.style.marginRight = 'auto';
+
+    // Set the message text
+    messageDiv.innerHTML = '<h4>You cannot send/view messages without being logged in.</h4>';
+
+    // Append the message to the body
+    document.body.appendChild(messageDiv);
+}
 
 function scrollToBottom() {
         var chatWindow = document.getElementById("chatWindow");
