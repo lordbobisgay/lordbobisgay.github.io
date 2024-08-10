@@ -268,7 +268,7 @@ async function updateChatLog() {
         if (response.ok) {
             const data = await response.json();
             const message = JSON.parse(data.body).message;
-            console.log('Chat log updated successfully:', message);
+            
         } else {
             console.error('Failed to update chat log:', response.statusText);
         }
@@ -318,7 +318,7 @@ async function updateChatLog() {
                         displayMessage(message);
                     });
                 } else {
-                    console.log('No messages found for this specific branch.');
+                    
                 }
 
                 // Restore the scroll positions
@@ -375,7 +375,7 @@ async function updateChatLog() {
                     });
                     scrollToBottom();
                 } else {
-                    console.log('No messages found for this specific branch.');
+                    
                 }
             } else {
                 console.error('Error fetching messages:', data);
@@ -415,7 +415,7 @@ async function updateChatLog() {
             .then(response => response.json())
             .then(data => {
                 if (data.statusCode === 200) {
-                    console.log('Message sent successfully:', data);
+                    
                     // Optionally, clear the input field
                     messageInput.value = '';
                     // Optionally, add the message to the chat window
@@ -758,7 +758,7 @@ async function populateRecentChats() {
 
 function updateNavbar(username) {
     if (username) {
-        console.log('Username:', username);
+        
         // Hide the REGISTER and SIGN IN navigation items
         document.getElementById('navRegister').style.display = 'none';
         document.getElementById('navSignIn').style.display = 'none';
