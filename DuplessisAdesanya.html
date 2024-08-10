@@ -55,6 +55,12 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" id="navRegister" href="http://punchpredictor.com/register.html">Register</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" id="navSignIn" href="http://punchpredictor.com/login.html">Sign in</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" id="navSignIn" href="http://punchpredictor.com/">Website Info</a></li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" id="navMessages" href="http://punchpredictor.com/chat.html">
+                                Messages
+                                <span class="badge bg-danger rounded-pill ms-1"></span>
+                            </a>
+                        </li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" id="navSignIn" href="http://punchpredictor.com/previousEvents.html">Previous Events</a></li>
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" id="navSignOut" href="javascript:void(0);">Sign Out</a>
@@ -1723,6 +1729,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     fetchDataAndUpdateUI();
                     updateNavbar(username);
                     setupSignOutButton(); // Call this function after username is set
+                    compareTimestamps();
                 } else {
                     console.error('Failed to verify register key:', responseBody.message);
                 }
@@ -1740,6 +1747,57 @@ document.addEventListener('DOMContentLoaded', function() {
     addSidebarEventListeners();
     processResult();
 });
+
+async function compareTimestamps() {
+    try {
+        // Initialize chatLogTimestamp to null
+        let chatLogTimestamp = null;
+
+        // Fetch the chat log timestamp
+        const chatLogResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chatLogRead&username=${username}`);
+        const chatLogData = await chatLogResponse.json();
+
+        if (chatLogData.statusCode === 200) {
+            // Extract the chatLog timestamp if it exists
+            chatLogTimestamp = JSON.parse(chatLogData.body).chatLog;
+        } else if (chatLogData.statusCode === 404) {
+            // Chat log not found, treat all messages as new
+            chatLogTimestamp = null;
+        } else {
+            console.error('Unexpected response:', chatLogData);
+            return;
+        }
+
+        // Fetch the chat messages
+        const chatResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`);
+        const chatData = await chatResponse.json();
+        const chatMessages = JSON.parse(chatData.body);
+
+        // Initialize a counter for new messages
+        let newMessageCount = 0;
+
+        // Compare timestamps
+        for (let conversation in chatMessages) {
+            const messages = chatMessages[conversation];
+            for (let messageKey in messages) {
+                const message = messages[messageKey];
+                if (message.sender !== username) {
+                    if (chatLogTimestamp === null || new Date(message.timestamp) > new Date(chatLogTimestamp)) {
+                        newMessageCount++;
+                    }
+                }
+            }
+        }
+
+        // Update the badge in the DOM if newMessageCount is greater than 0
+        const badgeElement = document.querySelector('#navMessages .badge');
+        if (badgeElement && newMessageCount > 0) {
+            badgeElement.textContent = newMessageCount;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
 function updateOdds() {
     for (let i = 1; i <= 12; i++) {

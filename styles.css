@@ -79,6 +79,15 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+#nameList .card-body {
+  max-height: 200px; /* Adjust the height as needed */
+  overflow-y: auto;  /* Enable vertical scrolling */
+}
+
+.chat-window {
+  max-height: 400px; /* Adjust the height as needed */
+  overflow-y: auto;  /* Enable vertical scrolling */
+}
 .dropdown-menu-xl-start {
   --bs-position: start;
 }

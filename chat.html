@@ -69,30 +69,30 @@
 
 
 			<div class="container mt-5 w-100">
-								<!-- Collapsible bar for selecting names -->
-								<div class="row" style='margin-top: 200px;'>
-									<div class="">
-										<button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#nameList" aria-expanded="false" aria-controls="nameList">
-											Select a Chat
-										</button>
-										<div class="collapse" id="nameList">
-											<div class="card card-body">
-												<ul class="list-group">
-													<li class="list-group-item">
-														<button class="btn btn-link chat-user-btn" data-username="flakko">flakko</button>
-													</li>
-													<li class="list-group-item">
-														<button class="btn btn-link chat-user-btn" data-username="thatkid435">thatkid435</button>
-													</li>
-													<li class="list-group-item">
-														<button class="btn btn-link chat-user-btn" data-username="susMcgee">susMcgee</button>
-													</li>
-													<!-- Add more users as needed -->
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
+<!-- Collapsible bar for selecting names -->
+<div class="row" style='margin-top: 200px;'>
+    <div class="">
+        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#nameList" aria-expanded="false" aria-controls="nameList">
+            Select a Chat
+        </button>
+        <div class="collapse" id="nameList">
+            <div class="card card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <button class="btn btn-link chat-user-btn" data-username="flakko">flakko</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn btn-link chat-user-btn" data-username="thatkid435">thatkid435</button>
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn btn-link chat-user-btn" data-username="susMcgee">susMcgee</button>
+                    </li>
+                    <!-- Add more users as needed -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 					<div class="col-md-8">
@@ -120,22 +120,23 @@
             </ul>
         </div>
     </div>
-						<div class="card">
-							<div class="card-header">
-								<h5 id="chatWith">Select a user to chat with by clicking the "Select a Chat" button</h5>
-							</div>
-							<div class="card-body chat-window" id="chatWindow">
-								<!-- Messages will be displayed here -->
-							</div>
-							<div class="card-footer">
-								<div class="input-group">
-									<input type="text" id="messageInput" class="form-control" placeholder="Type a message" />
-									<button class="btn btn-primary" id="sendMessageButton">Send</button>
-								</div>
-							</div>
-						</div>
+    <div class="card">
+        <div class="card-header">
+            <h5 id="chatWith">Select a user to chat with by clicking the "Select a Chat" button</h5>
+        </div>
+        <div class="card-body chat-window" id="chatWindow">
+            <!-- Messages will be displayed here -->
+        </div>
+        <div class="card-footer">
+            <div class="input-group">
+                <input type="text" id="messageInput" class="form-control" placeholder="Type a message" />
+                <button class="btn btn-primary" id="sendMessageButton">Send</button>
+            </div>
+        </div>
+    </div>
 					</div>
 				</div>
+                <div style="height: 100px;"></div>
 
     <script type="module">
 
@@ -154,9 +155,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Proceed with the remaining DOM manipulations
                     updateNavbar(username);
                     setupSignOutButton();
+                    updateChatLog();
                     populateChatUserButtons();
 					fetchAndDisplayMessages();
                     populateRecentChats();
+                    
 
                         // Set up the 5-second timer
                         setInterval(function() {
@@ -176,12 +179,45 @@ document.addEventListener('DOMContentLoaded', function() {
         setupSignOutButton();
     }
 
+// Function to call the API with the current timestamp
+async function updateChatLog() {
+    try {
+        // Get the current timestamp
+        const timestamp = getCurrentTimestamp();
+
+        // Construct the API URL
+        const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chatLog&username=${username}&result=${encodeURIComponent(timestamp)}`;
+
+        // Call the API
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        // Check if the response is successful
+        if (response.ok) {
+            const data = await response.json();
+            const message = JSON.parse(data.body).message;
+            console.log('Chat log updated successfully:', message);
+        } else {
+            console.error('Failed to update chat log:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
     // Function to fetch and display messages
     function fetchAndDisplayMessages() {
     const chatUser = localStorage.getItem('chatUser');
     const chatWindow = document.getElementById('chatWindow');
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`;
+
+    // Capture the current scroll positions
+    const chatWindowScrollPosition = chatWindow.scrollTop;
+    const pageScrollPosition = window.scrollY || document.documentElement.scrollTop;
 
     fetch(apiUrl)
         .then(response => response.json())
@@ -216,6 +252,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     console.log('No messages found for this specific branch.');
                 }
+
+                // Restore the scroll positions
+                chatWindow.scrollTop = chatWindowScrollPosition;
+                window.scrollTo(0, pageScrollPosition);
             } else {
                 console.error('Error fetching messages:', data);
             }
@@ -370,6 +410,10 @@ async function populateRecentChats() {
     const recentChatsList = document.getElementById('recentChatsList');
 
     try {
+        // Save the current scroll position of the chat window and the main page
+        const chatWindowScrollPosition = recentChatsList.scrollTop;
+        const pageScrollPosition = window.scrollY || document.documentElement.scrollTop;
+
         const response = await fetch(apiUrl);
         const data = await response.json();
 
@@ -433,6 +477,10 @@ async function populateRecentChats() {
 
             // Reinitialize chat user selection for these buttons
             initializeChatUserSelection();
+
+            // Restore the scroll positions
+            recentChatsList.scrollTop = chatWindowScrollPosition;
+            window.scrollTo(0, pageScrollPosition);
 
         } else {
             console.error('Error fetching recent chats:', data);
