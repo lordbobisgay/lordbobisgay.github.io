@@ -2343,11 +2343,12 @@ fetch(apiUrl2)
         // Hide the REGISTER and SIGN IN navigation items
         document.getElementById('navRegister').style.display = 'none';
         document.getElementById('navSignIn').style.display = 'none';
+        var currentUser = localStorage.getItem('username');
 
         // Create a new nav item for the user, using the username as the link text
         var navItem = document.createElement('li');
         navItem.className = 'nav-item mx-0 mx-lg-1';
-        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" href="http://punchpredictor.com/user.html">${username}</a>`;
+        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" href="http://punchpredictor.com/user.html">${currentUser}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
     } else {
         
