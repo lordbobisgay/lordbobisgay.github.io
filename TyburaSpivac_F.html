@@ -1824,12 +1824,12 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error:', error);
     }
 }
-    compareTimestamps();
 	updateOdds()
     for (let i = 1; i <= 20; i++) {
     showSidebarButton1(i);
 }
 	var username = localStorage.getItem('username');
+    compareTimestamps();
     fetchDataAndUpdateUI()
 if (username) {
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=TyburaSpivac_F&username=${encodeURIComponent(username)}`;

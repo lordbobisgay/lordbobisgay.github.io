@@ -1762,12 +1762,13 @@ function showSidebarButton1(group) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    compareTimestamps();
+
 	updateOdds()
     for (let i = 1; i <= 24; i++) {
     showSidebarButton1(i);
 }
 	var username = localStorage.getItem('username');
+    compareTimestamps();
     fetchDataAndUpdateUI()
 if (username) {
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=DuplessisAdesanya_F&username=${encodeURIComponent(username)}`;
