@@ -2068,12 +2068,13 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error:', error);
     }
 }
-    compareTimestamps();
+
     updateOdds()
     for (let i = 1; i <= 28; i++) {
     showSidebarButton1(i);
 }
 	var username = localStorage.getItem('viewUser');
+    compareTimestamps();
     fetchDataAndUpdateUI()
 if (username) {
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=EdwardsMuhammad_F&username=${encodeURIComponent(username)}`;
