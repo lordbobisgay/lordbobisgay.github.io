@@ -78,7 +78,9 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-
+.margin-bottom-extra{
+  margin-bottom: 25px;
+}
 .searchUsername {
   width: 50%; /* Make the input field take up the full width of its container */
   padding: 5px 10px; /* Add some padding for a better look */
@@ -719,7 +721,7 @@
   .w-100 {
     width: 82% !important;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;  
   }
   .w-100-register {
     width: 40% !important;
@@ -730,6 +732,9 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 767px) {
+  .margin-bottom-extra{
+    margin-bottom: 0px;
+  }
   .searchUsername {
     width: 60%; /* Make the input field take up the full width of its container */
     padding: 3px 6px; /* Add some padding for a better look */
