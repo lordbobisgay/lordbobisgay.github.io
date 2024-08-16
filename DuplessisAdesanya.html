@@ -476,6 +476,16 @@
         <div class="text-center text-uppercase text-secondary mb-0 small-font">
             To enter predictions, Click a Fighter's Picture, Then Submit at the bottom to Join the Leaderboard. Click anywhere else on the bar to toggle stats for the fight.
         </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary mr-2" id="regular_picks">
+                Regular Picks
+                <img src="assets/img/portfolio/brokenChain.png" alt="Broken Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+            </button>
+            <button class="btn btn-secondary" id="parlay_picks">
+                Parlay Picks
+                <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+            </button>
+        </div>
 
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
@@ -1598,18 +1608,25 @@
     
 </section>
 
-<div class="reduced-margin-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid black;">
-    <div style="display: flex; align-items: center; margin-right: 20px;">
-        <div id="displayEarningsText" class="" style="margin-right: 5px;">
-            <p>Earnings Text</p>
+<div class="reduced-margin-bar" style="display: flex; justify-content: center; align-items: center; padding: 5px; border: 1px solid black;">
+    <div class="earnings-container" style="display: flex; flex-direction: column; align-items: center;">
+        
+        <!-- Regular Picks Section -->
+        <div class="earnings-row" style="display: flex; align-items: center; margin-bottom: 2px; margin-top: 2px;">
+            <div id="displayEarningsText" class="earnings-text" style="line-height: 1;">
+                <p style="margin: 0; ">Potential Earnings If All Picks Correct: 0.00 Score</p>
+            </div>
+            <button id="submit" class="button-submit" style="margin-left: 10px;">Submit</button>
         </div>
-        <button id="submit" class="button-submit">Submit</button>
-    </div>
-    <div style="display: flex; align-items: center;">
-        <div id="displayParlayEarningsText" class="" style="margin-right: 5px;">
-            <p>Parlay Earnings Text</p>
+
+        <!-- Parlay Picks Section -->
+        <div class="earnings-row" style="display: flex; align-items: center; margin-bottom: 2px; margin-top: 2px;">
+            <div id="displayParlayEarningsText" class="earnings-text" style="display: none; line-height: 1;">
+                <p style="margin: 0; ">Potential Earnings: 0.00 Score</p>
+            </div>
+            <button id="submitParlay" class="button-submit" style="margin-left: 10px; display: none;" data-tooltip="If you choose to submit as a parlay, every fight outcome you choose must be correct to earn the score, if even just one is incorrect you will lose 100 score. Also, you can submit both regular picks and one parlay for each card.">Submit as a Parlay</button>
         </div>
-        <button id="submitParlay" class="button-submit" data-tooltip="If you choose to submit as a parlay, every fight outcome you choose must be correct to earn the score, if even just one is incorrect you will lose 100 score. Also, you can submit both regular picks and one parlay for each card.">Submit as a Parlay</button>
+
     </div>
 </div>
     
@@ -1823,14 +1840,35 @@ function updateOdds() {
     }
 }
 
-function fetchDataAndUpdateUI() {
-const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=DuplessisAdesanya_F&username=${encodeURIComponent(username)}`;
+document.getElementById('regular_picks').addEventListener('click', function() {
+        fetchDataAndUpdateUI(); // Call without 'yes'displayEarningsText
+        submitParlay.style.display = 'none';
+        displayParlayEarningsText.style.display = 'none';
+        submit.style.display = 'block';
+        displayEarningsText.style.display = 'block';
+    });
+
+    document.getElementById('parlay_picks').addEventListener('click', function() {
+        fetchDataAndUpdateUI('yes'); // Call with 'yes'
+        submit.style.display = 'none';
+        displayEarningsText.style.display = 'none';
+        submitParlay.style.display = 'block';
+        displayParlayEarningsText.style.display = 'block';
+    });
+function fetchDataAndUpdateUI(parlay) {
+    const apiUrl = parlay === 'yes' 
+        ? `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=DuplessisAdesanyaParlay_F&username=${encodeURIComponent(username)}`
+        : `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=DuplessisAdesanya_F&username=${encodeURIComponent(username)}`;
 fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
         // Parse the inner JSON from the 'body' string
         const responseBody = JSON.parse(data.body);
-        const storedResults = responseBody.DuplessisAdesanya_value;
+        const storedResults = parlay === 'yes' 
+                ? responseBody.DuplessisAdesanyaParlay_value 
+                : responseBody.DuplessisAdesanya_value;
+        updateText(storedResults);
+        updateText2(storedResults);
         if (storedResults) {
             for (var i = 0; i < storedResults.length; i++) {
                 var i1 = i + 1;
@@ -1839,6 +1877,24 @@ fetch(apiUrl)
                 var button2 = document.getElementById('firebutton' + (2 * i + 2));
                 var sidebutton1 = document.getElementById('sidebar' + (2 * i + 1));
                 var sidebutton2 = document.getElementById('sidebar' + (2 * i + 2));
+                button1.classList.remove('fire-active');
+                sidebutton1.style.display = 'none';
+                button2.classList.remove('fire-active');
+                sidebutton2.style.display = 'none';
+            }
+            for (var i = 1; i < storedResults.length-1; i++) {
+                resetButtons(i);
+            }
+
+
+            for (var i = 0; i < storedResults.length; i++) {
+                var i1 = i + 1;
+                var resultChar = storedResults.charAt(i);
+                var button1 = document.getElementById('firebutton' + (2 * i + 1));
+                var button2 = document.getElementById('firebutton' + (2 * i + 2));
+                var sidebutton1 = document.getElementById('sidebar' + (2 * i + 1));
+                var sidebutton2 = document.getElementById('sidebar' + (2 * i + 2));
+
 
                 if (['L', 'A', 'B', 'C', '3', 'E', 'F', 'G', 'H', 'I', 'J', 'K', '1', 'M'].includes(resultChar)) {
                     button1.classList.add('fire-active');
