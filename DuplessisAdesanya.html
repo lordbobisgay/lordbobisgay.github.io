@@ -1864,9 +1864,13 @@ fetch(apiUrl)
     .then(data => {
         // Parse the inner JSON from the 'body' string
         const responseBody = JSON.parse(data.body);
-        const storedResults = parlay === 'yes' 
+        let storedResults = parlay === 'yes' 
                 ? responseBody.DuplessisAdesanyaParlay_value 
                 : responseBody.DuplessisAdesanya_value;
+        
+        if (storedResults === null) {
+        storedResults = 'DDDDDDDDDDDD';
+        }
         updateText(storedResults);
         updateText2(storedResults);
         if (storedResults) {
