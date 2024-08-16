@@ -2946,10 +2946,13 @@ if (username) {
         .then(data => {
             // Parse the inner JSON from the 'body' string
             const responseBody = JSON.parse(data.body);
-            const storedResults = parlay === 'yes' 
+            let storedResults = parlay === 'yes' 
                 ? responseBody.CannonierBorralhoParlay_value 
                 : responseBody.CannonierBorralho_value;
             
+            if (storedResults === null) {
+        storedResults = 'DDDDDDDDD';
+        }
 
             if (storedResults) {
                 for (var i = 0; i < storedResults.length; i++) {
