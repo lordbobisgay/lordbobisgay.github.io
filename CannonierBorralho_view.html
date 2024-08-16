@@ -1331,6 +1331,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Proceed with the remaining DOM manipulations
                     updateNavbar(username);
+                    username = localStorage.getItem('viewUser')
                     fetchDataAndUpdateUI();
                     setupSignOutButton(); // Call this function after username is set
                     compareTimestamps();
