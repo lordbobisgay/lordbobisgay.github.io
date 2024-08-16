@@ -1752,18 +1752,12 @@ function updateOdds() {
 
 document.getElementById('regular_picks').addEventListener('click', function() {
         fetchDataAndUpdateUI(); // Call without 'yes'displayEarningsText
-        submitParlay.style.display = 'none';
-        displayParlayEarningsText.style.display = 'none';
-        submit.style.display = 'block';
-        displayEarningsText.style.display = 'block';
+
     });
 
     document.getElementById('parlay_picks').addEventListener('click', function() {
         fetchDataAndUpdateUI('yes'); // Call with 'yes'
-        submit.style.display = 'none';
-        displayEarningsText.style.display = 'none';
-        submitParlay.style.display = 'block';
-        displayParlayEarningsText.style.display = 'block';
+
     });
 function fetchDataAndUpdateUI(parlay) {
     const apiUrl = parlay === 'yes' 
@@ -1774,9 +1768,12 @@ fetch(apiUrl)
     .then(data => {
         // Parse the inner JSON from the 'body' string
         const responseBody = JSON.parse(data.body);
-        const storedResults = parlay === 'yes' 
+        let storedResults = parlay === 'yes' 
                 ? responseBody.DuplessisAdesanyaParlay_value 
                 : responseBody.DuplessisAdesanya_value;
+                if (storedResults === null) {
+    storedResults = 'DDDDDDDDDDDD';
+}
         updateText(storedResults);
         updateText2(storedResults);
         if (storedResults) {
