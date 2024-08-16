@@ -379,6 +379,16 @@
         <div id="picksDisplay2" class="bold-text3 text-center text-uppercase text-secondary mb-0" style = 'margin-top: 30px;'>Loading picks...</div>
 
 		<div id="parlayEarningsDisplay" class="bold-text3 text-center text-uppercase text-secondary mb-0 padding-extra"></div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary mr-2" id="regular_picks">
+                Regular Picks
+                <img src="assets/img/portfolio/brokenChain.png" alt="Broken Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+            </button>
+            <button class="btn btn-secondary" id="parlay_picks">
+                Parlay Picks
+                <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+            </button>
+        </div>
 
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
@@ -2255,7 +2265,107 @@ function colorButton(buttonId, userPick, predefinedSegment) {
 
         </script>
 <script>
-    function fetchDataAndUpdateUI() {
+function reColorButtons(parlay){
+    username = localStorage.getItem('username');
+    function removeColor() {
+    const numberOfButtons = document.querySelectorAll("[id^='FB']").length;
+
+    for (let i = 1; i <= numberOfButtons; i++) {
+        const button = document.getElementById(`FB${i}`);
+        if (button) {
+            button.style.backgroundColor = 'transparent';
+        }
+    }
+}
+
+    function colorButton(buttonId, userPick, predefinedSegment) {
+    // Check if the userPick is 'D', and if so, exit the function without changing the button color
+    if (userPick === 'D' || predefinedSegment === 'DDD') {
+        return; // Do nothing
+    }
+
+    const button = document.getElementById(buttonId);
+    if (predefinedSegment.includes(userPick)) {
+        button.style.backgroundColor = 'rgba(0, 255, 0, 0.33)';  // Semi-transparent green
+    } else {
+        button.style.backgroundColor = 'rgba(255, 0, 0, 0.33)';  // Semi-transparent red
+    }
+}
+
+removeColor()
+
+if (username) {
+    const apiUrl = parlay === 'yes' 
+        ? `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=CannonierBorralhoParlay_F&username=${encodeURIComponent(username)}`
+        : `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=CannonierBorralho_F&username=${encodeURIComponent(username)}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())  // First parse of the JSON response
+        .then(data => {
+            
+            // Now parse the JSON string in the body
+            const responseBody = JSON.parse(data.body);
+            const userPicks = parlay === 'yes' 
+                ? responseBody.CannonierBorralhoParlay_value 
+                : responseBody.CannonierBorralho_value;
+            console.log("User Picks:", userPicks);  // Ensure this is correctly parsed
+
+            if (!userPicks || userPicks.length < 1) {
+                console.error("Invalid or incomplete user picks data:", userPicks);
+                return;  // Exit if data is not valid
+            }
+			const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+        
+        for (let i = 0; i < userPicks.length; i++) {
+            const predefinedSegment = predefinedPicks.substr(i * 3, 3);
+            colorButton(`FB${i + 1}`, userPicks[i], predefinedSegment);
+        }
+
+    })
+        .catch(error => {
+            console.error("Error fetching or parsing data:", error);
+        });
+}
+
+}
+
+    document.getElementById('regular_picks').addEventListener('click', function() {
+        fetchDataAndUpdateUI(); // Call without 'yes'displayEarningsText
+        reColorButtons()
+
+    });
+
+    document.getElementById('parlay_picks').addEventListener('click', function() {
+        fetchDataAndUpdateUI('yes'); // Call with 'yes'
+        reColorButtons('yes')
+
+    });
+    function fetchDataAndUpdateUI(parlay) {
+        function resetButtons(group) {
+    // Calculate the range of button IDs and specific text classes based on the group number
+    var startBtn = (group - 1) * 16 + 1;
+    var endBtn = group * 16;
+    var specificText1 = `.specific-text${group * 2 - 1}`;
+    var specificText2 = `.specific-text${group * 2}`;
+
+    // Hide the specific text elements
+    document.querySelector(specificText1).style.display = 'none';
+    document.querySelector(specificText2).style.display = 'none';
+
+    // Loop through the button range and reset classes and styles
+    for (var i = startBtn; i <= endBtn; i++) {
+        var btn = document.getElementById('sidebarbtn' + i);
+        if (btn) {
+            btn.classList.remove('fire-active');
+            if (i >= startBtn + 3 && i <= startBtn + 7) { // 4th to 8th buttons in the group
+                btn.style.display = 'none';
+            } else if (i >= endBtn - 4) { // Last 5 buttons in each group
+                btn.style.display = 'none';
+            }
+        }
+    }
+}
+
         function knockout(group) {
         var overlayText = document.querySelector(`.specific-text${(group*2)-1}`);
     
@@ -2828,14 +2938,37 @@ function colorButton(buttonId, userPick, predefinedSegment) {
     
     }
     var username = localStorage.getItem('username');
-    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=CannonierBorralho_F&username=${encodeURIComponent(username)}`;
+    const apiUrl = parlay === 'yes' 
+        ? `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=CannonierBorralhoParlay_F&username=${encodeURIComponent(username)}`
+        : `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=CannonierBorralho_F&username=${encodeURIComponent(username)}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             // Parse the inner JSON from the 'body' string
             const responseBody = JSON.parse(data.body);
-            const storedResults = responseBody.CannonierBorralho_value;
+            const storedResults = parlay === 'yes' 
+                ? responseBody.CannonierBorralhoParlay_value 
+                : responseBody.CannonierBorralho_value;
+            
+
             if (storedResults) {
+                for (var i = 0; i < storedResults.length; i++) {
+                var i1 = i + 1;
+                var resultChar = storedResults.charAt(i);
+                var button1 = document.getElementById('firebutton' + (2 * i + 1));
+                var button2 = document.getElementById('firebutton' + (2 * i + 2));
+                var sidebutton1 = document.getElementById('sidebar' + (2 * i + 1));
+                var sidebutton2 = document.getElementById('sidebar' + (2 * i + 2));
+                button1.classList.remove('fire-active');
+                sidebutton1.style.display = 'none';
+                button2.classList.remove('fire-active');
+                sidebutton2.style.display = 'none';
+            }
+            for (var i = 1; i < storedResults.length-1; i++) {
+                resetButtons(i);
+            }
+
+
                 for (var i = 0; i < storedResults.length; i++) {
                     var i1 = i + 1;
                     var resultChar = storedResults.charAt(i);
