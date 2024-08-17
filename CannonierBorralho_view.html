@@ -383,13 +383,13 @@
                 </div></div>
             <div class="divider-custom-line"></div>
         </div>
-        <div class="text-center mt-3">
-            <button class="btn btn-primary mr-2" id="regular_picks">
-                Regular Picks
+        <div class="text-center mt-3" style="position: relative; display: flex; justify-content: center; margin-bottom: 75px;">
+            <button class="btn btn-primary mr-2" id="regular_picks" style="position: absolute; display: none;">
+                Swap To Regular Picks
                 <img src="assets/img/portfolio/brokenChain.png" alt="Broken Chain" style="width: 40px; height: 40px; margin-right: 5px;">
             </button>
-            <button class="btn btn-secondary" id="parlay_picks">
-                Parlay Picks
+            <button class="btn btn-secondary" id="parlay_picks" style="position: absolute;">
+                Swap To Parlay Picks
                 <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
             </button>
         </div>
@@ -1377,6 +1377,8 @@ function updateOdds() {
 }
 
 document.getElementById('regular_picks').addEventListener('click', function() {
+    document.getElementById('regular_picks').style.display = 'none';
+    document.getElementById('parlay_picks').style.display = 'block';
         fetchDataAndUpdateUI(); // Call without 'yes'displayEarningsText
         submitParlay.style.display = 'none';
         displayParlayEarningsText.style.display = 'none';
@@ -1385,6 +1387,8 @@ document.getElementById('regular_picks').addEventListener('click', function() {
     });
 
     document.getElementById('parlay_picks').addEventListener('click', function() {
+        document.getElementById('parlay_picks').style.display = 'none';
+        document.getElementById('regular_picks').style.display = 'block';
         fetchDataAndUpdateUI('yes'); // Call with 'yes'
         submit.style.display = 'none';
         displayEarningsText.style.display = 'none';
