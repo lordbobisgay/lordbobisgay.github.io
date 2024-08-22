@@ -746,7 +746,7 @@
   .overlay-sidebar {
     height: 100%;
     width: 0; /* Sidebar width set to 0 initially */
-    margin-top: 80px;
+    margin-top: 90px;
     position: fixed; /* Stay in place */
     z-index: 4; /* Stay on top */
     top: 0;
@@ -759,7 +759,7 @@
   .overlay-sidebar2 {
     height: 100%;
     width: 0; /* Sidebar width set to 0 initially */
-    margin-top: 80px;
+    margin-top: 90px;
     position: fixed; /* Stay in place */
     z-index: 4; /* Stay on top */
     top: 0;
