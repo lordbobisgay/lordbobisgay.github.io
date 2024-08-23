@@ -140,6 +140,7 @@ async function getUserScore(username, result) {
     const username = localStorage.getItem('viewUser');
 
     let CannonierBorralhoScore = 0;
+    let BurnsBradyScore = 0;
     let EdwardsMuhammadScore = 0;
     let SandhagenNurmagomedovScore = 0;
     let TyburaSpivacScore = 0;
@@ -158,6 +159,12 @@ Promise.all([
     getUserScore(username, 'CannonierBorralhoScore').then(score => {
         if (score !== null && score !== undefined) {
             CannonierBorralhoScore = score;
+        } else {
+        }
+    }),
+    getUserScore(username, 'BurnsBradyScore').then(score => {
+        if (score !== null && score !== undefined) {
+            BurnsBradyScore = score;
         } else {
         }
     }),
@@ -237,6 +244,8 @@ Promise.all([
             var DuplessisAdesanyaParlay_fetch = userInfo[27];
             var CannonierBorralho_fetch = userInfo[28];
             var CannonierBorralhoParlay_fetch = userInfo[29];
+            var BurnsBrady_fetch = userInfo[30];
+            var BurnsBradyParlay_fetch = userInfo[31];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
@@ -247,6 +256,160 @@ Promise.all([
             let userPicksHtml = `
 
             `;
+            if (BurnsBradyParlay_fetch !== "BurnsBradyParlay not found") {
+                const davismartinpicks = [];
+                const davismartin = BurnsBradyParlay_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Gilbert Burns", "Sean Brady", "Jessica Andrade", "Natalia Silva", "Steve Garcia", "Kyle Nelson", "Matt Schnell", "Alessandro Costa", "Trevor Peek", "Yanal Ashmouz", "Rong Zhu", "Chris Padilla", "Ryan Spann", "Ovince Saint Preux", "Jaqueline Amorim", "Vanessa Demopolous", "Isaac Dulgarian", "Brendon Marotte", "Felipe dos Santos", "Andre Lima", "Yi Zha", "Gabriel Santos", "Andre Petroski", "Dylan Budka"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>BurnsBrady Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                }
+            }
+            if (BurnsBrady_fetch !== "BurnsBrady not found") {
+                const davismartinpicks = [];
+                const davismartin = BurnsBrady_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Gilbert Burns", "Sean Brady", "Jessica Andrade", "Natalia Silva", "Steve Garcia", "Kyle Nelson", "Matt Schnell", "Alessandro Costa", "Trevor Peek", "Yanal Ashmouz", "Rong Zhu", "Chris Padilla", "Ryan Spann", "Ovince Saint Preux", "Jaqueline Amorim", "Vanessa Demopolous", "Isaac Dulgarian", "Brendon Marotte", "Felipe dos Santos", "Andre Lima", "Yi Zha", "Gabriel Santos", "Andre Petroski", "Dylan Budka"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                    userPicksHtml += `<p><strong>BurnsBrady Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${BurnsBradyScore.toFixed(2)}</strong> <a href="BurnsBrady_view.html">View Picks</a></p>`;
+                }
+            }
 
             if (CannonierBorralhoParlay_fetch !== "CannonierBorralhoParlay not found") {
                 const davismartinpicks = [];
