@@ -2091,13 +2091,14 @@ function showSidebarButton1(group) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+	var currentUser = localStorage.getItem('username');
     async function compareTimestamps() {
     try {
         // Initialize chatLogTimestamp to null
         let chatLogTimestamp = null;
 
         // Fetch the chat log timestamp
-        const chatLogResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chatLogRead&username=${username}`);
+        const chatLogResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chatLogRead&username=${currentUser}`);
         const chatLogData = await chatLogResponse.json();
 
         if (chatLogData.statusCode === 200) {
@@ -2112,7 +2113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Fetch the chat messages
-        const chatResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`);
+        const chatResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${currentUser}`);
         const chatData = await chatResponse.json();
         const chatMessages = JSON.parse(chatData.body);
 
@@ -2145,7 +2146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let i = 1; i <= 24; i++) {
     showSidebarButton1(i);
 }
-	var username = localStorage.getItem('username');
+	var username = localStorage.getItem('viewUser');
     compareTimestamps();
     fetchDataAndUpdateUI()
 if (username) {
@@ -2227,7 +2228,7 @@ if (username) {
                 }
             });
 
-            document.getElementById('earningsDisplay').innerText = `You earned ${earnings.toFixed(2)} score for your predictions on this card.`;
+            document.getElementById('earningsDisplay').innerText = username + ` earned ${earnings.toFixed(2)} score for their predictions on this card.`;
         })
         .catch(error => {
             console.error("Error fetching data:", error);
@@ -2307,7 +2308,7 @@ fetch(apiUrl2)
 
         let earnings = incorrectPick ? -100 : (multiplier - 1) * 100;
 
-        document.getElementById('parlayEarningsDisplay').innerText = `You earned ${earnings.toFixed(2)} score for your parlay on this card.`;
+        document.getElementById('parlayEarningsDisplay').innerText = username + ` earned ${earnings.toFixed(2)} score for their parlay on this card.`;
     })
     .catch(error => {
         console.error("Error fetching data:", error);
@@ -2484,12 +2485,12 @@ fetch(apiUrl2)
 
     const picksDisplay = document.getElementById('picksDisplay');
     if (MisfitsPicks.length > 0) {
-        picksDisplay.innerText = 'Your picks: ' + MisfitsPicks.join(', ');
+        picksDisplay.innerText = username + "'s picks: " + MisfitsPicks.join(', ');
     } else {
         picksDisplay.innerText = 'No picks';
     }
 } else {
-                document.getElementById('picksDisplay').innerText = 'You did not make any picks on this card';
+                document.getElementById('picksDisplay').innerText = username + ' did not make any picks on this card';
             }
         })
         .catch(error => {
@@ -2668,12 +2669,12 @@ fetch(apiUrl2)
 
             const picksDisplay2 = document.getElementById('picksDisplay2');
             if (MisfitsPicks.length > 0) {
-                picksDisplay2.innerText = 'Your parlay picks: ' + MisfitsPicks.join(', ');
+                picksDisplay2.innerText = username + "'s parlay picks: " + MisfitsPicks.join(', ');
             } else {
                 picksDisplay2.innerText = 'No picks';
             }
         } else {
-            document.getElementById('picksDisplay2').innerText = 'You did not make any parlays on this card';
+            document.getElementById('picksDisplay2').innerText = username + ' did not make any parlays on this card';
         }
     })
     .catch(error => {
@@ -2681,7 +2682,7 @@ fetch(apiUrl2)
         document.getElementById('picksDisplay2').innerText = 'Failed to load picks due to an error.';
     });
    
-    if (username) {
+    if (currentUser) {
         
 
         // Hide the REGISTER and SIGN IN navigation items
@@ -2691,7 +2692,7 @@ fetch(apiUrl2)
         // Create a new nav item for the user, using the username as the link text
         var navItem = document.createElement('li');
         navItem.className = 'nav-item mx-0 mx-lg-1';
-        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" href="http://punchpredictor.com/user.html">${username}</a>`;
+        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" href="http://punchpredictor.com/user.html">${currentUser}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
     } else {
         
@@ -2766,7 +2767,7 @@ function colorButton(buttonId, userPick, predefinedSegment) {
         </script>
 <script>
 function reColorButtons(parlay){
-    username = localStorage.getItem('username');
+    username = localStorage.getItem('viewUser');
     function removeColor() {
     const numberOfButtons = document.querySelectorAll("[id^='FB']").length;
 
@@ -3439,7 +3440,7 @@ if (username) {
      
     
     }
-    var username = localStorage.getItem('username');
+    var username = localStorage.getItem('viewUser');
     const apiUrl = parlay === 'yes' 
         ? `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=CannonierBorralhoParlay_F&username=${encodeURIComponent(username)}`
         : `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=CannonierBorralho_F&username=${encodeURIComponent(username)}`;
