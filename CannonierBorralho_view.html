@@ -2232,7 +2232,7 @@ if (username) {
                     // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
                     // Update the text of the corresponding fightWeight element to "0 score earned"
                 if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned 0 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned 0 score for their pick on this fight";
                 }
                 } else {
                     const predefinedSegment = predefinedPicks.substr(index * 3, 3);
@@ -2242,12 +2242,12 @@ if (username) {
                         var thisFightEarned = calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         earnings += calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their pick on this fight";
                 }
                     } else {
                         earnings -= 100;
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " lost 100 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " lost 100 score for their pick on this fight";
                 }
                     }
                 }
@@ -2863,7 +2863,7 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                     // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
                     // Update the text of the corresponding fightWeight element to "0 score earned"
                 if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned 0 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned 0 score for their pick on this fight";
                 }
                 } else {
                     const predefinedSegment = predefinedPicks.substr(index * 3, 3);
@@ -2873,12 +2873,12 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                         var thisFightEarned = calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         earnings += calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their pick on this fight";
                 }
                     } else {
                         earnings -= 100;
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " lost 100 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " lost 100 score for their pick on this fight";
                 }
                     }
                 }
