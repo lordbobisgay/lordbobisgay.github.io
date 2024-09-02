@@ -1840,6 +1840,7 @@ function updateOdds() {
 }
 
 document.getElementById('regular_picks').addEventListener('click', function() {
+    hideAllOverlays();
     document.getElementById('regular_picks').style.display = 'none';
     document.getElementById('parlay_picks').style.display = 'block';
         fetchDataAndUpdateUI(); // Call without 'yes'displayEarningsText
@@ -1850,6 +1851,7 @@ document.getElementById('regular_picks').addEventListener('click', function() {
     });
 
     document.getElementById('parlay_picks').addEventListener('click', function() {
+        hideAllOverlays();
         document.getElementById('parlay_picks').style.display = 'none';
         document.getElementById('regular_picks').style.display = 'block';
         fetchDataAndUpdateUI('yes'); // Call with 'yes'
@@ -5079,7 +5081,26 @@ function resetButtons(group) {
         }
     }
 }
+function hideAllOverlays() {
+    // Loop through each pair of firebuttons and their corresponding overlay-text
+    for (let i = 0; i < 9; i++) { // Adjust this limit based on the actual number of pairs
+        // Construct IDs for two firebuttons corresponding to current index
+        var firebuttonId1 = `firebutton${2 * i + 1}`;
+        var firebuttonId2 = `firebutton${2 * i + 2}`;
 
+        // Select and hide overlay for the first firebutton in the pair
+        var overlayText1 = document.querySelector(`#${firebuttonId1} .overlay-text${i}`);
+        if (overlayText1) {
+            overlayText1.style.display = 'none';
+        }
+
+        // Select and hide overlay for the second firebutton in the pair
+        var overlayText2 = document.querySelector(`#${firebuttonId2} .overlay-text${i}`);
+        if (overlayText2) {
+            overlayText2.style.display = 'none';
+        }
+    }
+}
 
 // Fetch the data from the API when the page loads
 fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=BurnsBrady_stats')
