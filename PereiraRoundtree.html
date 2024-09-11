@@ -106,8 +106,8 @@
         <a class="row-item"><button id="sidebarbtn4" style="display: none;" class="btn btn-primary smaller-text">In Round 1 +200</button></a>
         <a class="row-item"><button id="sidebarbtn5" style="display: none;" class="btn btn-primary smaller-text">In Round 2 +200</button></a>
         <a class="row-item"><button id="sidebarbtn6" style="display: none;" class="btn btn-primary smaller-text">In Round 3 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn7" style="display: none;" class="btn btn-primary smaller-text" >In Round 4 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn8" style="display: none;" class="btn btn-primary smaller-text" >In Round 5 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn7" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 4 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn8" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 5 +200</button></a>
     </div>
 </div>
 
@@ -121,8 +121,8 @@
         <a class="row-item"><button id="sidebarbtn12" style="display: none;" class="btn btn-primary smaller-text">In Round 1 +200</button></a>
         <a class="row-item"><button id="sidebarbtn13" style="display: none;" class="btn btn-primary smaller-text">In Round 2 +200</button></a>
         <a class="row-item"><button id="sidebarbtn14" style="display: none;" class="btn btn-primary smaller-text">In Round 3 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn15" style="display: none;" class="btn btn-primary smaller-text" >In Round 4 +200</button></a>
-        <a class="row-item"><button id="sidebarbtn16" style="display: none;" class="btn btn-primary smaller-text" >In Round 5 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn15" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 4 +200</button></a>
+        <a class="row-item"><button id="sidebarbtn16" style="display: none;" class="btn btn-primary smaller-text" disabled>In Round 5 +200</button></a>
     </div>
 </div>
 
@@ -445,7 +445,7 @@
                     <div class="relative-container fight-bar" id ='firebutton1' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Alex Pereira.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text0" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text1" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text1" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -471,7 +471,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton2' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text0" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text2" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text2" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Khalil Rountree.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -538,7 +538,7 @@
                     <div class="relative-container fight-bar" id ='firebutton3' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Raquel Pennington.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text1" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text3" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text3" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -564,7 +564,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton4' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text1" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text4" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text4" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Julianna Pena.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -589,7 +589,7 @@
                     <p>5' 7"</p>
                     <p>135 lbs</p>
                     <p>67 inches</p>
-                    <p>35 years</p>
+                    <p>36 years</p>
                 </div>
                 <!-- Middle Column -->
                 <div class="col-4 col-md-4">
@@ -631,7 +631,7 @@
                     <div class="relative-container fight-bar" id ='firebutton5' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Stephen Thompson.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text2" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text5" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text5" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -657,7 +657,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton6' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text2" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text6" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text6" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Joaquin Buckley.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -724,7 +724,7 @@
                     <div class="relative-container fight-bar" id ='firebutton7' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Jose Aldo.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text3" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text7" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text7" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -750,7 +750,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton8' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text3" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text8" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text8" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Mario Bautista.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -775,7 +775,7 @@
                     <p>5' 7"</p>
                     <p>135 lbs</p>
                     <p>70 inches</p>
-                    <p>37 years</p>
+                    <p>38 years</p>
                 </div>
                 <!-- Middle Column -->
                 <div class="col-4 col-md-4">
@@ -817,7 +817,7 @@
                     <div class="relative-container fight-bar" id ='firebutton9' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Roman Dolidze.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text4" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text9" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text9" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -843,7 +843,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton10' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text4" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text10" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text10" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Kevin Holland.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -910,7 +910,7 @@
                     <div class="relative-container fight-bar" id ='firebutton11' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Aljamain Sterling.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text5" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text11" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text11" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -936,7 +936,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton12' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text5" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text12" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text12" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Movsar Evloev.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -1003,7 +1003,7 @@
                     <div class="relative-container fight-bar" id ='firebutton13' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Ketlen Vieira.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text6" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text13" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text13" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -1029,7 +1029,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton14' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text6" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text14" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text14" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Kayla Harrison.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -1096,7 +1096,7 @@
                     <div class="relative-container fight-bar" id ='firebutton15' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Marina Rodriguez.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text7" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text15" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text15" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -1122,7 +1122,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton16' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text7" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text16" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text16" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Iasmin Lucindo.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -1189,7 +1189,7 @@
                     <div class="relative-container fight-bar" id ='firebutton17' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Cesar Almeida.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text8" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text17" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text17" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -1215,7 +1215,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton18' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text8" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text18" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text18" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Ihor Potieria.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -1282,7 +1282,7 @@
                     <div class="relative-container fight-bar" id ='firebutton19' style="position: relative; z-index: 2;"> 
                     <img src="assets/img/portfolio/Carla Esparza.png" alt="Fighter 1" class="fight-bar-img1">
                     <button class="overlay-button"></button>
-                    <div class="overlay-text9" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text19" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text19" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
@@ -1308,7 +1308,7 @@
                 <div class="text-center">
                     <div class="relative-container fight-bar" id ='firebutton20' style="position: relative; z-index: 2;"> 
                     <button class="overlay-button"></button>
-                    <div class="overlay-text9" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="overlay-text20" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text20" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <img src="assets/img/portfolio/Tecia Torres.png" alt="Fighter 2" class="fight-bar-img2" style="max-width: 250px; height: auto;">
                 </div>
@@ -1639,6 +1639,8 @@ fetch(apiUrl)
                 var resultChar = storedResults.charAt(i);
                 var button1 = document.getElementById('firebutton' + (2 * i + 1));
                 var button2 = document.getElementById('firebutton' + (2 * i + 2));
+                var overlay1 = document.getElementById('overlay-text' + (2 * i + 1));
+                var overlay2 = document.getElementById('overlay-text' + (2 * i + 2));
                 var sidebutton1 = document.getElementById('sidebar' + (2 * i + 1));
                 var sidebutton2 = document.getElementById('sidebar' + (2 * i + 2));
                 button1.classList.remove('fire-active');
@@ -1656,12 +1658,15 @@ fetch(apiUrl)
                 var resultChar = storedResults.charAt(i);
                 var button1 = document.getElementById('firebutton' + (2 * i + 1));
                 var button2 = document.getElementById('firebutton' + (2 * i + 2));
+                var overlay1 = document.getElementById('overlay-text' + (2 * i + 1));
+                var overlay2 = document.getElementById('overlay-text' + (2 * i + 2));
                 var sidebutton1 = document.getElementById('sidebar' + (2 * i + 1));
                 var sidebutton2 = document.getElementById('sidebar' + (2 * i + 2));
 
 
                 if (['L', 'A', 'B', 'C', '3', 'E', 'F', 'G', 'H', 'I', 'J', 'K', '1', 'M'].includes(resultChar)) {
                     button1.classList.add('fire-active');
+                    overlay1.style.display = 'block';
                     sidebutton1.style.display = 'block';
                     if(resultChar == 'A') {
                         knockout(i1);
@@ -1692,6 +1697,7 @@ fetch(apiUrl)
                     }
                 } else if (['R', 'N', 'O', 'P', 'Q', '2', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'].includes(resultChar)) {
                     button2.classList.add('fire-active');
+                    overlay2.style.display = 'block';
                     sidebutton2.style.display = 'block';
                     if(resultChar == 'N') {
                         knockoutright(i1);
@@ -4670,19 +4676,21 @@ function resetButtons(group) {
 
 function hideAllOverlays() {
     // Loop through each pair of firebuttons and their corresponding overlay-text
-    for (let i = 0; i < 9; i++) { // Adjust this limit based on the actual number of pairs
+    for (let i = 0; i < 10; i++) { // Adjust this limit based on the actual number of pairs
         // Construct IDs for two firebuttons corresponding to current index
         var firebuttonId1 = `firebutton${2 * i + 1}`;
         var firebuttonId2 = `firebutton${2 * i + 2}`;
+        var overlayText1 = document.getElementById('overlay-text' + (2 * i + 1));
+        var overlayText2 = document.getElementById('overlay-text' + (2 * i + 2));
 
         // Select and hide overlay for the first firebutton in the pair
-        var overlayText1 = document.querySelector(`#${firebuttonId1} .overlay-text${i}`);
+
         if (overlayText1) {
             overlayText1.style.display = 'none';
         }
 
         // Select and hide overlay for the second firebutton in the pair
-        var overlayText2 = document.querySelector(`#${firebuttonId2} .overlay-text${i}`);
+
         if (overlayText2) {
             overlayText2.style.display = 'none';
         }
@@ -4696,13 +4704,42 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
     .then(data => {
         const stats = JSON.parse(data.body);
         
+                    for (var i = 0; i < 11; i++) {
+    var overlayText1 = document.getElementById('overlay-text' + (2 * i + 1));
+    var overlayText2 = document.getElementById('overlay-text' + (2 * i + 2));
+
+    // Assuming `stats` contains the correct data
+    var posStats = stats['position_' + (i+1)];  // Correct way to dynamically access properties
+
+    if (posStats) {
+        var L_ratio = posStats.L_ratio * 100;
+        var total_L = posStats.total_L;
+        var R_ratio = posStats.R_ratio * 100;
+        var total_R = posStats.total_R;
+
+        // Check if the elements exist before updating innerHTML
+        if (overlayText1) {
+            overlayText1.innerHTML = `${L_ratio.toFixed(0)}% (${total_L}) agree with you`;
+        } else {
+            console.error(`Element with id 'overlay-text${2 * i + 1}' not found.`);
+        }
+
+        if (overlayText2) {
+            overlayText2.innerHTML = `${R_ratio.toFixed(0)}% (${total_R}) agree with you`;
+        } else {
+            console.error(`Element with id 'overlay-text${2 * i + 2}' not found.`);
+        }
+    } else {
+        console.error(`Position stats for position_${i} not found.`);
+    }
+}
 
         document.getElementById('firebutton1').addEventListener('click', function() {
             var posStats = stats.position_1; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text0');
+            var overlayText = document.getElementById('overlay-text1');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -4720,7 +4757,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton2');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text2').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(1);
             }
             resetButtons(1);
@@ -4761,7 +4798,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text0');
+            var overlayText = document.getElementById('overlay-text2');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -4779,7 +4816,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton1');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text0').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text1').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(1);
             }
             resetButtons(1);
@@ -4820,7 +4857,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text1');
+            var overlayText = document.getElementById('overlay-text3');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -4838,7 +4875,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton4');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text4').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(3);
             }
             resetButtons(2);
@@ -4879,7 +4916,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text1');
+            var overlayText = document.getElementById('overlay-text4');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -4897,7 +4934,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton3');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text1').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text3').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(3);
             }
             resetButtons(2);
@@ -4938,7 +4975,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text2');
+            var overlayText = document.getElementById('overlay-text5');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -4956,7 +4993,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton6');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text6').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(5);
             }
             resetButtons(3);
@@ -4997,7 +5034,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text2');
+            var overlayText = document.getElementById('overlay-text6');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5015,7 +5052,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton5');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text2').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text5').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(5);
             }
             resetButtons(3);
@@ -5056,7 +5093,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text3');
+            var overlayText = document.getElementById('overlay-text7');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5074,7 +5111,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton8');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text8').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(7);
             }
             resetButtons(4);
@@ -5115,7 +5152,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text3');
+            var overlayText = document.getElementById('overlay-text8');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5133,7 +5170,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton7');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text3').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text7').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(7);
             }
             resetButtons(4);
@@ -5174,7 +5211,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text4');
+            var overlayText = document.getElementById('overlay-text9');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5192,7 +5229,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton10');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text10').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(9);
             }
             resetButtons(5);
@@ -5233,7 +5270,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text4');
+            var overlayText = document.getElementById('overlay-text10');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5251,7 +5288,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton9');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text4').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text9').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(9);
             }
             resetButtons(5);
@@ -5292,7 +5329,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text5');
+            var overlayText = document.getElementById('overlay-text11');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5310,7 +5347,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton12');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text12').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(11);
             }
             resetButtons(6);
@@ -5351,7 +5388,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text5');
+            var overlayText = document.getElementById('overlay-text12');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5369,7 +5406,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton11');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text5').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text11').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(11);
             }
             resetButtons(6);
@@ -5410,7 +5447,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text6');
+            var overlayText = document.getElementById('overlay-text13');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5428,7 +5465,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton14');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text14').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(13);
             }
             resetButtons(7);
@@ -5469,7 +5506,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text6');
+            var overlayText = document.getElementById('overlay-text14');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5487,7 +5524,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton13');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text6').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text13').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(13);
             }
             resetButtons(7);
@@ -5528,7 +5565,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text7');
+            var overlayText = document.getElementById('overlay-text15');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5546,7 +5583,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton16');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text16').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(15);
             }
             resetButtons(8);
@@ -5587,7 +5624,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text7');
+            var overlayText = document.getElementById('overlay-text16');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5605,7 +5642,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton15');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text7').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text15').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(15);
             }
             resetButtons(8);
@@ -5646,7 +5683,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text8');
+            var overlayText = document.getElementById('overlay-text17');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5664,7 +5701,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton18');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text18').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(17);
             }
             resetButtons(9);
@@ -5705,7 +5742,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text8');
+            var overlayText = document.getElementById('overlay-text18');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5723,7 +5760,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton17');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text8').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text17').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(17);
             }
             resetButtons(9);
@@ -5764,7 +5801,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
 
-            var overlayText = this.querySelector('.overlay-text9');
+            var overlayText = document.getElementById('overlay-text19');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5782,7 +5819,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton20');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text20').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton2(19);
             }
             resetButtons(10);
@@ -5823,7 +5860,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
 
-            var overlayText = this.querySelector('.overlay-text9');
+            var overlayText = document.getElementById('overlay-text20');
 
             // Toggle 'fire-active' class on this button and toggle the display based on class presence
             if (this.classList.contains('fire-active')) {
@@ -5841,7 +5878,7 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
             var otherButton = document.getElementById('firebutton19');
             if (otherButton.classList.contains('fire-active')) {
                 otherButton.classList.remove('fire-active');
-                otherButton.querySelector('.overlay-text9').style.display = 'none'; // Hide the other button's overlay
+                document.getElementById('overlay-text19').style.display = 'none'; // Hide the other button's overlay
                 showSidebarButton1(19);
             }
             resetButtons(10);
