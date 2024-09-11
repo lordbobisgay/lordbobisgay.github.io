@@ -696,7 +696,7 @@
     transition: 0.5s; /* Transition effect when opening/closing */
   }
 }
-@media (max-width: 1920px) {
+@media (max-width: 1700px) {
   /* Styles for devices with a screen width of 1920px or less (covers most laptops) */
   .overlay-sidebar {
     height: 100%;
