@@ -1381,6 +1381,15 @@
     
 </section>
 
+<div class="static-message" id="warningMessage" style="display: none;">
+    Warning: You must make an account to submit picks
+    <p>
+        <a href="https://punchpredictor.com/login.html" style="color: #FFD700; text-decoration: underline;">Login</a> 
+        or 
+        <a href="https://punchpredictor.com/register.html" style="color: #FFD700; text-decoration: underline;">Make An Account</a>
+    </p>
+</div>
+
 <div class="reduced-margin-bar" style="display: flex; justify-content: center; align-items: center; padding: 5px; border: 1px solid black;">
     <div class="earnings-container" style="display: flex; flex-direction: column; align-items: center;">
         
@@ -4759,6 +4768,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 }
 
         document.getElementById('firebutton1').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_1; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -4818,6 +4835,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton2').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_1; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -4877,6 +4902,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton3').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_2; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -4936,6 +4969,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton4').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_2; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -4995,6 +5036,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton5').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_3; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5054,6 +5103,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton6').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_3; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -5113,6 +5170,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton7').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_4; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5172,6 +5237,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton8').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_4; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -5231,6 +5304,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton9').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_5; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5290,6 +5371,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton10').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_5; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -5349,6 +5438,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton11').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_6; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5408,6 +5505,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton12').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_6; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -5467,6 +5572,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton13').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_7; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5526,6 +5639,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton14').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_7; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -5585,6 +5706,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton15').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_8; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5644,6 +5773,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton16').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_8; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -5703,6 +5840,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton17').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_9; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5762,6 +5907,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton18').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_9; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;
@@ -5821,6 +5974,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton19').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_10; // Assuming the data is still in scope or has been retrieved
             var L_ratio = posStats.L_ratio * 100;
             var total_L = posStats.total_L;
@@ -5880,6 +6041,14 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton20').addEventListener('click', function() {
+            if (!username) { // If username is empty or not set
+        warningMessage.style.display = 'block'; // Show the warning message
+
+        // Set a timeout to hide the message after 1 second (1000 milliseconds)
+        setTimeout(function() {
+            warningMessage.style.display = 'none';
+        }, 4000);
+    }
             var posStats = stats.position_10; // Assuming the data is still in scope or has been retrieved
             var R_ratio = posStats.R_ratio * 100;
             var total_R = posStats.total_R;

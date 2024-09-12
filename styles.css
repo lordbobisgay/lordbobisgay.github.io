@@ -79,6 +79,23 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+.static-message {
+  position: fixed;
+  top: 200px; /* Adjust this value to place it elsewhere vertically */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff0000; /* Red background */
+  color: #fff; /* White text for better contrast */
+  padding: 20px 40px; /* Increased padding for larger size */
+  border-radius: 10px; /* Slightly larger border radius */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Increased shadow for more depth */
+  font-size: 18px; /* Larger font size */
+  font-weight: bold; /* Make the font bold */
+  text-align: center; /* Center-align the text */
+  text-shadow: 1px 1px 2px black; /* Subtle text shadow for better legibility */
+  z-index: 1000; /* Ensures it stays on top of other content */
+}
+
 .margin-bottom-extra{
   margin-bottom: 25px;
 }
