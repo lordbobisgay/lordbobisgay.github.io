@@ -506,14 +506,14 @@
         <div class="text-center text-uppercase text-secondary mb-0 small-font">
             To enter predictions, Click a Fighter's Picture, Then click Submit at the bottom. Click anywhere else on the bar to toggle stats for the fight.
                                <div class="text-center mt-3" style="position: relative; display: flex; justify-content: center; margin-bottom: 75px;">
-                <button class="btn btn-primary mr-2" id="regular_picks" style="position: absolute; display: none;">
-                    Swap To Regular Picks
-                    <img src="assets/img/portfolio/brokenChain.png" alt="Broken Chain" style="width: 40px; height: 40px; margin-right: 5px;">
-                </button>
-                <button class="btn btn-secondary" id="parlay_picks" style="position: absolute;">
-                    Swap To Parlay Picks
-                    <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
-                </button>
+                                <button class="btn btn-primary mr-2" id="regular_picks" style="position: absolute; display: none; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                                    Click here to swap To Regular Picks
+                                    <img src="assets/img/portfolio/brokenChain.png" alt="Broken Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+                                </button>
+                                <button class="btn btn-secondary" id="parlay_picks" style="position: absolute; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                                    Click here to swap To Parlay Picks
+                                    <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+                                </button>
             </div>
         </div>
                    
@@ -522,19 +522,21 @@
                 You are currently making REGULAR picks
             </a>
         </div>
-            <!-- Show More Info Button -->
-            <div class="text-center mt-3">
-                <a href="#moreInfo" class="text-primary" data-bs-toggle="collapse" aria-expanded="false" aria-controls="moreInfo" style="cursor: pointer;" id="howPicksWork">
-                    How do regular picks work? Click here to find out!
-                </a>
-            </div>
-            
-            <!-- Hidden Content -->
-            <div class="collapse" id="moreInfo">
-                <div class=" card-body mt-3" id="infoForPicks">
-                    Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.
-                </div>
-            </div>
+<!-- Show More Info Button -->
+<div class="text-center mt-3">
+    <a href="#moreInfo" class="text-primary" data-bs-toggle="collapse" aria-expanded="false" aria-controls="moreInfo" 
+       style="cursor: pointer; font-size: 16px; font-weight: bold; text-decoration: none; color: #0056b3; transition: color 0.3s ease;" 
+       id="howPicksWork" onmouseover="this.style.color='#ff4500'" onmouseout="this.style.color='#0056b3'">
+        How do regular picks work? Click here to find out!
+    </a>
+</div>
+
+<!-- Hidden Content -->
+<div class="collapse" id="moreInfo">
+    <div class="card-body mt-3" id="infoForPicks" style="background-color: #f8f9fa; border-left: 5px solid #0056b3; padding: 20px; font-size: 14px; line-height: 1.6;">
+        Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.
+    </div>
+</div>
 
 
 <!-- Fight Display Bar Container -->
