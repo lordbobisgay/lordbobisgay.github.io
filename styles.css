@@ -111,7 +111,7 @@
   background-image: url('assets/fire.gif'); /* Adding the fire.gif background */
   background-size: cover; /* Ensures the background covers the div */
   background-repeat: no-repeat; /* Prevents the background from repeating */
-  background-position: center +25; /* Centers the background */
+  background-position: center +30; /* Centers the background */
 }
 
 .burningButton:hover {
