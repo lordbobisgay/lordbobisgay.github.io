@@ -78,6 +78,34 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+.burningButton {
+  background-image: url('assets/fire.gif');
+  background-color: #1abc9c;
+  background-size: calc(100% + 500px) auto;
+  background-repeat: no-repeat;
+  background-position: center -450px;
+  color: black;
+  padding: 50px 100px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow below the button */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow to the text */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.burningButton:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Slightly smaller shadow for a pressed effect */
+  transform: translateY(-2px); /* Moves the button up slightly when hovered */
+}
+
+.burningButton:active {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1); /* Even smaller shadow for a deeper press effect */
+  transform: translateY(1px); /* Moves the button down when clicked */
+}
 
 .static-message {
   position: fixed;
