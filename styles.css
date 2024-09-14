@@ -848,6 +848,11 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 767px) {
+  .fixedBox {
+    width: 90%;           /* Make the box wider on small screens */
+    padding: 15px;        /* Slightly reduce padding */
+    font-size: 12px;      /* Smaller font size for better readability */
+  }
   .regPicksPadding{
     margin-top: 0px;
   }
