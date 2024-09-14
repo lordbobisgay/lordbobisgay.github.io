@@ -78,7 +78,9 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-
+.regPicksPadding{
+  margin-top: 150px;
+}
 .fixedBox {
   position: fixed;
   top: 50%;
@@ -846,6 +848,9 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 767px) {
+  .regPicksPadding{
+    margin-top: 0px;
+  }
   .margin-bottom-extra{
     margin-bottom: 0px;
   }
