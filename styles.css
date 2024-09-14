@@ -78,6 +78,28 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+
+.fixedBox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  background-color: #f8f9fa;
+  border: 2px solid black;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  z-index: 9999;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#closeButton:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
 .burningButton {
   background-image: url('assets/fire.gif');
   background-color: #1abc9c;
