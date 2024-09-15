@@ -1236,7 +1236,7 @@
             
 
 <!-- Collapsible Details Section with Structured Chart -->
-<div class="collapse show w-100" id="fightDetails10">
+<div class="collapse w-100" id="fightDetails10">
     <div class="card card-body mt-3">
         <div class="container">
             <div class="row text-center">
@@ -1856,44 +1856,38 @@ if (username) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.OmalleyDvalishvili_value;
-            const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+            const predefinedPicks = "RP9RP9RP9RP9LC9LC9RP9RNQRP9ROV";
             const odds = {
-                1: -220,
-                2: +110,
-                3: +100,
-                4: +155,
-                5: +450,
-                6: +100,
-                7: -120,
-                8: +185,
-                9: +1100,
-                10: -350,
-                11: +275,
-                12: +100,
-                13: +190,
-                14: +800,
-                15: +1600,
-                16: +185,
-                17: +185,
-                18: +185,
-                19: +190,
-                20: +850,
-                21: +3300,
-                22: -125,
-                23: +150,
-                24: +100,
-                25: -145,
-                26: +400,
-                27: +850,
-                28: -400,
-                29: +175,
-                30: +400,
-                31: -105,
-                32: +300,
-                33: +100,
-                34: -425,
-                35: +250,
-                36: +750,
+                1: +107,
+            2: +165,
+            3: +100,
+            4: +120,
+            5: +180,
+            6: +100,
+            7: -190,
+            8: +225,
+            9: +1100,
+            10: +195,
+            11: +400,
+            12: +100,
+            13: -155,
+            14: +350,
+            15: +1600,
+            16: -1100,
+            17: +450,
+            18: +185,
+            19: -108,
+            20: +140,
+            21: +3300,
+            22: +105,
+            23: +210,
+            24: +400,
+            25: -240,
+            26: +125,
+            27: +850,
+            28: +400,
+            29: +2500,
+            30: +5000,
             };
 
             function getOddsForPosition(position) {
@@ -1955,44 +1949,38 @@ fetch(apiUrl2)
     .then(data => {
         const responseBody = JSON.parse(data.body);
         const userPicks = responseBody.OmalleyDvalishviliParlay_value;
-        const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+        const predefinedPicks = "RP9RP9RP9RP9LC9LC9RP9RNQRP9ROV";
         const odds = {
-            1: -220,
-            2: +110,
+            1: +107,
+            2: +165,
             3: +100,
-            4: +155,
-            5: +450,
+            4: +120,
+            5: +180,
             6: +100,
-            7: -120,
-            8: +185,
+            7: -190,
+            8: +225,
             9: +1100,
-            10: -350,
-            11: +275,
+            10: +195,
+            11: +400,
             12: +100,
-            13: +190,
-            14: +800,
+            13: -155,
+            14: +350,
             15: +1600,
-            16: +185,
-            17: +185,
+            16: -1100,
+            17: +450,
             18: +185,
-            19: +190,
-            20: +850,
+            19: -108,
+            20: +140,
             21: +3300,
-            22: -125,
-            23: +150,
-            24: +100,
-            25: -145,
-            26: +400,
+            22: +105,
+            23: +210,
+            24: +400,
+            25: -240,
+            26: +125,
             27: +850,
-            28: -400,
-            29: +175,
-            30: +400,
-            31: -105,
-            32: +300,
-            33: +100,
-            34: -425,
-            35: +250,
-            36: +750,
+            28: +400,
+            29: +2500,
+            30: +5000,
         };
 
         function convertAmericanToDecimal(americanOdds) {
@@ -2410,7 +2398,7 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+			const predefinedPicks = "RP9RP9RP9RP9LC9LC9RP9RNQRP9ROV";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
@@ -2453,52 +2441,46 @@ function colorButton(buttonId, userPick, predefinedSegment) {
         </script>
 <script>
         function regularEarnings() {
+            const odds = {
+                1: +107,
+            2: +165,
+            3: +100,
+            4: +120,
+            5: +180,
+            6: +100,
+            7: -190,
+            8: +225,
+            9: +1100,
+            10: +195,
+            11: +400,
+            12: +100,
+            13: -155,
+            14: +350,
+            15: +1600,
+            16: -1100,
+            17: +450,
+            18: +185,
+            19: -108,
+            20: +140,
+            21: +3300,
+            22: +105,
+            23: +210,
+            24: +400,
+            25: -240,
+            26: +125,
+            27: +850,
+            28: +400,
+            29: +2500,
+            30: +5000,
+            };
         if (username) {
-    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=BurnsBrady_F&username=${encodeURIComponent(username)}`;
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=OmalleyDvalishvili_F&username=${encodeURIComponent(username)}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             const responseBody = JSON.parse(data.body);
-            const userPicks = responseBody.BurnsBrady_value;
-            const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
-            const odds = {
-                1: -220,
-                2: +110,
-                3: +100,
-                4: +155,
-                5: +450,
-                6: +100,
-                7: -120,
-                8: +185,
-                9: +1100,
-                10: -350,
-                11: +275,
-                12: +100,
-                13: +190,
-                14: +800,
-                15: +1600,
-                16: +185,
-                17: +185,
-                18: +185,
-                19: +190,
-                20: +850,
-                21: +3300,
-                22: -125,
-                23: +150,
-                24: +100,
-                25: -145,
-                26: +400,
-                27: +850,
-                28: -400,
-                29: +175,
-                30: +400,
-                31: -105,
-                32: +300,
-                33: +100,
-                34: -425,
-                35: +250,
-                36: +750,
-            };
+            const userPicks = responseBody.OmalleyDvalishvili_value;
+            const predefinedPicks = "RP9RP9RP9RP9LC9LC9RP9RNQRP9ROV";
 
             function getOddsForPosition(position) {
                 return odds[position];
@@ -2554,6 +2536,38 @@ function colorButton(buttonId, userPick, predefinedSegment) {
     }}
 
     function parlayEarnings() {
+        const odds = {
+            1: +107,
+            2: +165,
+            3: +100,
+            4: +120,
+            5: +180,
+            6: +100,
+            7: -190,
+            8: +225,
+            9: +1100,
+            10: +195,
+            11: +400,
+            12: +100,
+            13: -155,
+            14: +350,
+            15: +1600,
+            16: -1100,
+            17: +450,
+            18: +185,
+            19: -108,
+            20: +140,
+            21: +3300,
+            22: +105,
+            23: +210,
+            24: +400,
+            25: -240,
+            26: +125,
+            27: +850,
+            28: +400,
+            29: +2500,
+            30: +5000,
+        };
         function getOddsForPosition(position) {
                 return odds[position];
             }
@@ -2569,55 +2583,17 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                 }
                 return parseFloat(profit.toFixed(2));
             }
-		const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=BurnsBradyParlay_F&username=${encodeURIComponent(username)}`;
+		const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=OmalleyDvalishviliParlay_F&username=${encodeURIComponent(username)}`;
 fetch(apiUrl2)
     .then(response => response.json())
     .then(data => {
         const responseBody = JSON.parse(data.body);
-        let userPicks = responseBody.BurnsBradyParlay_value;
+        let userPicks = responseBody.OmalleyDvalishviliParlay_value;
         if (userPicks == null){
             let allD = Math.floor(20 / 2); // Calculate barCount divided by 2, ensuring an integer result
     userPicks = "D".repeat(allD); // Repeat the letter 'D' allD times
         }
-        const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
-        const odds = {
-            1: -220,
-            2: +110,
-            3: +100,
-            4: +155,
-            5: +450,
-            6: +100,
-            7: -120,
-            8: +185,
-            9: +1100,
-            10: -350,
-            11: +275,
-            12: +100,
-            13: +190,
-            14: +800,
-            15: +1600,
-            16: +185,
-            17: +185,
-            18: +185,
-            19: +190,
-            20: +850,
-            21: +3300,
-            22: -125,
-            23: +150,
-            24: +100,
-            25: -145,
-            26: +400,
-            27: +850,
-            28: -400,
-            29: +175,
-            30: +400,
-            31: -105,
-            32: +300,
-            33: +100,
-            34: -425,
-            35: +250,
-            36: +750,
-        };
+        const predefinedPicks = "RP9RP9RP9RP9LC9LC9RP9RNQRP9ROV";
 
         function convertAmericanToDecimal(americanOdds) {
             if (americanOdds > 0) {
@@ -2714,7 +2690,7 @@ if (username) {
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+			const predefinedPicks = "RP9RP9RP9RP9LC9LC9RP9RNQRP9ROV";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
