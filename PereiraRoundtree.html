@@ -433,19 +433,13 @@
         </div>
 <!-- Show More Info Button -->
 <div class="text-center mt-3">
-    <a href="#moreInfo" class="text-primary" data-bs-toggle="collapse" aria-expanded="false" aria-controls="moreInfo" 
+    <a href="#moreInfo" class="text-primary"
        style="cursor: pointer; font-size: 16px; font-weight: bold; text-decoration: none; color: #0056b3; transition: color 0.3s ease;" 
        id="howPicksWork" onmouseover="this.style.color='#ff4500'" onmouseout="this.style.color='#0056b3'">
-        How do regular picks work? Click here to find out!
+        How Scoring Works
     </a>
 </div>
 
-<!-- Hidden Content -->
-<div class="collapse" id="moreInfo">
-    <div class="card-body mt-3" id="infoForPicks" style="background-color: #f8f9fa; border-left: 5px solid #0056b3; padding: 20px; font-size: 14px; line-height: 1.6;">
-        Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.
-    </div>
-</div>
     
 
 <!-- Fight Display Bar Container -->
@@ -1392,6 +1386,14 @@
     </p>
 </div>
 
+<!-- Hidden Content -->
+<div class="fixedBox" style="display: none;" id="moreInfo">
+    <div class="card-body" id="infoForPicks">
+        <h2 style="text-align: center; margin-bottom: 20px;" id="howScoring">How Scoring Works</h2>
+        <p id="explainText">Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.</p>
+        <button id="closeButton" style="display: block; margin: 20px auto 0; padding: 10px 20px; background-color: black; color: white; border: 2px solid white; cursor: pointer; font-size: 14px;">Close</button>
+    </div>
+</div>
 <div class="reduced-margin-bar" style="display: flex; justify-content: center; align-items: center; padding: 5px; border: 1px solid black;">
     <div class="earnings-container" style="display: flex; flex-direction: column; align-items: center;">
         
@@ -1414,6 +1416,15 @@
     </div>
 </div>
     
+<script>
+    document.getElementById("closeButton").addEventListener("click", function() {
+        document.getElementById("moreInfo").style.display = "none";
+    });
+    document.getElementById("howPicksWork").addEventListener("click", function() {
+        var moreInfo = document.getElementById("moreInfo");
+        moreInfo.style.display = moreInfo.style.display === "none" ? "block" : "none";
+    });
+</script>
         <script type="module">
 
             document.getElementById('submit').addEventListener('click', function() {
@@ -1623,32 +1634,35 @@ function updateOdds() {
 }
 
 document.getElementById('regular_picks').addEventListener('click', function() {
-    hideAllOverlays();
-    document.getElementById('regular_picks').style.display = 'none';
-    document.getElementById('parlay_picks').style.display = 'block';
-        fetchDataAndUpdateUI(); // Call without 'yes'displayEarningsText
-        document.getElementById("whichPicks").textContent = "You are currently making REGULAR picks";
-        document.getElementById("howPicksWork").textContent = "How do regular picks work? Click here to find out!";
-        document.getElementById("moreInfo").textContent = "Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.";
-        submitParlay.style.display = 'none';
-        displayParlayEarningsText.style.display = 'none';
-        submit.style.display = 'block';
-        displayEarningsText.style.display = 'block';
-    });
 
-    document.getElementById('parlay_picks').addEventListener('click', function() {
-        hideAllOverlays();
-        document.getElementById('parlay_picks').style.display = 'none';
-        document.getElementById('regular_picks').style.display = 'block';
-        fetchDataAndUpdateUI('yes'); // Call with 'yes'
-        document.getElementById("whichPicks").textContent = "You are currently making PARLAY picks";
-        document.getElementById("howPicksWork").textContent = "How do parlay picks work? Click here to find out!";
-        document.getElementById("moreInfo").textContent = "Parlay picks work like this: Instead of placing individual bets on each fight, you combine multiple picks into a single parlay which you bet 100 score on. In order to win, all of your picks must be correct. The reward for getting all your picks right is much greater than with regular picks, as the odds for each individual fight are multiplied together to form higher potential winnings. However, if just one of your picks is wrong, you lose the entire parlay. This makes parlay picks riskier but also more rewarding when successful, especially when including underdog selections.";
-        submit.style.display = 'none';
-        displayEarningsText.style.display = 'none';
-        submitParlay.style.display = 'block';
-        displayParlayEarningsText.style.display = 'block';
-    });
+hideAllOverlays();
+document.getElementById('regular_picks').style.display = 'none';
+document.getElementById('parlay_picks').style.display = 'block';
+    fetchDataAndUpdateUI(); // Call without 'yes'displayEarningsText
+    document.getElementById("whichPicks").textContent = "Regular Picks";
+    document.getElementById("howPicksWork").textContent = "How Scoring Works";
+    document.getElementById("howScoring").textContent = "How Scoring Works";
+    document.getElementById("explainText").textContent = "Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.";
+    submitParlay.style.display = 'none';
+    displayParlayEarningsText.style.display = 'none';
+    submit.style.display = 'block';
+    displayEarningsText.style.display = 'block';
+});
+
+document.getElementById('parlay_picks').addEventListener('click', function() {
+    hideAllOverlays();
+    document.getElementById('parlay_picks').style.display = 'none';
+    document.getElementById('regular_picks').style.display = 'block';
+    fetchDataAndUpdateUI('yes'); // Call with 'yes'
+    document.getElementById("whichPicks").textContent = "Parlay Picks";
+    document.getElementById("howPicksWork").textContent = "How Parlay Scoring Works";
+    document.getElementById("howScoring").textContent = "How Parlay Scoring Works";
+    document.getElementById("explainText").textContent = "Parlay picks work like this: Instead of placing individual bets on each fight, you combine multiple picks into a single parlay which you bet 100 score on. In order to win, all of your picks must be correct. The reward for getting all your picks right is much greater than with regular picks, as the odds for each individual fight are multiplied together to form higher potential winnings. However, if just one of your picks is wrong, you lose the entire parlay. This makes parlay picks riskier but also more rewarding when successful, especially when including underdog selections.";
+    submit.style.display = 'none';
+    displayEarningsText.style.display = 'none';
+    submitParlay.style.display = 'block';
+    displayParlayEarningsText.style.display = 'block';
+});
 
 function fetchDataAndUpdateUI(parlay) {
     const apiUrl = parlay === 'yes' 
