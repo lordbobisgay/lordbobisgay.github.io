@@ -70,29 +70,7 @@
             </div>
         </nav>
 
-<!-- About Section -->
-<section class="page-section bg-primary text-white mb-0" id="about">
-    <div class="container-xxl">
-        <!-- About Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase text-white"></h2>
-        <h2 class="page-section-heading text-center text-uppercase text-white" id="eventTitle">Omalley vs Dvalishvili</h2>
-        <!-- Icon Divider -->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><!-- Star Icon Embed -->
-                <div class="icon-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <!-- SVG Path for Star Icon -->
-                        <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
-                    </svg>
-                </div></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Image -->
-        <div class="text-center">
-        </div>
-    </div>
-</section>
+
 
 <div class="overlay-sidebar" id="mySidebar1">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav(1)">&times;</a>
@@ -394,14 +372,42 @@
     </div>
 </div>
 
+<div class="specialSpace">
+    <div class="text-center mt-3">
+        <a id="whichPicks">
+            Regular Picks
+        </a>
+    </div>
+    <div class="text-center text-uppercase text-secondary mb-0 small-font">
+        
+                           <div class="text-center mt-3" style="position: relative; display: flex; justify-content: center; margin-bottom: 75px;">
+                            <button class="btn btn-primary mr-2" id="regular_picks" style="position: absolute; display: none; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                                Click here to swap To Regular Picks
+                                <img src="assets/img/portfolio/brokenChain.png" alt="Broken Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+                            </button>
+                            <button class="btn btn-secondary" id="parlay_picks" style="position: absolute; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                                Click here to swap To Parlay Picks
+                                <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
+                            </button>
+        </div>
+    </div>
+
+<!-- Show More Info Button -->
+<div class="text-center mt-3">
+<a href="#moreInfo" class="text-primary"
+   style="cursor: pointer; font-size: 16px; font-weight: bold; text-decoration: none; color: #0056b3; transition: color 0.3s ease;" 
+   id="howPicksWork" onmouseover="this.style.color='#ff4500'" onmouseout="this.style.color='#0056b3'">
+    How Scoring Works
+</a>
+</div>
+</div>
 <!-- Fight display bar section -->
 <section class="page-section w-100" id="main-card">
     <div class="container-sm">
-        <!-- Resume Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Main Card</h2>
+
         <!-- Icon Divider-->
         <div class="divider-custom">
-            <div class="divider-custom-line"></div>
+            
             <div class="divider-custom-icon"><!-- Star Icon Embed -->
                 <div class="icon-container">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -409,35 +415,9 @@
                         <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
                     </svg>
                 </div></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <div class="text-center text-uppercase text-secondary mb-0 small-font">
-            To enter predictions, Click a Fighter's Picture, Then click Submit at the bottom. Click anywhere else on the bar to toggle stats for the fight.
-                               <div class="text-center mt-3" style="position: relative; display: flex; justify-content: center; margin-bottom: 75px;">
-                                <button class="btn btn-primary mr-2" id="regular_picks" style="position: absolute; display: none; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                                    Click here to swap To Regular Picks
-                                    <img src="assets/img/portfolio/brokenChain.png" alt="Broken Chain" style="width: 40px; height: 40px; margin-right: 5px;">
-                                </button>
-                                <button class="btn btn-secondary" id="parlay_picks" style="position: absolute; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                                    Click here to swap To Parlay Picks
-                                    <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
-                                </button>
-            </div>
+
         </div>
 
-    <div class="text-center mt-3">
-        <a id="whichPicks">
-            You are currently making REGULAR picks
-        </a>
-    </div>
-<!-- Show More Info Button -->
-<div class="text-center mt-3">
-    <a href="#moreInfo" class="text-primary"
-       style="cursor: pointer; font-size: 16px; font-weight: bold; text-decoration: none; color: #0056b3; transition: color 0.3s ease;" 
-       id="howPicksWork" onmouseover="this.style.color='#ff4500'" onmouseout="this.style.color='#0056b3'">
-        How Scoring Works
-    </a>
-</div>
 
 
 
