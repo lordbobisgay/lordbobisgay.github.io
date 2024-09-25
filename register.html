@@ -140,6 +140,7 @@
                     })
                     .then(data => {
                         localStorage.setItem('username', username);
+                        localStorage.setItem('firstTime', 'yes');
                         alert("Register Successful!");
 
                         // Fetch to set the register key

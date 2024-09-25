@@ -431,6 +431,24 @@
                     <button class="overlay-button"></button>
                     <div id="overlay-text1" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
                     <div class="specific-text1 burningBox" style="position: absolute; bottom: 190px; left: 50%; transform: translateX(-50%); color: white; display: none; font-size: 12px; background-color: rgba(0, 0, 0, 0.8); padding: 10px 20px; border-radius: 5px;"></div>
+                    <div id="newText" class="bounce-animation" style="
+                    display: none;
+                    position: absolute;
+                    bottom: 100px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    padding: 10px 20px;
+                    font-size: 20px;
+                    background-color: black;
+                    color: white;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    text-align: center;
+                    width: 50%;
+                    position: relative;">
+                    Click Me!
+                </div>
+
                 </div>
                     <div class="d-flex justify-content-center align-items-center mt-2">
                         <img src="assets/img/portfolio/flags/br.png" alt="Mini Icon Left" class="img-fluid" style="max-width: 30px; height: auto; margin-right: 5px;">
@@ -1498,6 +1516,16 @@ for (var i = 1; i <= 20; i += 2) {
         <script>
 let username; // Declare a global variable
 document.addEventListener('DOMContentLoaded', function() {
+
+        // Check if localStorage has 'firstTime' set to 'yes'
+        if (localStorage.getItem('firstTime') === 'yes') {
+            // Get the element with ID 'newText' and set its display to 'block'
+            var newText = document.getElementById('newText');
+            if (newText) {
+                newText.style.display = 'block';
+            }
+        }
+    
     async function compareTimestamps() {
     try {
         // Initialize chatLogTimestamp to null
@@ -4754,6 +4782,10 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 }
 
         document.getElementById('firebutton1').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
+
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -4821,6 +4853,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton2').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -4888,6 +4923,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton3').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -4955,6 +4993,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton4').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5022,6 +5063,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton5').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5089,6 +5133,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton6').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5156,6 +5203,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton7').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5223,6 +5273,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton8').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5290,6 +5343,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton9').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5357,6 +5413,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton10').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5424,6 +5483,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton11').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5491,6 +5553,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton12').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5558,6 +5623,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton13').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5625,6 +5693,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton14').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5692,6 +5763,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton15').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5759,6 +5833,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton16').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5826,6 +5903,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton17').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5893,6 +5973,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton18').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -5960,6 +6043,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton19').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 
@@ -6027,6 +6113,9 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PereiraRo
 
 
         document.getElementById('firebutton20').addEventListener('click', function() {
+            var newText = document.getElementById('newText');
+            newText.style.display = 'none';
+            localStorage.removeItem('firstTime');
             if (!username) { // If username is empty or not set
         warningMessage.style.display = 'block'; // Show the warning message
 

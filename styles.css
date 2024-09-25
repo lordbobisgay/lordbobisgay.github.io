@@ -78,6 +78,20 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translate(-50%, 0);
+  }
+  50% {
+      transform: translate(-50%, -10px);
+  }
+}
+
+.bounce-animation {
+  animation: bounce 1s infinite;
+}
+
 .uniqueSpace3{
   margin-top: 150px;
 }
