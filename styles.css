@@ -78,6 +78,9 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+.uniqueSpace3{
+  margin-top: 150px;
+}
 .moveFightsUp{
   margin-top: -100px;
 }
@@ -893,7 +896,9 @@
 
 
   }
-  
+  .uniqueSpace3{
+    margin-top: 150px;
+  }
   .moveFightsUp{
     margin-top: -70px;
   }
