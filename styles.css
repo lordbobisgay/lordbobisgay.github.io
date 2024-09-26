@@ -78,7 +78,12 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999; /* Highest z-index to keep it on top */
+}
 @keyframes bounce {
   0%, 100% {
       transform: translate(-50%, 0);
