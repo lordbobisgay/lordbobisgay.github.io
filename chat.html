@@ -334,7 +334,7 @@ async function updateChatLog() {
                 chatWindow.innerHTML = '';
 
                 // Construct the key for the specific branch
-                const key = `${username}_${chatUser}`;
+                const key = `${username} _ ${chatUser}`;
 
                 // Check if messages exist under the specific branch
                 if (messages[key]) {
@@ -390,7 +390,7 @@ async function updateChatLog() {
                 chatWindow.innerHTML = '';
 
                 // Construct the key for the specific branch
-                const key = `${username}_${chatUser}`;
+                const key = `${username} _ ${chatUser}`;
 
                 // Check if messages exist under the specific branch
                 if (messages[key]) {
@@ -731,7 +731,7 @@ async function populateRecentChats() {
                 const lastMessage = messages[highestMessageKey];
 
                 // Extract the second username from the branch name
-                const [user1, user2] = branch.split('_');
+                const [user1, user2] = branch.split(' _ ');
                 const chatPartner = user1 === username ? user2 : user1;
 
                 recentChats.push({
