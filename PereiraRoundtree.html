@@ -1456,13 +1456,19 @@ for (var i = 1; i <= 20; i += 2) {
         alert("Please select at least one fighter to win!");
         return "Error";
     } else {
-        
-        this.innerHTML = 'Thanks for submitting';
-        this.disabled = true;
-        updatePaulTyson(username, result)
+    const button = document.getElementById('submit'); // Get the button by its ID
 
-        return result;
-    }
+    button.innerHTML = 'Thanks for submitting';
+    button.disabled = true;
+    updatePaulTyson(username, result);
+
+    setTimeout(function() {
+        button.innerHTML = 'Submit';
+        button.disabled = false;
+    }, 3000); // 3000 milliseconds = 3 seconds
+
+    return result;
+}
 });
 document.getElementById('submitParlay').addEventListener('click', function() {
 var result = "";
@@ -1504,10 +1510,15 @@ for (var i = 1; i <= 20; i += 2) {
         alert("Please select at least one fighter to win!");
         return "Error";
     } else {
-        
+        const button = document.getElementById('submitParlay'); // Get the button by its ID
         this.innerHTML = 'Thanks for submitting';
         this.disabled = true;
         updateParlay(username, result)
+
+        setTimeout(function() {
+        button.innerHTML = 'Submit as a Parlay';
+        button.disabled = false;
+    }, 3000); // 3000 milliseconds = 3 seconds
 
         return result;
     }
@@ -4666,7 +4677,7 @@ function updatePaulTyson(username, result) {
         if (response.ok) {
             
             // Optionally redirect to another page after success
-            window.location.href = 'https://punchpredictor.com/user.html';
+            
         } else {
             throw new Error('Failed to fetch data');
         }
@@ -4686,7 +4697,7 @@ function updateParlay(username, result) {
         if (response.ok) {
             
             // Optionally redirect to another page after success
-            window.location.href = 'https://punchpredictor.com/user.html';
+           
         } else {
             throw new Error('Failed to fetch data');
         }
