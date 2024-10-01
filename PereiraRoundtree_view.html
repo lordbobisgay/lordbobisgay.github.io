@@ -1497,6 +1497,7 @@
 let username; // Declare a global variable
 document.addEventListener('DOMContentLoaded', function() {
     async function compareTimestamps() {
+        username =localStorage.getItem('username')
     try {
         // Initialize chatLogTimestamp to null
         let chatLogTimestamp = null;
