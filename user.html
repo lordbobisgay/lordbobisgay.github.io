@@ -123,6 +123,7 @@ async function getUserScores(username) {
             if (scores.TyburaSpivacScore !== undefined) TyburaSpivacScore = scores.TyburaSpivacScore;
             if (scores.DuplessisAdesanyaScore !== undefined) DuplessisAdesanyaScore = scores.DuplessisAdesanyaScore;
             if (scores.PereiraProchazkaScore !== undefined) PereiraProchazkaScore = scores.PereiraProchazkaScore;
+// im using this line to write above in cardwriter dont change this
 
         } else if (response.status === 404) {
             console.warn('User or scores not found:', data.error);
