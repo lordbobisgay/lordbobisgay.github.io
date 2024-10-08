@@ -105,9 +105,9 @@ function setChatUser(username, page) {
 
     <script type="module">
         
-async function getUserScore(username, result) {
-    // Use template literals to insert variables into the URL
-    const url = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=gatherScore&username=${username}&result=${result}`;
+        async function getUserScores(username) {
+    // URL to fetch the scores
+    const url = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=gatherScore&username=${username}`;
 
     try {
         const response = await fetch(url);
@@ -116,32 +116,33 @@ async function getUserScore(username, result) {
         if (response.status === 200) {
             // Parse the JSON string in the 'body' field
             const bodyData = JSON.parse(data.body);
+            const scores = bodyData.scores;
 
-            // Use the actual result key
-            return bodyData[result];
+            // Update the variables with the corresponding scores from the response
+            if (scores.CannonierBorralhoScore !== undefined) CannonierBorralhoScore = scores.CannonierBorralhoScore;
+            if (scores.BurnsBradyScore !== undefined) BurnsBradyScore = scores.BurnsBradyScore;
+            if (scores.OmalleyDvalishviliScore !== undefined) OmalleyDvalishviliScore = scores.OmalleyDvalishviliScore;
+            if (scores.PereiraRoundtreeScore !== undefined) PereiraRoundtreeScore = scores.PereiraRoundtreeScore;
+            if (scores.MoicanoSaintDenisScore !== undefined) MoicanoSaintDenisScore = scores.MoicanoSaintDenisScore;
+            if (scores.TopuriaHollowayScore !== undefined) TopuriaHollowayScore = scores.TopuriaHollowayScore;
+            if (scores.RoyvalTairaScore !== undefined) RoyvalTairaScore = scores.RoyvalTairaScore;
+            if (scores.HernandezPereiraScore !== undefined) HernandezPereiraScore = scores.HernandezPereiraScore;
+            if (scores.EdwardsMuhammadScore !== undefined) EdwardsMuhammadScore = scores.EdwardsMuhammadScore;
+            if (scores.SandhagenNurmagomedovScore !== undefined) SandhagenNurmagomedovScore = scores.SandhagenNurmagomedovScore;
+            if (scores.TyburaSpivacScore !== undefined) TyburaSpivacScore = scores.TyburaSpivacScore;
+            if (scores.DuplessisAdesanyaScore !== undefined) DuplessisAdesanyaScore = scores.DuplessisAdesanyaScore;
+            if (scores.PereiraProchazkaScore !== undefined) PereiraProchazkaScore = scores.PereiraProchazkaScore;
+
         } else if (response.status === 404) {
-            // Handle 404 error and return null
-            const errorMessage = data.error;
-            if (errorMessage.includes('not found')) {
-                return null; // Return null if the result is not found
-            } else {
-                throw new Error(errorMessage);
-            }
+            console.warn('User or scores not found:', data.error);
         } else {
             throw new Error(`Unexpected status code: ${response.status}`);
         }
     } catch (error) {
-        console.error('Error fetching user score:', error);
-        return null;
+        console.error('Error fetching user scores:', error);
     }
 }
-
-        // Function to retrieve data
-        function get1() {
-
-    const username = localStorage.getItem('viewUser');
-
-    let CannonierBorralhoScore = 0;
+let CannonierBorralhoScore = 0;
     let PereiraRoundtreeScore = 0;
     let MoicanoSaintDenisScore = 0;
     let TopuriaHollowayScore = 0;
@@ -154,99 +155,13 @@ async function getUserScore(username, result) {
     let TyburaSpivacScore = 0;
     let DuplessisAdesanyaScore = 0;
     let PereiraProchazkaScore = 0;
+        // Function to retrieve data
+        function get1() {
 
-Promise.all([
+    const username = localStorage.getItem('viewUser');
 
-    getUserScore(username, 'TyburaSpivacScore').then(score => {
-        if (score !== null && score !== undefined) {
-            TyburaSpivacScore = score;
-        } else {
-        }
-    }),
 
-    getUserScore(username, 'CannonierBorralhoScore').then(score => {
-        if (score !== null && score !== undefined) {
-            CannonierBorralhoScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'BurnsBradyScore').then(score => {
-        if (score !== null && score !== undefined) {
-            BurnsBradyScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'OmalleyDvalishviliScore').then(score => {
-        if (score !== null && score !== undefined) {
-            OmalleyDvalishviliScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'PereiraRoundtreeScore').then(score => {
-        if (score !== null && score !== undefined) {
-            PereiraRoundtreeScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'MoicanoSaintDenisScore').then(score => {
-        if (score !== null && score !== undefined) {
-            MoicanoSaintDenisScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'TopuriaHollowayScore').then(score => {
-        if (score !== null && score !== undefined) {
-            TopuriaHollowayScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'RoyvalTairaScore').then(score => {
-        if (score !== null && score !== undefined) {
-            RoyvalTairaScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'HernandezPereiraScore').then(score => {
-        if (score !== null && score !== undefined) {
-            HernandezPereiraScore = score;
-        } else {
-        }
-    }),
-    // im using this line to write above in cardwriter dont change this
-    getUserScore(username, 'SandhagenNurmagomedovScore').then(score => {
-        if (score !== null && score !== undefined) {
-            SandhagenNurmagomedovScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'EdwardsMuhammadScore').then(score => {
-        if (score !== null && score !== undefined) {
-            EdwardsMuhammadScore = score;
-        } else {
-        }
-    }),
-    getUserScore(username, 'TyburaSpivacScore').then(score => {
-        if (score !== null && score !== undefined) {
-            TyburaSpivacScore = score;
-        } else {
-            TyburaSpivacScore = 0;
-        }
-    }),
-    getUserScore(username, 'DuplessisAdesanyaScore').then(score => {
-        if (score !== null && score !== undefined) {
-            DuplessisAdesanyaScore = score;
-        } else {
-            DuplessisAdesanyaScore = 0;
-        }
-    }),
-    getUserScore(username, 'PereiraProchazkaScore').then(score => {
-    if (score !== null && score !== undefined) {
-        PereiraProchazkaScore = score;
-    } else {
-        PereiraProchazkaScore = 0;
-    }
-}),
-]).then(() => {
+    getUserScores(username).then(() => {
 
 
     if (!username) {
