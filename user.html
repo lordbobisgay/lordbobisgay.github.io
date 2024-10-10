@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9394285765069873"
      crossorigin="anonymous"></script>
         <script>
@@ -29,6 +30,7 @@
         <link href="styles.css" rel="stylesheet" />
         <!--GOOGLE SEARCH VERIFICATION-->
         <meta name="google-site-verification" content="kGhZUcmdYMqwcuJCFVWz7yGrAx_cN5hWqydgcTeqz0M" />
+        
 
     </head>
     <body>
@@ -84,6 +86,7 @@
                     <div id="userPicks" class="p-3 border rounded">
                         Loading user information...
                     </div>
+                    <canvas id="scoreChart"></canvas>
                 </div>
             </div>
         </div>
@@ -94,78 +97,10 @@
 
 
 
-    <script type="module">
 
-async function getUserScores(username) {
-    // URL to fetch the scores
-    const url = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=gatherScore&username=${username}`;
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (response.status === 200) {
-            // Parse the JSON string in the 'body' field
-            const bodyData = JSON.parse(data.body);
-            const scores = bodyData.scores;
-
-            // Update the variables with the corresponding scores from the response
-            if (scores.CannonierBorralhoScore !== undefined) CannonierBorralhoScore = scores.CannonierBorralhoScore;
-            if (scores.BurnsBradyScore !== undefined) BurnsBradyScore = scores.BurnsBradyScore;
-            if (scores.OmalleyDvalishviliScore !== undefined) OmalleyDvalishviliScore = scores.OmalleyDvalishviliScore;
-            if (scores.PereiraRoundtreeParlayScore !== undefined) PereiraRoundtreeParlayScore = scores.PereiraRoundtreeParlayScore;
-            if (scores.PereiraRoundtreeScore !== undefined) PereiraRoundtreeScore = scores.PereiraRoundtreeScore;
-            if (scores.MoicanoSaintDenisScore !== undefined) MoicanoSaintDenisScore = scores.MoicanoSaintDenisScore;
-            if (scores.TopuriaHollowayScore !== undefined) TopuriaHollowayScore = scores.TopuriaHollowayScore;
-            if (scores.TopuriaHollowayParlayScore !== undefined) TopuriaHollowayParlayScore = scores.TopuriaHollowayParlayScore;
-            if (scores.RoyvalTairaScore !== undefined) RoyvalTairaScore = scores.RoyvalTairaScore;
-            if (scores.RoyvalTairaParlayScore !== undefined) RoyvalTairaParlayScore = scores.RoyvalTairaParlayScore;
-            if (scores.HernandezPereiraScore !== undefined) HernandezPereiraScore = scores.HernandezPereiraScore;
-            if (scores.HernandezPereiraParlayScore !== undefined) HernandezPereiraParlayScore = scores.HernandezPereiraParlayScore;
-            if (scores.EdwardsMuhammadScore !== undefined) EdwardsMuhammadScore = scores.EdwardsMuhammadScore;
-            if (scores.SandhagenNurmagomedovScore !== undefined) SandhagenNurmagomedovScore = scores.SandhagenNurmagomedovScore;
-            if (scores.TyburaSpivacScore !== undefined) TyburaSpivacScore = scores.TyburaSpivacScore;
-            if (scores.DuplessisAdesanyaScore !== undefined) DuplessisAdesanyaScore = scores.DuplessisAdesanyaScore;
-            if (scores.PereiraProchazkaScore !== undefined) PereiraProchazkaScore = scores.PereiraProchazkaScore;
-// im using this line to write above in cardwriter dont change this
-
-        } else if (response.status === 404) {
-            console.warn('User or scores not found:', data.error);
-        } else {
-            throw new Error(`Unexpected status code: ${response.status}`);
-        }
-    } catch (error) {
-        console.error('Error fetching user scores:', error);
-    }
-}
-
-
-    let CannonierBorralhoScore = 0;
-    let BurnsBradyScore = 0;
-
-    let OmalleyDvalishviliScore = 0;
-
-    let PereiraRoundtreeScore = 0;
-    let PereiraRoundtreeParlayScore = 0;
-
-    let MoicanoSaintDenisScore = 0;
-
-    let TopuriaHollowayScore = 0;
-    let TopuriaHollowayParlayScore = 0;
-
-    let RoyvalTairaScore = 0;
-    let RoyvalTairaParlayScore = 0;
-
-    let HernandezPereiraScore = 0;
-    let HernandezPereiraParlayScore = 0;
-    let EdwardsMuhammadScore = 0;
-    let SandhagenNurmagomedovScore = 0;
-    let TyburaSpivacScore = 0;
-    let DuplessisAdesanyaScore = 0;
-    let PereiraProchazkaScore = 0;
-
+    <script>
         // Function to retrieve data
-        function get1() {
+        function get1(less) {
     const username = localStorage.getItem('username');
 
 
@@ -232,9 +167,8 @@ getUserScores(username).then(() => {
                 <p><strong>Score:</strong> $${formattedScore || 'No score yet'} - This is how much money you would have made if you bet $100 on each fight.</p>
 
             `;
-            let userPicksHtml = `
-
-            `;
+            let userPicksHtml = ``;
+            let lines = 0;
         
             if (TopuriaHollowayParlay_fetch !== "TopuriaHollowayParlay not found") {
                 const davismartinpicks = [];
@@ -310,7 +244,14 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Topuria vs Holloway Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayParlayScore.toFixed(2)}</strong></p>`;
+                    if (lines < 6){
+                        userPicksHtml += `<p><strong>Topuria vs Holloway Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayParlayScore.toFixed(2)}</strong></p>`;
+                    }
+                    if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
                 }
             }
             if (TopuriaHolloway_fetch !== "TopuriaHolloway not found") {
@@ -387,7 +328,12 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Topuria vs Holloway Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayScore.toFixed(2)}</strong> <a href="TopuriaHolloway.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Topuria vs Holloway Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayScore.toFixed(2)}</strong> <a href="TopuriaHolloway.html">View Picks</a></p>`;}
+                    if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
                 }
             }
 
@@ -465,7 +411,12 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Hernandez vs Pereira Parlay Picks:</strong> ${davismartinpicks.join(', ')}<strong> Score earned: ${HernandezPereiraParlayScore.toFixed(2)}</strong></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Hernandez vs Pereira Parlay Picks:</strong> ${davismartinpicks.join(', ')}<strong> Score earned: ${HernandezPereiraParlayScore.toFixed(2)}</strong></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
                 }
             }
             if (HernandezPereira_fetch !== "HernandezPereira not found") {
@@ -542,7 +493,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Hernandez vs Pereira Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${HernandezPereiraScore.toFixed(2)}</strong> <a href="HernandezPereira.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Hernandez vs Pereira Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${HernandezPereiraScore.toFixed(2)}</strong> <a href="HernandezPereira.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
 
@@ -620,7 +577,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Royval vs Taira Parlay Picks:</strong> ${davismartinpicks.join(', ')}<strong> Score earned: ${RoyvalTairaParlayScore.toFixed(2)}</strong></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Royval vs Taira Parlay Picks:</strong> ${davismartinpicks.join(', ')}<strong> Score earned: ${RoyvalTairaParlayScore.toFixed(2)}</strong></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (RoyvalTaira_fetch !== "RoyvalTaira not found") {
@@ -697,7 +660,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Royval vs Taira Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${RoyvalTairaScore.toFixed(2)}</strong> <a href="RoyvalTaira.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Royval vs Taira Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${RoyvalTairaScore.toFixed(2)}</strong> <a href="RoyvalTaira.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;`
+}
+                    
                 }
             }
     
@@ -775,7 +744,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Pereira vs Roundtree Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${PereiraRoundtreeParlayScore.toFixed(2)}</strong></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Pereira vs Roundtree Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${PereiraRoundtreeParlayScore.toFixed(2)}</strong></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (PereiraRoundtree_fetch !== "PereiraRoundtree not found") {
@@ -852,7 +827,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Pereira vs Roundtree Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${PereiraRoundtreeScore.toFixed(2)}</strong> <a href="PereiraRoundtree_F.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Pereira vs Roundtree Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${PereiraRoundtreeScore.toFixed(2)}</strong> <a href="PereiraRoundtree_F.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
     
@@ -930,7 +911,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Moicano vs SaintDenis Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Moicano vs SaintDenis Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (MoicanoSaintDenis_fetch !== "MoicanoSaintDenis not found") {
@@ -1007,7 +994,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Moicano vs SaintDenis Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${MoicanoSaintDenisScore.toFixed(2)}</strong> <a href="MoicanoSaintDenis_F.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Moicano vs SaintDenis Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${MoicanoSaintDenisScore.toFixed(2)}</strong> <a href="MoicanoSaintDenis_F.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
     
@@ -1087,7 +1080,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Omalley vs Dvalishvili Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Omalley vs Dvalishvili Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (OmalleyDvalishvili_fetch !== "OmalleyDvalishvili not found") {
@@ -1164,7 +1163,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Omalley vs Dvalishvili Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${OmalleyDvalishviliScore.toFixed(2)}</strong> <a href="OmalleyDvalishvili_F.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Omalley vs Dvalishvili Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${OmalleyDvalishviliScore.toFixed(2)}</strong> <a href="OmalleyDvalishvili_F.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
     
@@ -1242,7 +1247,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Burns vs Brady Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Burns vs Brady Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (BurnsBrady_fetch !== "BurnsBrady not found") {
@@ -1319,7 +1330,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Burns vs Brady Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${BurnsBradyScore.toFixed(2)}</strong> <a href="BurnsBrady_F.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Burns vs Brady Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${BurnsBradyScore.toFixed(2)}</strong> <a href="BurnsBrady_F.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
 
@@ -1397,7 +1414,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Cannonier vs Borralho Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Cannonier vs Borralho Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (CannonierBorralho_fetch !== "CannonierBorralho not found") {
@@ -1474,7 +1497,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Cannonier vs Borralho Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${CannonierBorralhoScore.toFixed(2)}</strong> <a href="CannonierBorralho_F.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Cannonier vs Borralho Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${CannonierBorralhoScore.toFixed(2)}</strong> <a href="CannonierBorralho_F.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
         
@@ -1552,7 +1581,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 305 Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>UFC 305 Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (DuplessisAdesanya_fetch !== "DuplessisAdesanya not found") {
@@ -1629,7 +1664,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 305 Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${DuplessisAdesanyaScore.toFixed(2)}</strong> <a href="DuplessisAdesanya_F.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>UFC 305 Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${DuplessisAdesanyaScore.toFixed(2)}</strong> <a href="DuplessisAdesanya_F.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
     
@@ -1707,7 +1748,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>TyburaSpivac Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>TyburaSpivac Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (TyburaSpivac_fetch !== "TyburaSpivac not found") {
@@ -1784,7 +1831,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TyburaSpivacScore.toFixed(2)}</strong> <a href="TyburaSpivac_F.html">View Picks</a></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>Tybura vs Spivac Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TyburaSpivacScore.toFixed(2)}</strong> <a href="TyburaSpivac_F.html">View Picks</a></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
     
@@ -1862,7 +1915,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>SandhagenNurmagomedov Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>SandhagenNurmagomedov Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (SandhagenNurmagomedov_fetch !== "SandhagenNurmagomedov not found") {
@@ -1939,7 +1998,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>SandhagenNurmagomedov Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${SandhagenNurmagomedovScore.toFixed(2)}</strong> <a href="#" onclick="setViewUser('${username}', 'SandhagenNurmagomedov_view.html')">View Picks</a></strong></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>SandhagenNurmagomedov Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${SandhagenNurmagomedovScore.toFixed(2)}</strong> <a href="#" onclick="setViewUser('${username}', 'SandhagenNurmagomedov_view.html')">View Picks</a></strong></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
     
@@ -2017,7 +2082,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 304 Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>UFC 304 Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
             if (EdwardsMuhammad_fetch !== "EdwardsMuhammad not found") {
@@ -2094,7 +2165,13 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>UFC 304 Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${EdwardsMuhammadScore.toFixed(2)}</strong> <a href="#" onclick="setViewUser('${username}', 'ufc304_view.html')">View Picks</a></strong></p>`;
+                    if (lines < 6){userPicksHtml += `<p><strong>UFC 304 Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${EdwardsMuhammadScore.toFixed(2)}</strong> <a href="#" onclick="setViewUser('${username}', 'ufc304_view.html')">View Picks</a></strong></p>`;}
+if (less == 1) {
+    // do nothing
+} else {
+    lines += 1; // or lines = lines + 1;
+}
+                    
                 }
             }
     
@@ -3028,67 +3105,152 @@ getUserScores(username).then(() => {
                 MisfitsPicks.push(MF15[4] === 'L' ? 'Magen' : 'Fangs');
                 userPicksHtml += `<p><strong>Misfits15 Picks:</strong> ${MisfitsPicks.join(', ')}</p>`;
             }
+            if (less==1){
+                userPicksHtml += `<button onclick="get1()" style="margin-top: 10px; padding: 5px 10px;">See Less</button>`;
+            }
+            else{
+                userPicksHtml += `<button onclick="get1(1)" style="margin-top: 10px; padding: 5px 10px;">See More</button>`;
+            }
             
-
-            // Calculate total picks if any
-                let total = 0;
-            if (paultyson_fetch !== "paultyson not found") {
-                total = total + (paultyson_fetch ? paultyson_fetch.replace(/D/g, '').length : 0);}
-            if (davismartin_fetch !== "davismartin not found") {
-                total = total + (davismartin_fetch ? davismartin_fetch.replace(/D/g, '').length : 0);}
-            if (misfits15_fetch !== "misfits15 not found") {
-                total = total + (misfits15_fetch ? misfits15_fetch.replace(/D/g, '').length : 0);}
-            if (ufc302_fetch !== "ufc302 not found") {
-                total = total + (ufc302_fetch ? ufc302_fetch.replace(/D/g, '').length : 0);}
-            if (pfc37_fetch !== "pfc37 not found") {
-                total = total + (pfc37_fetch ? pfc37_fetch.replace(/D/g, '').length : 0);}
-            if (cannonierimavov_fetch !== "cannonierimavov not found") {
-                total = total + (cannonierimavov_fetch ? cannonierimavov_fetch.replace(/D/g, '').length : 0);}
-            if (lfa186_fetch !== "lfa186 not found") {
-                total = total + (lfa186_fetch ? lfa186_fetch.replace(/D/g, '').length : 0);}
-            if (pereztaira_fetch !== "pereztaira not found") {
-                total = total + (pereztaira_fetch ? pereztaira_fetch.replace(/D/g, '').length : 0);}
-            if (a122_fetch !== "a122 not found") {
-                total = total + (a122_fetch ? a122_fetch.replace(/D/g, '').length : 0);}
-            if (whittakeraliskerov_fetch !== "whittakeraliskerov not found") {
-                total = total + (whittakeraliskerov_fetch ? whittakeraliskerov_fetch.replace(/D/g, '').length : 0);}
-            if (ufc303_fetch !== "ufc303 not found") {
-                total = total + (ufc303_fetch ? ufc303_fetch.replace(/D/g, '').length : 0);}
-            if (ufc303Parlay_fetch !== "ufc303Parlay not found") {
-                total = total + 1;}
-            if (LemosJandiroba_fetch !== "LemosJandiroba not found") {
-                total = total + (LemosJandiroba_fetch ? LemosJandiroba_fetch.replace(/D/g, '').length : 0);}
-            if (LemosJandirobaParlay_fetch !== "LemosJandirobaParlay not found") {
-                total = total + 1;}
-            if (NamajunasCortez_fetch !== "NamajunasCortez not found") {
-                total = total + (NamajunasCortez_fetch ? NamajunasCortez_fetch.replace(/D/g, '').length : 0);}
-            if (NamajunasCortezParlay_fetch !== "NamajunasCortezParlay not found") {
-                total = total + 1;}
-            if (TemperBrueckner_fetch !== "TemperBrueckner not found") {
-                total = total + (TemperBrueckner_fetch ? TemperBrueckner_fetch.replace(/D/g, '').length : 0);}
-            if (TemperBruecknerParlay_fetch !== "TemperBruecknerParlay not found") {
-                total = total + 1;}
-
-            if (EdwardsMuhammad_fetch !== "EdwardsMuhammad not found") {
-                total = total + (EdwardsMuhammad_fetch ? EdwardsMuhammad_fetch.replace(/D/g, '').length : 0);
-            }
-            if (EdwardsMuhammadParlay_fetch !== "EdwardsMuhammadParlay not found") {
-                total = total + 1;}
-
-            if (SandhagenNurmagomedov_fetch !== "SandhagenNurmagomedov not found") {
-                total = total + (SandhagenNurmagomedov_fetch ? SandhagenNurmagomedov_fetch.replace(/D/g, '').length : 0);
-            }
-            if (SandhagenNurmagomedovParlay_fetch !== "SandhagenNurmagomedovParlay not found") {
-                total = total + 1;}
             
 
             // Update the DOM with user info
             document.getElementById('userInfo').innerHTML = userInfoHtml;
             document.getElementById('userPicks').innerHTML = userPicksHtml;
+            createChart()
         })
         .catch(error => console.error('Error:', error));
 });
 }
+
+function createChart() {
+    // Chart data
+    const labels = [
+        'Edwards vs Muhammad', 'Sandhagen vs Nurmagomedov', 'Tybura vs Spivac', 'Duplessis vs Adesanya', 'Cannonier vs Borralho', 
+        'Burns vs Brady', 'Omalley vs Dvalishvili', 'Moicano vs Saint Denis', 'Pereira vs Roundtree'
+    ];
+    const scores = [
+        EdwardsMuhammadScore,
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore,
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore, 
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore, 
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore, 
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore, 
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore,
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore,
+        EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore
+    ];
+
+    // Find the first non-zero score and adjust labels and scores accordingly
+    let startIndex = scores.findIndex(score => score !== 0);
+    if (startIndex === -1) startIndex = 0; // Default to the beginning if all scores are zero
+
+    const adjustedLabels = labels.slice(startIndex);
+    const adjustedScores = scores.slice(startIndex);
+
+    // Create the chart
+    const ctx = document.getElementById('scoreChart').getContext('2d');
+    const scoreChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: adjustedLabels,
+            datasets: [{
+                label: 'Score over Time',
+                data: adjustedScores,
+                borderColor: 'blue',
+                backgroundColor: 'lightblue',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Score'
+                    }
+                }
+            }
+        }
+    });
+}
+
+async function getUserScores(username) {
+    // URL to fetch the scores
+    const url = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=gatherScore&username=${username}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (response.status === 200) {
+            // Parse the JSON string in the 'body' field
+            const bodyData = JSON.parse(data.body);
+            const scores = bodyData.scores;
+
+            // Update the variables with the corresponding scores from the response
+            if (scores.CannonierBorralhoScore !== undefined) CannonierBorralhoScore = scores.CannonierBorralhoScore;
+            if (scores.BurnsBradyScore !== undefined) BurnsBradyScore = scores.BurnsBradyScore;
+            if (scores.OmalleyDvalishviliScore !== undefined) OmalleyDvalishviliScore = scores.OmalleyDvalishviliScore;
+            if (scores.PereiraRoundtreeParlayScore !== undefined) PereiraRoundtreeParlayScore = scores.PereiraRoundtreeParlayScore;
+            if (scores.PereiraRoundtreeScore !== undefined) PereiraRoundtreeScore = scores.PereiraRoundtreeScore;
+            if (scores.MoicanoSaintDenisScore !== undefined) MoicanoSaintDenisScore = scores.MoicanoSaintDenisScore;
+            if (scores.TopuriaHollowayScore !== undefined) TopuriaHollowayScore = scores.TopuriaHollowayScore;
+            if (scores.TopuriaHollowayParlayScore !== undefined) TopuriaHollowayParlayScore = scores.TopuriaHollowayParlayScore;
+            if (scores.RoyvalTairaScore !== undefined) RoyvalTairaScore = scores.RoyvalTairaScore;
+            if (scores.RoyvalTairaParlayScore !== undefined) RoyvalTairaParlayScore = scores.RoyvalTairaParlayScore;
+            if (scores.HernandezPereiraScore !== undefined) HernandezPereiraScore = scores.HernandezPereiraScore;
+            if (scores.HernandezPereiraParlayScore !== undefined) HernandezPereiraParlayScore = scores.HernandezPereiraParlayScore;
+            if (scores.EdwardsMuhammadScore !== undefined) EdwardsMuhammadScore = scores.EdwardsMuhammadScore;
+            if (scores.SandhagenNurmagomedovScore !== undefined) SandhagenNurmagomedovScore = scores.SandhagenNurmagomedovScore;
+            if (scores.TyburaSpivacScore !== undefined) TyburaSpivacScore = scores.TyburaSpivacScore;
+            if (scores.DuplessisAdesanyaScore !== undefined) DuplessisAdesanyaScore = scores.DuplessisAdesanyaScore;
+            if (scores.PereiraProchazkaScore !== undefined) PereiraProchazkaScore = scores.PereiraProchazkaScore;
+// im using this line to write above in cardwriter dont change this
+
+        } else if (response.status === 404) {
+            console.warn('User or scores not found:', data.error);
+        } else {
+            throw new Error(`Unexpected status code: ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Error fetching user scores:', error);
+    }
+}
+
+
+    let CannonierBorralhoScore = 0;
+    let BurnsBradyScore = 0;
+
+    let OmalleyDvalishviliScore = 0;
+
+    let PereiraRoundtreeScore = 0;
+    let PereiraRoundtreeParlayScore = 0;
+
+    let MoicanoSaintDenisScore = 0;
+
+    let TopuriaHollowayScore = 0;
+    let TopuriaHollowayParlayScore = 0;
+
+    let RoyvalTairaScore = 0;
+    let RoyvalTairaParlayScore = 0;
+
+    let HernandezPereiraScore = 0;
+    let HernandezPereiraParlayScore = 0;
+    let EdwardsMuhammadScore = 0;
+    let SandhagenNurmagomedovScore = 0;
+    let TyburaSpivacScore = 0;
+    let DuplessisAdesanyaScore = 0;
+    let PereiraProchazkaScore = 0;
+
+
 
 
 
