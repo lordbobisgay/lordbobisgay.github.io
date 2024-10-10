@@ -78,6 +78,48 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+.changingFont1{
+  font-size: 30px;
+}
+/* Container for the additional buttons */
+.additional-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Base styling for all three event buttons */
+.eventButton {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for all buttons */
+.eventButton:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+/* Unique styles for each button to further differentiate */
+.upcomingButton {
+  background-color: #007bff;
+}
+
+.previousButton {
+  background-color: #28a745;
+}
+
+.leaderboardButton {
+  background-color: #ffc107;
+}
+
 #canvas {
   position: absolute;
   top: 0;
@@ -171,7 +213,7 @@
   background-repeat: no-repeat;
   background-position: center -450px;
   color: black;
-  padding: 20px 40px;
+  padding: 15px 30px;
   border: none;
   cursor: pointer;
   border-radius: 20px;
@@ -910,6 +952,9 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 767px) {
+  .changingFont1{
+    font-size: 25px;
+  }
   .howPicksWork1 {
     background-color: black;
 
