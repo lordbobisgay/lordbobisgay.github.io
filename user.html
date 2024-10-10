@@ -113,11 +113,15 @@ async function getUserScores(username) {
             if (scores.CannonierBorralhoScore !== undefined) CannonierBorralhoScore = scores.CannonierBorralhoScore;
             if (scores.BurnsBradyScore !== undefined) BurnsBradyScore = scores.BurnsBradyScore;
             if (scores.OmalleyDvalishviliScore !== undefined) OmalleyDvalishviliScore = scores.OmalleyDvalishviliScore;
+            if (scores.PereiraRoundtreeParlayScore !== undefined) PereiraRoundtreeParlayScore = scores.PereiraRoundtreeParlayScore;
             if (scores.PereiraRoundtreeScore !== undefined) PereiraRoundtreeScore = scores.PereiraRoundtreeScore;
             if (scores.MoicanoSaintDenisScore !== undefined) MoicanoSaintDenisScore = scores.MoicanoSaintDenisScore;
             if (scores.TopuriaHollowayScore !== undefined) TopuriaHollowayScore = scores.TopuriaHollowayScore;
+            if (scores.TopuriaHollowayParlayScore !== undefined) TopuriaHollowayParlayScore = scores.TopuriaHollowayParlayScore;
             if (scores.RoyvalTairaScore !== undefined) RoyvalTairaScore = scores.RoyvalTairaScore;
+            if (scores.RoyvalTairaParlayScore !== undefined) RoyvalTairaParlayScore = scores.RoyvalTairaParlayScore;
             if (scores.HernandezPereiraScore !== undefined) HernandezPereiraScore = scores.HernandezPereiraScore;
+            if (scores.HernandezPereiraParlayScore !== undefined) HernandezPereiraParlayScore = scores.HernandezPereiraParlayScore;
             if (scores.EdwardsMuhammadScore !== undefined) EdwardsMuhammadScore = scores.EdwardsMuhammadScore;
             if (scores.SandhagenNurmagomedovScore !== undefined) SandhagenNurmagomedovScore = scores.SandhagenNurmagomedovScore;
             if (scores.TyburaSpivacScore !== undefined) TyburaSpivacScore = scores.TyburaSpivacScore;
@@ -142,14 +146,18 @@ async function getUserScores(username) {
     let OmalleyDvalishviliScore = 0;
 
     let PereiraRoundtreeScore = 0;
+    let PereiraRoundtreeParlayScore = 0;
 
     let MoicanoSaintDenisScore = 0;
 
     let TopuriaHollowayScore = 0;
+    let TopuriaHollowayParlayScore = 0;
 
     let RoyvalTairaScore = 0;
+    let RoyvalTairaParlayScore = 0;
 
     let HernandezPereiraScore = 0;
+    let HernandezPereiraParlayScore = 0;
     let EdwardsMuhammadScore = 0;
     let SandhagenNurmagomedovScore = 0;
     let TyburaSpivacScore = 0;
@@ -302,7 +310,7 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Topuria vs Holloway Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>Topuria vs Holloway Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayParlayScore.toFixed(2)}</strong></p>`;
                 }
             }
             if (TopuriaHolloway_fetch !== "TopuriaHolloway not found") {
@@ -457,7 +465,7 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Hernandez vs Pereira Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>Hernandez vs Pereira Parlay Picks:</strong> ${davismartinpicks.join(', ')}<strong> Score earned: ${HernandezPereiraParlayScore.toFixed(2)}</strong></p>`;
                 }
             }
             if (HernandezPereira_fetch !== "HernandezPereira not found") {
@@ -612,7 +620,7 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Royval vs Taira Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>Royval vs Taira Parlay Picks:</strong> ${davismartinpicks.join(', ')}<strong> Score earned: ${RoyvalTairaParlayScore.toFixed(2)}</strong></p>`;
                 }
             }
             if (RoyvalTaira_fetch !== "RoyvalTaira not found") {
@@ -767,7 +775,7 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    userPicksHtml += `<p><strong>Pereira vs Roundtree Parlay Picks:</strong> ${davismartinpicks.join(', ')}</p>`;
+                    userPicksHtml += `<p><strong>Pereira vs Roundtree Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${PereiraRoundtreeParlayScore.toFixed(2)}</strong></p>`;
                 }
             }
             if (PereiraRoundtree_fetch !== "PereiraRoundtree not found") {
