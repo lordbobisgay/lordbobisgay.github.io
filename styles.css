@@ -78,6 +78,9 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+.changingFont2{
+  font-size: 25px;
+}
 .changingFont1{
   font-size: 30px;
 }
@@ -954,6 +957,9 @@
 @media (max-width: 767px) {
   .changingFont1{
     font-size: 25px;
+  }
+  .changingFont2{
+    font-size: 15px;
   }
   .howPicksWork1 {
     background-color: black;
