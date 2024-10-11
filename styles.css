@@ -78,6 +78,70 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
+/* Comments Section Styles */
+
+.custom-comment-container {
+  width: 60%;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.custom-comment-form {
+  margin-bottom: 20px;
+}
+
+.custom-comment-form textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  resize: none;
+}
+
+.custom-comment-form button {
+  margin-top: 10px;
+  padding: 10px 20px;
+}
+
+.custom-comment {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.custom-comment .custom-comment-author {
+  font-weight: bold;
+}
+
+.custom-comment .custom-comment-content {
+  margin: 10px 0;
+}
+
+.custom-comment .custom-comment-actions {
+  font-size: 14px;
+  color: #555;
+}
+
+.custom-comment .custom-comment-actions button {
+  background: none;
+  border: none;
+  color: #007BFF;
+  cursor: pointer;
+  padding: 0;
+}
+
+.custom-comment .custom-comment-reply-form {
+  margin-top: 10px;
+}
+
+.custom-comment .custom-comment-replies {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.custom-comment .custom-comment-replies .custom-comment {
+  margin-bottom: 10px;
+}
 
 .changingFont2{
   font-size: 25px;

@@ -1466,7 +1466,20 @@
     </div>
 </div>
 
+<div style="height: 100px;"></div>
 
+<div class="custom-comment-container" data-event-id="HernandezPereira">
+    <h2>Comments</h2>
+    <!-- Comment form -->
+    <div class="custom-comment-form">
+        <textarea id="commentInput" placeholder="Add a comment..."></textarea>
+        <button id="submitComment">Post Comment</button>
+    </div>
+    <!-- Comments list -->
+    <div id="commentsList">
+        <!-- Comments will be dynamically inserted here -->
+    </div>
+</div>
         </section>
                            <!-- Hidden Content -->
                            <div class="fixedBox" style="display: none;" id="moreInfo">
@@ -1700,6 +1713,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var username = localStorage.getItem('username');
     compareTimestamps();
     fetchDataAndUpdateUI()
+    fetchComments();
 if (username) {
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=HernandezPereira_F&username=${encodeURIComponent(username)}`;
     fetch(apiUrl)
@@ -3659,6 +3673,163 @@ document.getElementById('regular_picks').addEventListener('click', function() {
     }
     
     </script>
+        <script>
+            // Base URL of the backend API
+            const apiBaseUrl = 'https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev';
+            
+            // Get the event identifier from the HTML
+            const eventContainer = document.querySelector('.custom-comment-container');
+            const eventIdentifier = eventContainer.getAttribute('data-event-id');
+            
+            // Initialize commentsData
+            let commentsData = [];
+            
+            // Function to fetch comments from the backend
+            async function fetchComments() {
+                try {
+                    const response = await fetch(`${apiBaseUrl}?page=getComments&placeholder2=HernandezPereira`);
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        // Parse the "body" field as JSON
+                        const parsedBody = JSON.parse(data.body);
+                        const commentsObject = parsedBody.comments || {};
+            
+                        // Convert the comments object into an array
+                        commentsData = Object.keys(commentsObject).map(commentId => ({
+                            id: commentId,
+                            ...commentsObject[commentId]
+                        }));
+            
+                        renderComments();
+                    } else {
+                        console.error('Error fetching comments:', data.message);
+                    }
+                } catch (error) {
+                    console.error('Error fetching comments:', error);
+                }
+            }
+            
+            // Function to render comments
+            function renderComments() {
+                const commentsList = document.getElementById('commentsList');
+                commentsList.innerHTML = '';
+            
+                // Filter top-level comments (parent_id is null or undefined)
+                const topLevelComments = commentsData.filter(comment => !comment.parent_id);
+            
+                topLevelComments.forEach(comment => {
+                    const commentElement = createCommentElement(comment);
+                    commentsList.appendChild(commentElement);
+                });
+            }
+            
+            // Function to create a comment element
+            function createCommentElement(comment) {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('custom-comment');
+                commentDiv.dataset.commentId = comment.id; // Store the comment ID
+            
+                const author = document.createElement('div');
+                author.classList.add('custom-comment-author');
+                author.textContent = comment.username;
+            
+                const content = document.createElement('div');
+                content.classList.add('custom-comment-content');
+                content.textContent = comment.text;
+            
+                const actions = document.createElement('div');
+                actions.classList.add('custom-comment-actions');
+                const replyButton = document.createElement('button');
+                replyButton.textContent = 'Reply';
+                replyButton.onclick = () => showReplyForm(commentDiv, comment.id);
+                actions.appendChild(replyButton);
+            
+                commentDiv.appendChild(author);
+                commentDiv.appendChild(content);
+                commentDiv.appendChild(actions);
+            
+                // Replies
+                const replies = commentsData.filter(c => c.parent_id === comment.id);
+                if (replies.length > 0) {
+                    const repliesDiv = document.createElement('div');
+                    repliesDiv.classList.add('custom-comment-replies');
+                    replies.forEach(reply => {
+                        const replyElement = createCommentElement(reply);
+                        repliesDiv.appendChild(replyElement);
+                    });
+                    commentDiv.appendChild(repliesDiv);
+                }
+            
+                return commentDiv;
+            }
+            
+            // Function to show the reply form
+            function showReplyForm(commentElement, parentId) {
+                // Check if form already exists
+                if (commentElement.querySelector('.custom-comment-reply-form')) return;
+            
+                const replyForm = document.createElement('div');
+                replyForm.classList.add('custom-comment-reply-form');
+            
+                const textarea = document.createElement('textarea');
+                textarea.placeholder = 'Write a reply...';
+            
+                const submitButton = document.createElement('button');
+                submitButton.textContent = 'Post Reply';
+                submitButton.onclick = async () => {
+                    const replyContent = textarea.value.trim();
+                    if (replyContent) {
+            
+                        // Send reply to the backend
+                        try {
+                            const response = await fetch(`${apiBaseUrl}?page=sendComment&username=${encodeURIComponent(username)}&result=${encodeURIComponent(replyContent)}&placeholder2=HernandezPereira&emailCheck=${encodeURIComponent(parentId)}`);
+                            const data = await response.json();
+                            if (response.ok) {
+                                // Clear the reply form
+                                replyForm.remove();
+                                // Fetch updated comments from the backend
+                                await fetchComments();
+                            } else {
+                                console.error('Error sending reply:', data.message);
+                            }
+                        } catch (error) {
+                            console.error('Error sending reply:', error);
+                        }
+                    }
+                };
+            
+                replyForm.appendChild(textarea);
+                replyForm.appendChild(submitButton);
+                commentElement.appendChild(replyForm);
+            }
+            
+            // Event listener for adding a new comment
+            document.getElementById('submitComment').addEventListener('click', async () => {
+                const commentInput = document.getElementById('commentInput');
+                const content = commentInput.value.trim();
+                if (content) {
+            
+                    // Send comment to the backend
+                    try {
+                        const response = await fetch(`${apiBaseUrl}?page=sendComment&username=${encodeURIComponent(username)}&result=${encodeURIComponent(content)}&placeholder2=HernandezPereira`);
+                        const data = await response.json();
+                        if (response.ok) {
+                            commentInput.value = '';
+                            // Fetch updated comments from the backend
+                            await fetchComments();
+                        } else {
+                            console.error('Error adding comment:', data.message);
+                        }
+                    } catch (error) {
+                        console.error('Error adding comment:', error);
+                    }
+                }
+            });
+            
+            
+            
+                </script>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS (if not using bundle) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
