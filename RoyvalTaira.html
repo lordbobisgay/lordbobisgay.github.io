@@ -7341,45 +7341,60 @@ fetch('https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=RoyvalTai
                 });
             }
             
-            // Function to create a comment element
-            function createCommentElement(comment) {
-                const commentDiv = document.createElement('div');
-                commentDiv.classList.add('custom-comment');
-                commentDiv.dataset.commentId = comment.id; // Store the comment ID
+        // Function to create a comment element
+        function createCommentElement(comment) {
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('custom-comment');
+            commentDiv.dataset.commentId = comment.id; // Store the comment ID
+
+            // Create clickable username element
+            const author = document.createElement('div');
+            author.classList.add('custom-comment-author');
             
-                const author = document.createElement('div');
-                author.classList.add('custom-comment-author');
-                author.textContent = comment.username;
-            
-                const content = document.createElement('div');
-                content.classList.add('custom-comment-content');
-                content.textContent = comment.text;
-            
-                const actions = document.createElement('div');
-                actions.classList.add('custom-comment-actions');
-                const replyButton = document.createElement('button');
-                replyButton.textContent = 'Reply';
-                replyButton.onclick = () => showReplyForm(commentDiv, comment.id);
-                actions.appendChild(replyButton);
-            
-                commentDiv.appendChild(author);
-                commentDiv.appendChild(content);
-                commentDiv.appendChild(actions);
-            
-                // Replies
-                const replies = commentsData.filter(c => c.parent_id === comment.id);
-                if (replies.length > 0) {
-                    const repliesDiv = document.createElement('div');
-                    repliesDiv.classList.add('custom-comment-replies');
-                    replies.forEach(reply => {
-                        const replyElement = createCommentElement(reply);
-                        repliesDiv.appendChild(replyElement);
-                    });
-                    commentDiv.appendChild(repliesDiv);
-                }
-            
-                return commentDiv;
+            const usernameLink = document.createElement('a');
+            usernameLink.textContent = comment.username;
+            usernameLink.href = '#'; // Placeholder href; prevent default navigation
+            usernameLink.onclick = (event) => {
+                event.preventDefault(); // Prevents the default anchor behavior
+                setViewUser(comment.username);
+            };
+
+            author.appendChild(usernameLink);
+
+            const content = document.createElement('div');
+            content.classList.add('custom-comment-content');
+            content.textContent = comment.text;
+
+            const actions = document.createElement('div');
+            actions.classList.add('custom-comment-actions');
+            const replyButton = document.createElement('button');
+            replyButton.textContent = 'Reply';
+            replyButton.onclick = () => showReplyForm(commentDiv, comment.id);
+            actions.appendChild(replyButton);
+
+            commentDiv.appendChild(author);
+            commentDiv.appendChild(content);
+            commentDiv.appendChild(actions);
+
+            // Replies
+            const replies = commentsData.filter(c => c.parent_id === comment.id);
+            if (replies.length > 0) {
+                const repliesDiv = document.createElement('div');
+                repliesDiv.classList.add('custom-comment-replies');
+                replies.forEach(reply => {
+                    const replyElement = createCommentElement(reply);
+                    repliesDiv.appendChild(replyElement);
+                });
+                commentDiv.appendChild(repliesDiv);
             }
+
+            return commentDiv;
+        }
+        // Function to set the user view and navigate to the user profile page
+        function setViewUser(username) {
+            localStorage.setItem('viewUser', username);
+            window.location.href = 'https://punchpredictor.com/viewUser.html';
+        }
             
             // Function to show the reply form
             function showReplyForm(commentElement, parentId) {
