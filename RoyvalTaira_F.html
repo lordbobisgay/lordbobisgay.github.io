@@ -5841,6 +5841,7 @@ document.getElementById('regular_picks').addEventListener('click', function() {
             
             // Function to show the reply form
             function showReplyForm(commentElement, parentId) {
+                username = localStorage.getItem('username');
                 // Check if form already exists
                 if (commentElement.querySelector('.custom-comment-reply-form')) return;
             
