@@ -167,9 +167,10 @@ getUserScores(username).then(() => {
                 <p><strong>Score:</strong> $${formattedScore || 'No score yet'} - This is how much money you would have made if you bet $100 on each fight.</p>
 
             `;
-            let userPicksHtml = ``;
             let lines = 0;
-        
+            let userPicksHtml = `
+            `;
+
             if (TopuriaHollowayParlay_fetch !== "TopuriaHollowayParlay not found") {
                 const davismartinpicks = [];
                 const davismartin = TopuriaHollowayParlay_fetch;
@@ -236,7 +237,7 @@ getUserScores(username).then(() => {
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Ilia Topuria", "Max Holloway", "Robert Whittaker", "Khamzat Chimaev", "Ciryl Gane", "Alexander Volkov", "Magomed Ankalaev", "Aleksandar Rakic", "Shara Magomedov", "Armen Petrosyan", "Lerone Murphy", "Dan Ige", "Geoff Neal", "Rafael Dos Anjos", "Mateusz Rebecki", "Myktybek Orolbai", "Abus Magomedov", "Brunno Ferreira", "Kennedy Nzechukwu", "Justin Tafa", "Rinat Fakhretdinov", "Nursulton Ruziboev", "Ibo Aslan", "Raffael Cerqueira", "Said Nurmagomedov", "Daniel Santos", "Farid Basharat", "Victor Hugo"];
+                const pairs = ["Ilia Topuria", "Max Holloway", "Robert Whittaker", "Khamzat Chimaev", "Lerone Murphy", "Dan Ige", "Magomed Ankalaev", "Aleksandar Rakic", "Shara Magomedov", "Armen Petrosyan", "Geoff Neal", "Rafael Dos Anjos", "Mateusz Rebecki", "Myktybek Orolbai", "Said Nurmagomedov", "Daniel Santos", "Abus Magomedov", "Brunno Ferreira", "Kennedy Nzechukwu", "Justin Tafa", "Farid Basharat", "Victor Hugo", "Rinat Fakhretdinov", "Nursulton Ruziboev", "Ibo Aslan", "Raffael Cerqueira", "Ismail Naurdiev", "Bruno Silva"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -244,14 +245,14 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    if (lines < 6){
-                        userPicksHtml += `<p><strong>Topuria vs Holloway Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayParlayScore.toFixed(2)}</strong></p>`;
+                if (lines < 6){
+                    userPicksHtml += `<p><strong>Topuria vs Holloway Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayParlayScore.toFixed(2)}</strong></p>`;
                     }
                     if (less == 1) {
-    // do nothing
-} else {
-    lines += 1; // or lines = lines + 1;
-}
+                        // do nothing
+                    } else {
+                        lines += 1; // or lines = lines + 1;
+                    }
                 }
             }
             if (TopuriaHolloway_fetch !== "TopuriaHolloway not found") {
@@ -320,7 +321,7 @@ getUserScores(username).then(() => {
                 }
 
                 // Loop through each pair of fighters
-                const pairs = ["Ilia Topuria", "Max Holloway", "Robert Whittaker", "Khamzat Chimaev", "Ciryl Gane", "Alexander Volkov", "Magomed Ankalaev", "Aleksandar Rakic", "Shara Magomedov", "Armen Petrosyan", "Lerone Murphy", "Dan Ige", "Geoff Neal", "Rafael Dos Anjos", "Mateusz Rebecki", "Myktybek Orolbai", "Abus Magomedov", "Brunno Ferreira", "Kennedy Nzechukwu", "Justin Tafa", "Rinat Fakhretdinov", "Nursulton Ruziboev", "Ibo Aslan", "Raffael Cerqueira", "Said Nurmagomedov", "Daniel Santos", "Farid Basharat", "Victor Hugo"];
+                const pairs = ["Ilia Topuria", "Max Holloway", "Robert Whittaker", "Khamzat Chimaev", "Lerone Murphy", "Dan Ige", "Magomed Ankalaev", "Aleksandar Rakic", "Shara Magomedov", "Armen Petrosyan", "Geoff Neal", "Rafael Dos Anjos", "Mateusz Rebecki", "Myktybek Orolbai", "Said Nurmagomedov", "Daniel Santos", "Abus Magomedov", "Brunno Ferreira", "Kennedy Nzechukwu", "Justin Tafa", "Farid Basharat", "Victor Hugo", "Rinat Fakhretdinov", "Nursulton Ruziboev", "Ibo Aslan", "Raffael Cerqueira", "Ismail Naurdiev", "Bruno Silva"];
                 pairs.forEach((fighter, index) => {
                     if (index % 2 === 0) {
                         pickFighter(index / 2, pairs[index], pairs[index + 1]);
@@ -328,14 +329,18 @@ getUserScores(username).then(() => {
                 });
 
                 if (davismartinpicks.length > 0) {
-                    if (lines < 6){userPicksHtml += `<p><strong>Topuria vs Holloway Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayScore.toFixed(2)}</strong> <a href="TopuriaHolloway.html">View Picks</a></p>`;}
+                if (lines < 6){
+                    userPicksHtml += `<p><strong>Topuria vs Holloway Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${TopuriaHollowayScore.toFixed(2)}</strong> <a href="TopuriaHolloway.html">View Picks</a></p>`;
+                    }
                     if (less == 1) {
-    // do nothing
-} else {
-    lines += 1; // or lines = lines + 1;
-}
+                        // do nothing
+                    } else {
+                        lines += 1; // or lines = lines + 1;
+                    }
                 }
             }
+                
+ 
 
             if (HernandezPereiraParlay_fetch !== "HernandezPereiraParlay not found") {
                 const davismartinpicks = [];
@@ -3128,7 +3133,8 @@ function createChart() {
     const labels = [
         'Pereira vs Prochazka','Edwards vs Muhammad', 'Sandhagen vs Nurmagomedov', 'Tybura vs Spivac', 'Duplessis vs Adesanya', 'Cannonier vs Borralho', 
         'Burns vs Brady', 'Omalley vs Dvalishvili', 'Moicano vs Saint Denis', 'Pereira vs Roundtree', 'Royval vs Taira', 'Hernandez vs Pereira', 'Topuria vs Holloway',
-        //put it above of here
+'Topuria vs Hollowaylolhehe',
+            //put it above of here
     ];
     const scores = [
         PereiraProchazkaScore,
@@ -3143,7 +3149,7 @@ function createChart() {
         PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore,
         PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore,
         PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore+HernandezPereiraScore,
-        PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore+HernandezPereiraScore+TopuriaHollowayScore,
+PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore+HernandezPereiraScore+TopuriaHollowayScore+TopuriaHollowayScore,
         //Im using this line for writing new stuff
     ];
 
