@@ -2015,44 +2015,41 @@ if (username) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.HernandezPereira_value;
-            const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+            const predefinedPicks = "LAHLC9LC9LC9LC9RP9RP9LBKRP9LC9LC9";
             const odds = {
-                1: -220,
-                2: +110,
-                3: +100,
-                4: +155,
-                5: +450,
-                6: +100,
-                7: -120,
-                8: +185,
-                9: +1100,
-                10: -350,
-                11: +275,
-                12: +100,
-                13: +190,
-                14: +800,
-                15: +1600,
-                16: +185,
-                17: +185,
-                18: +185,
-                19: +190,
-                20: +850,
-                21: +3300,
-                22: -125,
-                23: +150,
-                24: +100,
-                25: -145,
-                26: +400,
-                27: +850,
-                28: -400,
-                29: +175,
-                30: +400,
-                31: -105,
-                32: +300,
-                33: +100,
-                34: -425,
-                35: +250,
-                36: +750,
+                1: -135,
+            2: +500,
+            3: +5000,
+            4: +340,
+            5: +650,
+            6: +100,
+            7: -225,
+            8: +135,
+            9: +1100,
+            10: +430,
+            11: +1000,
+            12: +100,
+            13: -112,
+            14: +350,
+            15: +1600,
+            16: -225,
+            17: +110,
+            18: +185,
+            19: -215,
+            20: -110,
+            21: +3300,
+            22: -255,
+            23: +1000,
+            24: +2800,
+            25: -183,
+            26: -110,
+            27: +850,
+            28: +265,
+            29: +1100,
+            30: +400,
+            31: -137,
+            32: +130,
+            33: +100,
             };
 
             function getOddsForPosition(position) {
@@ -2079,7 +2076,7 @@ if (username) {
                     // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
                     // Update the text of the corresponding fightWeight element to "0 score earned"
                 if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned 0 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned 0 score for their pick on this fight";
                 }
                 } else {
                     const predefinedSegment = predefinedPicks.substr(index * 3, 3);
@@ -2089,12 +2086,12 @@ if (username) {
                         var thisFightEarned = calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         earnings += calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their pick on this fight";
                 }
                     } else {
                         earnings -= 100;
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " lost 100 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " lost 100 score for their pick on this fight";
                 }
                     }
                 }
@@ -2117,44 +2114,41 @@ fetch(apiUrl2)
         let allD = Math.floor(22 / 2); // Calculate barCount divided by 2
         userPicks = "D".repeat(allD); // Repeat the letter 'D' allD times
         }
-        const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+        const predefinedPicks = "LAHLC9LC9LC9LC9RP9RP9LBKRP9LC9LC9";
         const odds = {
-            1: -220,
-            2: +110,
-            3: +100,
-            4: +155,
-            5: +450,
+            1: -135,
+            2: +500,
+            3: +5000,
+            4: +340,
+            5: +650,
             6: +100,
-            7: -120,
-            8: +185,
+            7: -225,
+            8: +135,
             9: +1100,
-            10: -350,
-            11: +275,
+            10: +430,
+            11: +1000,
             12: +100,
-            13: +190,
-            14: +800,
+            13: -112,
+            14: +350,
             15: +1600,
-            16: +185,
-            17: +185,
+            16: -225,
+            17: +110,
             18: +185,
-            19: +190,
-            20: +850,
+            19: -215,
+            20: -110,
             21: +3300,
-            22: -125,
-            23: +150,
-            24: +100,
-            25: -145,
-            26: +400,
+            22: -255,
+            23: +1000,
+            24: +2800,
+            25: -183,
+            26: -110,
             27: +850,
-            28: -400,
-            29: +175,
+            28: +265,
+            29: +1100,
             30: +400,
-            31: -105,
-            32: +300,
+            31: -137,
+            32: +130,
             33: +100,
-            34: -425,
-            35: +250,
-            36: +750,
         };
 
         function convertAmericanToDecimal(americanOdds) {
@@ -2591,7 +2585,7 @@ fetch(apiUrl2)
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+			const predefinedPicks = "LAHLC9LC9LC9LC9RP9RP9LBKRP9LC9LC9";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
@@ -2641,44 +2635,41 @@ function colorButton(buttonId, userPick, predefinedSegment) {
         .then(data => {
             const responseBody = JSON.parse(data.body);
             const userPicks = responseBody.BurnsBrady_value;
-            const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+            const predefinedPicks = "LAHLC9LC9LC9LC9RP9RP9LBKRP9LC9LC9";
             const odds = {
-                1: -220,
-                2: +110,
-                3: +100,
-                4: +155,
-                5: +450,
-                6: +100,
-                7: -120,
-                8: +185,
-                9: +1100,
-                10: -350,
-                11: +275,
-                12: +100,
-                13: +190,
-                14: +800,
-                15: +1600,
-                16: +185,
-                17: +185,
-                18: +185,
-                19: +190,
-                20: +850,
-                21: +3300,
-                22: -125,
-                23: +150,
-                24: +100,
-                25: -145,
-                26: +400,
-                27: +850,
-                28: -400,
-                29: +175,
-                30: +400,
-                31: -105,
-                32: +300,
-                33: +100,
-                34: -425,
-                35: +250,
-                36: +750,
+                1: -135,
+            2: +500,
+            3: +5000,
+            4: +340,
+            5: +650,
+            6: +100,
+            7: -225,
+            8: +135,
+            9: +1100,
+            10: +430,
+            11: +1000,
+            12: +100,
+            13: -112,
+            14: +350,
+            15: +1600,
+            16: -225,
+            17: +110,
+            18: +185,
+            19: -215,
+            20: -110,
+            21: +3300,
+            22: -255,
+            23: +1000,
+            24: +2800,
+            25: -183,
+            26: -110,
+            27: +850,
+            28: +265,
+            29: +1100,
+            30: +400,
+            31: -137,
+            32: +130,
+            33: +100,
             };
 
             function getOddsForPosition(position) {
@@ -2705,7 +2696,7 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                     // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
                     // Update the text of the corresponding fightWeight element to "0 score earned"
                 if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned 0 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned 0 score for their pick on this fight";
                 }
                 } else {
                     const predefinedSegment = predefinedPicks.substr(index * 3, 3);
@@ -2715,12 +2706,12 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                         var thisFightEarned = calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         earnings += calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their picks on this fight";
+                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their pick on this fight";
                 }
                     } else {
                         earnings -= 100;
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = username + " lost 100 score for their picks on this fight";
+                    fightWeightElement.textContent = username + " lost 100 score for their pick on this fight";
                 }
                     }
                 }
@@ -2760,44 +2751,41 @@ fetch(apiUrl2)
             let allD = Math.floor(22 / 2); // Calculate barCount divided by 2, ensuring an integer result
     userPicks = "D".repeat(allD); // Repeat the letter 'D' allD times
         }
-        const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+        const predefinedPicks = "LAHLC9LC9LC9LC9RP9RP9LBKRP9LC9LC9";
         const odds = {
-            1: -220,
-            2: +110,
-            3: +100,
-            4: +155,
-            5: +450,
+            1: -135,
+            2: +500,
+            3: +5000,
+            4: +340,
+            5: +650,
             6: +100,
-            7: -120,
-            8: +185,
+            7: -225,
+            8: +135,
             9: +1100,
-            10: -350,
-            11: +275,
+            10: +430,
+            11: +1000,
             12: +100,
-            13: +190,
-            14: +800,
+            13: -112,
+            14: +350,
             15: +1600,
-            16: +185,
-            17: +185,
+            16: -225,
+            17: +110,
             18: +185,
-            19: +190,
-            20: +850,
+            19: -215,
+            20: -110,
             21: +3300,
-            22: -125,
-            23: +150,
-            24: +100,
-            25: -145,
-            26: +400,
+            22: -255,
+            23: +1000,
+            24: +2800,
+            25: -183,
+            26: -110,
             27: +850,
-            28: -400,
-            29: +175,
+            28: +265,
+            29: +1100,
             30: +400,
-            31: -105,
-            32: +300,
+            31: -137,
+            32: +130,
             33: +100,
-            34: -425,
-            35: +250,
-            36: +750,
         };
 
         function convertAmericanToDecimal(americanOdds) {
@@ -2895,7 +2883,7 @@ if (username) {
                 console.error("Invalid or incomplete user picks data:", userPicks);
                 return;  // Exit if data is not valid
             }
-			const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
+			const predefinedPicks = "LAHLC9LC9LC9LC9RP9RP9LBKRP9LC9LC9";
         
         for (let i = 0; i < userPicks.length; i++) {
             const predefinedSegment = predefinedPicks.substr(i * 3, 3);
