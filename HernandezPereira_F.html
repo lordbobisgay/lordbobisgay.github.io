@@ -2633,12 +2633,12 @@ function colorButton(buttonId, userPick, predefinedSegment) {
 <script>
         function regularEarnings() {
         if (username) {
-    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=BurnsBrady_F&username=${encodeURIComponent(username)}`;
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=HernandezPereira_F&username=${encodeURIComponent(username)}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             const responseBody = JSON.parse(data.body);
-            const userPicks = responseBody.BurnsBrady_value;
+            const userPicks = responseBody.HernandezPereira_value;
             const predefinedPicks = "LAHLC9LC9LC9LC9RP9RP9LBKRP9LC9LC9";
             const odds = {
                 1: -135,
@@ -2745,12 +2745,12 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                 }
                 return parseFloat(profit.toFixed(2));
             }
-		const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=BurnsBradyParlay_F&username=${encodeURIComponent(username)}`;
+		const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=HernandezPereiraParlay_F&username=${encodeURIComponent(username)}`;
 fetch(apiUrl2)
     .then(response => response.json())
     .then(data => {
         const responseBody = JSON.parse(data.body);
-        let userPicks = responseBody.BurnsBradyParlay_value;
+        let userPicks = responseBody.HernandezPereiraParlay_value;
         if (userPicks == null){
             let allD = Math.floor(22 / 2); // Calculate barCount divided by 2, ensuring an integer result
     userPicks = "D".repeat(allD); // Repeat the letter 'D' allD times
