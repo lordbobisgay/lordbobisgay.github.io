@@ -2756,12 +2756,12 @@ function colorButton(buttonId, userPick, predefinedSegment) {
     var username = localStorage.getItem('username');
         function regularEarnings() {
         if (username) {
-    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=BurnsBrady_F&username=${encodeURIComponent(username)}`;
+    const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=TopuriaHolloway_F&username=${encodeURIComponent(username)}`;
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             const responseBody = JSON.parse(data.body);
-            const userPicks = responseBody.BurnsBrady_value;
+            const userPicks = responseBody.TopuriaHolloway_value;
             const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
             const odds = {
                 1: -220,
@@ -2871,12 +2871,12 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                 }
                 return parseFloat(profit.toFixed(2));
             }
-		const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=BurnsBradyParlay_F&username=${encodeURIComponent(username)}`;
+		const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=TopuriaHollowayParlay_F&username=${encodeURIComponent(username)}`;
 fetch(apiUrl2)
     .then(response => response.json())
     .then(data => {
         const responseBody = JSON.parse(data.body);
-        let userPicks = responseBody.BurnsBradyParlay_value;
+        let userPicks = responseBody.TopuriaHollowayParlay_value;
         if (userPicks == null){
             let allD = Math.floor(28 / 2); // Calculate barCount divided by 2, ensuring an integer result
     userPicks = "D".repeat(allD); // Repeat the letter 'D' allD times
