@@ -535,7 +535,7 @@
 
 		<div id="parlayEarningsDisplay" class="bold-text3 text-center text-uppercase text-secondary mb-0 padding-extra"></div>
                    
-        		<div id="parlayEarningsDisplay" class="bold-text3 text-center text-uppercase text-secondary mb-0 padding-extra"></div>
+        		
             <div class="text-center mt-3" style="position: relative; display: flex; justify-content: center; margin-bottom: 75px;">
                 <button class="btn btn-primary mr-2" id="regular_picks" style="position: absolute; display: none;">
                     Swap To Regular Picks
@@ -2951,11 +2951,11 @@ fetch(apiUrl2)
 
         let earnings = incorrectPick ? -100 : (multiplier - 1) * 100;
 
-        document.getElementById('parlayEarningsDisplay').innerText = username + ` earned ${earnings.toFixed(2)} score for their parlay on this card.`;
+        
     })
     .catch(error => {
         console.error("Error fetching data:", error);
-        document.getElementById('parlayEarningsDisplay').innerText = '';
+        
     });
     }
 
