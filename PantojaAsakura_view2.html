@@ -67,6 +67,7 @@
         </nav>
 
 
+
 <div class="overlay-sidebar" id="mySidebar1">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav(1)">&times;</a>
     <div class="overlay-content">
@@ -482,16 +483,15 @@
                     <img src="assets/img/portfolio/chain.png" alt="Chain" style="width: 40px; height: 40px; margin-right: 5px;">
                 </button>
             </div>
-
             <!-- Show More Info Button -->
-            <div class="text-center mt-3" style="margin-bottom: 40px; margin-top: 20px;">
-                <a href="#moreInfo" class=""
-                style="cursor: pointer; font-size: 16px; font-weight: bold; text-decoration: none; background-color: black; color: white; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s ease; position: relative;" 
-                id="howPicksWork" onmouseover="this.style.backgroundColor='#333333'" onmouseout="this.style.backgroundColor='black'">
-                <span style="display: inline-block; margin-right: 10px; width: 20px; height: 20px; background-color: white; color: black; border-radius: 50%; text-align: center; font-size: 14px; line-height: 20px;">?</span>
-                How Scoring Works
-            </a>
-            </div>
+<div class="text-center mt-3" style="margin-bottom: 40px; margin-top: 20px;">
+    <a href="#moreInfo" class=""
+    style="cursor: pointer; font-size: 16px; font-weight: bold; text-decoration: none; background-color: black; color: white; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s ease; position: relative;" 
+    id="howPicksWork" onmouseover="this.style.backgroundColor='#333333'" onmouseout="this.style.backgroundColor='black'">
+    <span style="display: inline-block; margin-right: 10px; width: 20px; height: 20px; background-color: white; color: black; border-radius: 50%; text-align: center; font-size: 14px; line-height: 20px;">?</span>
+    How Scoring Works
+</a>
+</div>
 
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
@@ -585,6 +585,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- Fight Display Bar Container -->
@@ -681,6 +682,7 @@
 </div>
 
 
+
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
     <!-- Full-Width Button -->
@@ -773,6 +775,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- Fight Display Bar Container -->
@@ -869,6 +872,7 @@
 </div>
 
 
+
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
     <!-- Full-Width Button -->
@@ -961,6 +965,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- Fight Display Bar Container -->
@@ -1057,6 +1062,7 @@
 </div>
 
 
+
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
     <!-- Full-Width Button -->
@@ -1149,6 +1155,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- Fight Display Bar Container -->
@@ -1245,6 +1252,7 @@
 </div>
 
 
+
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
     <!-- Full-Width Button -->
@@ -1337,6 +1345,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- Fight Display Bar Container -->
@@ -1433,6 +1442,7 @@
 </div>
 
 
+
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
     <!-- Full-Width Button -->
@@ -1525,6 +1535,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!-- Fight Display Bar Container -->
@@ -1621,6 +1632,7 @@
 </div>
 
 
+
 <!-- Fight Display Bar Container -->
 <div class="fight-bar-container fight-bar position-relative bg-light w-100">
     <!-- Full-Width Button -->
@@ -1715,39 +1727,27 @@
 </div>
 
 
-        <div style="height: 100px;"></div>
 
-<div class="custom-comment-container" data-event-id="PantojaAsakura">
-    <h2>Comments</h2>
-    <!-- Comment form -->
-    <div class="custom-comment-form">
-        <textarea id="commentInput" placeholder="Add a comment..."></textarea>
-        <button id="submitComment">Post Comment</button>
-    </div>
-    <!-- Comments list -->
-    <div id="commentsList">
-        <!-- Comments will be dynamically inserted here -->
-    </div>
-</div>
         </section>
                            <!-- Hidden Content -->
-                           <div class="fixedBox" style="display: none;" id="moreInfo">
-                            <div class="card-body" id="infoForPicks">
-                                <h2 style="text-align: center; margin-bottom: 20px;" id="howScoring">How Scoring Works</h2>
-                                <p id="explainText">Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.</p>
-                                <button id="closeButton" style="display: block; margin: 20px auto 0; padding: 10px 20px; background-color: black; color: white; border: 2px solid white; cursor: pointer; font-size: 14px;">Close</button>
-                            </div>
-                        </div> 
-                                           
-                        <script>
-                            document.getElementById("closeButton").addEventListener("click", function() {
-                                document.getElementById("moreInfo").style.display = "none";
-                            });
-                            document.getElementById("howPicksWork").addEventListener("click", function() {
-                                var moreInfo = document.getElementById("moreInfo");
-                                moreInfo.style.display = moreInfo.style.display === "none" ? "block" : "none";
-                            });
-                        </script> 
+<div class="fixedBox" style="display: none;" id="moreInfo">
+    <div class="card-body" id="infoForPicks">
+        <h2 style="text-align: center; margin-bottom: 20px;" id="howScoring">How Scoring Works</h2>
+        <p id="explainText">Regular picks work like this: For each fight, you place a 100-score bet on your chosen outcome. If you're correct, the score you earn is based on the betting odds for that outcome, similar to how real sports betting works. For example, picking an underdog or an unlikely event will result in a higher score if you're right, while picking a favorite will yield a smaller return. However, if your pick is incorrect, you lose the 100-score bet you placed. This includes not only picking the wrong fighter, but also picking the wrong method of victory (e.g., decision vs. knockout). In both cases, you'll still lose the 100-score bet. This system rewards both safer and riskier picks, with higher potential scores for taking greater risks.</p>
+        <button id="closeButton" style="display: block; margin: 20px auto 0; padding: 10px 20px; background-color: black; color: white; border: 2px solid white; cursor: pointer; font-size: 14px;">Close</button>
+    </div>
+</div> 
+                   
+<script>
+    document.getElementById("closeButton").addEventListener("click", function() {
+        document.getElementById("moreInfo").style.display = "none";
+    });
+    document.getElementById("howPicksWork").addEventListener("click", function() {
+        var moreInfo = document.getElementById("moreInfo");
+        moreInfo.style.display = moreInfo.style.display === "none" ? "block" : "none";
+    });
+</script>  
+                                    
         <script type="module">
 
 function updateOdds() {
@@ -1905,13 +1905,14 @@ function showSidebarButton1(group) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+	var currentUser = localStorage.getItem('username');
     async function compareTimestamps() {
     try {
         // Initialize chatLogTimestamp to null
         let chatLogTimestamp = null;
 
         // Fetch the chat log timestamp
-        const chatLogResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chatLogRead&username=${username}`);
+        const chatLogResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chatLogRead&username=${currentUser}`);
         const chatLogData = await chatLogResponse.json();
 
         if (chatLogData.statusCode === 200) {
@@ -1926,7 +1927,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Fetch the chat messages
-        const chatResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${username}`);
+        const chatResponse = await fetch(`https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=chat&username=${currentUser}`);
         const chatData = await chatResponse.json();
         const chatMessages = JSON.parse(chatData.body);
 
@@ -1959,10 +1960,9 @@ document.addEventListener('DOMContentLoaded', function() {
     for (let i = 1; i <= 26; i++) {
     showSidebarButton1(i);
 }
-	var username = localStorage.getItem('username');
+	var username = localStorage.getItem('viewUser');
     compareTimestamps();
     fetchDataAndUpdateUI()
-    fetchComments();
 if (username) {
     const apiUrl = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PantojaAsakura_F&username=${encodeURIComponent(username)}`;
     fetch(apiUrl)
@@ -2026,8 +2026,7 @@ if (username) {
                 return parseFloat(profit.toFixed(2));
             }
 
-
-                        let earnings = 0;
+            let earnings = 0;
             userPicks.split('').forEach((pick, index) => {
                 const fightWeightElement = document.getElementById(`fightWeight${index}`);
 
@@ -2035,7 +2034,7 @@ if (username) {
                     // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
                     // Update the text of the corresponding fightWeight element to "0 score earned"
                 if (fightWeightElement) {
-                    fightWeightElement.textContent = "You earned 0 score for your picks on this fight";
+                    fightWeightElement.textContent = username + " earned 0 score for their picks on this fight";
                 }
                 } else {
                     const predefinedSegment = predefinedPicks.substr(index * 3, 3);
@@ -2045,18 +2044,18 @@ if (username) {
                         var thisFightEarned = calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         earnings += calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = "You earned " + thisFightEarned + " score for your pick on this fight";
+                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their picks on this fight";
                 }
                     } else {
                         earnings -= 100;
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = "You lost 100 score for your pick on this fight";
+                    fightWeightElement.textContent = username + " lost 100 score for their picks on this fight";
                 }
                     }
                 }
             });
 
-            document.getElementById('earningsDisplay').innerText = `You earned ${earnings.toFixed(2)} score for your predictions on this card.`;
+            document.getElementById('earningsDisplay').innerText = username + ` earned ${earnings.toFixed(2)} score for their predictions on this card.`;
         })
         .catch(error => {
             console.error("Error fetching data:", error);
@@ -2068,7 +2067,11 @@ fetch(apiUrl2)
     .then(response => response.json())
     .then(data => {
         const responseBody = JSON.parse(data.body);
-        const userPicks = responseBody.PantojaAsakuraParlay_value;
+        let userPicks = responseBody.PantojaAsakuraParlay_value;
+        if (userPicks == null){
+        let allD = Math.floor(26 / 2); // Calculate barCount divided by 2
+        userPicks = "D".repeat(allD); // Repeat the letter 'D' allD times
+        }
         const predefinedPicks = "LC5RP5RNSLC5LBIDDDRNSLC5LA3LBIRP5LBJ";
         const odds = {
             1: -220,
@@ -2120,23 +2123,28 @@ fetch(apiUrl2)
         let multiplier = 1;
         let incorrectPick = false;
         userPicks.split('').forEach((pick, index) => {
+
             if (pick === 'D' || predefinedPicks.substr(index * 3, 3) === 'DDD') {
                 // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
+
             } else {
                 const predefinedSegment = predefinedPicks.substr(index * 3, 3);
                 const matchingPosition = predefinedSegment.indexOf(pick);
 
                 if (matchingPosition !== -1) {
+
                     multiplier *= convertAmericanToDecimal(odds[index * 3 + matchingPosition + 1]);
+
                 } else {
                     incorrectPick = true;
+
                 }
             }
         });
 
         let earnings = incorrectPick ? -100 : (multiplier - 1) * 100;
 
-        document.getElementById('parlayEarningsDisplay').innerText = `You earned ${earnings.toFixed(2)} score for your parlay on this card.`;
+        document.getElementById('parlayEarningsDisplay').innerText = username + ` earned ${earnings.toFixed(2)} score for their parlay on this card.`;
     })
     .catch(error => {
         console.error("Error fetching data:", error);
@@ -2320,12 +2328,12 @@ fetch(apiUrl2)
 
     const picksDisplay = document.getElementById('picksDisplay');
     if (MisfitsPicks.length > 0) {
-        picksDisplay.innerText = 'Your picks: ' + MisfitsPicks.join(', ');
+        picksDisplay.innerText = username + "'s picks: " + MisfitsPicks.join(', ');
     } else {
         picksDisplay.innerText = 'No picks';
     }
 } else {
-                document.getElementById('picksDisplay').innerText = 'You did not make any picks on this card';
+                document.getElementById('picksDisplay').innerText = username + ' did not make any picks on this card';
             }
         })
         .catch(error => {
@@ -2333,7 +2341,7 @@ fetch(apiUrl2)
             document.getElementById('picksDisplay').innerText = 'Failed to load picks due to an error.';
         });
 } else {
-    document.getElementById('picksDisplay').innerText = 'You did not make any picks on this card';
+    document.getElementById('picksDisplay').innerText = '';
 }
 const apiUrl2 = `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PantojaAsakuraParlay_F&username=${encodeURIComponent(username)}`;
 fetch(apiUrl2)
@@ -2511,12 +2519,12 @@ fetch(apiUrl2)
 
             const picksDisplay2 = document.getElementById('picksDisplay2');
             if (MisfitsPicks.length > 0) {
-                picksDisplay2.innerText = 'Your parlay picks: ' + MisfitsPicks.join(', ');
+                picksDisplay2.innerText = username + "'s parlay picks: " + MisfitsPicks.join(', ');
             } else {
                 picksDisplay2.innerText = 'No picks';
             }
         } else {
-            document.getElementById('picksDisplay2').innerText = 'You did not make any parlays on this card';
+            document.getElementById('picksDisplay2').innerText = username + ' did not make a parlay on this card';
         }
     })
     .catch(error => {
@@ -2524,7 +2532,7 @@ fetch(apiUrl2)
         document.getElementById('picksDisplay2').innerText = 'Failed to load picks due to an error.';
     });
    
-    if (username) {
+    if (currentUser) {
         
 
         // Hide the REGISTER and SIGN IN navigation items
@@ -2534,7 +2542,7 @@ fetch(apiUrl2)
         // Create a new nav item for the user, using the username as the link text
         var navItem = document.createElement('li');
         navItem.className = 'nav-item mx-0 mx-lg-1';
-        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" href="http://punchpredictor.com/user.html">${username}</a>`;
+        navItem.innerHTML = `<a class="nav-link py-3 px-0 px-lg-3 rounded text-bigger-specifically2" href="http://punchpredictor.com/user.html">${currentUser}</a>`;
         document.querySelector('#navbarResponsive .navbar-nav').appendChild(navItem);
     } else {
         
@@ -2680,7 +2688,7 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                     // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
                     // Update the text of the corresponding fightWeight element to "0 score earned"
                 if (fightWeightElement) {
-                    fightWeightElement.textContent = "You earned 0 score for your pick on this fight";
+                    fightWeightElement.textContent = username + " earned 0 score for their picks on this fight";
                 }
                 } else {
                     const predefinedSegment = predefinedPicks.substr(index * 3, 3);
@@ -2690,18 +2698,18 @@ function colorButton(buttonId, userPick, predefinedSegment) {
                         var thisFightEarned = calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         earnings += calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = "You earned " + thisFightEarned + " score for your pick on this fight";
+                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their picks on this fight";
                 }
                     } else {
                         earnings -= 100;
                         if (fightWeightElement) {
-                    fightWeightElement.textContent = "You lost 100 score for your pick on this fight";
+                    fightWeightElement.textContent = username + " lost 100 score for their picks on this fight";
                 }
                     }
                 }
             });
 
-            document.getElementById('earningsDisplay').innerText = `You earned ${earnings.toFixed(2)} score for your predictions on this card.`;
+            document.getElementById('earningsDisplay').innerText = username + ` earned ${earnings.toFixed(2)} score for their predictions on this card.`;
         })
         .catch(error => {
             console.error("Error fetching data:", error);
@@ -2790,7 +2798,7 @@ fetch(apiUrl2)
             if (pick === 'D' || predefinedPicks.substr(index * 3, 3) === 'DDD') {
                 // Do nothing if the pick is 'D' or the corresponding predefinedPicks values are 'DDD'
                     if (fightWeightElement) {
-                    fightWeightElement.textContent = "You earned 0 score for your pick on this fight";
+                    fightWeightElement.textContent = username + " earned 0 score for their pick on this fight";
                 }
             } else {
                 const predefinedSegment = predefinedPicks.substr(index * 3, 3);
@@ -2800,12 +2808,12 @@ fetch(apiUrl2)
                 var thisFightEarned = calculateProfitFromOdds(getOddsForPosition(index * 3 + matchingPosition + 1));
                     multiplier *= convertAmericanToDecimal(odds[index * 3 + matchingPosition + 1]);
                     if (fightWeightElement) {
-                    fightWeightElement.textContent = "You earned " + thisFightEarned + " score for your pick on this fight";
+                    fightWeightElement.textContent = username + " earned " + thisFightEarned + " score for their pick on this fight";
                 }
                 } else {
                     incorrectPick = true;
                     if (fightWeightElement) {
-                    fightWeightElement.textContent = "Your parlay was broken on this fight";
+                    fightWeightElement.textContent = username + "'s parlay was broken on this fight";
                 }
                 }
             }
@@ -2822,7 +2830,7 @@ fetch(apiUrl2)
     }
 
 function reColorButtons(parlay){
-    username = localStorage.getItem('username');
+    username = localStorage.getItem('viewUser');
     function removeColor() {
     const numberOfButtons = document.querySelectorAll("[id^='FB']").length;
 
@@ -2884,7 +2892,7 @@ if (username) {
 }
 
 }
-document.getElementById('regular_picks').addEventListener('click', function() {
+    document.getElementById('regular_picks').addEventListener('click', function() {
         document.getElementById('regular_picks').style.display = 'none';
     document.getElementById('parlay_picks').style.display = 'block';
     document.getElementById("howPicksWork").innerHTML = '<span style="display: inline-block; margin-right: 10px; width: 20px; height: 20px; background-color: white; color: black; border-radius: 50%; text-align: center; font-size: 14px; line-height: 20px;">?</span> How Scoring Works';
@@ -3503,7 +3511,7 @@ document.getElementById('regular_picks').addEventListener('click', function() {
      
     
     }
-    var username = localStorage.getItem('username');
+    var username = localStorage.getItem('viewUser');
     const apiUrl = parlay === 'yes' 
         ? `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PantojaAsakuraParlay_F&username=${encodeURIComponent(username)}`
         : `https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev?page=PantojaAsakura_F&username=${encodeURIComponent(username)}`;
@@ -3950,179 +3958,6 @@ document.getElementById('regular_picks').addEventListener('click', function() {
     }
     
     </script>
-            <script>
-        var username = localStorage.getItem('username');
-        // Base URL of the backend API
-        const apiBaseUrl = 'https://g8mjh5drkf.execute-api.us-east-1.amazonaws.com/dev';
-        
-        // Get the event identifier from the HTML
-        const eventContainer = document.querySelector('.custom-comment-container');
-        const eventIdentifier = eventContainer.getAttribute('data-event-id');
-        
-        // Initialize commentsData
-        let commentsData = [];
-        
-        // Function to fetch comments from the backend
-        async function fetchComments() {
-            try {
-                const response = await fetch(`${apiBaseUrl}?page=getComments&placeholder2=PantojaAsakura`);
-                const data = await response.json();
-                
-                if (response.ok) {
-                    // Parse the "body" field as JSON
-                    const parsedBody = JSON.parse(data.body);
-                    const commentsObject = parsedBody.comments || {};
-        
-                    // Convert the comments object into an array
-                    commentsData = Object.keys(commentsObject).map(commentId => ({
-                        id: commentId,
-                        ...commentsObject[commentId]
-                    }));
-        
-                    renderComments();
-                } else {
-                    console.error('Error fetching comments:', data.message);
-                }
-            } catch (error) {
-                console.error('Error fetching comments:', error);
-            }
-        }
-        
-        // Function to render comments
-        function renderComments() {
-            const commentsList = document.getElementById('commentsList');
-            commentsList.innerHTML = '';
-        
-            // Filter top-level comments (parent_id is null or undefined)
-            const topLevelComments = commentsData.filter(comment => !comment.parent_id);
-        
-            topLevelComments.forEach(comment => {
-                const commentElement = createCommentElement(comment);
-                commentsList.appendChild(commentElement);
-            });
-        }
-        
-        // Function to create a comment element
-        function createCommentElement(comment) {
-            const commentDiv = document.createElement('div');
-            commentDiv.classList.add('custom-comment');
-            commentDiv.dataset.commentId = comment.id; // Store the comment ID
-
-            // Create clickable username element
-            const author = document.createElement('div');
-            author.classList.add('custom-comment-author');
-            
-            const usernameLink = document.createElement('a');
-            usernameLink.textContent = comment.username;
-            usernameLink.href = '#'; // Placeholder href; prevent default navigation
-            usernameLink.onclick = (event) => {
-                event.preventDefault(); // Prevents the default anchor behavior
-                setViewUser(comment.username);
-            };
-
-            author.appendChild(usernameLink);
-
-            const content = document.createElement('div');
-            content.classList.add('custom-comment-content');
-            content.textContent = comment.text;
-
-            const actions = document.createElement('div');
-            actions.classList.add('custom-comment-actions');
-            const replyButton = document.createElement('button');
-            replyButton.textContent = 'Reply';
-            replyButton.onclick = () => showReplyForm(commentDiv, comment.id);
-            actions.appendChild(replyButton);
-
-            commentDiv.appendChild(author);
-            commentDiv.appendChild(content);
-            commentDiv.appendChild(actions);
-
-            // Replies
-            const replies = commentsData.filter(c => c.parent_id === comment.id);
-            if (replies.length > 0) {
-                const repliesDiv = document.createElement('div');
-                repliesDiv.classList.add('custom-comment-replies');
-                replies.forEach(reply => {
-                    const replyElement = createCommentElement(reply);
-                    repliesDiv.appendChild(replyElement);
-                });
-                commentDiv.appendChild(repliesDiv);
-            }
-
-            return commentDiv;
-        }
-        // Function to set the user view and navigate to the user profile page
-        function setViewUser(username) {
-            localStorage.setItem('viewUser', username);
-            window.location.href = 'https://punchpredictor.com/viewUser.html';
-        }
-        
-        // Function to show the reply form
-        function showReplyForm(commentElement, parentId) {
-            // Check if form already exists
-            if (commentElement.querySelector('.custom-comment-reply-form')) return;
-        
-            const replyForm = document.createElement('div');
-            replyForm.classList.add('custom-comment-reply-form');
-        
-            const textarea = document.createElement('textarea');
-            textarea.placeholder = 'Write a reply...';
-        
-            const submitButton = document.createElement('button');
-            submitButton.textContent = 'Post Reply';
-            submitButton.onclick = async () => {
-                const replyContent = textarea.value.trim();
-                if (replyContent) {
-        
-                    // Send reply to the backend
-                    try {
-                        const response = await fetch(`${apiBaseUrl}?page=sendComment&username=${encodeURIComponent(username)}&result=${encodeURIComponent(replyContent)}&placeholder2=PantojaAsakura&emailCheck=${encodeURIComponent(parentId)}`);
-                        const data = await response.json();
-                        if (response.ok) {
-                            // Clear the reply form
-                            replyForm.remove();
-                            // Fetch updated comments from the backend
-                            await fetchComments();
-                        } else {
-                            console.error('Error sending reply:', data.message);
-                        }
-                    } catch (error) {
-                        console.error('Error sending reply:', error);
-                    }
-                }
-            };
-        
-            replyForm.appendChild(textarea);
-            replyForm.appendChild(submitButton);
-            commentElement.appendChild(replyForm);
-        }
-        
-        // Event listener for adding a new comment
-        document.getElementById('submitComment').addEventListener('click', async () => {
-            const commentInput = document.getElementById('commentInput');
-            const content = commentInput.value.trim();
-            if (content) {
-        
-                // Send comment to the backend
-                try {
-                    const response = await fetch(`${apiBaseUrl}?page=sendComment&username=${encodeURIComponent(username)}&result=${encodeURIComponent(content)}&placeholder2=PantojaAsakura`);
-                    const data = await response.json();
-                    if (response.ok) {
-                        commentInput.value = '';
-                        // Fetch updated comments from the backend
-                        await fetchComments();
-                    } else {
-                        console.error('Error adding comment:', data.message);
-                    }
-                } catch (error) {
-                    console.error('Error adding comment:', error);
-                }
-            }
-        });
-        
-        
-        
-            </script>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS (if not using bundle) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
