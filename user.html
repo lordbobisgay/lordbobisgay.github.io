@@ -174,6 +174,8 @@ getUserScores(username).then(() => {
             var CovingtonBuckleyParlay_fetch = userInfo[55];
             var MakhachevTsarukyan_fetch = userInfo[56];
             var MakhachevTsarukyanParlay_fetch = userInfo[57];
+            var DernRibas_fetch = userInfo[58];
+            var DernRibasParlay_fetch = userInfo[59];
             let formattedScore = score_fetch ? `${parseFloat(score_fetch).toFixed(2)}` : 'No score yet';
 
             let userInfoHtml = `
@@ -185,6 +187,175 @@ getUserScores(username).then(() => {
             let userPicksHtml = `
             `;
 
+            if (DernRibasParlay_fetch !== "DernRibasParlay not found") {
+                const davismartinpicks = [];
+                const davismartin = DernRibasParlay_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Mackenzie Dern", "Amanda Ribas", "Santiago Ponzinibbio", "Carlston Harris", "Cesar Almeida", "Abdul Razak Alhassan", "Chris Curtis", "Roman Kopylov", "Christian Rodriguez", "Austin Bashi", "Punahele Soriano", "Uros Medic", "Jose Johnson", "Felipe Bunes", "Marco Tulio", "Ihor Potieria", "Thiago Moises", "Trey Ogden", "Preston Parsons", "Andreas Gustafsson", "Ernesta Kareckaite", "Nicolle Caliari", "Magomed Gadzhiyasulov", "Bruno Lopes", "Fatima Kline", "Viktoriia Dudakova", "Nurullo Aliev", "Yanal Ashmouz"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                if (lines < 6){
+                    userPicksHtml += `<p><strong>Dern vs Ribas Parlay Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${DernRibasParlayScore.toFixed(2)}</strong></p>`;
+                    }
+                    if (less == 1) {
+                        // do nothing
+                    } else {
+                        lines += 1; // or lines = lines + 1;
+                    }
+                }
+            }
+            if (DernRibas_fetch !== "DernRibas not found") {
+                const davismartinpicks = [];
+                const davismartin = DernRibas_fetch;
+
+                function pickFighter(index, left, right) {
+                    if (davismartin[index] === 'L') {
+                        davismartinpicks.push(left);
+                    } else if (davismartin[index] === 'R') {
+                        davismartinpicks.push(right);
+                    } else if (davismartin[index] === 'A') {
+                        davismartinpicks.push(left+' by KO');
+                    } else if (davismartin[index] === 'B') {
+                        davismartinpicks.push(left+' by Submission');
+                    } else if (davismartin[index] === 'C') {
+                        davismartinpicks.push(left+' by Decision');
+                    } else if (davismartin[index] === '3') {
+                        davismartinpicks.push(left+' by Round 1 KO');
+                    } else if (davismartin[index] === 'E') {
+                        davismartinpicks.push(left+' by Round 2 KO');
+                    } else if (davismartin[index] === 'F') {
+                        davismartinpicks.push(left+' by Round 3 KO');
+                    } else if (davismartin[index] === 'G') {
+                        davismartinpicks.push(left+' by Round 4 KO');
+                    } else if (davismartin[index] === 'H') {
+                        davismartinpicks.push(left+' by Round 5 KO');
+                    } else if (davismartin[index] === 'I') {
+                        davismartinpicks.push(left+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'J') {
+                        davismartinpicks.push(left+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'K') {
+                        davismartinpicks.push(left+' by Round 3 Submission');
+                    } else if (davismartin[index] === '1') {
+                        davismartinpicks.push(left+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'M') {
+                        davismartinpicks.push(left+' by Round 5 Submission');
+                    } else if (davismartin[index] === 'N') {
+                        davismartinpicks.push(right+' by KO');
+                    } else if (davismartin[index] === 'O') {
+                        davismartinpicks.push(right+' by Submission');
+                    } else if (davismartin[index] === 'P') {
+                        davismartinpicks.push(right+' by Decision');
+                    } else if (davismartin[index] === 'Q') {
+                        davismartinpicks.push(right+' by Round 1 KO');
+                    } else if (davismartin[index] === '2') {
+                        davismartinpicks.push(right+' by Round 2 KO');
+                    } else if (davismartin[index] === 'S') {
+                        davismartinpicks.push(right+' by Round 3 KO');
+                    } else if (davismartin[index] === 'T') {
+                        davismartinpicks.push(right+' by Round 4 KO');
+                    } else if (davismartin[index] === 'U') {
+                        davismartinpicks.push(right+' by Round 5 KO');
+                    } else if (davismartin[index] === 'V') {
+                        davismartinpicks.push(right+' by Round 1 Submission');
+                    } else if (davismartin[index] === 'W') {
+                        davismartinpicks.push(right+' by Round 2 Submission');
+                    } else if (davismartin[index] === 'X') {
+                        davismartinpicks.push(right+' by Round 3 Submission');
+                    } else if (davismartin[index] === 'Y') {
+                        davismartinpicks.push(right+' by Round 4 Submission');
+                    } else if (davismartin[index] === 'Z') {
+                        davismartinpicks.push(right+' by Round 5 Submission');
+                    }
+                    // If 'D', do nothing
+                }
+
+                // Loop through each pair of fighters
+                const pairs = ["Mackenzie Dern", "Amanda Ribas", "Santiago Ponzinibbio", "Carlston Harris", "Cesar Almeida", "Abdul Razak Alhassan", "Chris Curtis", "Roman Kopylov", "Christian Rodriguez", "Austin Bashi", "Punahele Soriano", "Uros Medic", "Jose Johnson", "Felipe Bunes", "Marco Tulio", "Ihor Potieria", "Thiago Moises", "Trey Ogden", "Preston Parsons", "Andreas Gustafsson", "Ernesta Kareckaite", "Nicolle Caliari", "Magomed Gadzhiyasulov", "Bruno Lopes", "Fatima Kline", "Viktoriia Dudakova", "Nurullo Aliev", "Yanal Ashmouz"];
+                pairs.forEach((fighter, index) => {
+                    if (index % 2 === 0) {
+                        pickFighter(index / 2, pairs[index], pairs[index + 1]);
+                    }
+                });
+
+                if (davismartinpicks.length > 0) {
+                if (lines < 6){
+                    userPicksHtml += `<p><strong>Dern vs Ribas Picks:</strong> ${davismartinpicks.join(', ')} <strong> Score earned: ${DernRibasScore.toFixed(2)}</strong> <a href="DernRibas.html">View Picks</a></p>`;
+                    }
+                    if (less == 1) {
+                        // do nothing
+                    } else {
+                        lines += 1; // or lines = lines + 1;
+                    }
+                }
+            }
+    
             if (MakhachevTsarukyanParlay_fetch !== "MakhachevTsarukyanParlay not found") {
                 const davismartinpicks = [];
                 const davismartin = MakhachevTsarukyanParlay_fetch;
@@ -4337,7 +4508,8 @@ function createChart() {
 'Pantoja vs Asakura',
 'Covington vs Buckley',
 'Makhachev vs Tsarukyan',
-                                        //put it above of here
+'Dern vs Ribas',
+                                            //put it above of here
     ];
     const scores = [
         PereiraProchazkaScore,
@@ -4360,6 +4532,7 @@ PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + Tybura
 PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore+HernandezPereiraScore+TopuriaHollowayScore+MorenoAlbaziScore+MagnyPratesScore+JonesMiocicScore+YanFigueiredoScore+PantojaAsakuraScore,
 PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore+HernandezPereiraScore+TopuriaHollowayScore+MorenoAlbaziScore+MagnyPratesScore+JonesMiocicScore+YanFigueiredoScore+PantojaAsakuraScore+CovingtonBuckleyScore,
 PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore+HernandezPereiraScore+TopuriaHollowayScore+MorenoAlbaziScore+MagnyPratesScore+JonesMiocicScore+YanFigueiredoScore+PantojaAsakuraScore+CovingtonBuckleyScore+MakhachevTsarukyanScore,
+PereiraProchazkaScore+EdwardsMuhammadScore + SandhagenNurmagomedovScore + TyburaSpivacScore + DuplessisAdesanyaScore + CannonierBorralhoScore + BurnsBradyScore + OmalleyDvalishviliScore + MoicanoSaintDenisScore + PereiraRoundtreeScore+RoyvalTairaScore+HernandezPereiraScore+TopuriaHollowayScore+MorenoAlbaziScore+MagnyPratesScore+JonesMiocicScore+YanFigueiredoScore+PantojaAsakuraScore+CovingtonBuckleyScore+MakhachevTsarukyanScore+DernRibasScore,
         //Im using this line for writing new stuff
     ];
 
@@ -4456,6 +4629,9 @@ async function getUserScores(username) {
 
             if (scores.MakhachevTsarukyanScore !== undefined) MakhachevTsarukyanScore = scores.MakhachevTsarukyanScore;
             if (scores.MakhachevTsarukyanParlayScore !== undefined) MakhachevTsarukyanParlayScore = scores.MakhachevTsarukyanParlayScore;
+
+            if (scores.DernRibasScore !== undefined) DernRibasScore = scores.DernRibasScore;
+            if (scores.DernRibasParlayScore !== undefined) DernRibasParlayScore = scores.DernRibasParlayScore;
 // im using this line to write above in cardwriter dont change this
 
         } else if (response.status === 404) {
@@ -4508,6 +4684,9 @@ async function getUserScores(username) {
 
     let MakhachevTsarukyanScore = 0;
     let MakhachevTsarukyanParlayScore = 0;
+
+    let DernRibasScore = 0;
+    let DernRibasParlayScore = 0;
     let EdwardsMuhammadScore = 0;
     let SandhagenNurmagomedovScore = 0;
     let TyburaSpivacScore = 0;
