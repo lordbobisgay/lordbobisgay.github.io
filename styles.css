@@ -133,6 +133,21 @@
 .custom-comment .custom-comment-reply-form {
   margin-top: 10px;
 }
+.shutdown-message {
+  background-color: #f8d7da; /* Light red for a soft alert feel */
+  color: #721c24; /* Dark red for the text */
+  border: 1px solid #f5c6cb; /* Border color matching the background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 16px; /* Spacing inside the box */
+  margin: 20px auto; /* Centered with some margin */
+  max-width: 600px; /* Restrict width for readability */
+  font-family: Arial, sans-serif; /* Clean, modern font */
+  font-size: 20px; /* Larger text size */
+  line-height: 1.6; /* Comfortable line spacing */
+  text-align: center; /* Center align text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
 
 .custom-comment .custom-comment-replies {
   margin-top: 20px;
@@ -1020,6 +1035,22 @@
 
 /* Media Query for devices with max-width of 768px */
 @media (max-width: 767px) {
+  .shutdown-message {
+    background-color: #f8d7da; /* Light red for a soft alert feel */
+    color: #721c24; /* Dark red for the text */
+    border: 1px solid #f5c6cb; /* Border color matching the background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Spacing inside the box */
+    margin: 20px auto; /* Centered with some margin */
+    max-width: 600px; /* Restrict width for readability */
+    font-family: Arial, sans-serif; /* Clean, modern font */
+    font-size: 20px; /* Larger text size */
+    line-height: 1.6; /* Comfortable line spacing */
+    text-align: center; /* Center align text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    position: relative; /* Allows you to offset the element */
+    top: -500px; /* Moves the element upwards by 20px */
+  }
   .changingFont1{
     font-size: 25px;
   }
